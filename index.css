@@ -1,0 +1,36 @@
+*{
+    font-family: "Tahoma";
+    font-weight: normal;
+    color:coral;
+}
+
+body{
+    background-image: url("img/background.jpg");
+}
+
+table, th, tr{
+    border: 1px solid pink;
+}
+
+th{
+    padding: 10px;
+}
+
+table{
+    font-size: larger;
+}
+
+.serviceImg{
+    width: 200px;
+    padding: 15px;
+    border: 1px solid purple;
+    background-color: white;
+}
+
+#header1{
+    color:gold;
+}
+
+#certificates > img, a > img{
+    width: 200px;
+}
