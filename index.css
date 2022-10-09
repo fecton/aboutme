@@ -2,6 +2,8 @@
     font-family: "Tahoma";
     font-weight: normal;
     color:coral;
+    margin:0;
+    padding:0;
 }
 
 body{
@@ -16,15 +18,12 @@ th{
     padding: 10px;
 }
 
-table{
-    font-size: larger;
-}
-
 .serviceImg{
     width: 200px;
     padding: 15px;
     border: 1px solid purple;
     background-color: white;
+    border-radius: 30px;
 }
 
 #header1{
