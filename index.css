@@ -9,6 +9,7 @@
 
 body{
     background-image: url("img/background.jpg");
+    background-size: cover;
 }
 
 table, th, tr{
@@ -19,18 +20,26 @@ th{
     padding: 10px;
 }
 
+img{
+    width: 7vw;
+}
+
 .serviceImg{
-    width: 200px;
-    padding: 15px;
+    width: 13vw;
+    padding: 1vw;
     border: 1px solid purple;
     background-color: white;
-    border-radius: 30px;
+    border-radius: 1.8vw;
 }
 
 #header1{
     color:gold;
 }
 
+#reward{
+    width:30vw;
+}
+
 #certificates > img, a > img{
-    width: 200px;
+    width: 15vw;
 }
