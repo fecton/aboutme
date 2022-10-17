@@ -20,6 +20,14 @@ th{
     padding: 10px;
 }
 
+a{
+    color:pink;
+}
+
+li{
+    color:chocolate;
+}
+
 img{
     width: 7vw;
 }
