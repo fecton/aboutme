@@ -30,6 +30,11 @@ li{
 
 img{
     width: 7vw;
+    border-radius: 1vw;
+}
+
+.whiteback{
+    background-color: white;
 }
 
 .serviceImg{
