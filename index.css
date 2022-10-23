@@ -33,6 +33,11 @@ img{
     border-radius: 1vw;
 }
 
+.emptyRow{
+    height: 0.8vw;
+    border: none;
+}
+
 .whiteback{
     background-color: white;
 }
