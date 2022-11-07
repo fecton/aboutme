@@ -13,7 +13,7 @@ body{
 }
 
 table, th, tr{
-    border: 1px solid pink;
+    border: 0.2vw solid pink;
 }
 
 th{
@@ -48,6 +48,10 @@ img{
     border: 1px solid purple;
     background-color: white;
     border-radius: 1.8vw;
+}
+
+#skills > table{
+    border: 0;
 }
 
 #header1{
