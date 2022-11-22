@@ -6,7 +6,7 @@ var direction = -1;
 var arr = [2,4,6,8,10,12,14];
 var length = arr.length;
 
-var date = [9,11,2022];
+var date = [22,11,2022];
 var months_str = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 if(date[1] < 0 || date[1] > 12){
