@@ -1,8 +1,10 @@
 :root{
-    --header_footerColor: #2D033B;
-    --bodyColor: #810CA8;
-    --textColor: #C147E9;
+    --header_footerColor: #810CA8;
+    --navColor: #C147E9;
+    --bodyColor: #2D033B;
+    --textColor: #FFBF00;
     --linkColor: #E5B8F4;
+    --gold:  #C147E9;
 }
 
 
@@ -27,10 +29,21 @@ header{
 footer{
     background-color: var(--header_footerColor);
     padding: 1.3vw;
+    margin-top: 3vw;
 }
 
 table, th, tr{
-    border: 0.1vw solid var(--linkColor);
+    /* border: 0.1vw solid hsla(285, 73%, 84%, 0.089); */
+    border: 0;
+}
+
+div > table{
+    border: 0;
+}
+
+nav{
+    background-color: var(--navColor);
+    margin-bottom: 2vw;
 }
 
 th{
@@ -46,9 +59,19 @@ li{
 }
 
 img{
-    width: 7vw;
-    border-radius: 1vw;
+    width: 8vw;
+    border-radius: 2vw;
 }
+
+#certificates > table img{
+    width: 12vw;
+}
+
+#links > table tr th{
+    padding-left: 2vw;
+    padding-right: 2vw;
+}
+
 
 .emptyRow{
     height: 0.8vw;
@@ -59,8 +82,16 @@ img{
     background-color: white;
 }
 
+.linkImg{
+    width: 4vw;
+    padding: 0.5vw;
+    border-radius: 2vw;
+    border: 2px solid #2D033B;
+    background-color: white;
+}
+
 .serviceImg{
-    width: 12vw;
+    width: 10vw;
     padding: 1vw;
     border: 1px solid purple;
     background-color: white;
@@ -72,13 +103,13 @@ img{
 }
 
 #header1{
-    color:#FFBF00;
+    color: var(--gold);
 }
 
 #reward{
     width:30vw;
 }
 
-#certificates > img, a > img{
-    width: 10vw;
+#last_modified{
+    margin-bottom: 2vw;
 }
