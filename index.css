@@ -33,11 +33,6 @@ footer{
 }
 
 table, th, tr{
-    /* border: 0.1vw solid hsla(285, 73%, 84%, 0.089); */
-    border: 0;
-}
-
-div > table{
     border: 0;
 }
 
@@ -72,11 +67,6 @@ img{
     padding-right: 2vw;
 }
 
-
-.emptyRow{
-    height: 0.8vw;
-    border: none;
-}
 
 .whiteback{
     background-color: white;

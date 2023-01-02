@@ -6,11 +6,11 @@ var direction = -1;
 var arr = [2,4,6,8,10,12,14];
 var length = arr.length;
 
-var date = [26,12,2022];
+var date = [2,1,2022];
 var months_str = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 if(date[1] < 0 || date[1] > 12){
-    alert("ERROR: BAD MONTH!!!");
+    console.log("[ERROR] The month isn't in the interval [1,12]");
 }
 else{
     last_modified.textContent = "Last Updated: " + String(date[0]) + " " + String(months_str[date[1]-1]) + " " + String(date[2]); 
