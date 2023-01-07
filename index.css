@@ -1,3 +1,8 @@
+/*
+==========================================================================
+                            VARIABLES 
+==========================================================================
+*/
 :root{
     --header_footerColor: #810CA8;
     --navColor: #C147E9;
@@ -5,9 +10,22 @@
     --textColor: #FFBF00;
     --linkColor: #E5B8F4;
     --gold:  #C147E9;
+
+    --certificateSize: 12vw;
+    --certificateSizeHover: 13vw;
+
+    --linkImg: 4vw;
+    --linkImgHover: 5vw;
+
+    --animationLength: 0.5s;
 }
 
 
+/*
+==========================================================================
+                            ATTRIBUTES 
+==========================================================================
+*/
 *{
     font-family: "Tahoma";
     font-weight: normal;
@@ -58,34 +76,24 @@ img{
     border-radius: 2vw;
 }
 
+/*
+==========================================================================
+                                IDS 
+==========================================================================
+*/
 #certificates > table img{
-    width: 12vw;
+    width: var(--certificateSize);
+    padding: 10px;
+    transition: background-color var(--animationLength) ease-out 100ms;
+}
+
+#certificates > table img:hover{
+    background-color: var(--navColor);
 }
 
 #links > table tr th{
     padding-left: 2vw;
     padding-right: 2vw;
-}
-
-
-.whiteback{
-    background-color: white;
-}
-
-.linkImg{
-    width: 4vw;
-    padding: 0.5vw;
-    border-radius: 2vw;
-    border: 2px solid #2D033B;
-    background-color: white;
-}
-
-.serviceImg{
-    width: 10vw;
-    padding: 1vw;
-    border: 1px solid purple;
-    background-color: white;
-    border-radius: 1.8vw;
 }
 
 #skills > table{
@@ -102,4 +110,36 @@ img{
 
 #last_modified{
     margin-bottom: 2vw;
+}
+
+
+/*
+==========================================================================
+                            CLASSES
+==========================================================================
+*/
+.whiteback{
+    background-color: white;
+}
+
+.linkImg{
+    width: var(--linkImg);
+    padding: 0.5vw;
+    border-radius: 2vw;
+    border: 2px solid #2D033B;
+    background-color: white;
+    transition: background-color 0.5s ease-out 100ms;
+}
+
+.linkImg:hover{
+    background-color: var(--textColor);
+    width: var(--linkImgHover);
+}
+
+.serviceImg{
+    width: 10vw;
+    padding: 1vw;
+    border: 1px solid purple;
+    background-color: white;
+    border-radius: 1.8vw;
 }
