@@ -83,7 +83,7 @@ img{
 */
 #certificates > table img{
     width: var(--certificateSize);
-    padding: 10px;
+    padding: 3px;
     transition: background-color var(--animationLength) ease-out 100ms;
 }
 
@@ -92,8 +92,8 @@ img{
 }
 
 #links > table tr th{
-    padding-left: 2vw;
-    padding-right: 2vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
 }
 
 #skills > table{
