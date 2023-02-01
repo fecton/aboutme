@@ -12,12 +12,11 @@
     --gold:  #C147E9;
 
     --certificateSize: 12vw;
-    --certificateSizeHover: 13vw;
 
     --linkImg: 4vw;
     --linkImgHover: 5vw;
 
-    --animationLength: 0.5s;
+    --animationLength: 0.4s;
 }
 
 
@@ -37,6 +36,7 @@
 
 body{
     background-color: var(--bodyColor);
+    width: 100%;
 }
 
 header{
@@ -59,10 +59,6 @@ nav{
     margin-bottom: 2vw;
 }
 
-th{
-    padding: 10px;
-}
-
 a{
     color: var(--linkColor);
 }
@@ -74,6 +70,24 @@ li{
 img{
     width: 8vw;
     border-radius: 2vw;
+    padding: 5px;
+}
+
+a{
+    transition: color var(--animationLength) ease-in-out 50ms;
+}
+
+a:hover{
+    color: #C147E9;
+}
+
+a > img{
+    width: var(--certificateSize);
+    transition: background-color var(--animationLength) ease-in-out 100ms;
+}
+
+a > img:hover{
+    background-color: var(--navColor);
 }
 
 /*
@@ -81,23 +95,9 @@ img{
                                 IDS 
 ==========================================================================
 */
-#certificates > table img{
-    width: var(--certificateSize);
-    padding: 3px;
-    transition: background-color var(--animationLength) ease-out 100ms;
-}
-
-#certificates > table img:hover{
-    background-color: var(--navColor);
-}
-
 #links > table tr th{
     padding-left: 1vw;
     padding-right: 1vw;
-}
-
-#skills > table{
-    border: 0;
 }
 
 #header1{
@@ -113,18 +113,15 @@ img{
 }
 
 
+
 /*
 ==========================================================================
                             CLASSES
 ==========================================================================
 */
-.whiteback{
-    background-color: white;
-}
-
 .linkImg{
     width: var(--linkImg);
-    padding: 0.5vw;
+    margin: 0.5vw;
     border-radius: 2vw;
     border: 2px solid #2D033B;
     background-color: white;
@@ -138,7 +135,6 @@ img{
 
 .serviceImg{
     width: 10vw;
-    padding: 1vw;
     border: 1px solid purple;
     background-color: white;
     border-radius: 1.8vw;
