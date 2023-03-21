@@ -90,6 +90,7 @@ a > img:hover{
     background-color: var(--navColor);
 }
 
+
 /*
 ==========================================================================
                                 IDS 
@@ -104,14 +105,10 @@ a > img:hover{
     color: var(--gold);
 }
 
-#reward{
-    width:30vw;
-}
 
 #last_modified{
     margin-bottom: 2vw;
 }
-
 
 
 /*
@@ -119,6 +116,10 @@ a > img:hover{
                             CLASSES
 ==========================================================================
 */
+.reward{
+    width:30vw;
+}
+
 .linkImg{
     width: var(--linkImg);
     margin: 0.5vw;
