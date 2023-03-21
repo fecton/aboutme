@@ -11,13 +11,26 @@
     --linkColor: #E5B8F4;
     --gold:  #C147E9;
 
-    --certificateSize: 12vw;
+    --certificateSize:  12vw;
 
-    --linkImg: 4vw;
-    --linkImgHover: 5vw;
+    --linkImg:          4vw;
+    --linkImgHover:     5vw;
 
-    --animationLength: 0.4s;
+    --animationLength:  0.4s;
 }
+
+
+
+/*
+==========================================================================
+                            KEY FRAMES 
+==========================================================================
+*/
+@keyframes linkImageHover {
+    from {}
+    to {width: 10vw;}
+}
+
 
 
 /*
@@ -41,12 +54,12 @@ body{
 
 header{
     background-color: var(--header_footerColor);
-    padding: 1.3vw;
+    padding:    1.3vw;
 }
 
 footer{
     background-color: var(--header_footerColor);
-    padding: 1.3vw;
+    padding:    1vw;
     margin-top: 3vw;
 }
 
@@ -68,9 +81,9 @@ li{
 }
 
 img{
-    width: 8vw;
-    border-radius: 2vw;
-    padding: 5px;
+    width:          8vw;
+    border-radius:  2vw;
+    padding:        5px;
 }
 
 a{
@@ -90,25 +103,27 @@ a > img:hover{
     background-color: var(--navColor);
 }
 
-
 /*
 ==========================================================================
                                 IDS 
 ==========================================================================
 */
 #links > table tr th{
-    padding-left: 1vw;
-    padding-right: 1vw;
+    padding-left:   0.5vw;
+    padding-right:  0.5vw;
 }
 
 #header1{
     color: var(--gold);
 }
 
+#reward{
+    width: 30vw;
+}
 
 #last_modified{
     margin-bottom: 2vw;
-}
+}   
 
 
 /*
@@ -126,12 +141,6 @@ a > img:hover{
     border-radius: 2vw;
     border: 2px solid #2D033B;
     background-color: white;
-    transition: background-color 0.5s ease-out 100ms;
-}
-
-.linkImg:hover{
-    background-color: var(--textColor);
-    width: var(--linkImgHover);
 }
 
 .serviceImg{
