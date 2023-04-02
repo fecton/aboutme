@@ -10,9 +10,8 @@
 
 /* Default sizes */
 :root {
-  --certificate-size: 12vw;
+  --certificate-size: 10vw;
   --link-img: 4vw;
-  --link-img-hover: 5vw;
 }
 
 /* Default animations */
@@ -54,6 +53,7 @@ nav {
 
 ul {
     list-style: none;   
+    color: var(--link-color);
 }
 
 table,
