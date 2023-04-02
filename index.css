@@ -1,151 +1,161 @@
-/*
-==========================================================================
-                            VARIABLES 
-==========================================================================
-*/
-:root{
-    --header_footerColor: #810CA8;
-    --navColor: #C147E9;
-    --bodyColor: #2D033B;
-    --textColor: #FFBF00;
-    --linkColor: #E5B8F4;
-    --gold:  #C147E9;
-
-    --certificateSize:  12vw;
-
-    --linkImg:          4vw;
-    --linkImgHover:     5vw;
-
-    --animationLength:  0.4s;
+/* Default styles */
+:root {
+  --header-footer-color: #810CA8;
+  --nav-color: #C147E9;
+  --body-color: #2D033B;
+  --text-color: #FFBF00;
+  --link-color: #E5B8F4;
+  --gold: #C147E9;
 }
 
-
-
-/*
-==========================================================================
-                            KEY FRAMES 
-==========================================================================
-*/
-@keyframes linkImageHover {
-    from {}
-    to {width: 10vw;}
+/* Default sizes */
+:root {
+  --certificate-size: 10vw;
+  --link-img: 4vw;
 }
 
-
-
-/*
-==========================================================================
-                            ATTRIBUTES 
-==========================================================================
-*/
-*{
-    font-family: "Tahoma";
-    font-weight: normal;
-    color: var(--textColor);
-    margin:0;
-    padding:0;
-    font-size: 2vw;
+/* Default animations */
+:root {
+  --animation-length: 0.4s;
 }
 
-body{
-    background-color: var(--bodyColor);
-    width: 100%;
+/* Reset styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-header{
-    background-color: var(--header_footerColor);
-    padding:    1.3vw;
+/* Typography */
+body {
+  font-family: "Tahoma";
+  font-size: 2vw;
+  font-weight: normal;
+  color: var(--text-color);
+  background-color: var(--body-color);
 }
 
-footer{
-    background-color: var(--header_footerColor);
-    padding:    1vw;
-    margin-top: 3vw;
+/* Layout */
+header,
+footer {
+  background-color: var(--header-footer-color);
+  padding: 1vw 1.3vw;
 }
 
-table, th, tr{
-    border: 0;
+footer {
+  margin-top: 3vw;
 }
 
-nav{
-    background-color: var(--navColor);
-    margin-bottom: 2vw;
+nav {
+  background-color: var(--nav-color);
+  margin-bottom: 2vw;
 }
 
-a{
-    color: var(--linkColor);
+ul {
+    list-style: none;   
+    color: var(--link-color);
 }
 
-li{
-    color: var(--header_footerColor);
+table,
+th,
+tr {
+  border: none;
 }
 
-img{
-    width:          8vw;
-    border-radius:  2vw;
-    padding:        5px;
+/* Links */
+a {
+  color: var(--link-color);
+  transition: color var(--animation-length) ease-in-out 50ms;
 }
 
-a{
-    transition: color var(--animationLength) ease-in-out 50ms;
+a:hover {
+  color: var(--nav-color);
 }
 
-a:hover{
-    color: #C147E9;
+a > img {
+  width: var(--certificate-size);
+  padding: 5px;
+  border-radius: 2vw;
+  transition: background-color var(--animation-length) ease-in-out 100ms;
 }
 
-a > img{
-    width: var(--certificateSize);
-    transition: background-color var(--animationLength) ease-in-out 100ms;
+a > img:hover {
+  background-color: var(--nav-color);
 }
 
-a > img:hover{
-    background-color: var(--navColor);
+/* Images */
+img {
+  width: 8vw;
+  border-radius: 2vw;
 }
 
-/*
-==========================================================================
-                                IDS 
-==========================================================================
-*/
-#links > table tr th{
-    padding-left:   0.5vw;
-    padding-right:  0.5vw;
+.service-img {
+  width: 10vw;
+  border-radius: 1.8vw;
+  border: 1px solid purple;
+  background-color: white;
 }
 
-#header1{
-    color: var(--gold);
+/* ID selectors */
+#links > table tr th {
+  padding: 0.5vw;
 }
 
-#reward{
+#header1 {
+  color: var(--gold);
+}
+
+#reward,
+.reward {
+  width: 30vw;
+}
+
+#last_modified {
+  margin-bottom: 2vw;
+}
+
+/* Class selectors */
+.link-img {
+  width: var(--link-img);
+  margin: 0.5vw;
+  border: 2px solid var(--body-color);
+  border-radius: 2vw;
+  background-color: white;
+}
+
+/* Media queries */
+@media only screen and (max-width: 768px) {
+  /* Typography */
+  body {
+    font-size: 4vw;
+  }
+
+  /* Layout */
+  header,
+  footer {
+    padding: 3vw;
+  }
+
+  /* Links */
+  a > img {
+    width: 20vw;
+  }
+
+  /* Images */
+  img {
+    width: 20vw;
+    border-radius: 4vw;
+  }
+
+  .service-img {
     width: 30vw;
-}
+    border-radius: 4vw;
+  }
 
-#last_modified{
-    margin-bottom: 2vw;
-}   
-
-
-/*
-==========================================================================
-                            CLASSES
-==========================================================================
-*/
-.reward{
-    width:30vw;
-}
-
-.linkImg{
-    width: var(--linkImg);
-    margin: 0.5vw;
-    border-radius: 2vw;
-    border: 2px solid #2D033B;
-    background-color: white;
-}
-
-.serviceImg{
-    width: 10vw;
-    border: 1px solid purple;
-    background-color: white;
-    border-radius: 1.8vw;
+  /* Class selectors */
+  .link-img {
+    width: 12vw;
+    margin: 1vw;
+    border-radius: 4vw;
+  }
 }
