@@ -1,29 +1,31 @@
-var header1 = document.getElementById("header1");
-var last_modified = document.getElementById("last_modified")
+// Define global variables and constants
+const header1 = document.getElementById("header1");
+const lastModified = document.getElementById("last_modified");
+const animationInterval = 100; // in milliseconds
 
-var i = 0;
-var direction = -1;
-var arr = [2,4,6,8,10,12,14];
-var length = arr.length;
+let spacingIndex = 0;
+let spacingDirection = -1;
+const letterSpacings = [2, 4, 6, 8, 10, 12, 14];
 
-var date = [21,3,2023];
-var months_str = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const lastModifiedDate = new Date(2023, 2, 21); // year, month (0-indexed), day
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-if(date[1] < 0 || date[1] > 12){
-    console.log("[ERROR] The month isn't in the interval [1,12]");
-}
-else{
-    last_modified.textContent = "Last Updated: " + String(date[0]) + " " + String(months_str[date[1]-1]) + " " + String(date[2]); 
-}
-
-
-
-function TextSpacing(){
-    header1.style.letterSpacing = String(arr[i]) + "px";
-    if(i == length || i == 0){
-        direction *= -1;
-    }
-    i += 1 * direction;
+// Validate the month value in the date
+if (lastModifiedDate.getMonth() < 0 || lastModifiedDate.getMonth() > 11) {
+  console.error("[ERROR] The month isn't in the interval [1,12]");
+} else {
+  const formattedDate = `${lastModifiedDate.getDate()} ${months[lastModifiedDate.getMonth()]} ${lastModifiedDate.getFullYear()}`;
+  lastModified.textContent = `Last Updated: ${formattedDate}`;
 }
 
-setInterval("TextSpacing()", 100);
+// Define functions
+function animateHeaderText() {
+  header1.style.letterSpacing = `${letterSpacings[spacingIndex]}px`;
+  if (spacingIndex === 0 || spacingIndex === letterSpacings.length - 1) {
+    spacingDirection *= -1;
+  }
+  spacingIndex += spacingDirection;
+}
+
+// Start the animation interval
+setInterval(animateHeaderText, animationInterval);
