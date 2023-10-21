@@ -286,6 +286,11 @@ footer {
   padding-bottom: 100px;
 }
 
+/* custom section */
+.in-progress-text {
+  color: rgb(0, 242, 255);
+}
+
 /* social icon section */
 .social-icons {
   padding: 0;
