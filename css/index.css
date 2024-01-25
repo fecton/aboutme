@@ -42,6 +42,17 @@ h2 {
   padding-bottom: 14px;
 }
 
+/*
+TODO: combine into one class
+*/
+a {
+  text-decoration: underline;
+}
+
+.education a, .experience a {
+  color: #60A9F0;
+}
+
 .accent {
   font-family: 'Proxima Bold';
   line-height: 14px;
@@ -80,11 +91,31 @@ h2 {
   min-height: 330px;
 }
 
+.about,
 .education,
 .languages,
 .contact,
 .experience {
   margin-top: 30px;
+}
+
+.certification-content {
+  align-items: center;
+}
+
+.cloud-certification {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.certificate {
+  width: 200px;
+  margin: 20px;
+}
+
+.certificate > img {
+  width: 100%;
 }
 
 @font-face {
