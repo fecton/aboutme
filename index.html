@@ -47,79 +47,29 @@
 	</div>
 </header>
 
-<!-- about and skills section -->
+<!-- short intro section -->
 <section class="container">
 	<div class="row">
-		<div class="col-md-6 col-sm-12">
-			<div class="about">
-				<h3 class="accent">Job Profile</h3>
-				<p>The website is designed to be a navigational page.</p>
 
+		<div class="col-md-4 col-sm-12">
+			<div class="about">
+				<h2>Job Profile</h2>
 				<h2><a href="https://docs.google.com/document/d/1AU11pYNam32N1Ec1QJ9v6KIaw1pDx8PCoNXGfZNVU-4/edit?usp=sharing">Resume</a></h2>
-				<hr>
+
 				<h2><a href="https://docs.google.com/document/d/1HwZfQxEdCfkfA7DH_2BH5wWIqKRmFp5cDz4FZ6awtcg/edit?usp=sharing">Cover Letter</a></h2>
 			</div>
 		</div>
-		<div class="col-md-6 col-sm-12">
-			<div class="skills">
-				<!-- TODO: rework skills to remove percentages -->
-				<h2 class="white">Skills</h2>
-				<strong>CI (Jenkins, Groovy DSL, GitLab, GitHub Actions)</strong>
-				<span class="pull-right">100%</span>
-					<div class="progress">
-						<div class="progress-bar progress-bar-primary" role="progressbar"
-                        aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
-					</div>
-				<strong>CD (AWS, Docker/Kubernetes, Terraform, Ansible)</strong>
-				<span class="pull-right">98%</span>
-					<div class="progress">
-						<div class="progress-bar progress-bar-primary" role="progressbar"
-                        aria-valuenow="98" aria-valuemin="0" aria-valuemax="100" style="width: 98%;"></div>
-					</div>
-				<strong>Python, Bash</strong>
-				<span class="pull-right">85%</span>
-					<div class="progress">
-						<div class="progress-bar progress-bar-primary" role="progressbar"
-                        aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%;"></div>
-					</div>
-				<strong>Java, C/C++</strong>
-				<span class="pull-right">50%</span>
-					<div class="progress">
-						<div class="progress-bar progress-bar-primary" role="progressbar"
-                        aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"></div>
-					</div>
-				<strong>GCP, Azure</strong>
-				<span class="pull-right">30%</span>
-					<div class="progress">
-						<div class="progress-bar progress-bar-primary" role="progressbar"
-                        aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;"></div>
-					</div>
+
+		<div class="col-md-4 col-sm-12">
+			<div class="contact">
+				<h2>Contact</h2>
+					<p><i class="fa fa-map-marker"></i>Krakow, Poland</p>
+					<p><i class="fa fa-phone"></i>451-224-791 (notify before a call)</p>
+					<p><i class="fa fa-envelope"></i>a.v.lytvynenko2004@gmail.com</p>
+					<p><i class="fa fa-globe"></i>alytvynenko.net</p>
 			</div>
 		</div>
-	</div>
-</section>
 
- <!-- TODO: append certification section -->
-
-<!-- education and languages -->
-<section class="container">
-	<div class="row">
-		<div class="col-md-8 col-sm-12">
-			<div class="education">
-			<!-- TODO: add EPAM devops training -->
-				<h2 class="white">Education</h2>
-					<div class="education-content">
-						<h4 class="education-title accent">Computer Engineering: Computer Networks and Systems</h4>
-							<div class="education-school">
-								<h5><a href="https://khai.edu/en/">Kharkiv Aviation Institute</a></h5><span></span>
-								<h5>2021 September - 2025 August <b class="in-progress-text">(IN PROGRESS)</b></h5>
-							</div>
-						<p class="education-description">
-							This specialization covers computer software and technical aspects, including hardware, software, diverse networks, and IoT. Graduates excel in research, design, debugging, and development. They are experts in information processes and various computing technologies, ensuring software and technical components function optimally and secure information throughout their lifecycle.
-						</p>
-					</div>
-			</div>
-		</div>
 		<div class="col-md-4 col-sm-12">
 			<div class="languages">
 				<h2>Languages</h2>
@@ -134,19 +84,84 @@
 	</div>
 </section>
 
+<!--
+TODO: complete certification section
+- The section should contain many certification, in the planning it should be placed in a few rows
+	- Each rows contains 4-6 certificates
+		- Each certificate contain
+			- Its badge/image
+			- Its name
+			- Assigning date
+-->
+<section class="container">
+	<div class="row">
+		<div class="col-md-12 col-sm-12">
+			<!-- TODO: Rename education to some common name, for example: blue-section -->
+			<div class="education">
+				<h2>Certifications</h2>
+					<div class="certification-content">
+						<div class="cloud-certification">
+							<!--
+							Emmet template
+
+							table>tr*2>td*4>div>img[src="./images/certification/microsoft-badge.PNG"][alt="Microsoft Associate"]+h4{Microsfoft Associate}+h5{Assigned: 19.11.2023}
+							-->
+							<h1>Stay tuned! :)</h1>
+						</div>
+						<!--
+							TODO: choose between splitting section or combining
+							based on certifications amount
+						<div class="kubernetes-certfication">
+
+						</div>
+						-->
+					</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- education and languages -->
+<section class="container">
+	<div class="row">
+		<div class="col-md-12 col-sm-12">
+			<div class="education">
+				<h2 class="white">Education</h2>
+					<div class="education-content">
+						<h4 class="education-title accent">Computer Engineering: Computer Networks and Systems</h4>
+							<div class="education-school">
+								<h5><a href="https://khai.edu/en/">Kharkiv Aviation Institute</a></h5><span></span>
+								<h5>2021 September - 2025 August <b class="in-progress-text">(IN PROGRESS)</b></h5>
+							</div>
+						<p class="education-description">
+							This specialization covers computer software and technical aspects, including hardware, software, diverse networks, and IoT. Graduates excel in research, design, debugging, and development. They are experts in information processes and various computing technologies, ensuring software and technical components function optimally and secure information throughout their lifecycle.
+						</p>
+					</div>
+					<hr>
+					<div class="education-content">
+						<h4 class="education-title accent">Cloud & DevOps Masters Program</h4>
+							<div class="education-school">
+								<h5><a href="https://www.epamglobalcampus.com/">EPAM University</a></h5><span></span>
+								<h5>2022 June - 2023 March</h5>
+							</div>
+						<p class="education-description">
+							Actively engaged in the architectural design and construction of projects from inception. I proficiently utilized various technologies, including Linux Bash, MySQL, and Linux Networking, to develop pipelines employing Jenkins. Additionally, I employed Infrastructure as Code (IaC) principles with Terraform, configuring diverse services such as Amazon RDS (MySQL). I adeptly orchestrated instances using Ansible within both Microsoft Azure and Amazon Web Services environments. Leveraging my expertise in Linux Bash and Networking.
+
+							This comprehensive skill set was acquired through immersive hands-on experiences, practical application in real-world scenarios, and guidance from seasoned mentors.
+
+							The documentation of my progress is available in my GitHub repository: https://github.com/fecton/epam-devops-course
+						</p>
+					</div>
+			</div>
+		</div>
+		</div>
+	</div>
+</section>
+
 <!-- contact and experience -->
 <section class="container">
 	<div class="row">
-		<div class="col-md-4 col-sm-12">
-			<div class="contact">
-				<h2>Contact</h2>
-					<p><i class="fa fa-map-marker"></i>Krakow, Poland</p>
-					<p><i class="fa fa-phone"></i>451-224-791 (notify before a call)</p>
-					<p><i class="fa fa-envelope"></i>a.v.lytvynenko2004@gmail.com</p>
-					<p><i class="fa fa-globe"></i>alytvynenko.net</p>
-			</div>
-		</div>
-		<div class="col-md-8 col-sm-12">
+		<div class="col-md-12 col-sm-12">
 			<div class="experience">
 				<h2 class="white">Experiences</h2>
 					<div class="experience-content">
@@ -159,6 +174,7 @@
 							Stack of Technologies: Gerrit, Grafana, Jenkins, Jenkins Pipeline, Terraform, AWS, Kubernetes (K8S), GitLab, Groovy DSL
 						</p>
 					</div>
+					<hr>
 					<div class="experience-content">
 						<h4 class="experience-title accent">DevOps Engineer</h4>
 						<h5>Remote, Ukraine</h5><span></span>
@@ -171,6 +187,7 @@ Worked with different Python frameworks (Flask, Aiogram, Tkinter, etc.)</p>
 							Stack of Technologies: Amazon DynamoDB, Amazon EC2, Amazon Elastic Container Registry (ECR), Amazon Elastic Kubernetes Service (Amazon EKS), Amazon Relational Database Service (RDS), Amazon S3, Amazon VPC (Virtual Private Cloud), Ansible, AWS, AWS Lambda, C Programming Language, C#, C++, CentOS, CI/CD, CI/CD  Fundamentals, CMake, Configuration Management, Continuous Deployment, Continuous Integration, Database Administration, Debian GNU/Linux, DevOps Fundamentals, DevOps Tools, Django, Docker, Docker Compose, Firewalls, Flask, Git, GITBash, GitHub, GitHub Actions, GitHub CI, Google Test, HashiCorp Terraform, Jenkins, Jenkins Pipeline, Kubernetes, Linux, Linux Virtualization, Load Balancing, MariaDB, Microservices, Microsoft Azure DevOps, Microsoft Azure Pipelines, Microsoft Visual Studio, Microsoft Windows, Microsoft Windows 10, MongoDB, MySQL, PostgreSQL, Python, Python Testing, Redis, SQL, SQLite, Version Control, VirtualBox, VM, VMware, VMWare Linux, VPN, Vulnerability Scanners, YAML
 						</p>
 					</div>
+					<hr>
 					<div class="experience-content">
 						<h4 class="experience-title accent">Full-stack Web Developer</h4>
 						<h5>Remote, Ukraine</h5><span></span>
@@ -181,6 +198,7 @@ Worked with different Python frameworks (Flask, Aiogram, Tkinter, etc.)</p>
 							Stack of Technologies: Apache WEB Server, Cascading Style Sheets (CSS), HTML, JavaScript, jQuery, Laravel, MySQL, Nginx, PHP, SQLite
 						</p>
 					</div>
+					<hr>
 					<div class="experience-content">
 						<h4 class="experience-title accent">Junior System Administrator</h4>
 						<h5>On site, Ukraine</h5><span></span>
