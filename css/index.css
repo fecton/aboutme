@@ -114,7 +114,7 @@ a {
   margin: 20px;
 }
 
-.certificate > img {
+.certificate > a > img {
   width: 100%;
 }
 
