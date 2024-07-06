@@ -100,18 +100,19 @@ a {
 }
 
 .certification-content {
-  align-items: center;
-}
-
-.cloud-certification {
+  /* align-items: center; */
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* flex-wrap: wrap; */
+  gap: 20px;
 }
 
 .certificate {
-  width: 200px;
-  margin: 20px;
+  flex: 1;
+  min-width: 200px;
+  /* width: 200px; */
+  max-width: calc(50% - 20px);
 }
 
 .certificate > a > img {
