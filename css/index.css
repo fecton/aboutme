@@ -321,6 +321,7 @@ footer {
 /* custom section */
 .in-progress-text {
   color: rgb(0, 242, 255);
+  font-weight: bold;
 }
 
 /* social icon section */
