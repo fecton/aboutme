@@ -1,0 +1,52 @@
+name: MegaLinter
+
+on:
+  pull_request:
+    branches: [main, master]
+  push:
+    branches: [main, develop]
+  workflow_dispatch:
+
+jobs:
+  megalinter:
+    name: MegaLinter
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: MegaLinter
+        uses: oxsecurity/megalinter@v8.3.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Uncomment to enable detailed logs
+          # LOG_LEVEL: DEBUG
+          
+          # Uncomment to disable copy-paste detection
+          # COPY_PASTE_DISABLED: true
+          
+          # Uncomment to disable spell checking
+          # SPELL_DISABLED: true
+          
+          # Configure specific linters
+          JAVASCRIPT_ES_DISABLED: false
+          PYTHON_BLACK_DISABLED: false
+          
+          # Apply fixes when possible
+          APPLY_FIXES: all
+          
+          # Uncomment to disable specific file types
+          # FILTER_REGEX_EXCLUDE: '(\.test\.js|\.spec\.js)'
+
+      # Upload MegaLinter artifacts if the job fails
+      - name: Archive production artifacts
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: MegaLinter reports
+          path: |
+            megalinter-reports
+            mega-linter.log
