@@ -47,6 +47,10 @@ h2 {
   padding-bottom: 14px;
 }
 
+div {
+  border-radius: 15px;
+}
+
 /*
 TODO: combine into one class
 */
