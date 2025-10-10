@@ -129,6 +129,13 @@ summary:hover {
   min-width: 150px;
   width: 150px;
   max-width: 200px;
+  padding: 10px;
+}
+
+.certificate:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+  background-color: #203F7E;
 }
 
 .certificate > a > img {
