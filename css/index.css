@@ -310,6 +310,11 @@ header hr {
   box-shadow: 0px 1px 5px rgba(50, 50, 50, 0.08);
 }
 
+.contact table tr td {
+  padding: 10px;
+}
+
+
 .contact .fa {
   padding-right: 6px;
 }
