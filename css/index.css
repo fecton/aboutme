@@ -59,6 +59,12 @@ a {
 }
 
 .education a, .experience a {
+  color: #FFFFFF;
+}
+
+.education a:hover,
+.experience a:hover,
+summary:hover {
   color: #60A9F0;
 }
 
