@@ -323,7 +323,8 @@ header hr {
 
 .experience span {
   padding-right: 10px;
-  padding-left: 20px;
+  padding-left: 10px;
+  margin-left: 10px;
 }
 
 /* footer section */
@@ -336,8 +337,11 @@ footer {
 
 /* custom section */
 .in-progress-text {
-  color: rgb(0, 242, 255);
+  color: white;
   font-weight: bold;
+  background-color: #203F7E;
+  border-radius: 10px;
+  padding: 5px;
 }
 
 /* social icon section */
