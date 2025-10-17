@@ -1,5 +1,5 @@
-education_section = document.getElementsByClassName("education")[0].getElementsByClassName("certification-content")[0]
-education_section.innerHTML = "";
+certificates_section = document.getElementsByClassName("education")[0].getElementsByClassName("certification-content")[0]
+certificates_section.innerHTML = "";
 
 const data = {
   "certificates": [
@@ -75,6 +75,6 @@ for (let i = 0; i < data.certificates.length; i++) {
     certDiv.appendChild(plannedYear);
   }
 
-  education_section.appendChild(certDiv);
+  certificates_section.appendChild(certDiv);
 }
 
