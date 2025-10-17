@@ -1,7 +1,7 @@
 certificates_section = document.getElementsByClassName("education")[0].getElementsByClassName("certification-content")[0]
 certificates_section.innerHTML = "";
 
-const data = {
+const cert_data = {
   "certificates": [
     {
       "title": "Terraform Certified Associate",
@@ -48,8 +48,8 @@ const data = {
   ]
 }
 
-for (let i = 0; i < data.certificates.length; i++) {
-  const cert = data.certificates[i];
+for (let i = 0; i < cert_data.certificates.length; i++) {
+  const cert = cert_data.certificates[i];
   const certDiv = document.createElement("div");
   certDiv.className = "certificate";
 
