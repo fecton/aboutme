@@ -3,37 +3,6 @@ education_section = document.getElementsByClassName("education-content")[0];
 education_section.innerHTML = "";
 education_section.innerText = "";
 
-/*
-<div class="education-content">
-<h4 class="education-title accent">Cloud & DevOps Preparation Program</h4>
-  <div class="education-school">
-    <h5>EPAM University <a href="https://www.epamglobalcampus.com/" target="_blank">(CLICK-ME)</a></h5><span></span>
-    <u>GRADUATED (100/100)</u>
-    <br>
-    <h5>> 2022 June - 2023 March</h5>
-  </div>
-<p class="education-description">
-  <p>
-    Actively working with Linux Bash, MySQL, and Linux Networking, I have developed pipelines using Jenkins. I have also implemented Infrastructure as Code (IaC) principles with Terraform, configuring various services such as Amazon RDS (MySQL). My orchestration skills include managing instances with Ansible in both Microsoft Azure and Amazon Web Services environments.
-  </p>
-  <p>
-    This comprehensive skill set was acquired through immersive hands-on experiences, practical application in real-world scenarios, and guidance from seasoned mentors.
-  </p>
-  <p>
-    The documentation of the progress is available in the GitHub repository: EPAM DevOps Course <a href="https://github.com/fecton/epam-devops-course" target="_blank">(CLICK-ME)</a>
-  </p>
-  <details>
-    <summary>
-      <h5><u>▼ Stack of Technologies</u></h5>
-    </summary>
-    <p>
-      Linux, Bash, MySQL, Linux Networking, Jenkins, Terraform, Amazon RDS, Ansible, Microsoft Azure, Amazon Web Services.
-    </p>
-  </details>
-</p>
-</div>
-*/
-
 const edu_data = {
   "educations": [
     {
