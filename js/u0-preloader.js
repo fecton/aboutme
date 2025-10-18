@@ -6,6 +6,6 @@ $(window).load(function(){
 // Set static background image
 $(function(){
     jQuery(document).ready(function() {
-		$('body').backstretch("images/tm-bg-slide-1.jpg")
+		$('body').backstretch("images/tm-bg-slide-1.webp")
 	});
 })
