@@ -1,26 +1,3 @@
-/*
-Regular DevOps Engineer
-Remote, Luxoft Poland (CLICK ME) 3 projects: Mercedes-Benz User Experience (MBUX) NTG6 / NTG7 / Gen20x (CLICK-ME)
-> 2023 February - 2025 September
-
-    Led Terraform Enterprise migration, completing in half the planned time and with half the team;
-    Led infrastructure and testing process documentation efforts;
-    Created internal and client-facing presentations with architecture diagrams, upgrades, and other activities;
-    Facilitated technical discussions and solution brainstorming within the team;
-    Programming and scripting using Bash(Shell)/Python/Groovy, and Java;
-    Cost optimization activities (FinOps): reduced test environment costs by 50%;
-    Worked with AWS Lambda and AWS SDK: automating, debugging, and implementing new features, creating dynamics in IaC;
-    Worked with AWS services for empowering high availability solutions: VPC, CloudFront, EC2, AutoScaling, Load Balancers, Transit Gateways, S3, Route53, CloudWatch, SNS, Lambda, etc.
-    Maintained direct client communication to assess project status and support issue resolution;
-    Planned and executed upgrades for Jenkins, Gerrit, Terraform, Grafana, Prometheus, and EKS (Kubernetes in AWS);
-    Redesigned network architecture with high availability and reliability principles;
-    Debugged Java-based applications, including Gerrit and Jenkins, and automation to support distributed systems for large-scale applications;
-
-▼ Stack of Technologies
-
-Terraform Enterprise, Bash (Shell), Python, Groovy, Jenkins, Gerrit, AWS (Lambda, VPC, EC2, S3, CloudFront, Route53, CloudWatch, SNS, Auto Scaling, Load Balancers, Transit Gateway, EKS), Kubernetes (K8S), Grafana, Prometheus, AWS CloudWatch, Jenkins, Git, Gerrit, FinOps (Cost optimization practices), High Availability Architectures, Network Design & Redesign, Transit Gateway, Load Balancing, Java (application debugging), Python, Groovy, Bash (scripting and automation), Lucidchart, draw.io, Jira, Confluence.
-*/
-
 experience_section = document.getElementsByClassName("experience-content")[0];
 
 console.log(experience_section);
