@@ -165,7 +165,7 @@ for (let i = 0; i < exp_data.experiences.length; i++) {
   companyDiv.appendChild(companyBr);
 
   const companyH5 = document.createElement("h5");
-  companyH5.innerHTML = `Company: ${exp.work_mode}, ${exp.company} <a href="${exp.company_link}" target="_blank">(CLICK-ME)</a>`;
+  companyH5.innerHTML = `Company: ${exp.company} <a href="${exp.company_link}" target="_blank">(CLICK-ME)</a>`;
 
   companyDiv.appendChild(companyH5);
 
