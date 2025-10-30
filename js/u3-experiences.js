@@ -111,7 +111,7 @@ const exp_data = {
       "position": "DevOps Engineer",
       "work_mode": "Remote",
       "company": "Self-Employed",
-      "company_link": "https://alytvynenko.net/",
+      "company_link": "",
       "client": "Freelance projects (web projects)",
       "client_link": "",
       "dates": "2021 January - 2023 January",
@@ -122,7 +122,7 @@ const exp_data = {
       "position": "Full-Stack Web Developer",
       "work_mode": "Remote",
       "company": "Self-Employed",
-      "company_link": "https://alytvynenko.net/",
+      "company_link": "",
       "client": "Freelance projects (web projects)",
       "client_link": "",
       "dates": "2020 April - 2021 June",
@@ -134,7 +134,7 @@ const exp_data = {
       "position": "Junior System Administrator",
       "work_mode": "On site",
       "company": "Self-Employed",
-      "company_link": "https://alytvynenko.net/",
+      "company_link": "",
       "client": "Settlement Council",
       "client_link": "",
       "dates": "2019 January - 2020 February",
@@ -165,7 +165,11 @@ for (let i = 0; i < exp_data.experiences.length; i++) {
   companyDiv.appendChild(companyBr);
 
   const companyH5 = document.createElement("h5");
-  companyH5.innerHTML = `Company: ${exp.company} <a href="${exp.company_link}" target="_blank">(CLICK-ME)</a>`;
+  if(exp.company_link == "") {
+    companyH5.innerHTML = `Company: ${exp.company}`;
+  } else {
+    companyH5.innerHTML = `Company: ${exp.company} <a href="${exp.company_link}" target="_blank">(CLICK-ME)</a>`;
+  }
 
   companyDiv.appendChild(companyH5);
 
@@ -173,7 +177,11 @@ for (let i = 0; i < exp_data.experiences.length; i++) {
   companyDiv.appendChild(companyBr2);
 
   const clientH5 = document.createElement("h5");
-  clientH5.innerHTML = `Client: ${exp.client} <a href="${exp.client_link}" target="_blank">(CLICK-ME)</a>`;
+  if(exp.client_link == "") {
+    clientH5.innerHTML = `Client: ${exp.client}`;
+  } else {
+    clientH5.innerHTML = `Client: ${exp.client} <a href="${exp.client_link}" target="_blank">(CLICK-ME)</a>`;
+  }
 
   companyDiv.appendChild(clientH5);
   experience_section.appendChild(companyDiv);
