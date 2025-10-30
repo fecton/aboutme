@@ -5,7 +5,7 @@ all_files = os.listdir(".")
 
 print("All files to convert:", all_files)
 
-all_files.remove("main.py")
+all_files.remove("png_to_webp.py")
 
 for file in all_files:
     img = Image.open(file)
