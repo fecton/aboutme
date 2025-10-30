@@ -14,8 +14,8 @@ const exp_data = {
       "company_link": "https://www.luxoft.com/",
       "client": "JP Morgan Chase",
       "client_link": "https://www.chase.com/",
-      "dates": "2025 August - ",
-      "present": true,
+      "dates": "2025 August - 2025 October",
+      "present": false,
       "description": `<ul>
   <li>
     Design, implement, and maintain scalable cloud infrastructure on AWS, leveraging services like ECS, AWS Managed workflows for Apache Airflow, Lambda, and S3;
