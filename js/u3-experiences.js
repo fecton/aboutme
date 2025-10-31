@@ -48,7 +48,7 @@ const exp_data = {
       "disciplines": "HLASM, Java, Spring Boot, Python, AWS, EC2, Lambda, S3, Block Storage, Networking, Apache Airflow, Terraform, Jenkins, Jules, Spinnaker, PostgreSQL, Splunk, Dynatrace. "
     },
     {
-      "position": "Regular DevOps Engineer",
+      "position": "DevOps Engineer",
       "work_mode": "Remote",
       "company": "Luxoft Poland",
       "company_link": "https://www.luxoft.com/",
@@ -131,7 +131,7 @@ const exp_data = {
       "disciplines": "Apache WEB Server, Cascading Style Sheets (CSS), HTML, JavaScript, jQuery, Laravel, MySQL, Nginx, PHP, SQLite."
     },
     {
-      "position": "Junior System Administrator",
+      "position": "System Administrator",
       "work_mode": "On site",
       "company": "Self-Employed",
       "company_link": "",
