@@ -14,36 +14,14 @@ const exp_data = {
       "company_link": "https://www.luxoft.com/",
       "client": "JP Morgan Chase",
       "client_link": "https://www.chase.com/",
-      "dates": "2025 August - 2025 October",
+      "dates": "2025 August - 2025 October (The end of the contract with Luxoft Poland)",
       "present": false,
       "description": `<ul>
-  <li>
-    Design, implement, and maintain scalable cloud infrastructure on AWS, leveraging services like ECS, AWS Managed workflows for Apache Airflow, Lambda, and S3;
-  </li>
-
-  <li>
-    Develop and manage infrastructure-as-code using Terraform for efficient environment management;
-  </li>
-
-  <li>
-    Build and maintain CI/CD pipelines using tools such as Jenkins, Jules or Spinnaker;
-  </li>
-
-  <li>
-    Manage ECS clusters, including configuration, deployment, and monitoring (Airflow expertise preferred);
-  </li>
-
-  <li>
-    Support and optimize Java-based applications (vanilla Java, Spring Boot) throughout the build, package, and deployment lifecycle;
-  </li>
-
-  <li>
-    Ensure database reliability and performance through PostgreSQL management and optimization;
-  </li>
-
-  <li>
-    Collaborate with cross-functional teams to troubleshoot and resolve infrastructure and deployment challenges.
-  </li>
+        <li>Delivered and maintained cloud infrastructure using Terraform in multiple dev environments, pre-prod, and prod environments with automatic scaling and serverless services, featuring multi-AZ deployments and multi-region S3 and RDS replications (active-passive) using AWS services (ECS, MWAA, and Lambda).</li>
+        <li>Implemented monitoring using Dynatrace, Datadog, and CloudWatch, including investigation of Lambda errors and resource utilization.</li>
+        <li>Developed CI/CD pipelines with Jules (a custom Jenkins) and Spinnaker integrated with Terraform Enterprise, covering build, test, and deploy stages involving Java (Vanilla Java, Spring Boot) and Docker.</li>
+        <li>Contributed to cloud architecture planning and continuous improvement of platform design.</li>
+        <li>Collaborated with cross-functional international teams including DevOps, QA, Developers, Architects, and Analysts.</li>
 </ul>`,
       "disciplines": "HLASM, Java, Spring Boot, Python, AWS, EC2, Lambda, S3, Block Storage, Networking, Apache Airflow, Terraform, Jenkins, Jules, Spinnaker, PostgreSQL, Splunk, Dynatrace. "
     },
@@ -57,53 +35,26 @@ const exp_data = {
       "dates": "2023 February - 2025 September",
       "present": false,
       "description": `<ul>
-  <li>
-    Led Terraform Enterprise migration, completing in half the planned time and with half the team;
-  </li>
-
-  <li>
-    Led infrastructure and testing process documentation efforts;
-  </li>
-
-  <li>
-    Created internal and client-facing presentations with architecture diagrams, upgrades, and other activities;
-  </li>
-
-  <li>
-    Facilitated technical discussions and solution brainstorming within the team;
-  </li>
-
-  <li>
-    Programming and scripting using Bash(Shell)/Python/Groovy, and Java;
-  </li>
-
-  <li>
-    Cost optimization activities (FinOps): reduced test environment costs by 50%;
-  </li>
-
-  <li>
-    Worked with AWS Lambda and AWS SDK: automating, debugging, and implementing new features, creating dynamics in IaC;
-  </li>
-
-  <li>
-    Worked with AWS services for empowering high availability solutions: VPC, CloudFront, EC2, AutoScaling, Load Balancers, Transit Gateways, S3, Route53, CloudWatch, SNS, Lambda, etc.
-  </li>
-
-  <li>
-    Maintained direct client communication to assess project status and support issue resolution;
-  </li>
-
-  <li>
-    Planned and executed upgrades for Jenkins, Gerrit, Terraform, Grafana, Prometheus, and EKS (Kubernetes in AWS);
-  </li>
-
-  <li>
-    Redesigned network architecture with high availability and reliability principles;
-  </li>
-
-  <li>
-    Debugged Java-based applications, including Gerrit and Jenkins, and automation to support distributed systems for large-scale applications;
-  </li>
+        <li>Led urgent and time-limited Terraform Enterprise migration from Terragrunt, completing it in 30% of the planned time (1 month instead of 3 months) with half the team size (3-5 instead of 10 engineers); provided daily reports to stakeholders on development status, performance tracking, and management via team calls, Jira comments, and Confluence pages.</li>
+        <li>Led network architecture redesign to eliminate Nginx network bottlenecks, applying high availability and reliability principles using AWS services (ALB, NLB, EC2, Route53, EKS, CloudFront, VPC, EventBridge), reworking legacy code, reducing incident frequency by 70%, and enabling the handling of high traffic peaks with hundreds of thousands of requests per second.</li>
+        <li>Led documentation initiatives to improve transparency for clients and newly onboarded staff, creating complete infrastructure and testing documentation and knowledge-sharing procedures, resulting in improved team efficiency and engagement.</li>
+        <li>Led urgent production Kubernetes cluster restoration during weekends following an incident, restoring from automated backups, implementing countermeasures, and documenting the event.</li>
+        <li>Regularly mentored a team of 10 members, providing one-to-one support sessions.</li>
+        <li>Implemented and maintained IAM policies, secrets management, and conducted regular security audits within the AWS environment.</li>
+        <li>Designed and implemented Gerrit High Availability Cluster architecture using Corosync, Pacemaker, and distributed storage (GFS2, DLM, LVM, lvmlockd) with automation, eliminating downtime during maintenance operations.</li>
+        <li>Optimized Gerrit infrastructure by migrating from a single large instance to a 3-node cluster, reducing EC2 costs by 40% (saving approximately $3,000 per month) and improving reliability.</li>
+        <li>Designed and implemented event streaming between multiple Gerrit instances using Kinesis, Kafka, and Zookeeper to handle peak traffic loads.</li>
+        <li>Delivered a comprehensive monitoring solution for Gerrit HA components (instances, metrics, ALB/NLB, EBS, RDS) using Prometheus and Grafana.</li>
+        <li>Implemented automated disaster recovery and backup/restoration strategies for Gerrit HA using EBS snapshots.</li>
+        <li>Delivered client-facing technical and architectural presentations to audiences ranging from 10 to 100 stakeholders.</li>
+        <li>Facilitated team-level technical discussions and solution brainstorming sessions across international teams, leading to performance optimizations and preemptive resolution of critical issues.</li>
+        <li>Conducted FinOps initiatives and analyses, reducing test environment costs by 50% and production costs by 20% without performance degradation, saving over $5,000 monthly using AWS Cost Explorer and Cost Optimizer.</li>
+        <li>Maintained and implemented Jira automation jobs, streamlining release procedures with Python.</li>
+        <li>Implemented build, test, and release pipelines using Java, Groovy, Python, AWS SDK, and Jenkins.</li>
+        <li>Developed monitoring and observability solutions: created dashboards with Grafana visualizations and alerts, prepared database queries in SQL and Flux for InfluxDB, and implemented Kubernetes and EC2 monitoring with Prometheus; automated incident ticket creation using Grafana, AlertManager, and Jira Alert.</li>
+        <li>Performed regular upgrades and maintenance for Jenkins, Gerrit, Kafka, Zookeeper, Terragrunt, Terraform, Terraform Enterprise, InfluxDB, Grafana, Prometheus, Kubernetes, Ubuntu, HAProxy, and Nginx.</li>
+        <li>Developed Single Sign-On (SSO) plugins for Gerrit in Java, enabling unified authentication across enterprise systems.</li>
+        <li>Implemented a GenAI-powered log analyzer using AWS Bedrock (OpenAI GPT-4.0), reducing incident investigation time by 60% through automated pattern recognition and root cause analysis.</li>
 </ul>`,
       "disciplines": "Terraform Enterprise, Bash (Shell), Python, Groovy, Jenkins, Gerrit, AWS (Lambda, VPC, EC2, S3, CloudFront, Route53, CloudWatch, SNS, Auto Scaling, Load Balancers, Transit Gateway, EKS), Kubernetes (K8S), Grafana, Prometheus, AWS CloudWatch, Jenkins, Git, Gerrit, FinOps (Cost optimization practices), High Availability Architectures, Network Design & Redesign, Transit Gateway, Load Balancing, Java (application debugging), Python, Groovy, Bash (scripting and automation), Lucidchart, draw.io, Jira, Confluence."
     },
