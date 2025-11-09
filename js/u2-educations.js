@@ -10,6 +10,8 @@ const edu_data = {
       "university_title": "Kharkiv Aviation Institute",
       "university_link": "https://khai.edu/en/",
       "dates": "2021 September - 2025 August",
+      "diploma_pdf": "pdf/diploma.pdf",
+      "diploma_suplement_pdf": "pdf/diploma-suplement.pdf",
       "description": "Professionally, a Bachelor in this field may hold positions in the information technologies industry such as Information Technology Expert, Technician on System Administration, Specialist in Software Design and Testing, Specialist in Computer Software Design, and Technician-Programmer in IT departments of educational institutions, scientific-research, design, production, public, private, and IT enterprises. The educational program has provided the ability to solve complex specialized and practical problems in computer science , apply legal frameworks and international standards , use modern programming languages to create system and application software , ensure information protection in computer systems , design, implement, and maintain computer systems and networks , and systematically administer and operate existing information technologies.",
       "disciplines": "English Language (B1), Communication Skills Training, Fundamentals of Professional Ukrainian-Language Communication, Higher Mathematics, Discrete Mathematics, Fundamentals of Computer Operation, Programming Technologies, Law Studies, Physics, Computer Electronics, Educational Practice, Philosophy, Information and Coding Theory, Computer Architecture, Data Models and Structures, Computer Circuitry, Introductory Practice, Theoretical Foundations of Cryptology, Business Communication Psychology, Programming Technologies (Course Project), Programmable Systems-on-Chip, Computer Logic, Operating Systems, Mobile Programming, Embedded Systems, Web Technologies, Programming Artificial Intelligence Tools in Python, WEB/UI/UX Design, Java Technologies, Git Technology for Team Project Development, Databases, IoT Systems Programming, Fundamentals of Web UI Development (Front-End), Industrial Practice, Big Data Technologies, Information Security in Computer Systems, DevOps and Cloud Computing, Reliability and Fault Tolerance of Computer Systems, Web Development (Back-End), System Programming, Economics and IT Project Management, Software Arhictecture (Web), Microprocessor Control Systems Based on Arduino Platforms, Virtual and Augmented Reality Technologies, Testing and Quality Assurance",
     },
@@ -18,6 +20,8 @@ const edu_data = {
       "university_title": "EPAM University",
       "university_link": "https://www.epamglobalcampus.com/",
       "dates": "2022 June - 2023 March",
+      "diploma_pdf": "",
+      "diploma_suplement_pdf": "",
       "description": "Actively working with Linux Bash, MySQL, and Linux Networking, I have developed pipelines using Jenkins. I have also implemented Infrastructure as Code (IaC) principles with Terraform, configuring various services such as Amazon RDS (MySQL). My orchestration skills include managing instances with Ansible in both Microsoft Azure and Amazon Web Services environments. This comprehensive skill set was acquired through immersive hands-on experiences, practical application in real-world scenarios, and guidance from seasoned mentors. The documentation of the progress is available in the GitHub repository: EPAM DevOps Course <a href=\"https://github.com/fecton/epam-devops-course\" target=\"_blank\">(CLICK-ME)</a>",
       "disciplines": "Linux, Bash, MySQL, Linux Networking, Jenkins, Terraform, Amazon RDS, Ansible, Microsoft Azure, Amazon Web Services.",
       "disciplines": "Linux, Bash, MySQL, Linux Networking, Jenkins, Terraform, Amazon RDS, Ansible, Microsoft Azure, Amazon Web Services.",
@@ -48,6 +52,26 @@ for (let i = 0; i < edu_data.educations.length; i++) {
   statusU.innerHTML = "GRADUATED (100/100)";
   schoolDiv.appendChild(statusU);
   schoolDiv.appendChild(document.createElement("br"));
+
+  const diploma_pdf = document.createElement("h5");
+  if(edu.diploma_pdf != "") {
+    diploma_pdf.innerHTML = `Diploma <a href="${edu.diploma_pdf}" target="_blank">(CLICK-ME)</a>`;
+
+    // TODO: embed pdf viewer
+    // diploma_pdf.innerHTML = `<embed src="${edu.diploma_pdf}" type="application/pdf" width="400px" height="300px">`
+    education_section.appendChild(diploma_pdf);
+
+    education_section.appendChild(document.createElement("span"));
+  }
+
+  const diploma_suplement_pdf = document.createElement("h5");
+  if(edu.diploma_seplement_pdf != "") {
+    diploma_suplement_pdf.innerHTML = `Diploma Suplement <a href="${edu.diploma_suplement_pdf}" target="_blank">(CLICK-ME)</a>`;
+
+    // TODO: embed pdf viewer
+    // diploma_pdf.innerHTML = `<embed src="${edu.diploma_pdf}" type="application/pdf" width="400px" height="300px">`
+    education_section.appendChild(diploma_suplement_pdf);
+  }
 
   const datesH5 = document.createElement("h5");
   datesH5.innerHTML = `&gt; ${edu.dates}`;
