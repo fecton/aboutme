@@ -14,7 +14,7 @@ const exp_data = {
       "company_link": "https://www.luxoft.com/",
       "client": "JP Morgan Chase",
       "client_link": "https://www.chase.com/",
-      "dates": "2025 August - 2025 October (The end of the contract with Luxoft Poland)",
+      "dates": "2025 August - 2025 October (Contract successfully completed)",
       "present": false,
       "description": `<ul>
         <li>Delivered and maintained cloud infrastructure using Terraform in multiple dev environments, pre-prod, and prod environments with automatic scaling and serverless services, featuring multi-AZ deployments and multi-region S3 and RDS replications (active-passive) using AWS services (ECS, MWAA, and Lambda).</li>
