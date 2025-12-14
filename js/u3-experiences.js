@@ -8,6 +8,18 @@ experience_section.innerText = "";
 const exp_data = {
   "experiences": [
     {
+      "position": "Senior DevOps Engineer",
+      "work_mode": "Remote",
+      "company": "Geniusee Inc.",
+      "company_link": "https://geniusee.com/",
+      "client": "Education platforms and logistics companies",
+      "client_link": "",
+      "dates": "2025 November - Present",
+      "present": true,
+      "description": "",
+      "disciplines": "AWS (EC2, S3, Lambda, VPC, IAM, CloudWatch, RDS), Terraform, Terragrunt, C#, .NET, PowerShell, GitLab CI, GitHub Actions, Docker, Kubernetes, Git, Linux, Windows Server, Infrastructure as Code (IaC), CI/CD Pipelines, Grafana, Prometheus, Open Telemetry, Jira, Confluence."
+    },
+    {
       "position": "Senior/Lead DevOps Engineer",
       "work_mode": "Remote",
       "company": "Luxoft Poland",
