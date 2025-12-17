@@ -67,9 +67,69 @@ html {
   top: 0;
 }
 
+/* Details and Summary Animations */
+details {
+  overflow: hidden;
+}
+
 summary {
   cursor: pointer;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  transition: color var(--transition-fast);
+  user-select: none;
+}
+
+summary h5 {
+  margin: 0;
+  padding: 0;
+}
+
+/* Arrow indicator animation */
+summary::before {
+  content: '►';
+  display: inline-block;
+  margin-right: 8px;
+  transition: transform 0.35s ease;
+  transform-origin: center;
+  font-size: 0.9em;
+}
+
+details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+/* Content animation - dropdown slide down/up for both open and close */
+details {
+  display: grid;
+  grid-template-rows: auto 0fr;
+  transition: grid-template-rows 0.35s ease-out;
+}
+
+details[open] {
+  grid-template-rows: auto 1fr;
+}
+
+details > summary {
+  grid-row: 1;
+}
+
+details > *:not(summary) {
+  grid-row: 2;
+  overflow: hidden;
+  /* Remove opacity transition for pure dropdown effect */
+}
+
+/* Hover effect for better UX */
+summary:hover {
+  color: var(--color-accent-hover);
+}
+
+/* Ensure existing hover styles don't override */
+.education summary:hover,
+.experience summary:hover {
+  color: var(--color-accent-hover);
 }
 
 h1 {
@@ -107,9 +167,17 @@ a {
 
 /* Focus Indicators for Accessibility */
 a:focus,
-button:focus,
-summary:focus,
-details:focus {
+button:focus {
+  outline: 3px solid var(--color-accent-hover);
+  outline-offset: 2px;
+}
+
+/* Remove focus outline on mouse click, keep for keyboard navigation */
+summary {
+  outline: none;
+}
+
+summary:focus-visible {
   outline: 3px solid var(--color-accent-hover);
   outline-offset: 2px;
 }
@@ -240,6 +308,19 @@ summary:hover {
   
   .preloader {
     display: none !important;
+  }
+  
+  /* Disable details animations for reduced motion */
+  summary::before {
+    transition: none !important;
+  }
+  
+  details {
+    transition: none !important;
+  }
+  
+  details > *:not(summary) {
+    transition: none !important;
   }
 }
 

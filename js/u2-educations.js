@@ -120,7 +120,7 @@ for (let i = 0; i < edu_data.educations.length; i++) {
   const details = document.createElement("details");
   const summary = document.createElement("summary");
   const summaryH5 = document.createElement("h5");
-  summaryH5.innerHTML = "<u>▼ Disciplines</u>";
+  summaryH5.innerHTML = "<u>Disciplines</u>";
   summary.appendChild(summaryH5);
   details.appendChild(summary);
 
