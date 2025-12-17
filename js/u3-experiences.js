@@ -1,9 +1,13 @@
-experience_section = document.getElementsByClassName("experience-content")[0];
-
-console.log(experience_section);
-
-experience_section.innerHTML = "";
-experience_section.innerText = "";
+// Error handling wrapper
+try {
+  const experienceElements = document.getElementsByClassName("experience-content");
+  if (!experienceElements || experienceElements.length === 0) {
+    console.error("Experience content section not found");
+    throw new Error("Required DOM element not found");
+  }
+  
+  const experience_section = experienceElements[0];
+  experience_section.innerHTML = "";
 
 const exp_data = {
   "experiences": [
@@ -132,13 +136,16 @@ const exp_data = {
 }
 
 
+// Use DocumentFragment for better performance
+const fragment = document.createDocumentFragment();
+
 for (let i = 0; i < exp_data.experiences.length; i++) {
   const exp = exp_data.experiences[i];
 
   const title = document.createElement("h4");
   title.className = "experience-title accent";
-  title.innerHTML = exp.position;
-  experience_section.appendChild(title);
+  title.textContent = exp.position;
+  fragment.appendChild(title);
 
   const companyDiv = document.createElement("div");
   companyDiv.className = "experience-company";
@@ -151,10 +158,17 @@ for (let i = 0; i < exp_data.experiences.length; i++) {
   companyDiv.appendChild(companyBr);
 
   const companyH5 = document.createElement("h5");
-  if(exp.company_link == "") {
-    companyH5.innerHTML = `Company: ${exp.company}`;
-  } else {
-    companyH5.innerHTML = `Company: ${exp.company} <a href="${exp.company_link}" target="_blank">(CLICK-ME)</a>`;
+  const companyText = document.createTextNode("Company: " + exp.company + " ");
+  companyH5.appendChild(companyText);
+  
+  if (exp.company_link && exp.company_link !== "") {
+    const companyLink = document.createElement("a");
+    companyLink.href = exp.company_link;
+    companyLink.target = "_blank";
+    companyLink.rel = "noopener noreferrer";
+    companyLink.textContent = "(Visit Website)";
+    companyLink.setAttribute("aria-label", `Visit ${exp.company} website (opens in new tab)`);
+    companyH5.appendChild(companyLink);
   }
 
   companyDiv.appendChild(companyH5);
@@ -163,23 +177,30 @@ for (let i = 0; i < exp_data.experiences.length; i++) {
   companyDiv.appendChild(companyBr2);
 
   const clientH5 = document.createElement("h5");
-  if(exp.client_link == "") {
-    clientH5.innerHTML = `Client: ${exp.client}`;
-  } else {
-    clientH5.innerHTML = `Client: ${exp.client} <a href="${exp.client_link}" target="_blank">(CLICK-ME)</a>`;
+  const clientText = document.createTextNode("Client: " + exp.client + " ");
+  clientH5.appendChild(clientText);
+  
+  if (exp.client_link && exp.client_link !== "") {
+    const clientLink = document.createElement("a");
+    clientLink.href = exp.client_link;
+    clientLink.target = "_blank";
+    clientLink.rel = "noopener noreferrer";
+    clientLink.textContent = "(Visit Website)";
+    clientLink.setAttribute("aria-label", `Visit ${exp.client} website (opens in new tab)`);
+    clientH5.appendChild(clientLink);
   }
 
   companyDiv.appendChild(clientH5);
-  experience_section.appendChild(companyDiv);
+  fragment.appendChild(companyDiv);
 
   const datesH5 = document.createElement("h5");
   datesH5.innerHTML = `&gt; ${exp.dates}` + (exp.present ? ` <span class="in-progress-text">PRESENT</span>` : "");
-  experience_section.appendChild(datesH5);
+  fragment.appendChild(datesH5);
 
   const descriptionP = document.createElement("p");
   descriptionP.className = "education-description";
   descriptionP.innerHTML = exp.description;
-  experience_section.appendChild(descriptionP);
+  fragment.appendChild(descriptionP);
 
   const details = document.createElement("details");
   const summary = document.createElement("summary");
@@ -189,13 +210,22 @@ for (let i = 0; i < exp_data.experiences.length; i++) {
   details.appendChild(summary);
 
   const disciplinesP = document.createElement("p");
-  disciplinesP.innerHTML = exp.disciplines;
+  disciplinesP.textContent = exp.disciplines;
   details.appendChild(disciplinesP);
-  experience_section.appendChild(details);
+  fragment.appendChild(details);
 
-  if (i != exp_data.experiences.length - 1) {
+  if (i !== exp_data.experiences.length - 1) {
     const hr = document.createElement("hr");
-    experience_section.appendChild(hr);
+    fragment.appendChild(hr);
   }
 }
 
+experience_section.appendChild(fragment);
+
+} catch (error) {
+  console.error("Error loading experience section:", error);
+  const errorMsg = document.querySelector(".experience-content");
+  if (errorMsg) {
+    errorMsg.textContent = "Unable to load experience information. Please refresh the page.";
+  }
+}

@@ -1,5 +1,19 @@
-certificates_section = document.getElementsByClassName("education")[0].getElementsByClassName("certification-content")[0]
-certificates_section.innerHTML = "";
+// Error handling wrapper
+try {
+  const educationElements = document.getElementsByClassName("education");
+  if (!educationElements || educationElements.length === 0) {
+    console.error("Education section not found");
+    throw new Error("Required DOM element not found");
+  }
+  
+  const certificationElements = educationElements[0].getElementsByClassName("certification-content");
+  if (!certificationElements || certificationElements.length === 0) {
+    console.error("Certification content section not found");
+    throw new Error("Required DOM element not found");
+  }
+  
+  const certificates_section = certificationElements[0];
+  certificates_section.innerHTML = "";
 
 const cert_data = {
   "certificates": [
@@ -54,18 +68,26 @@ const cert_data = {
   ]
 }
 
+// Use DocumentFragment for better performance
+const fragment = document.createDocumentFragment();
+
 for (let i = 0; i < cert_data.certificates.length; i++) {
   const cert = cert_data.certificates[i];
   const certDiv = document.createElement("div");
   certDiv.className = "certificate";
 
   const certLink = document.createElement("a");
-  certLink.href = cert.link;
+  certLink.href = cert.link || "#";
   certLink.target = "_blank";
+  certLink.rel = "noopener noreferrer";
+  certLink.setAttribute("aria-label", `View ${cert.title} certification`);
 
   const certImg = document.createElement("img");
   certImg.src = `./images/certification/${cert.image}`;
-  certImg.alt = cert.image;
+  certImg.alt = cert.title;
+  certImg.loading = "lazy";
+  certImg.width = 150;
+  certImg.height = 150;
 
   certLink.appendChild(certImg);
   certDiv.appendChild(certLink);
@@ -74,13 +96,22 @@ for (let i = 0; i < cert_data.certificates.length; i++) {
   certTitle.textContent = cert.title;
   certDiv.appendChild(certTitle);
 
-  if (cert.planned_year.length != 0) { // String is empty
+  if (cert.planned_year && cert.planned_year.length !== 0) {
     const plannedYear = document.createElement("h5");
     plannedYear.className = "in-progress-text";
     plannedYear.textContent = `Planned: ${cert.planned_year}`;
     certDiv.appendChild(plannedYear);
   }
 
-  certificates_section.appendChild(certDiv);
+  fragment.appendChild(certDiv);
 }
 
+certificates_section.appendChild(fragment);
+
+} catch (error) {
+  console.error("Error loading certificates:", error);
+  const errorMsg = document.querySelector(".certification-content");
+  if (errorMsg) {
+    errorMsg.textContent = "Unable to load certifications. Please refresh the page.";
+  }
+}
