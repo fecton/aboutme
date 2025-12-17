@@ -1,0 +1,313 @@
+# Cursor Rules for Andrii Lytvynenko's Portfolio Website
+
+## Project Overview
+This is a personal portfolio website for Andrii Lytvynenko, a Senior DevOps & Cloud Engineer. The site is a Progressive Web App (PWA) built with vanilla JavaScript, HTML5, CSS3, Bootstrap, and jQuery.
+
+**Live URL:** https://alytvynenko.net
+
+## Tech Stack
+- HTML5 with semantic markup
+- CSS3 with modern features (CSS Variables, Grid, Flexbox)
+- JavaScript (ES6+) with jQuery 
+- Bootstrap 3.x for responsive grid system
+- Font Awesome for icons
+- Progressive Web App (PWA) with Service Worker
+- Google Analytics for tracking
+- Python for image optimization utilities
+
+## Code Style and Formatting
+
+### General
+- **Indentation:** Use TABS for HTML, CSS, and JavaScript files (not spaces)
+- **Line endings:** LF (Unix-style)
+- **Encoding:** UTF-8
+- **File naming:** Use kebab-case for files (e.g., `u1-certificates.js`)
+- **Comments:** Write clear, concise comments for complex logic
+
+### HTML
+- Use tabs for indentation (consistent with existing codebase)
+- Use semantic HTML5 elements (`<header>`, `<main>`, `<section>`, `<footer>`)
+- Always include proper meta tags (SEO, Open Graph, Twitter Cards)
+- Include Content Security Policy headers
+- Use `loading="lazy"` for images below the fold
+- Use `loading="eager"` for above-the-fold images
+- Always specify `width` and `height` attributes on images
+- Use WebP format for images (converted from PNG)
+- Include `alt` attributes with descriptive text for all images
+- Use `rel="noopener noreferrer"` for external links with `target="_blank"`
+- Include proper `aria-label` attributes for accessibility
+- Structure: DOCTYPE → html → head → body → scripts at bottom
+
+### CSS
+- Use CSS Custom Properties (variables) defined in `:root`
+- Prefix custom properties with context: `--color-`, `--spacing-`, `--font-`, etc.
+- Use modern CSS features: Grid, Flexbox, custom properties
+- Include responsive design with mobile-first approach
+- Breakpoints: 980px, 768px, 600px, 400px, 320px
+- Include `@media (prefers-reduced-motion: reduce)` for accessibility
+- Use `var(--variable-name)` for all color, spacing, and typography values
+- Write CSS in logical order: positioning → box model → typography → visual → animations
+- Use BEM-like naming for custom classes when applicable
+- Include proper focus indicators for accessibility (`:focus-visible`)
+- Font loading: Use `font-display: swap` for custom fonts
+
+### JavaScript
+- Use modern ES6+ syntax (const, let, arrow functions, template literals)
+- Wrap code in try-catch blocks for error handling
+- Use `document.createElement()` for DOM manipulation (not innerHTML for dynamic content)
+- Use DocumentFragment for batch DOM insertions (performance)
+- Check for element existence before manipulating (`if (!element) { throw error }`)
+- Provide fallback messages when JavaScript fails to load
+- Use descriptive variable names (e.g., `certificates_section`, `cert_data`)
+- Comment complex logic and data structures
+- Validate data before rendering
+- Use strict equality (`===`, `!==`) over loose equality
+- Add proper error logging with `console.error()`
+
+## Performance Best Practices
+
+### Images
+- Use WebP format for all images (except favicon)
+- Convert images using `tools/png_to_webp.py` utility
+- Specify explicit width and height on all images
+- Use `loading="lazy"` for below-fold images
+- Optimize image quality (balance between size and visual quality)
+
+### Loading
+- Preload critical resources with `<link rel="preconnect">`
+- Use DNS prefetch for third-party domains
+- Load scripts at the bottom of the body (before closing `</body>`)
+- Use async/defer for third-party scripts (Google Analytics)
+- Implement Service Worker for offline caching
+
+### Caching
+- Service Worker caches critical assets
+- Update `CACHE_NAME` version when deploying changes
+- Cache strategy: Cache-first with network fallback
+- Clean up old caches on activation
+
+## Accessibility Requirements (WCAG 2.1 AA)
+- Include skip navigation link (`<a href="#main-content" class="skip-link">`)
+- Use semantic HTML elements
+- Provide ARIA labels for interactive elements
+- Include screen reader only text with `.sr-only` class
+- Ensure proper focus indicators (3px outline with offset)
+- Support keyboard navigation
+- Include `lang` attribute on `<html>` element
+- Use sufficient color contrast ratios
+- Support reduced motion preferences
+- Provide text alternatives for all images
+- Use proper heading hierarchy (h1 → h2 → h3)
+
+## SEO Optimization
+- Include canonical URL
+- Meta description (150-160 characters)
+- Open Graph tags for social sharing
+- Twitter Card tags
+- JSON-LD structured data (Schema.org Person type)
+- Proper heading hierarchy
+- Descriptive page titles
+- Include `robots.txt` and `sitemap.xml`
+- Use descriptive alt text for images
+
+## Security Practices
+- Implement Content Security Policy (CSP) headers
+- Use `rel="noopener noreferrer"` on external links
+- Sanitize any user input (if applicable)
+- Use HTTPS for all external resources
+- Keep dependencies updated
+
+## Progressive Web App (PWA)
+- Include `manifest.json` with app metadata
+- Register Service Worker in main HTML
+- Define offline caching strategy
+- Use appropriate theme colors
+- Include app icons in various sizes
+- Set proper display mode (`standalone`)
+
+## File Structure and Organization
+```
+/
+├── index.html              # Main HTML file
+├── css/                    # Stylesheets
+│   ├── bootstrap.min.css
+│   ├── font-awesome.min.css
+│   └── index.css          # Custom styles
+├── js/                     # JavaScript files
+│   ├── jquery.js
+│   ├── bootstrap.min.js
+│   ├── jquery.backstretch.min.js
+│   ├── u0-preloader.js    # Preloader functionality
+│   ├── u1-certificates.js # Certificates rendering
+│   ├── u2-educations.js   # Education rendering
+│   └── u3-experiences.js  # Experience rendering
+├── images/                 # Optimized images (WebP)
+├── images-before-optimization/ # Original images (PNG/JPG)
+├── fonts/                  # Custom fonts (Proxima Nova, Font Awesome)
+├── pdf/                    # PDF documents
+├── tools/                  # Utility scripts
+│   └── png_to_webp.py     # Image optimization
+├── design/                 # Design documentation
+├── manifest.json          # PWA manifest
+├── sw.js                  # Service Worker
+├── robots.txt
+├── sitemap.xml
+└── CNAME                  # Custom domain
+```
+
+## JavaScript Module Naming Convention
+- `u0-` prefix: Utility/preloader scripts
+- `u1-`, `u2-`, `u3-`: Content rendering modules (numbered by section order)
+- Use descriptive names after prefix (e.g., `u1-certificates.js`)
+
+## Content Structure Pattern
+Each content section (certificates, education, experiences) follows this pattern:
+1. Error handling wrapper (try-catch)
+2. DOM element validation
+3. Data object definition
+4. DocumentFragment for performance
+5. Loop through data and create elements
+6. Append fragment to DOM
+7. Error fallback with user-friendly message
+
+## Data Structure Pattern
+Content data objects follow this structure:
+```javascript
+const data = {
+  "items": [
+    {
+      "title": "Title",
+      "field": "value",
+      // ... other fields
+    }
+  ]
+}
+```
+
+## Responsive Design
+- Mobile-first approach
+- Test on multiple device sizes
+- Use relative units (rem, em, %, vw/vh) where appropriate
+- Flexible images (`max-width: 100%`)
+- Responsive typography with media queries
+- Touch-friendly targets (minimum 44x44px)
+
+## Color Palette (Brand Colors)
+- Primary: `#3366CC` (`var(--color-primary)`)
+- Primary Dark: `#204090` (`var(--color-primary-dark)`)
+- Accent: `#66CCFF` (`var(--color-accent)`)
+- White: `#FFFFFF` (`var(--color-white)`)
+- Dark: `#202020` (`var(--color-dark)`)
+- Always use CSS variables, never hardcode colors
+
+## Typography
+- Primary font: Proxima Nova Regular
+- Bold font: Proxima Nova Bold
+- Fallback: System fonts (-apple-system, BlinkMacSystemFont, Segoe UI, Roboto)
+- Base font size: 16px (responsive down to 14px on small screens)
+
+## Development Workflow
+1. Make changes to source files
+2. Test locally across multiple browsers (Chrome, Firefox, Safari, Edge)
+3. Test responsiveness on various device sizes
+4. Validate HTML, CSS, and JavaScript
+5. Check accessibility with automated tools
+6. Optimize images using `tools/png_to_webp.py` if adding new images
+7. Update Service Worker cache version if assets changed
+8. Test PWA functionality (offline mode, caching)
+9. Deploy via Git (GitHub Pages assumed)
+
+## Testing Checklist
+- [ ] HTML validates (W3C validator)
+- [ ] CSS validates
+- [ ] JavaScript runs without console errors
+- [ ] All images load correctly (WebP support)
+- [ ] Links work (internal and external)
+- [ ] Responsive on mobile, tablet, desktop
+- [ ] Accessibility: keyboard navigation works
+- [ ] Accessibility: screen reader compatibility
+- [ ] SEO: meta tags present and correct
+- [ ] PWA: Service Worker registers successfully
+- [ ] PWA: Works offline
+- [ ] Performance: Lighthouse score 90+ 
+- [ ] Cross-browser compatibility
+
+## Dependencies Management
+- Bootstrap 3.x (grid system, utilities)
+- jQuery (DOM manipulation, animations)
+- Font Awesome (icons)
+- Keep libraries in local files (no CDN) for offline functionality
+- Minimize external dependencies
+
+## Python Utilities
+- `tools/png_to_webp.py`: Converts PNG images to WebP format
+- Run from within the image directory
+- Maintains 100% quality during conversion
+- Automatically processes all PNG files in directory
+
+## Deployment
+- Static site deployment (GitHub Pages)
+- Custom domain: alytvynenko.net
+- Include CNAME file for custom domain
+- Ensure all assets are referenced with relative or root-relative paths
+- Test Service Worker in production environment
+
+## Common Patterns to Follow
+
+### Adding a New Certification
+1. Add image to `images-before-optimization/certification/`
+2. Convert to WebP using `tools/png_to_webp.py`
+3. Move WebP to `images/certification/`
+4. Add entry to `cert_data.certificates` array in `u1-certificates.js`
+5. Test rendering and accessibility
+
+### Adding a New Section
+1. Create HTML structure in `index.html`
+2. Add styles in `css/index.css`
+3. Create new JavaScript file (e.g., `u4-newsection.js`)
+4. Follow error handling and DocumentFragment pattern
+5. Include script before closing `</body>` tag
+6. Update Service Worker cache list if needed
+
+### Modifying Styles
+1. Use existing CSS variables when possible
+2. Add new variables to `:root` if creating new design tokens
+3. Follow existing naming convention (`--category-name`)
+4. Test across all breakpoints
+5. Check reduced motion support
+
+## Important Notes
+- **Never remove accessibility features** (skip links, ARIA labels, alt text)
+- **Never remove security headers** (CSP, noopener noreferrer)
+- **Always test offline functionality** after Service Worker changes
+- **Maintain backwards compatibility** with older browsers where reasonable
+- **Keep performance optimized** - aim for fast load times
+- **Preserve SEO elements** - meta tags, structured data, etc.
+- **Follow existing patterns** - consistency is key in this codebase
+
+## AI Assistant Guidelines
+When making changes to this codebase:
+1. **Preserve tab indentation** in all files
+2. **Use existing CSS variables** - don't hardcode values
+3. **Follow accessibility patterns** already established
+4. **Test changes mentally** for responsive behavior
+5. **Maintain error handling** in JavaScript files
+6. **Keep SEO elements** intact or improve them
+7. **Follow naming conventions** for files and variables
+8. **Use WebP images** for all new image assets
+9. **Update Service Worker version** if you modify cached assets
+10. **Maintain the existing code style** - this is mature, production code
+
+## Contact Information (For Context)
+- **Name:** Andrii Lytvynenko
+- **Title:** Senior DevOps & Cloud Engineer
+- **Location:** Czestochowa, Poland
+- **Email:** a.v.lytvynenko2004@gmail.com
+- **Website:** https://alytvynenko.net
+
+---
+
+**Last Updated:** December 2025
+**Codebase Version:** Production
+**Status:** Active maintenance
+
