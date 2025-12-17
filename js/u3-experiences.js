@@ -205,7 +205,7 @@ for (let i = 0; i < exp_data.experiences.length; i++) {
   const details = document.createElement("details");
   const summary = document.createElement("summary");
   const summaryH5 = document.createElement("h5");
-  summaryH5.innerHTML = "<u>▼ Stack of Technologies</u>";
+  summaryH5.innerHTML = "<u>Stack of Technologies</u>";
   summary.appendChild(summaryH5);
   details.appendChild(summary);
 
