@@ -1,0 +1,4 @@
+Contact: mailto:a.v.lytvynenko2004@gmail.com
+Preferred-Languages: en, uk, pl
+Canonical: https://alytvynenko.net/.well-known/security.txt
+

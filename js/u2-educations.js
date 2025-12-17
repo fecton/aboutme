@@ -1,7 +1,13 @@
-education_section = document.getElementsByClassName("education-content")[0];
-
-education_section.innerHTML = "";
-education_section.innerText = "";
+// Error handling wrapper
+try {
+  const educationElements = document.getElementsByClassName("education-content");
+  if (!educationElements || educationElements.length === 0) {
+    console.error("Education content section not found");
+    throw new Error("Required DOM element not found");
+  }
+  
+  const education_section = educationElements[0];
+  education_section.innerHTML = "";
 
 const edu_data = {
   "educations": [
@@ -22,61 +28,87 @@ const edu_data = {
       "dates": "2022 June - 2023 March",
       "diploma_pdf": "",
       "diploma_suplement_pdf": "",
-      "description": "Actively working with Linux Bash, MySQL, and Linux Networking, I have developed pipelines using Jenkins. I have also implemented Infrastructure as Code (IaC) principles with Terraform, configuring various services such as Amazon RDS (MySQL). My orchestration skills include managing instances with Ansible in both Microsoft Azure and Amazon Web Services environments. This comprehensive skill set was acquired through immersive hands-on experiences, practical application in real-world scenarios, and guidance from seasoned mentors. The documentation of the progress is available in the GitHub repository: EPAM DevOps Course <a href=\"https://github.com/fecton/epam-devops-course\" target=\"_blank\">(CLICK-ME)</a>",
-      "disciplines": "Linux, Bash, MySQL, Linux Networking, Jenkins, Terraform, Amazon RDS, Ansible, Microsoft Azure, Amazon Web Services.",
+      "description": "Actively working with Linux Bash, MySQL, and Linux Networking, I have developed pipelines using Jenkins. I have also implemented Infrastructure as Code (IaC) principles with Terraform, configuring various services such as Amazon RDS (MySQL). My orchestration skills include managing instances with Ansible in both Microsoft Azure and Amazon Web Services environments. This comprehensive skill set was acquired through immersive hands-on experiences, practical application in real-world scenarios, and guidance from seasoned mentors. The documentation of the progress is available in the <a href=\"https://github.com/fecton/epam-devops-course\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub repository: EPAM DevOps Course</a>",
       "disciplines": "Linux, Bash, MySQL, Linux Networking, Jenkins, Terraform, Amazon RDS, Ansible, Microsoft Azure, Amazon Web Services.",
     }
   ]
 }
 
 
+// Use DocumentFragment for better performance
+const fragment = document.createDocumentFragment();
+
 for (let i = 0; i < edu_data.educations.length; i++) {
   const edu = edu_data.educations[i];
 
   const title = document.createElement("h4");
   title.className = "education-title accent";
-  title.innerHTML = edu.specialty_title;
-  education_section.appendChild(title);
+  title.textContent = edu.specialty_title;
+  fragment.appendChild(title);
 
   const schoolDiv = document.createElement("div");
   schoolDiv.className = "education-school";
 
   const schoolH5 = document.createElement("h5");
-  schoolH5.innerHTML = `${edu.university_title} <a href="${edu.university_link}" target="_blank">(CLICK-ME)</a>`;
+  const universityText = document.createTextNode(edu.university_title + " ");
+  schoolH5.appendChild(universityText);
+  
+  if (edu.university_link) {
+    const universityLink = document.createElement("a");
+    universityLink.href = edu.university_link;
+    universityLink.target = "_blank";
+    universityLink.rel = "noopener noreferrer";
+    universityLink.textContent = "(Visit Website)";
+    universityLink.setAttribute("aria-label", `Visit ${edu.university_title} website (opens in new tab)`);
+    schoolH5.appendChild(universityLink);
+  }
   schoolDiv.appendChild(schoolH5);
 
   const schoolSpan = document.createElement("span");
   schoolDiv.appendChild(schoolSpan);
 
   const statusU = document.createElement("u");
-  statusU.innerHTML = "GRADUATED (100/100)";
+  statusU.textContent = "GRADUATED (100/100)";
   schoolDiv.appendChild(statusU);
   schoolDiv.appendChild(document.createElement("br"));
 
-  const diploma_pdf = document.createElement("h5");
-  if(edu.diploma_pdf != "") {
-    diploma_pdf.innerHTML = `Diploma <a href="${edu.diploma_pdf}" target="_blank">(CLICK-ME)</a>`;
-
-    // TODO: embed pdf viewer
-    // diploma_pdf.innerHTML = `<embed src="${edu.diploma_pdf}" type="application/pdf" width="400px" height="300px">`
-    education_section.appendChild(diploma_pdf);
-
-    education_section.appendChild(document.createElement("span"));
+  if (edu.diploma_pdf && edu.diploma_pdf !== "") {
+    const diploma_pdf = document.createElement("h5");
+    const diplomaText = document.createTextNode("Diploma ");
+    diploma_pdf.appendChild(diplomaText);
+    
+    const diplomaLink = document.createElement("a");
+    diplomaLink.href = edu.diploma_pdf;
+    diplomaLink.target = "_blank";
+    diplomaLink.rel = "noopener noreferrer";
+    diplomaLink.textContent = "(View PDF)";
+    diplomaLink.setAttribute("aria-label", "View diploma PDF (opens in new tab)");
+    diploma_pdf.appendChild(diplomaLink);
+    
+    fragment.appendChild(diploma_pdf);
+    fragment.appendChild(document.createElement("span"));
   }
 
-  const diploma_suplement_pdf = document.createElement("h5");
-  if(edu.diploma_seplement_pdf != "") {
-    diploma_suplement_pdf.innerHTML = `Diploma Suplement <a href="${edu.diploma_suplement_pdf}" target="_blank">(CLICK-ME)</a>`;
-
-    // TODO: embed pdf viewer
-    // diploma_pdf.innerHTML = `<embed src="${edu.diploma_pdf}" type="application/pdf" width="400px" height="300px">`
-    education_section.appendChild(diploma_suplement_pdf);
+  if (edu.diploma_suplement_pdf && edu.diploma_suplement_pdf !== "") {
+    const diploma_suplement_pdf = document.createElement("h5");
+    const suplementText = document.createTextNode("Diploma Suplement ");
+    diploma_suplement_pdf.appendChild(suplementText);
+    
+    const suplementLink = document.createElement("a");
+    suplementLink.href = edu.diploma_suplement_pdf;
+    suplementLink.target = "_blank";
+    suplementLink.rel = "noopener noreferrer";
+    suplementLink.textContent = "(View PDF)";
+    suplementLink.setAttribute("aria-label", "View diploma supplement PDF (opens in new tab)");
+    diploma_suplement_pdf.appendChild(suplementLink);
+    
+    fragment.appendChild(diploma_suplement_pdf);
   }
 
   const datesH5 = document.createElement("h5");
   datesH5.innerHTML = `&gt; ${edu.dates}`;
   schoolDiv.appendChild(datesH5);
-  education_section.appendChild(schoolDiv);
+  fragment.appendChild(schoolDiv);
 
   const descriptionP = document.createElement("p");
   descriptionP.className = "education-description";
@@ -93,14 +125,24 @@ for (let i = 0; i < edu_data.educations.length; i++) {
   details.appendChild(summary);
 
   const disciplinesP = document.createElement("p");
-  disciplinesP.innerHTML = edu.disciplines;
+  disciplinesP.textContent = edu.disciplines;
   details.appendChild(disciplinesP);
   descriptionP.appendChild(details);
 
-  education_section.appendChild(descriptionP);
+  fragment.appendChild(descriptionP);
 
-  if (i != edu_data.educations.length - 1) {
+  if (i !== edu_data.educations.length - 1) {
     const hr = document.createElement("hr");
-    education_section.appendChild(hr);
+    fragment.appendChild(hr);
+  }
+}
+
+education_section.appendChild(fragment);
+
+} catch (error) {
+  console.error("Error loading education section:", error);
+  const errorMsg = document.querySelector(".education-content");
+  if (errorMsg) {
+    errorMsg.textContent = "Unable to load education information. Please refresh the page.";
   }
 }
