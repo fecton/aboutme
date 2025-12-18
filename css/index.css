@@ -394,12 +394,12 @@ header hr {
 }
 
 /* Equal height columns for the intro section */
-section .row {
+main > section:first-of-type .row {
   display: flex;
   flex-wrap: wrap;
 }
 
-section .row > div[class*='col-'] {
+main > section:first-of-type .row > div[class*='col-'] {
   display: flex;
 }
 
@@ -541,6 +541,46 @@ footer {
   text-align: center;
   padding-top: 140px;
   padding-bottom: 100px;
+}
+
+footer .footer-trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+footer .trust-badge {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-white);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+footer .trust-badge i {
+  font-size: 14px;
+}
+
+footer .footer-links {
+  color: var(--color-off-white);
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+footer .footer-links a {
+  color: var(--color-off-white);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer .footer-links a:hover {
+  color: #66CCFF;
 }
 
 /* custom section */
@@ -947,5 +987,136 @@ footer {
     height: 32px;
     line-height: 32px;
     font-size: 14px;
+  }
+}
+
+/* ============================================
+   CTA BUTTONS & AVAILABILITY BADGE
+   ============================================ */
+
+.availability-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(40, 167, 69, 0.9);
+  color: var(--color-white);
+  padding: 10px 20px;
+  border-radius: 25px;
+  margin: 20px auto 15px auto;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  animation: pulse 2s ease-in-out infinite;
+  width: fit-content;
+  max-width: 90%;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 4px 16px rgba(40, 167, 69, 0.6);
+  }
+}
+
+.status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-white);
+  margin-right: 8px;
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.header-cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.header-cta-buttons .btn {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 15px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border: none;
+}
+
+.header-cta-buttons .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.header-cta-buttons .cta-primary {
+  background: linear-gradient(135deg, #3366CC, #204090);
+}
+
+.header-cta-buttons .cta-secondary {
+  background: linear-gradient(135deg, #28a745, #218838);
+}
+
+.header-cta-buttons .cta-tertiary {
+  background: linear-gradient(135deg, #17a2b8, #138496);
+}
+
+.header-cta-buttons .btn i {
+  margin-right: 8px;
+}
+
+
+/* ============================================
+   RESPONSIVE: CTA
+   ============================================ */
+
+@media (max-width: 768px) {
+  .header-cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header-cta-buttons .btn {
+    width: 90%;
+    max-width: 300px;
+    font-size: 15px;
+    padding: 12px 25px;
+  }
+
+  .availability-badge {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .header-cta-buttons .btn {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  .availability-badge {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 400px) {
+  .header-cta-buttons .btn {
+    font-size: 13px;
+    padding: 10px 15px;
   }
 }
