@@ -1,3 +1,5 @@
+"use strict";
+
 // PRELOADER
 $(window).on('load', function(){
     $('.preloader').delay(1000).fadeOut("slow");
@@ -5,7 +7,5 @@ $(window).on('load', function(){
 
 // Set static background image
 $(function(){
-    jQuery(document).ready(function() {
-		$('body').backstretch("images/tm-bg-slide-1.webp")
-	});
-})
+    $('body').backstretch("images/tm-bg-slide-1.webp");
+});
