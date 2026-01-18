@@ -1,3 +1,5 @@
+"use strict";
+
 // Error handling wrapper
 try {
   const educationElements = document.getElementsByClassName("education-content");
@@ -5,7 +7,7 @@ try {
     console.error("Education content section not found");
     throw new Error("Required DOM element not found");
   }
-  
+
   const education_section = educationElements[0];
   education_section.innerHTML = "";
 
@@ -52,7 +54,7 @@ for (let i = 0; i < edu_data.educations.length; i++) {
   const schoolH5 = document.createElement("h5");
   const universityText = document.createTextNode(edu.university_title + " ");
   schoolH5.appendChild(universityText);
-  
+
   if (edu.university_link) {
     const universityLink = document.createElement("a");
     universityLink.href = edu.university_link;
@@ -64,9 +66,6 @@ for (let i = 0; i < edu_data.educations.length; i++) {
   }
   schoolDiv.appendChild(schoolH5);
 
-  const schoolSpan = document.createElement("span");
-  schoolDiv.appendChild(schoolSpan);
-
   const statusU = document.createElement("u");
   statusU.textContent = "GRADUATED (100/100)";
   schoolDiv.appendChild(statusU);
@@ -76,7 +75,7 @@ for (let i = 0; i < edu_data.educations.length; i++) {
     const diploma_pdf = document.createElement("h5");
     const diplomaText = document.createTextNode("Diploma ");
     diploma_pdf.appendChild(diplomaText);
-    
+
     const diplomaLink = document.createElement("a");
     diplomaLink.href = edu.diploma_pdf;
     diplomaLink.target = "_blank";
@@ -84,7 +83,7 @@ for (let i = 0; i < edu_data.educations.length; i++) {
     diplomaLink.textContent = "(View PDF)";
     diplomaLink.setAttribute("aria-label", "View diploma PDF (opens in new tab)");
     diploma_pdf.appendChild(diplomaLink);
-    
+
     fragment.appendChild(diploma_pdf);
     fragment.appendChild(document.createElement("span"));
   }
@@ -93,7 +92,7 @@ for (let i = 0; i < edu_data.educations.length; i++) {
     const diploma_suplement_pdf = document.createElement("h5");
     const suplementText = document.createTextNode("Diploma Suplement ");
     diploma_suplement_pdf.appendChild(suplementText);
-    
+
     const suplementLink = document.createElement("a");
     suplementLink.href = edu.diploma_suplement_pdf;
     suplementLink.target = "_blank";
@@ -101,7 +100,7 @@ for (let i = 0; i < edu_data.educations.length; i++) {
     suplementLink.textContent = "(View PDF)";
     suplementLink.setAttribute("aria-label", "View diploma supplement PDF (opens in new tab)");
     diploma_suplement_pdf.appendChild(suplementLink);
-    
+
     fragment.appendChild(diploma_suplement_pdf);
   }
 

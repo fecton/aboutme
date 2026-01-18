@@ -1,3 +1,5 @@
+"use strict";
+
 // Error handling wrapper
 try {
   const experienceElements = document.getElementsByClassName("experience-content");
@@ -5,7 +7,7 @@ try {
     console.error("Experience content section not found");
     throw new Error("Required DOM element not found");
   }
-  
+
   const experience_section = experienceElements[0];
   experience_section.innerHTML = "";
 
@@ -160,7 +162,7 @@ for (let i = 0; i < exp_data.experiences.length; i++) {
   const companyH5 = document.createElement("h5");
   const companyText = document.createTextNode("Company: " + exp.company + " ");
   companyH5.appendChild(companyText);
-  
+
   if (exp.company_link && exp.company_link !== "") {
     const companyLink = document.createElement("a");
     companyLink.href = exp.company_link;
@@ -179,7 +181,7 @@ for (let i = 0; i < exp_data.experiences.length; i++) {
   const clientH5 = document.createElement("h5");
   const clientText = document.createTextNode("Client: " + exp.client + " ");
   clientH5.appendChild(clientText);
-  
+
   if (exp.client_link && exp.client_link !== "") {
     const clientLink = document.createElement("a");
     clientLink.href = exp.client_link;
