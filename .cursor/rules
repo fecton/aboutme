@@ -13,7 +13,6 @@ This is a personal portfolio website for Andrii Lytvynenko, a Senior DevOps & Cl
 - Font Awesome for icons
 - Progressive Web App (PWA) with Service Worker
 - Google Analytics for tracking
-- Microsoft Clarity for user behavior analytics (requires configuration)
 - Python for image optimization utilities
 
 ## Code Style and Formatting
@@ -113,7 +112,6 @@ This is a personal portfolio website for Andrii Lytvynenko, a Senior DevOps & Cl
 
 ## Security Practices
 - Implement Content Security Policy (CSP) headers
-  - Include `https://www.clarity.ms` in script-src for Microsoft Clarity
   - Include `https://www.googletagmanager.com` and `https://www.google-analytics.com` for Google Analytics
 - Use `rel="noopener noreferrer"` on external links
 - Sanitize any user input (if applicable)
@@ -287,12 +285,6 @@ const data = {
 - **Keep performance optimized** - aim for fast load times
 - **Preserve SEO elements** - meta tags, structured data, etc.
 - **Follow existing patterns** - consistency is key in this codebase
-
-## Configuration Required
-- **Microsoft Clarity**: Replace `YOUR_CLARITY_ID` in `index.html` with your actual Clarity project ID
-  - Sign up at https://clarity.microsoft.com/
-  - Create a project and copy the project ID
-  - Update the script tag in the `<head>` section
 
 ## AI Assistant Guidelines
 When making changes to this codebase:
