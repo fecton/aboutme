@@ -73,41 +73,68 @@ const cert_data = {
 // Use DocumentFragment for better performance
 const fragment = document.createDocumentFragment();
 
+// Create grid container
+const grid = document.createElement("div");
+grid.className = "certification-grid";
+
 for (let i = 0; i < cert_data.certificates.length; i++) {
   const cert = cert_data.certificates[i];
-  const certDiv = document.createElement("div");
-  certDiv.className = "certificate";
+  const isEarned = cert.link && cert.link !== "";
+  const isPlanned = cert.planned_year && cert.planned_year.length !== 0;
 
-  const certLink = document.createElement("a");
-  certLink.href = cert.link || "#";
-  certLink.target = "_blank";
-  certLink.rel = "noopener noreferrer";
-  certLink.setAttribute("aria-label", `View ${cert.title} certification`);
+  // Create certification card
+  const card = document.createElement("article");
+  card.className = "certification-card" + (isEarned ? " earned" : "") + (isPlanned ? " planned" : "");
+
+  // Status badge
+  const badge = document.createElement("span");
+  badge.className = "certification-badge " + (isEarned ? "earned" : "planned");
+  badge.innerHTML = isEarned
+    ? '<i class="fa fa-check-circle" aria-hidden="true"></i> Earned'
+    : '<i class="fa fa-clock-o" aria-hidden="true"></i> Planned';
+  card.appendChild(badge);
+
+  // Image wrapper
+  const imageWrapper = document.createElement("div");
+  imageWrapper.className = "certification-image-wrapper";
 
   const certImg = document.createElement("img");
   certImg.src = `./images/certification/${cert.image}`;
   certImg.alt = cert.title;
   certImg.loading = "lazy";
-  certImg.width = 150;
-  certImg.height = 150;
+  certImg.width = 120;
+  certImg.height = 120;
 
-  certLink.appendChild(certImg);
-  certDiv.appendChild(certLink);
+  imageWrapper.appendChild(certImg);
+  card.appendChild(imageWrapper);
 
+  // Title
   const certTitle = document.createElement("h4");
+  certTitle.className = "certification-title";
   certTitle.textContent = cert.title;
-  certDiv.appendChild(certTitle);
+  card.appendChild(certTitle);
 
-  if (cert.planned_year && cert.planned_year.length !== 0) {
-    const plannedYear = document.createElement("h5");
-    plannedYear.className = "in-progress-text";
-    plannedYear.textContent = `Planned: ${cert.planned_year}`;
-    certDiv.appendChild(plannedYear);
+  // Verify link or planned year
+  if (isEarned) {
+    const verifyLink = document.createElement("a");
+    verifyLink.href = cert.link;
+    verifyLink.target = "_blank";
+    verifyLink.rel = "noopener noreferrer";
+    verifyLink.className = "certification-link";
+    verifyLink.innerHTML = '<i class="fa fa-external-link" aria-hidden="true"></i> Verify';
+    verifyLink.setAttribute("aria-label", `Verify ${cert.title} certification (opens in new tab)`);
+    card.appendChild(verifyLink);
+  } else if (isPlanned) {
+    const plannedDiv = document.createElement("div");
+    plannedDiv.className = "certification-planned-year";
+    plannedDiv.innerHTML = `<i class="fa fa-calendar" aria-hidden="true"></i> Target: ${cert.planned_year}`;
+    card.appendChild(plannedDiv);
   }
 
-  fragment.appendChild(certDiv);
+  grid.appendChild(card);
 }
 
+fragment.appendChild(grid);
 certificates_section.appendChild(fragment);
 
 } catch (error) {

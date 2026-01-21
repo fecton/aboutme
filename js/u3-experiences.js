@@ -141,87 +141,145 @@ const exp_data = {
 // Use DocumentFragment for better performance
 const fragment = document.createDocumentFragment();
 
+// Create timeline container
+const timeline = document.createElement("div");
+timeline.className = "experience-timeline";
+
 for (let i = 0; i < exp_data.experiences.length; i++) {
   const exp = exp_data.experiences[i];
 
-  const title = document.createElement("h4");
-  title.className = "experience-title accent";
+  // Create experience card
+  const card = document.createElement("article");
+  card.className = "experience-card" + (exp.present ? " current" : "");
+
+  // Header section with title and badges
+  const header = document.createElement("div");
+  header.className = "experience-header";
+
+  const titleWrapper = document.createElement("div");
+  titleWrapper.className = "experience-title-wrapper";
+
+  const title = document.createElement("h3");
+  title.className = "experience-title";
   title.textContent = exp.position;
-  fragment.appendChild(title);
+  titleWrapper.appendChild(title);
 
-  const companyDiv = document.createElement("div");
-  companyDiv.className = "experience-company";
+  header.appendChild(titleWrapper);
 
-  const workModeH5 = document.createElement("h5");
-  workModeH5.innerHTML = `Work mode: ${exp.work_mode}`;
-  companyDiv.appendChild(workModeH5);
+  // Badges container
+  const badgesContainer = document.createElement("div");
+  badgesContainer.style.display = "flex";
+  badgesContainer.style.gap = "8px";
+  badgesContainer.style.flexWrap = "wrap";
 
-  let companyBr = document.createElement("br");
-  companyDiv.appendChild(companyBr);
+  // Current badge
+  if (exp.present) {
+    const currentBadge = document.createElement("span");
+    currentBadge.className = "experience-badge current";
+    currentBadge.innerHTML = '<i class="fa fa-circle" aria-hidden="true"></i> Current';
+    badgesContainer.appendChild(currentBadge);
+  }
 
-  const companyH5 = document.createElement("h5");
-  const companyText = document.createTextNode("Company: " + exp.company + " ");
-  companyH5.appendChild(companyText);
+  // Work mode badge
+  const workModeBadge = document.createElement("span");
+  workModeBadge.className = "experience-badge " + (exp.work_mode.toLowerCase() === "remote" ? "remote" : "onsite");
+  workModeBadge.innerHTML = `<i class="fa fa-${exp.work_mode.toLowerCase() === "remote" ? "wifi" : "building"}" aria-hidden="true"></i> ${exp.work_mode}`;
+  badgesContainer.appendChild(workModeBadge);
 
+  header.appendChild(badgesContainer);
+  card.appendChild(header);
+
+  // Meta section (company and client)
+  const meta = document.createElement("div");
+  meta.className = "experience-meta";
+
+  // Company
+  const companyItem = document.createElement("div");
+  companyItem.className = "experience-meta-item";
+  companyItem.innerHTML = '<i class="fa fa-briefcase" aria-hidden="true"></i>';
   if (exp.company_link && exp.company_link !== "") {
     const companyLink = document.createElement("a");
     companyLink.href = exp.company_link;
     companyLink.target = "_blank";
     companyLink.rel = "noopener noreferrer";
-    companyLink.textContent = "(Visit Website)";
+    companyLink.textContent = exp.company;
     companyLink.setAttribute("aria-label", `Visit ${exp.company} website (opens in new tab)`);
-    companyH5.appendChild(companyLink);
+    companyItem.appendChild(companyLink);
+  } else {
+    const companyText = document.createElement("span");
+    companyText.textContent = exp.company;
+    companyItem.appendChild(companyText);
   }
+  meta.appendChild(companyItem);
 
-  companyDiv.appendChild(companyH5);
-
-  let companyBr2 = document.createElement("br");
-  companyDiv.appendChild(companyBr2);
-
-  const clientH5 = document.createElement("h5");
-  const clientText = document.createTextNode("Client: " + exp.client + " ");
-  clientH5.appendChild(clientText);
-
+  // Client
+  const clientItem = document.createElement("div");
+  clientItem.className = "experience-meta-item";
+  clientItem.innerHTML = '<i class="fa fa-user" aria-hidden="true"></i>';
   if (exp.client_link && exp.client_link !== "") {
     const clientLink = document.createElement("a");
     clientLink.href = exp.client_link;
     clientLink.target = "_blank";
     clientLink.rel = "noopener noreferrer";
-    clientLink.textContent = "(Visit Website)";
+    clientLink.textContent = exp.client;
     clientLink.setAttribute("aria-label", `Visit ${exp.client} website (opens in new tab)`);
-    clientH5.appendChild(clientLink);
+    clientItem.appendChild(clientLink);
+  } else {
+    const clientText = document.createElement("span");
+    clientText.textContent = exp.client;
+    clientItem.appendChild(clientText);
+  }
+  meta.appendChild(clientItem);
+
+  card.appendChild(meta);
+
+  // Dates section
+  const dates = document.createElement("div");
+  dates.className = "experience-dates";
+  dates.innerHTML = `<i class="fa fa-calendar" aria-hidden="true"></i> ${exp.dates}`;
+  card.appendChild(dates);
+
+  // Description section
+  if (exp.description && exp.description.trim() !== "") {
+    const description = document.createElement("div");
+    description.className = "experience-description";
+    description.innerHTML = exp.description;
+    card.appendChild(description);
   }
 
-  companyDiv.appendChild(clientH5);
-  fragment.appendChild(companyDiv);
+  // Technologies section
+  if (exp.disciplines && exp.disciplines.trim() !== "") {
+    const details = document.createElement("details");
+    details.className = "experience-tech-toggle";
 
-  const datesH5 = document.createElement("h5");
-  datesH5.innerHTML = `&gt; ${exp.dates}` + (exp.present ? ` <span class="in-progress-text">PRESENT</span>` : "");
-  fragment.appendChild(datesH5);
+    const summary = document.createElement("summary");
+    summary.textContent = "Technologies & Skills";
+    details.appendChild(summary);
 
-  const descriptionP = document.createElement("p");
-  descriptionP.className = "education-description";
-  descriptionP.innerHTML = exp.description;
-  fragment.appendChild(descriptionP);
+    const techContent = document.createElement("div");
+    techContent.className = "experience-tech-content";
 
-  const details = document.createElement("details");
-  const summary = document.createElement("summary");
-  const summaryH5 = document.createElement("h5");
-  summaryH5.innerHTML = "<u>Stack of Technologies</u>";
-  summary.appendChild(summaryH5);
-  details.appendChild(summary);
+    const techTags = document.createElement("div");
+    techTags.className = "experience-tech-tags";
 
-  const disciplinesP = document.createElement("p");
-  disciplinesP.textContent = exp.disciplines;
-  details.appendChild(disciplinesP);
-  fragment.appendChild(details);
+    // Parse disciplines string and create tags
+    const skills = exp.disciplines.split(/,\s*/).filter(skill => skill.trim() !== "");
+    skills.forEach(skill => {
+      const tag = document.createElement("span");
+      tag.className = "experience-tech-tag";
+      tag.textContent = skill.trim().replace(/\.$/, ""); // Remove trailing period
+      techTags.appendChild(tag);
+    });
 
-  if (i !== exp_data.experiences.length - 1) {
-    const hr = document.createElement("hr");
-    fragment.appendChild(hr);
+    techContent.appendChild(techTags);
+    details.appendChild(techContent);
+    card.appendChild(details);
   }
+
+  timeline.appendChild(card);
 }
 
+fragment.appendChild(timeline);
 experience_section.appendChild(fragment);
 
 } catch (error) {

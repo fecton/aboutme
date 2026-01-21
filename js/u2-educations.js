@@ -31,111 +31,151 @@ const edu_data = {
       "diploma_pdf": "",
       "diploma_suplement_pdf": "",
       "description": "Actively working with Linux Bash, MySQL, and Linux Networking, I have developed pipelines using Jenkins. I have also implemented Infrastructure as Code (IaC) principles with Terraform, configuring various services such as Amazon RDS (MySQL). My orchestration skills include managing instances with Ansible in both Microsoft Azure and Amazon Web Services environments. This comprehensive skill set was acquired through immersive hands-on experiences, practical application in real-world scenarios, and guidance from seasoned mentors. The documentation of the progress is available in the <a href=\"https://github.com/fecton/epam-devops-course\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub repository: EPAM DevOps Course</a>",
-      "disciplines": "Linux, Bash, MySQL, Linux Networking, Jenkins, Terraform, Amazon RDS, Ansible, Microsoft Azure, Amazon Web Services.",
+      "disciplines": "Linux, Bash, MySQL, Linux Networking, Jenkins, Terraform, Amazon RDS, Ansible, Microsoft Azure, Amazon Web Services."
     }
   ]
-}
+};
 
 
 // Use DocumentFragment for better performance
 const fragment = document.createDocumentFragment();
 
+// Create timeline container
+const timeline = document.createElement("div");
+timeline.className = "education-timeline";
+
 for (let i = 0; i < edu_data.educations.length; i++) {
   const edu = edu_data.educations[i];
 
-  const title = document.createElement("h4");
-  title.className = "education-title accent";
+  // Create education card
+  const card = document.createElement("article");
+  card.className = "education-card";
+
+  // Header section with title and badge
+  const header = document.createElement("div");
+  header.className = "education-header";
+
+  const titleWrapper = document.createElement("div");
+  titleWrapper.className = "education-title-wrapper";
+
+  const title = document.createElement("h3");
+  title.className = "education-title";
   title.textContent = edu.specialty_title;
-  fragment.appendChild(title);
+  titleWrapper.appendChild(title);
 
-  const schoolDiv = document.createElement("div");
-  schoolDiv.className = "education-school";
+  header.appendChild(titleWrapper);
 
-  const schoolH5 = document.createElement("h5");
-  const universityText = document.createTextNode(edu.university_title + " ");
-  schoolH5.appendChild(universityText);
+  // Graduated badge
+  const graduatedBadge = document.createElement("span");
+  graduatedBadge.className = "education-badge graduated";
+  graduatedBadge.innerHTML = '<i class="fa fa-graduation-cap" aria-hidden="true"></i> Graduated';
+  header.appendChild(graduatedBadge);
 
+  card.appendChild(header);
+
+  // Meta section (university)
+  const meta = document.createElement("div");
+  meta.className = "education-meta";
+
+  // University
+  const universityItem = document.createElement("div");
+  universityItem.className = "education-meta-item";
+  universityItem.innerHTML = '<i class="fa fa-university" aria-hidden="true"></i>';
   if (edu.university_link) {
     const universityLink = document.createElement("a");
     universityLink.href = edu.university_link;
     universityLink.target = "_blank";
     universityLink.rel = "noopener noreferrer";
-    universityLink.textContent = "(Visit Website)";
+    universityLink.textContent = edu.university_title;
     universityLink.setAttribute("aria-label", `Visit ${edu.university_title} website (opens in new tab)`);
-    schoolH5.appendChild(universityLink);
+    universityItem.appendChild(universityLink);
+  } else {
+    const universityText = document.createElement("span");
+    universityText.textContent = edu.university_title;
+    universityItem.appendChild(universityText);
   }
-  schoolDiv.appendChild(schoolH5);
+  meta.appendChild(universityItem);
 
-  const statusU = document.createElement("u");
-  statusU.textContent = "GRADUATED (100/100)";
-  schoolDiv.appendChild(statusU);
-  schoolDiv.appendChild(document.createElement("br"));
+  card.appendChild(meta);
 
-  if (edu.diploma_pdf && edu.diploma_pdf !== "") {
-    const diploma_pdf = document.createElement("h5");
-    const diplomaText = document.createTextNode("Diploma ");
-    diploma_pdf.appendChild(diplomaText);
+  // Dates section
+  const dates = document.createElement("div");
+  dates.className = "education-dates";
+  dates.innerHTML = `<i class="fa fa-calendar" aria-hidden="true"></i> ${edu.dates}`;
+  card.appendChild(dates);
 
-    const diplomaLink = document.createElement("a");
-    diplomaLink.href = edu.diploma_pdf;
-    diplomaLink.target = "_blank";
-    diplomaLink.rel = "noopener noreferrer";
-    diplomaLink.textContent = "(View PDF)";
-    diplomaLink.setAttribute("aria-label", "View diploma PDF (opens in new tab)");
-    diploma_pdf.appendChild(diplomaLink);
+  // Documents section (diploma and supplement)
+  const hasDocuments = (edu.diploma_pdf && edu.diploma_pdf !== "") || (edu.diploma_suplement_pdf && edu.diploma_suplement_pdf !== "");
+  if (hasDocuments) {
+    const documentsDiv = document.createElement("div");
+    documentsDiv.className = "education-documents";
 
-    fragment.appendChild(diploma_pdf);
-    fragment.appendChild(document.createElement("span"));
+    if (edu.diploma_pdf && edu.diploma_pdf !== "") {
+      const diplomaLink = document.createElement("a");
+      diplomaLink.href = edu.diploma_pdf;
+      diplomaLink.target = "_blank";
+      diplomaLink.rel = "noopener noreferrer";
+      diplomaLink.className = "education-document-link";
+      diplomaLink.innerHTML = '<i class="fa fa-file-pdf-o" aria-hidden="true"></i> View Diploma';
+      diplomaLink.setAttribute("aria-label", "View diploma PDF (opens in new tab)");
+      documentsDiv.appendChild(diplomaLink);
+    }
+
+    if (edu.diploma_suplement_pdf && edu.diploma_suplement_pdf !== "") {
+      const supplementLink = document.createElement("a");
+      supplementLink.href = edu.diploma_suplement_pdf;
+      supplementLink.target = "_blank";
+      supplementLink.rel = "noopener noreferrer";
+      supplementLink.className = "education-document-link";
+      supplementLink.innerHTML = '<i class="fa fa-file-pdf-o" aria-hidden="true"></i> View Diploma Supplement';
+      supplementLink.setAttribute("aria-label", "View diploma supplement PDF (opens in new tab)");
+      documentsDiv.appendChild(supplementLink);
+    }
+
+    card.appendChild(documentsDiv);
   }
 
-  if (edu.diploma_suplement_pdf && edu.diploma_suplement_pdf !== "") {
-    const diploma_suplement_pdf = document.createElement("h5");
-    const suplementText = document.createTextNode("Diploma Suplement ");
-    diploma_suplement_pdf.appendChild(suplementText);
-
-    const suplementLink = document.createElement("a");
-    suplementLink.href = edu.diploma_suplement_pdf;
-    suplementLink.target = "_blank";
-    suplementLink.rel = "noopener noreferrer";
-    suplementLink.textContent = "(View PDF)";
-    suplementLink.setAttribute("aria-label", "View diploma supplement PDF (opens in new tab)");
-    diploma_suplement_pdf.appendChild(suplementLink);
-
-    fragment.appendChild(diploma_suplement_pdf);
+  // Description section
+  if (edu.description && edu.description.trim() !== "") {
+    const description = document.createElement("div");
+    description.className = "education-description";
+    description.innerHTML = edu.description;
+    card.appendChild(description);
   }
 
-  const datesH5 = document.createElement("h5");
-  datesH5.innerHTML = `&gt; ${edu.dates}`;
-  schoolDiv.appendChild(datesH5);
-  fragment.appendChild(schoolDiv);
+  // Disciplines section
+  if (edu.disciplines && edu.disciplines.trim() !== "") {
+    const details = document.createElement("details");
+    details.className = "education-disciplines-toggle";
 
-  const descriptionP = document.createElement("p");
-  descriptionP.className = "education-description";
+    const summary = document.createElement("summary");
+    summary.textContent = "Courses & Disciplines";
+    details.appendChild(summary);
 
-  const descInnerP = document.createElement("p");
-  descInnerP.innerHTML = edu.description;
-  descriptionP.appendChild(descInnerP);
+    const disciplinesContent = document.createElement("div");
+    disciplinesContent.className = "education-disciplines-content";
 
-  const details = document.createElement("details");
-  const summary = document.createElement("summary");
-  const summaryH5 = document.createElement("h5");
-  summaryH5.innerHTML = "<u>Disciplines</u>";
-  summary.appendChild(summaryH5);
-  details.appendChild(summary);
+    const disciplineTags = document.createElement("div");
+    disciplineTags.className = "education-discipline-tags";
 
-  const disciplinesP = document.createElement("p");
-  disciplinesP.textContent = edu.disciplines;
-  details.appendChild(disciplinesP);
-  descriptionP.appendChild(details);
+    // Parse disciplines string and create tags
+    const disciplines = edu.disciplines.split(/,\s*/).filter(discipline => discipline.trim() !== "");
+    disciplines.forEach(discipline => {
+      const tag = document.createElement("span");
+      tag.className = "education-discipline-tag";
+      tag.textContent = discipline.trim().replace(/\.$/, ""); // Remove trailing period
+      disciplineTags.appendChild(tag);
+    });
 
-  fragment.appendChild(descriptionP);
-
-  if (i !== edu_data.educations.length - 1) {
-    const hr = document.createElement("hr");
-    fragment.appendChild(hr);
+    disciplinesContent.appendChild(disciplineTags);
+    details.appendChild(disciplinesContent);
+    card.appendChild(details);
   }
+
+  timeline.appendChild(card);
 }
 
+fragment.appendChild(timeline);
 education_section.appendChild(fragment);
 
 } catch (error) {
