@@ -51,6 +51,12 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Safe area padding for edge-to-edge displays */
+.container {
+  padding-left: max(15px, env(safe-area-inset-left));
+  padding-right: max(15px, env(safe-area-inset-right));
+}
+
 /* Skip Link for Accessibility */
 .skip-link {
   position: absolute;
@@ -566,6 +572,9 @@ header {
   position: relative;
   padding-top: 160px;
   padding-bottom: 140px;
+  /* Safe area insets for notched devices */
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
 header img {
@@ -1320,12 +1329,27 @@ section.container {
   }
 }
 
+/* Footer trust badges mobile fix */
+@media (max-width: 480px) {
+  footer .footer-trust-badges {
+    gap: 10px;
+  }
+
+  footer .trust-badge {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
+
 /* footer section */
 footer {
   color: var(--color-off-white);
   text-align: center;
   padding-top: 140px;
-  padding-bottom: 100px;
+  padding-bottom: max(100px, calc(60px + env(safe-area-inset-bottom)));
+  /* Safe area insets for notched devices */
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
 footer .footer-trust-badges {
@@ -1394,9 +1418,12 @@ footer .footer-links a:hover {
   color: var(--color-white);
   text-decoration: none;
   font-size: 18px;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
+  /* Minimum 44px for accessibility touch targets */
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
+  min-width: 44px;
+  min-height: 44px;
   text-align: center;
   transition: all 0.4s ease-in;
   position: relative;
@@ -1549,8 +1576,23 @@ footer .footer-links a:hover {
     min-height: 250px;
   }
 
+  /* Header typography polish for mobile */
+  header h1 {
+    line-height: 1.3;
+  }
+
+  header h1 .tm-title {
+    font-size: 0.85em;
+  }
+
   header h2 {
     padding-top: 20px;
+  }
+
+  /* Profile image sizing for mobile */
+  header img.tm-border {
+    width: 180px;
+    height: 180px;
   }
 
   .about,
@@ -1618,15 +1660,15 @@ footer .footer-links a:hover {
     word-wrap: break-word;
   }
 
-  /* Social icons spacing */
+  /* Social icons spacing - maintain 44px touch targets */
   .social-icons li {
-    margin: 0 5px;
+    margin: 0 4px;
   }
 
   .social-icons li a {
-    width: 36px;
-    height: 36px;
-    line-height: 36px;
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
     font-size: 16px;
   }
 }
@@ -1657,6 +1699,12 @@ footer .footer-links a:hover {
     padding-top: 50px;
     padding-bottom: 30px;
     min-height: 200px;
+  }
+
+  /* Smaller profile image for small phones */
+  header img.tm-border {
+    width: 150px;
+    height: 150px;
   }
 
   .about,
@@ -1724,15 +1772,15 @@ footer .footer-links a:hover {
     border-radius: var(--border-radius-sm);
   }
 
-  /* Social icons for small screens */
+  /* Social icons for small screens - maintain 44px touch targets */
   .social-icons li {
-    margin: 0 3px;
+    margin: 0 2px;
   }
 
   .social-icons li a {
-    width: 34px;
-    height: 34px;
-    line-height: 34px;
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
     font-size: 15px;
   }
 }
@@ -1767,10 +1815,11 @@ footer .footer-links a:hover {
     object-fit: cover;
   }
 
+  /* Maintain 44px touch targets on very small screens */
   .social-icons li a {
-    width: 32px;
-    height: 32px;
-    line-height: 32px;
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
     font-size: 14px;
   }
 }
@@ -2090,6 +2139,14 @@ footer .footer-links a:hover {
   font-size: 1.2rem;
   width: 24px;
   text-align: center;
+}
+
+/* Text overflow prevention for long URLs/emails */
+.contact-item a,
+.experience-meta-item a,
+.education-meta-item a {
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .contact-links {
