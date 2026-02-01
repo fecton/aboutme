@@ -44,6 +44,12 @@ const cert_data = {
       "planned_year": ""
     },
     {
+      "title": "AWS Solutions Architect Associate",
+      "image": "aws-solution-architect-associate.webp",
+      "link": "https://www.credly.com/badges/0f1f5f99-b1a1-4409-b7b1-0c429e51e95e/public_url",
+      "planned_year": ""
+    },
+    {
       "title": "AWS Certified SysOps Administrator - Associate",
       "image": "aws-sysops-administrator-associate.webp",
       "link": "",
@@ -58,12 +64,6 @@ const cert_data = {
     {
       "title": "AWS Certified Advanced Networking - Specialty",
       "image": "aws-advanced-networking-specialty.webp",
-      "link": "",
-      "planned_year": "2026"
-    },
-    {
-      "title": "AWS Solutions Architect Associate",
-      "image": "aws-solution-architect-associate.webp",
       "link": "",
       "planned_year": "2026"
     }
