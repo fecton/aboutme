@@ -22,8 +22,18 @@ const exp_data = {
       "client_link": "",
       "dates": "2025 November - Present",
       "present": true,
-      "description": "",
-      "disciplines": "AWS (EC2, S3, Lambda, VPC, IAM, CloudWatch, RDS), Terraform, Terragrunt, C#, .NET, PowerShell, GitLab CI, GitHub Actions, Docker, Kubernetes, Git, Linux, Windows Server, Infrastructure as Code (IaC), CI/CD Pipelines, Grafana, Prometheus, Open Telemetry, Jira, Confluence."
+      "description": `<ul>
+        <li>Focused on web projects using AWS services including ECS, EC2, Lambda, API Gateway, RDS, ElastiCache, CloudFront, Route53, SSM Parameter Store, and Secrets Manager, managing multiple AWS accounts using Terraform code.</li>
+        <br>
+        <li>Optimized cloud costs using AWS Cost Explorer and implementing savings plans to reduce infrastructure expenses.</li>
+        <br>
+        <li>Created monitoring infrastructure from scratch using Amazon Managed Grafana and Amazon Managed Prometheus integrated with CloudWatch.</li>
+        <br>
+        <li>Implemented custom monitoring solutions using node_exporter, windows_exporter, and sql_exporter with OpenTelemetry for Linux and Windows instances.</li>
+        <br>
+        <li>Deployed monitoring for MSSQL instances, ensuring comprehensive database observability and performance tracking.</li>
+</ul>`,
+      "disciplines": "AWS (EC2, ECS, ECS Fargate, S3, Lambda, API Gateway, RDS, ElastiCache Redis, CloudFront, Route53, VPC, IAM, CloudWatch, SSM Parameter Store, Secrets Manager, SNS, SQS, EventBridge, Auto Scaling, Security Groups, NAT Gateway), AWS Cost Explorer, AWS Savings Plans, AWS Organizations, Terraform, Terragrunt, Terraform Modules, Amazon Managed Grafana, Amazon Managed Prometheus, Prometheus, PromQL, Grafana, CloudWatch Logs, CloudWatch Metrics, CloudWatch Alarms, OpenTelemetry, node_exporter, windows_exporter, sql_exporter, AlertManager, MSSQL, SQL Server, PostgreSQL, MySQL, C#, .NET, .NET Core, ASP.NET, PowerShell, Bash, Python, REST APIs, GitLab CI, GitHub Actions, Docker, Docker Compose, Kubernetes, Helm, YAML, JSON, Git, Linux (Ubuntu, Amazon Linux), Windows Server, Infrastructure as Code (IaC), CI/CD Pipelines, Multi-Account Strategy, FinOps, Cost Optimization, Serverless Architecture, Microservices, Monitoring & Observability, Log Aggregation, Jira, Confluence."
     },
     {
       "position": "Senior/Lead DevOps Engineer",
