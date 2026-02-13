@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--color-background: #000000;
+	--color-surface: rgba(255, 255, 255, 0.05);
+	--color-border: rgba(255, 255, 255, 0.1);
+	--color-text: #ffffff;
+	--color-text-muted: #a1a1a6;
+	--color-accent: #3366cc;
+	--color-accent-dark: #204090;
+}
+
+@layer base {
+	html {
+		@apply antialiased;
+	}
+
+	body {
+		@apply bg-background text-white font-sans;
+	}
+}
+
+/* Glassmorphism utility */
+.glass {
+	background: rgba(255, 255, 255, 0.05);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Skip link for accessibility */
+.skip-link {
+	@apply absolute -top-12 left-0 z-[100000] bg-accent px-4 py-2 text-white no-underline transition-all duration-200;
+}
+
+.skip-link:focus {
+	@apply top-0 outline-none ring-2 ring-white/20;
+}
+
+/* Focus visible for accessibility */
+*:focus-visible {
+	@apply outline-none ring-2 ring-white/20 ring-offset-2 ring-offset-background;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}
