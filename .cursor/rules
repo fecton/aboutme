@@ -16,6 +16,7 @@ This is a personal portfolio website for Andrii Lytvynenko, a Senior DevOps & Cl
 
 ### General
 - **Indentation:** Use TABS for HTML, CSS, and JavaScript files (not spaces)
+- **YAML files:** Use SPACES only (2 spaces per level). Never use tabs—YAML spec forbids them and linters reject tabs
 - **Line endings:** LF (Unix-style)
 - **Encoding:** UTF-8
 - **File naming:** Use kebab-case for files (e.g., `u1-certificates.js`)
@@ -229,6 +230,10 @@ const data = {
 - Maintains 100% quality during conversion
 - Automatically processes all PNG files in directory
 
+## YAML and GitHub Actions
+- **Always use spaces** for indentation in YAML (`.yml`, `.yaml`). Tabs cause "Tabs are not allowed as indentation" errors
+- Use 2 spaces per indent level in `.github/workflows/*.yml`
+
 ## Deployment
 - Static site deployment (GitHub Pages)
 - Custom domain: alytvynenko.net
@@ -296,7 +301,7 @@ const data = {
 
 ## AI Assistant Guidelines
 When making changes to this codebase:
-1. **Preserve tab indentation** in all files
+1. **Preserve tab indentation** in HTML, CSS, and JavaScript; use **spaces only** in YAML (e.g., `.github/workflows/*.yml`)
 2. **Use existing CSS variables** - don't hardcode values
 3. **Follow accessibility patterns** already established
 4. **Test changes mentally** for responsive behavior
