@@ -1,12 +1,12 @@
 # Cursor Rules for Andrii Lytvynenko's Portfolio Website
 
 ## Project Overview
-This is a personal portfolio website for Andrii Lytvynenko, a Senior DevOps & Cloud Engineer. The site is a Progressive Web App (PWA) built with vanilla JavaScript, HTML5, CSS3, Bootstrap, and jQuery.
+This is a personal portfolio website for Andrii Lytvynenko, a Senior DevOps & Cloud Engineer. The site is a Progressive Web App (PWA) built with Next.js, React, TypeScript, and Tailwind CSS.
 
 **Live URL:** https://alytvynenko.net
 
 ## Tech Stack
-- Next.js 14 (App Router) with TypeScript
+- Next.js 16 (App Router) with TypeScript
 - Tailwind CSS for styling
 - Framer Motion for animations
 - Static export for GitHub Pages deployment
@@ -169,13 +169,46 @@ const data = {
 }
 ```
 
-## Responsive Design
-- Mobile-first approach
-- Test on multiple device sizes
+## Responsive Design (Mobile-First)
+
+### Tailwind Breakpoints
+- `sm`: 640px
+- `md`: 768px
+- `lg`: 1024px
+- Use `md` as primary breakpoint for layout changes (e.g., Navbar hamburger)
+
+### Layout Patterns
+- **Horizontal padding:** Use `px-4 sm:px-6` on main containers (BentoGrid, Footer, Navbar, Hero, Privacy Policy)
+- **Grids:** Stack on mobile with `grid-cols-1`, then `sm:grid-cols-2` or `md:grid-cols-[...]` for larger screens
+- **Flex direction:** Use `flex-col sm:flex-row` for buttons/CTAs that should stack on narrow screens
+- **Languages grid (ContactCard):** `grid-cols-1` on mobile (stacked), `sm:grid-cols-[auto_1fr_minmax(8rem,12rem)]` from sm up
+
+### Navbar Mobile Menu
+- Show hamburger button below `md` (768px); hide horizontal nav links
+- Hamburger toggles slide-down menu with nav links
+- Include ThemeToggle in both desktop nav and mobile header
+- Close menu on link click and route change (`usePathname` + `useEffect`)
+- Use `aria-expanded`, `aria-controls`, `aria-label` for accessibility
+- Hamburger button: `min-h-[44px] min-w-[44px]` for touch targets
+
+### Touch Targets (WCAG 2.1)
+- Interactive elements (buttons, links, icon buttons): minimum 44x44px
+- Apply `min-h-[44px] min-w-[44px]` and `flex items-center justify-center` to buttons and icon links
+- Applies to: Navbar hamburger, ThemeToggle, Hero CTAs, Footer social links, ContactCard social links, mobile menu links
+
+### Performance on Mobile
+- Use `background-attachment: scroll` on mobile (fixed causes glitches in Safari)
+- Add `@media (max-width: 768px) { body { background-attachment: scroll; } }` in globals.css
+
+### Hero Section
+- Profile image: `h-48 w-48 sm:h-[250px] sm:w-[250px]` with Next.js Image `fill` and `sizes="(max-width: 640px) 192px, 250px"`
+- CTA buttons: `flex-col sm:flex-row` so they stack on narrow screens
+
+### General
+- Test on multiple device sizes (320px, 375px, 414px, 768px+)
 - Use relative units (rem, em, %, vw/vh) where appropriate
 - Flexible images (`max-width: 100%`)
-- Responsive typography with media queries
-- Touch-friendly targets (minimum 44x44px)
+- Ensure no horizontal scroll at 320px viewport
 
 ## Color Palette (Brand Colors)
 - Primary: `#3366CC` (`var(--color-primary)`)
@@ -218,9 +251,7 @@ const data = {
 - [ ] Cross-browser compatibility
 
 ## Dependencies Management
-- Bootstrap 3.x (grid system, utilities)
-- jQuery (DOM manipulation, animations)
-- Font Awesome (icons)
+- Next.js, React, Tailwind CSS, Framer Motion
 - Keep libraries in local files (no CDN) for offline functionality
 - Minimize external dependencies
 
@@ -287,8 +318,9 @@ const data = {
 
 ### Languages Block Alignment
 - Use a single grid with `grid-cols-subgrid` or fixed column widths so proficiency levels align consistently.
-- Proficiency column: `minmax(8rem, 12rem)` for responsive width; `text-right` for right alignment.
-- Wrap in `min-w-0 overflow-hidden` to prevent overflow on narrow viewports.
+- **Mobile:** `grid-cols-1` (stacked layout) to prevent overflow on narrow viewports.
+- **Desktop (sm+):** `grid-cols-[auto_1fr_minmax(8rem,12rem)]`; proficiency column `text-right`.
+- Wrap in `min-w-0 overflow-hidden` to prevent overflow.
 
 ## Important Notes
 - **Never remove accessibility features** (skip links, ARIA labels, alt text)
@@ -304,7 +336,7 @@ When making changes to this codebase:
 1. **Preserve tab indentation** in HTML, CSS, and JavaScript; use **spaces only** in YAML (e.g., `.github/workflows/*.yml`)
 2. **Use existing CSS variables** - don't hardcode values
 3. **Follow accessibility patterns** already established
-4. **Test changes mentally** for responsive behavior
+4. **Test changes mentally** for responsive behavior; ensure mobile-first (320px, 375px) and no horizontal overflow
 5. **Maintain error handling** in JavaScript/TypeScript files
 6. **Keep SEO elements** intact or improve them
 7. **Follow naming conventions** for files and variables
@@ -312,6 +344,7 @@ When making changes to this codebase:
 9. **Follow Layout and Bento Grid Patterns** - ensure equal widths for sibling rows and equal heights for paired columns
 10. **Use unique keys** when mapping lists with potential duplicates (`key={\`${item}-${index}\`}`)
 11. **Maintain the existing code style** - this is mature, production code
+12. **Mobile responsiveness** - Apply `px-4 sm:px-6`, 44x44px touch targets, and responsive grids per Responsive Design section
 
 ## Contact Information (For Context)
 - **Name:** Andrii Lytvynenko
@@ -323,6 +356,6 @@ When making changes to this codebase:
 ---
 
 **Last Updated:** February 2026
-**Codebase Version:** Next.js 14 (App Router)
+**Codebase Version:** Next.js 16 (App Router)
 **Status:** Active maintenance
 
