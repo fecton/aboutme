@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { profile } from "@/data/profile";
 import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
@@ -104,25 +105,20 @@ export function HeroSection() {
 						variants={itemVariants}
 						className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap"
 					>
+						<Link
+							href="/resume/"
+							className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl border border-border bg-accent px-6 py-3 font-medium text-white transition-all hover:bg-accent-dark focus-visible:ring-2 focus-visible:ring-border"
+						>
+							View Resume
+						</Link>
 						<a
 							href={profile.resumeUrl}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl border border-border bg-accent px-6 py-3 font-medium text-white transition-all hover:bg-accent-dark focus-visible:ring-2 focus-visible:ring-border"
+							className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl border border-border px-6 py-3 font-medium text-foreground transition-all hover:bg-surface-hover focus-visible:ring-2 focus-visible:ring-border"
 							download="Andrii_Lytvynenko_Resume.pdf"
 						>
 							Download Resume
-						</a>
-						<a
-							href={profile.coverLetterUrl}
-							target="_blank"
-							rel="noopener noreferrer"
-							className={`flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl border border-border px-6 py-3 font-medium text-foreground transition-all hover:bg-surface-hover focus-visible:ring-2 focus-visible:ring-border ${
-								reduceEffects ? "bg-background" : "bg-surface backdrop-blur-[20px]"
-							}`}
-							download="Andrii_Lytvynenko_Cover_Letter.pdf"
-						>
-							Download Cover Letter
 						</a>
 					</motion.div>
 				</motion.div>
