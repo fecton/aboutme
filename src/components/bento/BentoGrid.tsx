@@ -37,14 +37,14 @@ export function BentoGrid() {
 					</div>
 				</div>
 
-				{/* Education */}
-				<div className="w-full">
-					<EducationCard />
-				</div>
-
 				{/* Experience */}
 				<div className="w-full" id="experience">
 					<ExperienceCard />
+				</div>
+
+				{/* Education */}
+				<div className="w-full">
+					<EducationCard />
 				</div>
 			</div>
 		</div>
