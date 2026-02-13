@@ -46,7 +46,7 @@ export const profile = {
 	},
 	highlights: [
 		{ number: "5+", label: "Years of Experience" },
-		{ number: "4+", label: "Cloud Certifications" },
+		{ number: "5+", label: "Cloud Certifications" },
 		{ number: "50%", label: "Cost Reduction Achieved" },
 		{ number: "70%", label: "Incident Reduction" },
 	] as Highlight[],
