@@ -2,7 +2,8 @@
 
 import { GlassCard } from "@/components/ui/GlassCard";
 import { profile } from "@/data/profile";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
 
 const springTransition = {
 	type: "spring" as const,
@@ -18,6 +19,10 @@ const iconPaths: Record<string, string> = {
 };
 
 export function ContactCard() {
+	const { reduceEffects } = useReduceEffects();
+	const prefersReducedMotion = useReducedMotion();
+	const skipAnimations = reduceEffects || prefersReducedMotion;
+
 	return (
 		<div className="flex h-full flex-col gap-6">
 			<GlassCard>
@@ -60,7 +65,7 @@ export function ContactCard() {
 							rel="noopener noreferrer"
 							className="flex min-h-[44px] min-w-[44px] items-center justify-center gap-2 rounded-lg border border-border bg-surface px-3 py-2 text-sm text-foreground transition-colors hover:bg-surface-hover"
 							aria-label={link.ariaLabel}
-							whileHover={{ scale: 1.05 }}
+							whileHover={skipAnimations ? undefined : { scale: 1.05 }}
 							transition={springTransition}
 						>
 							<svg
@@ -86,8 +91,9 @@ export function ContactCard() {
 						<motion.div
 							key={lang.name}
 							className="col-span-3 grid grid-cols-subgrid items-center gap-x-4 rounded-lg border border-border bg-surface px-3 py-2"
-							initial={{ opacity: 0, x: -10 }}
-							whileInView={{ opacity: 1, x: 0 }}
+							initial={skipAnimations ? false : { opacity: 0, x: -10 }}
+							animate={skipAnimations ? { opacity: 1, x: 0 } : undefined}
+							whileInView={skipAnimations ? undefined : { opacity: 1, x: 0 }}
 							viewport={{ once: true }}
 							transition={springTransition}
 						>

@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { certificates } from "@/data/certificates";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
 
 const springTransition = {
 	type: "spring" as const,
@@ -12,6 +13,10 @@ const springTransition = {
 };
 
 export function CertificationsCard() {
+	const { reduceEffects } = useReduceEffects();
+	const prefersReducedMotion = useReducedMotion();
+	const skipAnimations = reduceEffects || prefersReducedMotion;
+
 	return (
 		<GlassCard className="h-full">
 			<h2 className="mb-6 text-2xl font-bold tracking-tight text-white">
@@ -30,11 +35,12 @@ export function CertificationsCard() {
 									? "border-border bg-surface"
 									: "border-border/50 bg-surface/50"
 							}`}
-							initial={{ opacity: 0, y: 10 }}
-							whileInView={{ opacity: 1, y: 0 }}
+							initial={skipAnimations ? false : { opacity: 0, y: 10 }}
+							animate={skipAnimations ? { opacity: 1, y: 0 } : undefined}
+							whileInView={skipAnimations ? undefined : { opacity: 1, y: 0 }}
 							viewport={{ once: true }}
 							transition={{ ...springTransition, delay: index * 0.05 }}
-							whileHover={{ scale: 1.02 }}
+							whileHover={skipAnimations ? undefined : { scale: 1.02 }}
 						>
 							<span
 								className={`mb-2 inline-block rounded-full px-2 py-0.5 text-xs ${
