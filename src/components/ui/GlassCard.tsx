@@ -16,7 +16,7 @@ interface GlassCardProps {
 export function GlassCard({ children, className = "" }: GlassCardProps) {
 	return (
 		<motion.div
-			className={`w-full rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-[20px] md:p-8 ${className}`}
+			className={`w-full rounded-2xl border border-border bg-surface p-6 backdrop-blur-[20px] md:p-8 ${className}`}
 			initial={{ opacity: 0, y: 20 }}
 			whileInView={{ opacity: 1, y: 0 }}
 			viewport={{ once: true, margin: "-50px" }}

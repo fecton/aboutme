@@ -19,12 +19,12 @@ const iconPaths: Record<string, string> = {
 
 export function ContactCard() {
 	return (
-		<div className="flex min-h-full flex-1 flex-col gap-6">
+		<div className="flex h-full flex-col gap-6">
 			<GlassCard>
-				<h2 className="mb-4 text-2xl font-bold tracking-tight text-white">
+				<h2 className="mb-4 text-2xl font-bold tracking-tight text-foreground">
 					Contact
 				</h2>
-				<div className="space-y-3 text-apple-gray">
+				<div className="space-y-3 text-muted">
 					<p className="flex items-center gap-2">
 						<svg
 							className="h-4 w-4 shrink-0 text-accent"
@@ -58,7 +58,7 @@ export function ContactCard() {
 							href={link.url}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white transition-colors hover:bg-white/10"
+							className="flex items-center gap-2 rounded-lg border border-border bg-surface px-3 py-2 text-sm text-foreground transition-colors hover:bg-surface-hover"
 							aria-label={link.ariaLabel}
 							whileHover={{ scale: 1.05 }}
 							transition={springTransition}
@@ -77,7 +77,7 @@ export function ContactCard() {
 			</GlassCard>
 
 			<GlassCard className="flex min-h-0 flex-1 flex-col">
-				<h2 className="mb-4 text-2xl font-bold tracking-tight text-white">
+				<h2 className="mb-4 text-2xl font-bold tracking-tight text-foreground">
 					Languages
 				</h2>
 				<div className="min-w-0 overflow-hidden pr-2">
@@ -85,17 +85,17 @@ export function ContactCard() {
 					{profile.languages.map((lang) => (
 						<motion.div
 							key={lang.name}
-							className="col-span-3 grid grid-cols-subgrid items-center gap-x-4 rounded-lg border border-white/10 bg-white/5 px-3 py-2"
+							className="col-span-3 grid grid-cols-subgrid items-center gap-x-4 rounded-lg border border-border bg-surface px-3 py-2"
 							initial={{ opacity: 0, x: -10 }}
 							whileInView={{ opacity: 1, x: 0 }}
 							viewport={{ once: true }}
 							transition={springTransition}
 						>
 							<span className="text-lg">{lang.flag}</span>
-							<span className="text-white">{lang.name}</span>
+							<span className="text-foreground">{lang.name}</span>
 							<span
 								className={`text-right text-sm ${
-									lang.native ? "text-accent" : "text-apple-gray"
+									lang.native ? "text-accent" : "text-muted"
 								}`}
 							>
 								{lang.level}

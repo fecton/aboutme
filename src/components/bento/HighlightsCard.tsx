@@ -13,14 +13,14 @@ const springTransition = {
 export function HighlightsCard() {
 	return (
 		<GlassCard>
-			<h2 className="mb-6 text-2xl font-bold tracking-tight text-white">
+			<h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground">
 				Key Highlights
 			</h2>
 			<div className="grid grid-cols-2 gap-4">
 				{profile.highlights.map((highlight, index) => (
 					<motion.div
 						key={highlight.label}
-						className="rounded-xl border border-white/10 bg-white/5 p-4 text-center"
+						className="rounded-xl border border-border bg-surface p-4 text-center"
 						initial={{ opacity: 0, y: 10 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
@@ -30,7 +30,7 @@ export function HighlightsCard() {
 						<div className="text-2xl font-bold text-accent md:text-3xl">
 							{highlight.number}
 						</div>
-						<div className="text-sm text-apple-gray">{highlight.label}</div>
+						<div className="text-sm text-muted">{highlight.label}</div>
 					</motion.div>
 				))}
 			</div>

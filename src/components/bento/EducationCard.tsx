@@ -13,24 +13,24 @@ const springTransition = {
 export function EducationCard() {
 	return (
 		<GlassCard>
-			<h2 className="mb-6 text-2xl font-bold tracking-tight text-white">
+			<h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground">
 				Education
 			</h2>
 			<div className="space-y-6">
 				{educations.map((edu, index) => (
 					<motion.article
 						key={edu.university_title + edu.specialty_title}
-						className="rounded-xl border border-white/10 bg-white/5 p-6"
+						className="rounded-xl border border-border bg-surface p-6"
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
 						transition={{ ...springTransition, delay: index * 0.1 }}
 					>
 						<div className="mb-2 flex flex-wrap items-center justify-between gap-2">
-							<h3 className="font-semibold text-white">
+							<h3 className="font-semibold text-foreground">
 								{edu.specialty_title}
 							</h3>
-							<span className="rounded-full bg-accent/20 px-2 py-0.5 text-xs text-accent">
+							<span className="rounded-full bg-accent/20 px-2 py-0.5 text-xs text-accent-dark dark:text-accent">
 								Graduated
 							</span>
 						</div>
@@ -40,15 +40,15 @@ export function EducationCard() {
 									href={edu.university_link}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="text-apple-gray hover:text-accent"
+									className="text-muted hover:text-accent"
 								>
 									{edu.university_title}
 								</a>
 							) : (
-								<span className="text-apple-gray">{edu.university_title}</span>
+								<span className="text-muted">{edu.university_title}</span>
 							)}
 						</div>
-						<p className="mb-4 text-sm text-apple-gray">{edu.dates}</p>
+						<p className="mb-4 text-sm text-muted">{edu.dates}</p>
 						{(edu.diploma_pdf || edu.diploma_suplement_pdf) && (
 							<div className="mb-4 flex gap-4">
 								{edu.diploma_pdf && (
@@ -74,12 +74,12 @@ export function EducationCard() {
 							</div>
 						)}
 						<div
-							className="prose prose-invert prose-sm max-w-none text-apple-gray"
+							className="prose prose-sm dark:prose-invert max-w-none text-muted"
 							dangerouslySetInnerHTML={{ __html: edu.description }}
 						/>
 						{edu.disciplines && (
 							<details className="mt-4">
-								<summary className="cursor-pointer font-medium text-white">
+								<summary className="cursor-pointer font-medium text-foreground">
 									Courses & Disciplines
 								</summary>
 								<div className="mt-2 flex flex-wrap gap-2">
@@ -89,7 +89,7 @@ export function EducationCard() {
 										.map((discipline, index) => (
 											<span
 												key={`${discipline}-${index}`}
-												className="rounded-lg border border-white/10 bg-white/5 px-2 py-1 text-xs text-apple-gray"
+												className="rounded-lg border border-border bg-surface px-2 py-1 text-xs text-muted"
 											>
 												{discipline.replace(/\.$/, "")}
 											</span>

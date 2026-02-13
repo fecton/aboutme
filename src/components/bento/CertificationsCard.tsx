@@ -13,7 +13,7 @@ const springTransition = {
 
 export function CertificationsCard() {
 	return (
-		<GlassCard>
+		<GlassCard className="h-full">
 			<h2 className="mb-6 text-2xl font-bold tracking-tight text-white">
 				Certifications
 			</h2>
@@ -27,8 +27,8 @@ export function CertificationsCard() {
 							key={cert.title}
 							className={`rounded-xl border p-4 ${
 								isEarned
-									? "border-white/10 bg-white/5"
-									: "border-white/5 bg-white/[0.02]"
+									? "border-border bg-surface"
+									: "border-border/50 bg-surface/50"
 							}`}
 							initial={{ opacity: 0, y: 10 }}
 							whileInView={{ opacity: 1, y: 0 }}
@@ -39,8 +39,8 @@ export function CertificationsCard() {
 							<span
 								className={`mb-2 inline-block rounded-full px-2 py-0.5 text-xs ${
 									isEarned
-										? "bg-green-500/20 text-green-400"
-										: "bg-amber-500/20 text-amber-400"
+										? "bg-green-100 text-green-700 dark:bg-green-500/20 dark:text-green-400"
+										: "bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-400"
 								}`}
 							>
 								{isEarned ? "Earned" : "Planned"}
@@ -55,7 +55,7 @@ export function CertificationsCard() {
 									className="rounded-lg"
 								/>
 							</div>
-							<h4 className="mb-2 text-center text-sm font-medium text-white">
+							<h4 className="mb-2 text-center text-sm font-medium text-foreground">
 								{cert.title}
 							</h4>
 							{isEarned && (
@@ -69,7 +69,7 @@ export function CertificationsCard() {
 								</a>
 							)}
 							{isPlanned && !isEarned && (
-								<p className="text-center text-xs text-apple-gray">
+								<p className="text-center text-xs text-muted">
 									Target: {cert.planned_year}
 								</p>
 							)}
