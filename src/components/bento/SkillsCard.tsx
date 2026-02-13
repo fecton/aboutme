@@ -3,7 +3,8 @@
 import { GlassCard } from "@/components/ui/GlassCard";
 import { profile } from "@/data/profile";
 import { skillIconMap } from "@/data/skillIcons";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
 
 const springTransition = {
 	type: "spring" as const,
@@ -21,6 +22,10 @@ const iconPaths: Record<string, string> = {
 };
 
 export function SkillsCard() {
+	const { reduceEffects } = useReduceEffects();
+	const prefersReducedMotion = useReducedMotion();
+	const skipAnimations = reduceEffects || prefersReducedMotion;
+
 	return (
 		<GlassCard>
 			<h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground">
@@ -31,8 +36,9 @@ export function SkillsCard() {
 					<motion.div
 						key={category.title}
 						className="rounded-xl border border-border bg-surface p-4"
-						initial={{ opacity: 0, y: 10 }}
-						whileInView={{ opacity: 1, y: 0 }}
+						initial={skipAnimations ? false : { opacity: 0, y: 10 }}
+						animate={skipAnimations ? { opacity: 1, y: 0 } : undefined}
+						whileInView={skipAnimations ? undefined : { opacity: 1, y: 0 }}
 						viewport={{ once: true }}
 						transition={{ ...springTransition, delay: categoryIndex * 0.05 }}
 					>

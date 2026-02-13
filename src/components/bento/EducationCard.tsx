@@ -3,7 +3,8 @@
 import { GlassCard } from "@/components/ui/GlassCard";
 import { ExpandableTagList } from "@/components/ui/ExpandableTagList";
 import { educations } from "@/data/education";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
 
 const springTransition = {
 	type: "spring" as const,
@@ -12,6 +13,10 @@ const springTransition = {
 };
 
 export function EducationCard() {
+	const { reduceEffects } = useReduceEffects();
+	const prefersReducedMotion = useReducedMotion();
+	const skipAnimations = reduceEffects || prefersReducedMotion;
+
 	return (
 		<GlassCard>
 			<h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground">
@@ -22,8 +27,9 @@ export function EducationCard() {
 					<motion.article
 						key={edu.university_title + edu.specialty_title}
 						className="rounded-xl border border-border bg-surface p-6"
-						initial={{ opacity: 0, y: 20 }}
-						whileInView={{ opacity: 1, y: 0 }}
+						initial={skipAnimations ? false : { opacity: 0, y: 20 }}
+						animate={skipAnimations ? { opacity: 1, y: 0 } : undefined}
+						whileInView={skipAnimations ? undefined : { opacity: 1, y: 0 }}
 						viewport={{ once: true }}
 						transition={{ ...springTransition, delay: index * 0.1 }}
 					>

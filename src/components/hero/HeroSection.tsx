@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { profile } from "@/data/profile";
+import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
 
 const springTransition = {
 	type: "spring" as const,
@@ -31,6 +32,10 @@ const itemVariants = {
 };
 
 export function HeroSection() {
+	const { reduceEffects } = useReduceEffects();
+	const prefersReducedMotion = useReducedMotion();
+	const skipAnimations = reduceEffects || prefersReducedMotion;
+
 	return (
 		<section className="relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-24">
 			{/* Gradient mesh background */}
@@ -46,9 +51,9 @@ export function HeroSection() {
 			<div className="relative mx-auto max-w-6xl px-4 sm:px-6">
 				<motion.div
 					className="flex flex-col items-center text-center"
-					variants={containerVariants}
-					initial="hidden"
-					animate="visible"
+					variants={skipAnimations ? undefined : containerVariants}
+					initial={skipAnimations ? false : "hidden"}
+					animate={skipAnimations ? false : "visible"}
 				>
 					<motion.div
 						variants={itemVariants}
@@ -65,8 +70,10 @@ export function HeroSection() {
 					</motion.div>
 
 					<motion.div
-						variants={itemVariants}
-						className="mb-3 flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 backdrop-blur-[20px]"
+						variants={skipAnimations ? undefined : itemVariants}
+						className={`mb-3 flex items-center gap-2 rounded-full border border-border px-4 py-2 ${
+							reduceEffects ? "bg-background" : "bg-surface backdrop-blur-[20px]"
+						}`}
 					>
 						<span className="h-2 w-2 animate-pulse rounded-full bg-green-500" />
 						<span className="text-sm text-muted">{profile.availability}</span>
@@ -110,7 +117,9 @@ export function HeroSection() {
 							href={profile.coverLetterUrl}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl border border-border bg-surface px-6 py-3 font-medium text-foreground backdrop-blur-[20px] transition-all hover:bg-surface-hover focus-visible:ring-2 focus-visible:ring-border"
+							className={`flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl border border-border px-6 py-3 font-medium text-foreground transition-all hover:bg-surface-hover focus-visible:ring-2 focus-visible:ring-border ${
+								reduceEffects ? "bg-background" : "bg-surface backdrop-blur-[20px]"
+							}`}
 							download="Andrii_Lytvynenko_Cover_Letter.pdf"
 						>
 							Download Cover Letter

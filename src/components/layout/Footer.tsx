@@ -51,14 +51,6 @@ export function Footer() {
 					<Link href="/privacy-policy" className="hover:text-foreground">
 						Privacy Policy
 					</Link>
-					{" | "}
-					<Link href="/security.txt" className="hover:text-foreground">
-						Security
-					</Link>
-					{" | "}
-					<Link href="/humans.txt" className="hover:text-foreground">
-						Humans.txt
-					</Link>
 				</p>
 				<ul className="flex justify-center gap-6">
 					{profile.footerSocialLinks.map((link) => (

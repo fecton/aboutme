@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { ReduceEffectsProvider } from "@/components/providers/ReduceEffectsProvider";
 import "./globals.css";
 
 const SITE_URL = "https://alytvynenko.net";
@@ -169,11 +170,10 @@ export default function RootLayout({
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head>
-				<link rel="author" href={`${SITE_URL}/humans.txt`} />
 				<link rel="preconnect" href="https://www.googletagmanager.com" />
 				<link rel="dns-prefetch" href="https://www.google-analytics.com" />
 			</head>
-			<body>
+			<body suppressHydrationWarning>
 				<Script
 					src="https://www.googletagmanager.com/gtag/js?id=G-LKHDQT8Z81"
 					strategy="afterInteractive"
@@ -201,7 +201,9 @@ export default function RootLayout({
 				<a href="#main-content" className="skip-link">
 					Skip to main content
 				</a>
-				<ThemeProvider>{children}</ThemeProvider>
+				<ThemeProvider>
+					<ReduceEffectsProvider>{children}</ReduceEffectsProvider>
+				</ThemeProvider>
 			</body>
 		</html>
 	);

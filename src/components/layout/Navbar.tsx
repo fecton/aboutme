@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { LiteModeToggle } from "@/components/ui/LiteModeToggle";
+import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
 
 const navLinks = [
 	{ href: "/#about", label: "About" },
@@ -16,6 +18,7 @@ const navLinks = [
 export function Navbar() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const pathname = usePathname();
+	const { reduceEffects } = useReduceEffects();
 
 	// Close menu on route change or when clicking a link
 	useEffect(() => {
@@ -26,7 +29,9 @@ export function Navbar() {
 
 	return (
 		<motion.nav
-			className="fixed left-0 right-0 top-0 z-50 border-b border-border bg-surface backdrop-blur-[20px]"
+			className={`fixed left-0 right-0 top-0 z-50 border-b border-border ${
+				reduceEffects ? "bg-background" : "bg-surface backdrop-blur-[20px]"
+			}`}
 			initial={{ y: -100 }}
 			animate={{ y: 0 }}
 			transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -51,11 +56,13 @@ export function Navbar() {
 							{link.label}
 						</Link>
 					))}
+					<LiteModeToggle />
 					<ThemeToggle />
 				</div>
 
-				{/* Mobile: hamburger + theme toggle */}
+				{/* Mobile: hamburger + lite mode + theme toggle */}
 				<div className="flex items-center gap-2 md:hidden">
+					<LiteModeToggle />
 					<ThemeToggle />
 					<button
 						type="button"

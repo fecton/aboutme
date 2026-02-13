@@ -2,7 +2,8 @@
 
 import { GlassCard } from "@/components/ui/GlassCard";
 import { profile } from "@/data/profile";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
 
 const springTransition = {
 	type: "spring" as const,
@@ -32,6 +33,10 @@ const trustBadgeIconPaths: Record<string, string> = {
 };
 
 export function HighlightsCard() {
+	const { reduceEffects } = useReduceEffects();
+	const prefersReducedMotion = useReducedMotion();
+	const skipAnimations = reduceEffects || prefersReducedMotion;
+
 	return (
 		<GlassCard className="flex h-full flex-col">
 			<h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground">
@@ -43,11 +48,12 @@ export function HighlightsCard() {
 						<motion.div
 							key={highlight.label}
 							className="flex flex-col items-center justify-center gap-2 rounded-xl border border-border bg-surface p-4 text-center"
-							initial={{ opacity: 0, y: 10 }}
-							whileInView={{ opacity: 1, y: 0 }}
+							initial={skipAnimations ? false : { opacity: 0, y: 10 }}
+							animate={skipAnimations ? { opacity: 1, y: 0 } : undefined}
+							whileInView={skipAnimations ? undefined : { opacity: 1, y: 0 }}
 							viewport={{ once: true }}
 							transition={{ ...springTransition, delay: index * 0.05 }}
-							whileHover={{ scale: 1.03 }}
+							whileHover={skipAnimations ? undefined : { scale: 1.03 }}
 						>
 							<svg
 								className="h-5 w-5 shrink-0 text-accent"
@@ -80,8 +86,9 @@ export function HighlightsCard() {
 								key={badge.title}
 								className="flex items-center gap-2 rounded-lg border border-border bg-surface px-3 py-2 text-sm text-muted"
 								title={badge.title}
-								initial={{ opacity: 0, y: 5 }}
-								whileInView={{ opacity: 1, y: 0 }}
+								initial={skipAnimations ? false : { opacity: 0, y: 5 }}
+								animate={skipAnimations ? { opacity: 1, y: 0 } : undefined}
+								whileInView={skipAnimations ? undefined : { opacity: 1, y: 0 }}
 								viewport={{ once: true }}
 								transition={{ ...springTransition, delay: 0.2 + index * 0.05 }}
 							>
