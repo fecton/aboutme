@@ -2,6 +2,7 @@
 
 import { GlassCard } from "@/components/ui/GlassCard";
 import { profile } from "@/data/profile";
+import { skillIconMap } from "@/data/skillIcons";
 import { motion } from "framer-motion";
 
 const springTransition = {
@@ -48,15 +49,26 @@ export function SkillsCard() {
 						<div className="flex flex-wrap gap-2">
 							{category.skills.map((skill) => {
 								const isPrimary = category.primary?.includes(skill);
+								const iconData = skillIconMap[skill];
 								return (
 									<span
 										key={skill}
-										className={`rounded-lg px-2 py-1 text-sm ${
+										className={`flex items-center gap-1.5 rounded-lg px-2 py-1 text-sm ${
 											isPrimary
 												? "border border-accent/50 bg-accent/20 text-accent-dark dark:text-white"
 												: "border border-border bg-surface text-muted"
 										}`}
 									>
+										{iconData && (
+											<svg
+												className="h-3.5 w-3.5 shrink-0"
+												fill="currentColor"
+												viewBox="0 0 24 24"
+												aria-hidden
+											>
+												<path d={iconData.path} />
+											</svg>
+										)}
 										{skill}
 									</span>
 								);
