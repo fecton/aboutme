@@ -58,7 +58,7 @@ export function ContactCard() {
 							href={link.url}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="flex items-center gap-2 rounded-lg border border-border bg-surface px-3 py-2 text-sm text-foreground transition-colors hover:bg-surface-hover"
+							className="flex min-h-[44px] min-w-[44px] items-center justify-center gap-2 rounded-lg border border-border bg-surface px-3 py-2 text-sm text-foreground transition-colors hover:bg-surface-hover"
 							aria-label={link.ariaLabel}
 							whileHover={{ scale: 1.05 }}
 							transition={springTransition}
@@ -81,7 +81,7 @@ export function ContactCard() {
 					Languages
 				</h2>
 				<div className="min-w-0 overflow-hidden pr-2">
-					<div className="grid grid-cols-[auto_1fr_minmax(8rem,12rem)] gap-x-4 gap-y-3">
+					<div className="grid grid-cols-1 gap-y-3 sm:grid-cols-[auto_1fr_minmax(8rem,12rem)] sm:gap-x-4">
 					{profile.languages.map((lang) => (
 						<motion.div
 							key={lang.name}

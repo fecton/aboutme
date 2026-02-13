@@ -38,7 +38,7 @@ export function HighlightsCard() {
 				Key Highlights
 			</h2>
 			<div className="flex min-h-0 flex-1 flex-col gap-6">
-				<div className="grid min-h-0 flex-1 grid-cols-2 gap-4">
+				<div className="grid min-h-0 flex-1 grid-cols-1 gap-4 sm:grid-cols-2">
 					{profile.highlights.map((highlight, index) => (
 						<motion.div
 							key={highlight.label}

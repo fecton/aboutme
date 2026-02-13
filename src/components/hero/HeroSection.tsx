@@ -43,20 +43,23 @@ export function HeroSection() {
 				<div className="absolute left-1/2 top-1/2 h-60 w-60 -translate-x-1/2 -translate-y-1/2 rounded-full bg-surface blur-[100px]" />
 			</div>
 
-			<div className="relative mx-auto max-w-6xl px-6">
+			<div className="relative mx-auto max-w-6xl px-4 sm:px-6">
 				<motion.div
 					className="flex flex-col items-center text-center"
 					variants={containerVariants}
 					initial="hidden"
 					animate="visible"
 				>
-					<motion.div variants={itemVariants} className="mb-6">
+					<motion.div
+						variants={itemVariants}
+						className="relative mb-6 h-48 w-48 sm:h-[250px] sm:w-[250px]"
+					>
 						<Image
 							src={profile.profileImage}
 							alt="Andrii Lytvynenko, Senior DevOps and Cloud Engineer with expertise in AWS, Kubernetes, and cloud infrastructure"
-							width={250}
-							height={250}
+							fill
 							priority
+							sizes="(max-width: 640px) 192px, 250px"
 							className="rounded-full border-2 border-border object-cover"
 						/>
 					</motion.div>
@@ -92,13 +95,13 @@ export function HeroSection() {
 
 					<motion.div
 						variants={itemVariants}
-						className="flex flex-wrap justify-center gap-4"
+						className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap"
 					>
 						<a
 							href={profile.resumeUrl}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="rounded-xl border border-border bg-accent px-6 py-3 font-medium text-white transition-all hover:bg-accent-dark focus-visible:ring-2 focus-visible:ring-border"
+							className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl border border-border bg-accent px-6 py-3 font-medium text-white transition-all hover:bg-accent-dark focus-visible:ring-2 focus-visible:ring-border"
 							download="Andrii_Lytvynenko_Resume.pdf"
 						>
 							Download Resume
@@ -107,7 +110,7 @@ export function HeroSection() {
 							href={profile.coverLetterUrl}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="rounded-xl border border-border bg-surface px-6 py-3 font-medium text-foreground backdrop-blur-[20px] transition-all hover:bg-surface-hover focus-visible:ring-2 focus-visible:ring-border"
+							className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl border border-border bg-surface px-6 py-3 font-medium text-foreground backdrop-blur-[20px] transition-all hover:bg-surface-hover focus-visible:ring-2 focus-visible:ring-border"
 							download="Andrii_Lytvynenko_Cover_Letter.pdf"
 						>
 							Download Cover Letter

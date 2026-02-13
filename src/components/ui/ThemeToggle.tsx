@@ -62,7 +62,7 @@ export function ThemeToggle() {
 		return (
 			<button
 				type="button"
-				className="rounded-lg p-2 text-muted transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+				className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg p-2 text-muted transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border focus-visible:ring-offset-2 focus-visible:ring-offset-background"
 				aria-label="Toggle theme"
 			>
 				<span className="h-5 w-5" aria-hidden />
@@ -77,7 +77,7 @@ export function ThemeToggle() {
 			ref={buttonRef}
 			type="button"
 			onClick={handleToggle}
-			className="rounded-lg p-2 text-muted transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+			className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg p-2 text-muted transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border focus-visible:ring-offset-2 focus-visible:ring-offset-background"
 			aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
 		>
 			{isDark ? (

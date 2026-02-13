@@ -10,7 +10,7 @@ import { ContactCard } from "./ContactCard";
 
 export function BentoGrid() {
 	return (
-		<div className="mx-auto max-w-6xl px-6 pb-24">
+		<div className="mx-auto max-w-6xl px-4 pb-24 sm:px-6">
 			<div className="flex flex-col gap-6">
 				{/* About + Highlights - flex row, each 50%, same total width as Skills */}
 				<div className="flex w-full min-w-0 flex-col gap-6 md:flex-row md:items-stretch">

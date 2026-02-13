@@ -13,7 +13,7 @@ const iconMap: Record<string, string> = {
 export function Footer() {
 	return (
 		<footer className="border-t border-border bg-surface py-12">
-			<div className="mx-auto max-w-6xl px-6">
+			<div className="mx-auto max-w-6xl px-4 sm:px-6">
 				<div className="mb-8 flex flex-wrap justify-center gap-6">
 					{profile.trustBadges.map((badge) => (
 						<span
@@ -67,7 +67,7 @@ export function Footer() {
 								href={link.url}
 								target="_blank"
 								rel="noopener noreferrer"
-								className="text-muted transition-colors hover:text-foreground"
+								className="flex min-h-[44px] min-w-[44px] items-center justify-center text-muted transition-colors hover:text-foreground"
 								aria-label={`Visit ${link.name} profile`}
 							>
 								<svg

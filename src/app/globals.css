@@ -90,6 +90,13 @@
 	}
 }
 
+/* Avoid fixed background on mobile - performance and visual glitches in Safari */
+@media (max-width: 768px) {
+	body {
+		background-attachment: scroll;
+	}
+}
+
 /* Glassmorphism utility */
 .glass {
 	background: var(--color-surface);
