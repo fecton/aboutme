@@ -51,6 +51,15 @@ src/
 public/            # Static assets (images, pdf, CNAME, etc.)
 ```
 
+## Updating Resume
+
+The resume PDF is hosted locally. To update:
+
+1. Edit the document in Google Docs
+2. File → Download → PDF Document (.pdf)
+3. Replace `public/pdf/resume.pdf`
+4. Commit and push
+
 ## License
 
 Copyright © 2022-2026 Andrii Lytvynenko

@@ -32,10 +32,7 @@ export const profile = {
 	profileImage: "/images/tm-easy-profile.webp",
 	email: "a.v.lytvynenko2004@gmail.com",
 	location: "Czestochowa, Poland (EU)",
-	resumeUrl:
-		"https://docs.google.com/document/d/1AU11pYNam32N1Ec1QJ9v6KIaw1pDx8PCoNXGfZNVU-4/export?format=pdf",
-	coverLetterUrl:
-		"https://docs.google.com/document/d/1VeKq8g9Dfarf_kg7ri5AN2mi3cp_UKVmjDLwLNKhP44/export?format=pdf",
+	resumeUrl: "/pdf/resume.pdf",
 	bio: {
 		intro:
 			"I'm a Senior DevOps & Cloud Engineer with 5+ years of experience designing, implementing, and optimizing cloud infrastructure for enterprise clients. I specialize in building scalable, secure, and cost-efficient solutions using AWS, Kubernetes, and Infrastructure as Code practices.",
