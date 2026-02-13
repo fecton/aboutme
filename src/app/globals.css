@@ -88,6 +88,10 @@
 		background-attachment: fixed;
 		min-height: 100vh;
 	}
+
+	a[href] {
+		cursor: pointer;
+	}
 }
 
 /* Avoid fixed background on mobile - performance and visual glitches in Safari */
