@@ -1,0 +1,20 @@
+{
+	"name": "Andrii Lytvynenko - Senior DevOps & Cloud Engineer",
+	"short_name": "Andrii Lytvynenko",
+	"description": "Senior DevOps & Cloud Engineer with 5+ years of experience in AWS, Terraform, Kubernetes, and cloud infrastructure",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#000000",
+	"theme_color": "#3366CC",
+	"orientation": "portrait-primary",
+	"icons": [
+		{
+			"src": "/images/favicon.ico",
+			"sizes": "48x48",
+			"type": "image/x-icon"
+		}
+	],
+	"categories": ["business", "portfolio"],
+	"lang": "en-US",
+	"dir": "ltr"
+}
