@@ -54,16 +54,11 @@ export function SkillsCard() {
 						</h4>
 						<div className="flex flex-wrap gap-2">
 							{category.skills.map((skill) => {
-								const isPrimary = category.primary?.includes(skill);
 								const iconData = skillIconMap[skill];
 								return (
 									<span
 										key={skill}
-										className={`flex items-center gap-1.5 rounded-lg px-2 py-1 text-sm ${
-											isPrimary
-												? "border border-accent/50 bg-accent/20 text-accent-dark dark:text-white"
-												: "border border-border bg-surface text-muted"
-										}`}
+										className="flex items-center gap-1.5 rounded-lg px-2 py-1 text-sm border border-border bg-surface text-muted"
 									>
 										{iconData && (
 											<svg
