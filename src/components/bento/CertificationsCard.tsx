@@ -51,28 +51,46 @@ export function CertificationsCard() {
 							>
 								{isEarned ? "Earned" : "Planned"}
 							</span>
-							<div className="mb-2 flex justify-center">
-								<Image
-									src={`/images/certification/${cert.image}`}
-									alt={cert.title}
-									width={80}
-									height={80}
-									loading="lazy"
-									className="rounded-lg"
-								/>
-							</div>
-							<h4 className="mb-2 text-center text-sm font-medium text-foreground">
-								{cert.title}
-							</h4>
-							{isEarned && (
+							{isEarned ? (
 								<a
 									href={cert.link}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="block text-center text-xs text-accent hover:underline"
+									className="group block cursor-pointer rounded-lg transition-opacity hover:opacity-90"
 								>
-									Verify
+									<div className="mb-2 flex justify-center">
+										<Image
+											src={`/images/certification/${cert.image}`}
+											alt={cert.title}
+											width={80}
+											height={80}
+											loading="lazy"
+											className="rounded-lg"
+										/>
+									</div>
+									<h4 className="mb-2 text-center text-sm font-medium text-foreground">
+										{cert.title}
+									</h4>
+									<span className="block text-center text-xs text-accent group-hover:underline">
+										Verify
+									</span>
 								</a>
+							) : (
+								<>
+									<div className="mb-2 flex justify-center">
+										<Image
+											src={`/images/certification/${cert.image}`}
+											alt={cert.title}
+											width={80}
+											height={80}
+											loading="lazy"
+											className="rounded-lg"
+										/>
+									</div>
+									<h4 className="mb-2 text-center text-sm font-medium text-foreground">
+										{cert.title}
+									</h4>
+								</>
 							)}
 							{isPlanned && !isEarned && (
 								<p className="text-center text-xs text-muted">
