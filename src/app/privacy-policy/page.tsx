@@ -15,7 +15,7 @@ export default function PrivacyPolicyPage() {
 		<>
 			<Navbar />
 			<main id="main-content" className="min-h-screen pt-24 pb-12">
-				<div className="mx-auto max-w-3xl px-6">
+				<div className="mx-auto max-w-3xl px-4 sm:px-6">
 					<Link
 						href="/"
 						className="mb-8 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 font-medium text-foreground transition-colors hover:bg-accent-dark"
