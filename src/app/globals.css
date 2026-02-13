@@ -2,8 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Light theme (default) */
-:root {
+/* Light theme (default) - applies when no class or class="light" */
+:root,
+:root.light {
 	--color-background: #f5f5f7;
 	--color-foreground: #1d1d1f;
 	--color-muted: #6e6e73;
@@ -12,6 +13,31 @@
 	--color-border: rgba(0, 0, 0, 0.08);
 	--color-accent: #3366cc;
 	--color-accent-dark: #204090;
+	/* Premium mesh gradient - soft blue orbs on light base (matches dark theme structure) */
+	--mesh-gradient: radial-gradient(
+			ellipse 90% 60% at 15% 15%,
+			rgba(102, 204, 255, 0.45) 0%,
+			rgba(51, 102, 204, 0.18) 40%,
+			transparent 70%
+		),
+		radial-gradient(
+			ellipse 70% 50% at 85% 25%,
+			rgba(96, 169, 240, 0.35) 0%,
+			rgba(51, 102, 204, 0.12) 35%,
+			transparent 60%
+		),
+		radial-gradient(
+			ellipse 80% 70% at 60% 85%,
+			rgba(51, 102, 204, 0.28) 0%,
+			rgba(96, 169, 240, 0.12) 45%,
+			transparent 70%
+		),
+		radial-gradient(
+			ellipse 60% 50% at 95% 70%,
+			rgba(51, 102, 204, 0.25) 0%,
+			transparent 50%
+		),
+		#f5f5f7;
 }
 
 /* Dark theme */
@@ -24,6 +50,31 @@
 	--color-border: rgba(255, 255, 255, 0.1);
 	--color-accent: #3366cc;
 	--color-accent-dark: #204090;
+	/* Premium mesh gradient - deep blue orbs on dark base */
+	--mesh-gradient: radial-gradient(
+			ellipse 90% 60% at 15% 15%,
+			rgba(51, 102, 204, 0.35) 0%,
+			rgba(32, 64, 144, 0.15) 40%,
+			transparent 70%
+		),
+		radial-gradient(
+			ellipse 70% 50% at 85% 25%,
+			rgba(96, 169, 240, 0.2) 0%,
+			rgba(51, 102, 204, 0.08) 35%,
+			transparent 60%
+		),
+		radial-gradient(
+			ellipse 80% 70% at 60% 85%,
+			rgba(32, 63, 126, 0.4) 0%,
+			rgba(32, 64, 144, 0.15) 45%,
+			transparent 70%
+		),
+		radial-gradient(
+			ellipse 60% 50% at 95% 70%,
+			rgba(51, 102, 204, 0.2) 0%,
+			transparent 50%
+		),
+		#000000;
 }
 
 @layer base {
@@ -32,7 +83,10 @@
 	}
 
 	body {
-		@apply bg-background text-foreground font-sans;
+		@apply text-foreground font-sans;
+		background: var(--mesh-gradient);
+		background-attachment: fixed;
+		min-height: 100vh;
 	}
 }
 

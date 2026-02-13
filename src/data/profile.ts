@@ -28,7 +28,7 @@ export const profile = {
 	name: "Andrii Lytvynenko",
 	title: "Senior DevOps & Cloud Engineer",
 	subtitle: "AWS & Kubernetes Certified | B2B Contractor",
-	availability: "Available for Q4 2027 Projects",
+	availability: "Available for Q4 2026 Projects",
 	profileImage: "/images/tm-easy-profile.webp",
 	email: "a.v.lytvynenko2004@gmail.com",
 	location: "Czestochowa, Poland (EU)",
