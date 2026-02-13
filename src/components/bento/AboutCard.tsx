@@ -5,7 +5,7 @@ import { profile } from "@/data/profile";
 
 export function AboutCard() {
 	return (
-		<GlassCard>
+		<GlassCard className="h-full">
 			<h2 className="mb-4 text-2xl font-bold tracking-tight text-foreground">
 				About Me
 			</h2>
