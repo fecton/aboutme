@@ -122,7 +122,6 @@ export const profile = {
 	],
 	trustBadges: [
 		{ title: "GDPR Compliant", icon: "shield" },
-		{ title: "NDA Available", icon: "file" },
 		{ title: "B2B Contracts", icon: "briefcase" },
 		{ title: "EU-Based", icon: "map-marker" },
 	],
