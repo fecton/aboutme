@@ -173,7 +173,7 @@ export default function RootLayout({
 				<link rel="preconnect" href="https://www.googletagmanager.com" />
 				<link rel="dns-prefetch" href="https://www.google-analytics.com" />
 			</head>
-			<body className="min-h-screen bg-background">
+			<body>
 				<Script
 					src="https://www.googletagmanager.com/gtag/js?id=G-LKHDQT8Z81"
 					strategy="afterInteractive"
