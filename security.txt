@@ -1,0 +1,18 @@
+Contact: mailto:a.v.lytvynenko2004@gmail.com
+Contact: https://www.linkedin.com/in/andrii-fecton/
+Contact: https://t.me/fecton
+Expires: 2026-12-31T23:59:59.000Z
+Preferred-Languages: en, uk, ru, pl
+Canonical: https://alytvynenko.net/security.txt
+Policy: https://alytvynenko.net/
+
+# Security Disclosure
+If you discover a security vulnerability in this website, please report it responsibly.
+Please do not publicly disclose the issue until it has been addressed.
+
+# Response Time
+I aim to respond to security reports within 48 hours.
+
+# PGP Key
+Not currently available. Please use encrypted email if possible.
+

@@ -1,0 +1,38 @@
+/* TEAM */
+Developer & DevOps Engineer: Andrii Lytvynenko
+Location: Czestochowa, Poland
+Contact: a.v.lytvynenko2004@gmail.com
+LinkedIn: https://www.linkedin.com/in/andrii-fecton/
+GitHub: https://github.com/fecton
+Telegram: https://t.me/fecton
+
+/* SITE */
+Last update: 2025/12/18
+Language: English
+Standards: HTML5, CSS3, JavaScript ES6+
+Components: Bootstrap, jQuery, Service Worker
+Software: Visual Studio Code, Git
+
+/* TECHNOLOGIES */
+Frontend: HTML5, CSS3, JavaScript, Bootstrap, WebP images
+Backend: Service Worker for PWA functionality
+Analytics: Google Analytics 4
+Hosting: GitHub Pages / Custom hosting
+Security: Content Security Policy, HTTPS
+
+/* CERTIFICATIONS */
+AWS Certified DevOps Engineer - Professional
+AWS Certified Solutions Architect - Associate
+AWS Certified SysOps Administrator - Associate
+AWS Certified Advanced Networking - Specialty
+AWS Certified Security - Specialty
+AWS Certified AI Practitioner
+AWS Certified Cloud Practitioner
+Google Cloud Digital Leader
+Certified Kubernetes Administrator (CKA)
+HashiCorp Certified: Terraform Associate
+
+/* THANKS */
+To the open-source community for amazing tools and libraries
+To my clients and colleagues for their trust and collaboration
+
