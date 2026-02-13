@@ -1,0 +1,152 @@
+"use client";
+
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { useState } from "react";
+
+const springTransition = {
+	type: "spring" as const,
+	stiffness: 180,
+	damping: 28,
+};
+
+const instantTransition = { duration: 0 };
+
+interface ExpandableTagListProps {
+	title: string;
+	items: string[];
+	className?: string;
+	tagClassName?: string;
+}
+
+export function ExpandableTagList({
+	title,
+	items,
+	className = "",
+	tagClassName = "",
+}: ExpandableTagListProps) {
+	const [isOpen, setIsOpen] = useState(false);
+	const prefersReducedMotion = useReducedMotion();
+	const parsedItems = items
+		.flatMap((s) => s.split(/,\s*/))
+		.map((s) => s.trim().replace(/\.$/, ""))
+		.filter(Boolean);
+
+	if (parsedItems.length === 0) return null;
+
+	return (
+		<div className={`mt-4 ${className}`}>
+			<button
+				type="button"
+				onClick={() => setIsOpen(!isOpen)}
+				aria-expanded={isOpen}
+				aria-controls={`${title.replace(/\s+/g, "-").toLowerCase()}-content`}
+				id={`${title.replace(/\s+/g, "-").toLowerCase()}-trigger`}
+				className="group flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg py-1 font-medium text-foreground transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+			>
+				<span>{title}</span>
+				<motion.span
+					className="inline-block text-muted transition-colors group-hover:text-accent"
+					animate={{ rotate: isOpen ? 180 : 0 }}
+					transition={prefersReducedMotion ? instantTransition : springTransition}
+					aria-hidden
+				>
+					<svg
+						className="h-4 w-4"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+						aria-hidden
+					>
+						<path
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							strokeWidth={2}
+							d="M19 9l-7 7-7-7"
+						/>
+					</svg>
+				</motion.span>
+			</button>
+			<AnimatePresence initial={false}>
+				{isOpen && (
+					<motion.div
+						id={`${title.replace(/\s+/g, "-").toLowerCase()}-content`}
+						initial={prefersReducedMotion ? false : { height: 0, opacity: 0 }}
+						animate={{
+							height: "auto",
+							opacity: 1,
+							transition: prefersReducedMotion
+								? instantTransition
+								: {
+										height: springTransition,
+										opacity: { duration: 0.35 },
+									},
+						}}
+						exit={
+							prefersReducedMotion
+								? { height: 0, opacity: 0, transition: instantTransition }
+								: {
+										height: 0,
+										opacity: 0,
+										transition: {
+											height: { ...springTransition, stiffness: 350 },
+											opacity: { duration: 0.25 },
+										},
+									}
+						}
+						className="overflow-hidden"
+					>
+						<motion.div
+							className="mt-2 flex flex-wrap gap-2"
+							initial="hidden"
+							animate="visible"
+							variants={{
+								visible: {
+									transition: prefersReducedMotion
+										? {}
+										: {
+												staggerChildren: 0.065,
+												delayChildren: 0.12,
+											},
+								},
+								hidden: {},
+							}}
+						>
+							{parsedItems.map((item, index) => (
+								<motion.span
+									key={`${item}-${index}`}
+									variants={{
+										visible: {
+											opacity: 1,
+											scale: 1,
+											y: 0,
+										},
+										hidden: prefersReducedMotion
+											? { opacity: 1, scale: 1, y: 0 }
+											: {
+													opacity: 0,
+													scale: 0.85,
+													y: 4,
+												},
+									}}
+									transition={prefersReducedMotion ? instantTransition : springTransition}
+									whileHover={
+										prefersReducedMotion
+											? undefined
+											: {
+													scale: 1.06,
+													transition: { duration: 0.25 },
+												}
+									}
+									whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
+									className={`rounded-lg border border-border bg-surface px-2 py-1 text-xs text-muted transition-colors hover:border-accent/30 hover:bg-accent/10 hover:text-foreground ${tagClassName}`}
+								>
+									{item}
+								</motion.span>
+							))}
+						</motion.div>
+					</motion.div>
+				)}
+			</AnimatePresence>
+		</div>
+	);
+}
