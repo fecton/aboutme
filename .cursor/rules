@@ -6,13 +6,10 @@ This is a personal portfolio website for Andrii Lytvynenko, a Senior DevOps & Cl
 **Live URL:** https://alytvynenko.net
 
 ## Tech Stack
-- HTML5 with semantic markup
-- CSS3 with modern features (CSS Variables, Grid, Flexbox)
-- JavaScript (ES6+) with jQuery 
-- Bootstrap 3.x for responsive grid system
-- Font Awesome for icons
-- Progressive Web App (PWA) with Service Worker
-- Google Analytics for tracking
+- Next.js 14 (App Router) with TypeScript
+- Tailwind CSS for styling
+- Framer Motion for animations
+- Static export for GitHub Pages deployment
 - Python for image optimization utilities
 
 ## Code Style and Formatting
@@ -129,31 +126,17 @@ This is a personal portfolio website for Andrii Lytvynenko, a Senior DevOps & Cl
 ## File Structure and Organization
 ```
 /
-├── index.html              # Main HTML file
-├── css/                    # Stylesheets
-│   ├── bootstrap.min.css
-│   ├── font-awesome.min.css
-│   └── index.css          # Custom styles
-├── js/                     # JavaScript files
-│   ├── jquery.js
-│   ├── bootstrap.min.js
-│   ├── jquery.backstretch.min.js
-│   ├── u0-preloader.js    # Preloader functionality
-│   ├── u1-certificates.js # Certificates rendering
-│   ├── u2-educations.js   # Education rendering
-│   └── u3-experiences.js  # Experience rendering
-├── images/                 # Optimized images (WebP)
-├── images-before-optimization/ # Original images (PNG/JPG)
-├── fonts/                  # Custom fonts (Proxima Nova, Font Awesome)
-├── pdf/                    # PDF documents
-├── tools/                  # Utility scripts
-│   └── png_to_webp.py     # Image optimization
-├── design/                 # Design documentation
-├── manifest.json          # PWA manifest
-├── sw.js                  # Service Worker
+├── src/
+│   ├── app/               # Next.js App Router (layout, page, globals.css)
+│   ├── components/       # React components (layout, bento, hero, ui)
+│   └── data/             # TypeScript data (certificates, education, experiences, profile)
+├── public/               # Static assets (images, pdf, CNAME, .nojekyll)
+├── tools/
+│   └── png_to_webp.py    # Image optimization
+├── design/               # Design documentation
 ├── robots.txt
 ├── sitemap.xml
-└── CNAME                  # Custom domain
+└── CNAME                 # Custom domain
 ```
 
 ## JavaScript Module Naming Convention
@@ -230,7 +213,7 @@ const data = {
 - [ ] SEO: meta tags present and correct
 - [ ] PWA: Service Worker registers successfully
 - [ ] PWA: Works offline
-- [ ] Performance: Lighthouse score 90+ 
+- [ ] Performance: Lighthouse score 90+
 - [ ] Cross-browser compatibility
 
 ## Dependencies Management
@@ -277,6 +260,31 @@ const data = {
 4. Test across all breakpoints
 5. Check reduced motion support
 
+## Layout and Bento Grid Patterns (Next.js/Tailwind)
+
+**Critical: Equal widths and heights for paired sections.**
+
+### Equal Width
+- Sections in the same row must have identical total width. Use flex layout, not grid, for guaranteed consistency.
+- Pattern: `flex flex-col gap-6` parent; sibling rows use `flex w-full min-w-0` so all rows share the same width.
+- For side-by-side blocks (e.g., About + Highlights): use `flex flex-row` with `flex-1` on each child for 50/50 split.
+- Always add `min-w-0` to flex/grid children to prevent overflow and ensure proper shrinking.
+- GlassCard and card wrappers must include `w-full` to fill their container.
+
+### Equal Height
+- Paired sections (e.g., Certifications + Contact, About + Highlights) must have equal height.
+- Use `flex min-h-full flex-col` on the taller column's wrapper.
+- Give the shorter block `flex-1` so it grows to fill the row height.
+- Parent row needs `flex` or `grid` with `items-stretch` (default) so children stretch.
+
+### React List Keys
+- When mapping over lists that may contain duplicate values (e.g., skills, disciplines), use `key={\`${item}-${index}\`}` to avoid "Encountered two children with the same key" errors.
+
+### Languages Block Alignment
+- Use a single grid with `grid-cols-subgrid` or fixed column widths so proficiency levels align consistently.
+- Proficiency column: `minmax(8rem, 12rem)` for responsive width; `text-right` for right alignment.
+- Wrap in `min-w-0 overflow-hidden` to prevent overflow on narrow viewports.
+
 ## Important Notes
 - **Never remove accessibility features** (skip links, ARIA labels, alt text)
 - **Never remove security headers** (CSP, noopener noreferrer)
@@ -292,12 +300,13 @@ When making changes to this codebase:
 2. **Use existing CSS variables** - don't hardcode values
 3. **Follow accessibility patterns** already established
 4. **Test changes mentally** for responsive behavior
-5. **Maintain error handling** in JavaScript files
+5. **Maintain error handling** in JavaScript/TypeScript files
 6. **Keep SEO elements** intact or improve them
 7. **Follow naming conventions** for files and variables
 8. **Use WebP images** for all new image assets
-9. **Update Service Worker version** if you modify cached assets
-10. **Maintain the existing code style** - this is mature, production code
+9. **Follow Layout and Bento Grid Patterns** - ensure equal widths for sibling rows and equal heights for paired columns
+10. **Use unique keys** when mapping lists with potential duplicates (`key={\`${item}-${index}\`}`)
+11. **Maintain the existing code style** - this is mature, production code
 
 ## Contact Information (For Context)
 - **Name:** Andrii Lytvynenko
@@ -308,7 +317,7 @@ When making changes to this codebase:
 
 ---
 
-**Last Updated:** January 2026
-**Codebase Version:** Production
+**Last Updated:** February 2026
+**Codebase Version:** Next.js 14 (App Router)
 **Status:** Active maintenance
 
