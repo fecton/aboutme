@@ -37,7 +37,7 @@ export function EducationCard() {
 							<h3 className="font-semibold text-foreground">
 								{edu.specialty_title}
 							</h3>
-							<span className="rounded-full bg-accent/20 px-2 py-0.5 text-xs text-accent-dark dark:text-accent">
+							<span className="rounded-full bg-accent/25 px-2 py-0.5 text-xs text-accent-dark dark:bg-accent/90 dark:text-white">
 								Graduated
 							</span>
 						</div>

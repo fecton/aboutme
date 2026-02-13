@@ -41,15 +41,15 @@ export function ExperienceCard() {
 							<h3 className="font-semibold text-foreground">{exp.position}</h3>
 							<div className="flex gap-2">
 								{exp.present && (
-									<span className="rounded-full bg-green-100 px-2 py-0.5 text-xs text-green-700 dark:bg-green-500/20 dark:text-green-400">
+									<span className="rounded-full bg-green-100 px-2 py-0.5 text-xs text-green-800 dark:bg-green-900/95 dark:text-green-100">
 										Current
 									</span>
 								)}
 								<span
 									className={`rounded-full px-2 py-0.5 text-xs ${
 										exp.work_mode.toLowerCase() === "remote"
-											? "bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-400"
-											: "bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-400"
+											? "bg-blue-100 text-blue-800 dark:bg-blue-900/95 dark:text-blue-100"
+											: "bg-amber-100 text-amber-800 dark:bg-amber-900/95 dark:text-amber-100"
 									}`}
 								>
 									{exp.work_mode}

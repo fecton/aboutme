@@ -45,8 +45,8 @@ export function CertificationsCard() {
 							<span
 								className={`mb-2 inline-block rounded-full px-2 py-0.5 text-xs ${
 									isEarned
-										? "bg-green-100 text-green-700 dark:bg-green-500/20 dark:text-green-400"
-										: "bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-400"
+										? "bg-green-100 text-green-800 dark:bg-green-900/95 dark:text-green-100"
+										: "bg-amber-100 text-amber-800 dark:bg-amber-900/95 dark:text-amber-100"
 								}`}
 							>
 								{isEarned ? "Earned" : "Planned"}

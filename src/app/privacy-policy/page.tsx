@@ -18,7 +18,7 @@ export default function PrivacyPolicyPage() {
 				<div className="mx-auto max-w-3xl px-4 sm:px-6">
 					<Link
 						href="/"
-						className="mb-8 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 font-medium text-foreground transition-colors hover:bg-accent-dark"
+						className="mb-8 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 font-medium text-white transition-colors hover:bg-accent-dark"
 					>
 						<svg
 							className="h-4 w-4"
@@ -481,7 +481,7 @@ export default function PrivacyPolicyPage() {
 							<div className="mt-12 text-center">
 								<Link
 									href="/"
-									className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 font-medium text-foreground transition-colors hover:bg-accent-dark"
+									className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 font-medium text-white transition-colors hover:bg-accent-dark"
 								>
 									<svg
 										className="h-4 w-4"
