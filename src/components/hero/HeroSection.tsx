@@ -75,8 +75,8 @@ export function HeroSection() {
 							reduceEffects ? "bg-background" : "bg-surface backdrop-blur-[20px]"
 						}`}
 					>
-						<span className="h-2 w-2 animate-pulse rounded-full bg-green-500" />
-						<span className="text-sm text-muted">{profile.availability}</span>
+						<span className="h-2 w-2 animate-pulse rounded-full bg-green-500 dark:bg-green-400" />
+						<span className="text-sm text-foreground">{profile.availability}</span>
 					</motion.div>
 
 					<motion.h1
