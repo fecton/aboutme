@@ -1,6 +1,7 @@
 "use client";
 
 import { GlassCard } from "@/components/ui/GlassCard";
+import { ExpandableTagList } from "@/components/ui/ExpandableTagList";
 import { experiences } from "@/data/experiences";
 import { motion } from "framer-motion";
 
@@ -86,24 +87,10 @@ export function ExperienceCard() {
 							dangerouslySetInnerHTML={{ __html: exp.description }}
 						/>
 						{exp.disciplines && (
-							<details className="mt-4">
-								<summary className="cursor-pointer font-medium text-foreground">
-									Technologies & Skills
-								</summary>
-								<div className="mt-2 flex flex-wrap gap-2">
-									{exp.disciplines
-										.split(/,\s*/)
-										.filter((s) => s.trim())
-										.map((skill, index) => (
-											<span
-												key={`${skill}-${index}`}
-												className="rounded-lg border border-border bg-surface px-2 py-1 text-xs text-muted"
-											>
-												{skill.replace(/\.$/, "")}
-											</span>
-										))}
-								</div>
-							</details>
+							<ExpandableTagList
+								title="Technologies & Skills"
+								items={[exp.disciplines]}
+							/>
 						)}
 					</motion.article>
 				))}
