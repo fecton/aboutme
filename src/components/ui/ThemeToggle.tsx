@@ -1,15 +1,62 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+const THEME_TRANSITION_DURATION = 500;
 
 export function ThemeToggle() {
 	const { setTheme, resolvedTheme } = useTheme();
 	const [mounted, setMounted] = useState(false);
+	const buttonRef = useRef<HTMLButtonElement>(null);
 
 	useEffect(() => {
 		setMounted(true);
 	}, []);
+
+	const handleToggle = async () => {
+		const isDark = resolvedTheme === "dark";
+		const newTheme = isDark ? "light" : "dark";
+
+		if (
+			!buttonRef.current ||
+			!document.startViewTransition ||
+			window.matchMedia("(prefers-reduced-motion: reduce)").matches
+		) {
+			setTheme(newTheme);
+			return;
+		}
+
+		const transition = document.startViewTransition(() => {
+			document.documentElement.classList.remove("light", "dark");
+			document.documentElement.classList.add(newTheme);
+			setTheme(newTheme);
+		});
+
+		await transition.ready;
+
+		const { top, left, width, height } = buttonRef.current.getBoundingClientRect();
+		const x = left + width / 2;
+		const y = top + height / 2;
+		const maxRadius = Math.hypot(
+			Math.max(left, window.innerWidth - left),
+			Math.max(top, window.innerHeight - top)
+		);
+
+		document.documentElement.animate(
+			{
+				clipPath: [
+					`circle(0px at ${x}px ${y}px)`,
+					`circle(${maxRadius}px at ${x}px ${y}px)`,
+				],
+			},
+			{
+				duration: THEME_TRANSITION_DURATION,
+				easing: "ease-in-out",
+				pseudoElement: "::view-transition-new(root)",
+			}
+		);
+	};
 
 	if (!mounted) {
 		return (
@@ -27,8 +74,9 @@ export function ThemeToggle() {
 
 	return (
 		<button
+			ref={buttonRef}
 			type="button"
-			onClick={() => setTheme(isDark ? "light" : "dark")}
+			onClick={handleToggle}
 			className="rounded-lg p-2 text-muted transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border focus-visible:ring-offset-2 focus-visible:ring-offset-background"
 			aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
 		>
