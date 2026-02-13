@@ -2,12 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Light theme (default) */
 :root {
+	--color-background: #f5f5f7;
+	--color-foreground: #1d1d1f;
+	--color-muted: #6e6e73;
+	--color-surface: rgba(0, 0, 0, 0.03);
+	--color-surface-hover: rgba(0, 0, 0, 0.06);
+	--color-border: rgba(0, 0, 0, 0.08);
+	--color-accent: #3366cc;
+	--color-accent-dark: #204090;
+}
+
+/* Dark theme */
+:root.dark {
 	--color-background: #000000;
+	--color-foreground: #ffffff;
+	--color-muted: #a1a1a6;
 	--color-surface: rgba(255, 255, 255, 0.05);
+	--color-surface-hover: rgba(255, 255, 255, 0.1);
 	--color-border: rgba(255, 255, 255, 0.1);
-	--color-text: #ffffff;
-	--color-text-muted: #a1a1a6;
 	--color-accent: #3366cc;
 	--color-accent-dark: #204090;
 }
@@ -18,16 +32,16 @@
 	}
 
 	body {
-		@apply bg-background text-white font-sans;
+		@apply bg-background text-foreground font-sans;
 	}
 }
 
 /* Glassmorphism utility */
 .glass {
-	background: rgba(255, 255, 255, 0.05);
+	background: var(--color-surface);
 	backdrop-filter: blur(20px);
 	-webkit-backdrop-filter: blur(20px);
-	border: 1px solid rgba(255, 255, 255, 0.1);
+	border: 1px solid var(--color-border);
 }
 
 /* Skip link for accessibility */
@@ -36,12 +50,12 @@
 }
 
 .skip-link:focus {
-	@apply top-0 outline-none ring-2 ring-white/20;
+	@apply top-0 outline-none ring-2 ring-border;
 }
 
 /* Focus visible for accessibility */
 *:focus-visible {
-	@apply outline-none ring-2 ring-white/20 ring-offset-2 ring-offset-background;
+	@apply outline-none ring-2 ring-border ring-offset-2 ring-offset-background;
 }
 
 /* Reduced motion */

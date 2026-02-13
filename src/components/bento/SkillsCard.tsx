@@ -22,20 +22,20 @@ const iconPaths: Record<string, string> = {
 export function SkillsCard() {
 	return (
 		<GlassCard>
-			<h2 className="mb-6 text-2xl font-bold tracking-tight text-white">
+			<h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground">
 				Technical Skills
 			</h2>
 			<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 				{profile.skills.map((category, categoryIndex) => (
 					<motion.div
 						key={category.title}
-						className="rounded-xl border border-white/10 bg-white/5 p-4"
+						className="rounded-xl border border-border bg-surface p-4"
 						initial={{ opacity: 0, y: 10 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
 						transition={{ ...springTransition, delay: categoryIndex * 0.05 }}
 					>
-						<h4 className="mb-3 flex items-center gap-2 font-semibold text-white">
+						<h4 className="mb-3 flex items-center gap-2 font-semibold text-foreground">
 							<svg
 								className="h-4 w-4 text-accent"
 								fill="currentColor"
@@ -53,8 +53,8 @@ export function SkillsCard() {
 										key={skill}
 										className={`rounded-lg px-2 py-1 text-sm ${
 											isPrimary
-												? "border border-accent/50 bg-accent/20 text-white"
-												: "border border-white/10 bg-white/5 text-apple-gray"
+												? "border border-accent/50 bg-accent/20 text-accent-dark dark:text-white"
+												: "border border-border bg-surface text-muted"
 										}`}
 									>
 										{skill}

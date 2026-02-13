@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import "./globals.css";
 
 const SITE_URL = "https://alytvynenko.net";
@@ -166,7 +167,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en" className="dark">
+		<html lang="en" suppressHydrationWarning>
 			<head>
 				<link rel="author" href={`${SITE_URL}/humans.txt`} />
 				<link rel="preconnect" href="https://www.googletagmanager.com" />
@@ -200,7 +201,7 @@ export default function RootLayout({
 				<a href="#main-content" className="skip-link">
 					Skip to main content
 				</a>
-				{children}
+				<ThemeProvider>{children}</ThemeProvider>
 			</body>
 		</html>
 	);

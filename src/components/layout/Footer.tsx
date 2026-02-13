@@ -12,13 +12,13 @@ const iconMap: Record<string, string> = {
 
 export function Footer() {
 	return (
-		<footer className="border-t border-white/10 bg-black/20 py-12">
+		<footer className="border-t border-border bg-surface py-12">
 			<div className="mx-auto max-w-6xl px-6">
 				<div className="mb-8 flex flex-wrap justify-center gap-6">
 					{profile.trustBadges.map((badge) => (
 						<span
 							key={badge.title}
-							className="flex items-center gap-2 text-sm text-apple-gray"
+							className="flex items-center gap-2 text-sm text-muted"
 							title={badge.title}
 						>
 							<svg
@@ -44,19 +44,19 @@ export function Footer() {
 						</span>
 					))}
 				</div>
-				<p className="mb-4 text-center text-sm text-apple-gray">
+				<p className="mb-4 text-center text-sm text-muted">
 					Copyright &copy; 2022-2026 Andrii Lytvynenko
 				</p>
-				<p className="mb-8 text-center text-sm text-apple-gray">
-					<Link href="/privacy-policy" className="hover:text-white">
+				<p className="mb-8 text-center text-sm text-muted">
+					<Link href="/privacy-policy" className="hover:text-foreground">
 						Privacy Policy
 					</Link>
 					{" | "}
-					<Link href="/security.txt" className="hover:text-white">
+					<Link href="/security.txt" className="hover:text-foreground">
 						Security
 					</Link>
 					{" | "}
-					<Link href="/humans.txt" className="hover:text-white">
+					<Link href="/humans.txt" className="hover:text-foreground">
 						Humans.txt
 					</Link>
 				</p>
@@ -67,7 +67,7 @@ export function Footer() {
 								href={link.url}
 								target="_blank"
 								rel="noopener noreferrer"
-								className="text-apple-gray transition-colors hover:text-white"
+								className="text-muted transition-colors hover:text-foreground"
 								aria-label={`Visit ${link.name} profile`}
 							>
 								<svg

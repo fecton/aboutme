@@ -27,12 +27,12 @@ export function BentoGrid() {
 					<SkillsCard />
 				</div>
 
-				{/* Certifications + Contact & Languages */}
-				<div className="flex w-full min-w-0 flex-col gap-6 md:flex-row">
-					<div className="min-w-0 flex-[2]">
+				{/* Certifications + Contact & Languages - equal height via grid */}
+				<div className="grid w-full min-w-0 grid-cols-1 gap-6 md:grid-cols-[2fr_1fr]">
+					<div className="flex min-h-0 min-w-0" id="certifications">
 						<CertificationsCard />
 					</div>
-					<div className="flex min-h-full min-w-0 flex-1 flex-col" id="contact">
+					<div className="flex min-h-0 min-w-0 flex-col" id="contact">
 						<ContactCard />
 					</div>
 				</div>
