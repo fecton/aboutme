@@ -107,6 +107,13 @@
 	@apply top-0 outline-none ring-2 ring-border;
 }
 
+/* View Transitions API - circular reveal for theme toggle */
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation: none;
+	mix-blend-mode: normal;
+}
+
 /* Focus visible for accessibility */
 *:focus-visible {
 	@apply outline-none ring-2 ring-border ring-offset-2 ring-offset-background;
