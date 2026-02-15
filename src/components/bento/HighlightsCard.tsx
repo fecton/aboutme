@@ -53,7 +53,6 @@ export function HighlightsCard() {
 							whileInView={skipAnimations ? undefined : { opacity: 1, y: 0 }}
 							viewport={{ once: true }}
 							transition={{ ...springTransition, delay: index * 0.05 }}
-							whileHover={skipAnimations ? undefined : { scale: 1.03 }}
 						>
 							<svg
 								className="h-5 w-5 shrink-0 text-accent"

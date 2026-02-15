@@ -29,7 +29,6 @@ export function GlassCard({ children, className = "" }: GlassCardProps) {
 			whileInView={skipAnimations ? undefined : { opacity: 1, y: 0 }}
 			viewport={{ once: true, margin: "-50px" }}
 			transition={springTransition}
-			whileHover={skipAnimations ? undefined : { scale: 1.02 }}
 		>
 			{children}
 		</motion.div>

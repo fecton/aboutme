@@ -40,7 +40,9 @@ export function CertificationsCard() {
 							whileInView={skipAnimations ? undefined : { opacity: 1, y: 0 }}
 							viewport={{ once: true }}
 							transition={{ ...springTransition, delay: index * 0.05 }}
-							whileHover={skipAnimations ? undefined : { scale: 1.02 }}
+							whileHover={
+								isEarned && !skipAnimations ? { scale: 1.02 } : undefined
+							}
 						>
 							<span
 								className={`mb-2 inline-block rounded-full px-2 py-0.5 text-xs ${

@@ -129,15 +129,6 @@ export function ExpandableTagList({
 												},
 									}}
 									transition={prefersReducedMotion ? instantTransition : springTransition}
-									whileHover={
-										prefersReducedMotion
-											? undefined
-											: {
-													scale: 1.06,
-													transition: { duration: 0.25 },
-												}
-									}
-									whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
 									className={`rounded-lg border border-border bg-surface px-2 py-1 text-xs text-muted transition-colors hover:border-accent/30 hover:bg-accent/10 hover:text-foreground ${tagClassName}`}
 								>
 									{item}
