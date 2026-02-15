@@ -107,8 +107,12 @@ export const experiences: Experience[] = [
 		client_link: "",
 		dates: "2020 April - 2021 June",
 		present: false,
-		description:
-			"Creating static/dynamic websites and working with databases MySQL and Sqlite3.",
+		description: `<ul>
+<li>Developed full-stack web applications using PHP and the Laravel framework for freelance clients.</li>
+<li>Built responsive frontend interfaces with HTML, CSS, JavaScript, and jQuery for static and dynamic websites.</li>
+<li>Designed and implemented database schemas with MySQL and SQLite for data persistence and retrieval.</li>
+<li>Configured and deployed web servers (Apache, Nginx) for hosting and serving web applications.</li>
+</ul>`,
 		disciplines:
 			"Apache WEB Server, Cascading Style Sheets (CSS), HTML, JavaScript, jQuery, Laravel, MySQL, Nginx, PHP, SQLite.",
 	},
@@ -121,8 +125,13 @@ export const experiences: Experience[] = [
 		client_link: "",
 		dates: "2019 January - 2020 February",
 		present: false,
-		description:
-			"Creating local networks by commutators, hubs, and routers in schools with firewall rules that restrict access from external networks and make data publicly available.",
+		description: `<ul>
+<li>Designed and implemented local network infrastructure for schools using switches, hubs, and routers for the Settlement Council.</li>
+<li>Configured firewall rules (IPTables) to restrict access from external networks while enabling controlled public data availability.</li>
+<li>Administered Linux systems and managed DNS configuration for network environments.</li>
+<li>Utilized virtualization technologies for efficient resource management and isolated service deployment.</li>
+<li>Led technical implementation and coordinated with stakeholders on network design and maintenance.</li>
+</ul>`,
 		disciplines:
 			"Bash Shell, Communication Skills, Domain Name System (DNS), IPTables, Linux, Network, Network Access Control, Network Administration, Network Configuration, Network Infrastructure, Network Management, Networking, Public Speaking, Team Lead, Team orientation, Virtualization.",
 	},
