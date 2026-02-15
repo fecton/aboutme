@@ -56,7 +56,7 @@ export function EducationCard() {
 							)}
 						</div>
 						<p className="mb-4 text-sm text-muted">{edu.dates}</p>
-						{(edu.diploma_pdf || edu.diploma_suplement_pdf) && (
+						{(edu.diploma_pdf || edu.diploma_supplement_pdf) && (
 							<div className="mb-4 flex gap-4">
 								{edu.diploma_pdf && (
 									<a
@@ -68,9 +68,9 @@ export function EducationCard() {
 										View Diploma
 									</a>
 								)}
-								{edu.diploma_suplement_pdf && (
+								{edu.diploma_supplement_pdf && (
 									<a
-										href={edu.diploma_suplement_pdf}
+										href={edu.diploma_supplement_pdf}
 										target="_blank"
 										rel="noopener noreferrer"
 										className="text-sm text-accent hover:underline"

@@ -114,7 +114,7 @@ export const experiences: Experience[] = [
 	},
 	{
 		position: "System Administrator",
-		work_mode: "On site",
+		work_mode: "On-site",
 		company: "Self-Employed",
 		company_link: "",
 		client: "Settlement Council",
