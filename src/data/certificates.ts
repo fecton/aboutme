@@ -42,4 +42,10 @@ export const certificates: Certificate[] = [
 		link: "",
 		planned_year: "2026",
 	},
+	{
+		title: "AWS Certified Solutions Architect - Professional",
+		image: "aws-solution-architect-professional.webp",
+		link: "",
+		planned_year: "2026",
+	},
 ];
