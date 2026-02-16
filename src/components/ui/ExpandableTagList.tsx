@@ -40,6 +40,7 @@ export function ExpandableTagList({
 				onClick={() => setIsOpen(!isOpen)}
 				aria-expanded={isOpen}
 				aria-controls={`${title.replace(/\s+/g, "-").toLowerCase()}-content`}
+				aria-label={isOpen ? `Collapse ${title}` : `Expand to show ${title}`}
 				id={`${title.replace(/\s+/g, "-").toLowerCase()}-trigger`}
 				className="group flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg py-1 font-medium text-foreground transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
 			>

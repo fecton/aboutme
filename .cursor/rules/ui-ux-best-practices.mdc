@@ -1,0 +1,52 @@
+---
+description: UI/UX principles - feedback, hierarchy, accessibility (WCAG 2.2), dark mode
+globs:
+  - "**/*.tsx"
+  - "**/*.css"
+alwaysApply: false
+---
+
+# UI/UX Best Practices
+
+## Core Principles
+
+- **Feedback**: Offer real-time responses to user interactions for confidence
+- **Simplicity**: Reduce clutter, focus attention on key actions
+- **Hierarchy**: Guide users with visual and spatial cues to what matters most
+- **Clarity**: Every component should instantly communicate its purpose
+- **Consistency**: Maintain uniform styles and behaviors across all elements
+
+## POUR Framework (Accessibility)
+
+- **Perceivable**: Content accessible to senses (sight, hearing, touch)
+- **Operable**: Users can navigate and interact (keyboard, screen reader)
+- **Understandable**: Content and interfaces are clear
+- **Robust**: Compatible with assistive technologies
+
+## WCAG 2.2 AA Checklist
+
+- **Text alternatives**: Alt text for all meaningful images; avoid images of text
+- **Keyboard navigation**: Logical tab order; no keyboard traps
+- **Focus indicators**: Visible focus (e.g., `focus-visible:ring-2 focus-visible:ring-accent`)
+- **Color contrast**: 4.5:1 for normal text; 3:1 for large text
+- **Touch targets**: Minimum 44x44px for interactive elements
+- **Reduced motion**: Respect `prefers-reduced-motion`; use `@media (prefers-reduced-motion: reduce)`
+- **ARIA**: Use `aria-label`, `aria-expanded`, `aria-controls` for interactive elements; `aria-hidden` for decorative
+
+## Semantic HTML
+
+- Use `<header>`, `<nav>`, `<main>`, `<article>`, `<section>`, `<footer>`
+- One `<h1>` per page; logical heading hierarchy (h1 → h2 → h3)
+- Skip link: `<a href="#main-content">Skip to main content</a>`
+
+## Dark Mode
+
+- Treat dark mode as primary design option
+- Full identity system for both light and dark modes
+- Use CSS variables for colors; support `prefers-color-scheme`
+
+## Multi-Device
+
+- Responsive, mobile-first layouts
+- Test at 320px, 375px, 768px, 1024px+
+- No horizontal scroll at 320px viewport

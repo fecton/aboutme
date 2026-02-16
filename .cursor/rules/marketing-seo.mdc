@@ -1,0 +1,40 @@
+---
+description: SEO, meta tags, personal brand, structured data
+globs:
+  - "**/layout.tsx"
+  - "**/page.tsx"
+alwaysApply: false
+---
+
+# Marketing and SEO Best Practices
+
+## Meta Tags
+
+- **Meta description**: 150-160 characters; compelling, keyword-rich
+- **Title tag**: Descriptive, unique per page; include primary keyword
+- **Viewport**: Required for mobile responsiveness
+
+## Open Graph and Twitter Cards
+
+- Include Open Graph tags for all pages (title, description, image, url)
+- Twitter Card metadata for social sharing
+- Use `summary_large_image` for visual impact
+
+## Structured Data (JSON-LD)
+
+- Schema.org Person type for personal profiles
+- ProfessionalService for consulting/contracting
+- Include: name, jobTitle, description, url, image, sameAs (social links)
+
+## Personal Brand Principles
+
+- **Authenticity**: Reflect true self; share genuine journey
+- **Consistency**: Align messaging across pages and platforms
+- **Value proposition**: Clear, concise statement of expertise
+- **Storytelling**: Ground in data and real-world insights
+
+## Technical SEO
+
+- Canonical URLs; robots meta (index, follow)
+- robots.txt and sitemap.xml
+- Descriptive alt text for images
