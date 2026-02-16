@@ -1,0 +1,156 @@
+---
+description: Core project rules for Andrii Lytvynenko's portfolio
+alwaysApply: true
+---
+
+# Cursor Rules for Andrii Lytvynenko's Portfolio Website
+
+## Project Overview
+
+This is a personal portfolio website for Andrii Lytvynenko, a Senior DevOps & Cloud Engineer. The site is a Progressive Web App (PWA) built with Next.js, React, TypeScript, and Tailwind CSS.
+
+**Live URL:** https://alytvynenko.net
+
+## Tech Stack
+
+- Next.js 16 (App Router) with TypeScript
+- Tailwind CSS for styling
+- Framer Motion for animations
+- Static export for GitHub Pages deployment
+- Python for image optimization utilities
+
+## Code Style and Formatting
+
+### General
+
+- **Indentation:** Use TABS for HTML, CSS, and JavaScript files (not spaces)
+- **YAML files:** Use SPACES only (2 spaces per level). Never use tabs—YAML spec forbids them and linters reject tabs
+- **Line endings:** LF (Unix-style)
+- **Encoding:** UTF-8
+- **File naming:** Use kebab-case for files
+- **Comments:** Write clear, concise comments for complex logic
+
+### HTML / JSX
+
+- Use semantic HTML5 elements (`<header>`, `<main>`, `<section>`, `<footer>`)
+- Always include proper meta tags (SEO, Open Graph, Twitter Cards)
+- Use `loading="lazy"` for images below the fold; `loading="eager"` for above-the-fold images
+- Always specify `width` and `height` attributes on images
+- Use WebP format for images (converted from PNG)
+- Include `alt` attributes with descriptive text for all images
+- Use `rel="noopener noreferrer"` for external links with `target="_blank"`
+- Include proper `aria-label` attributes for accessibility
+
+### CSS
+
+- Use CSS Custom Properties (variables) defined in `:root`
+- Prefix custom properties with context: `--color-`, `--spacing-`, `--font-`, etc.
+- Use modern CSS features: Grid, Flexbox, custom properties
+- Include responsive design with mobile-first approach
+- Breakpoints: 980px, 768px, 600px, 400px, 320px
+- Include `@media (prefers-reduced-motion: reduce)` for accessibility
+- Use `var(--variable-name)` for all color, spacing, and typography values
+- Include proper focus indicators for accessibility (`:focus-visible`)
+
+### TypeScript / JavaScript
+
+- Use modern ES6+ syntax (const, let, arrow functions, template literals)
+- Wrap async code in try-catch blocks for error handling
+- Use strict equality (`===`, `!==`) over loose equality
+- Add proper error logging with `console.error()`
+
+## Accessibility Requirements (WCAG 2.2 AA)
+
+- Include skip navigation link (`<a href="#main-content" class="skip-link">`)
+- Use semantic HTML elements
+- Provide ARIA labels for interactive elements
+- Ensure proper focus indicators (3px outline with offset)
+- Support keyboard navigation
+- Include `lang` attribute on `<html>` element
+- Use sufficient color contrast ratios (4.5:1 normal text)
+- Support reduced motion preferences (`prefers-reduced-motion`)
+- Provide text alternatives for all images
+- Use proper heading hierarchy (h1 → h2 → h3)
+- **INP** (Interactions to Next Paint): Keep interactive elements responsive (< 200ms)
+
+## File Structure
+
+```
+/
+├── src/
+│   ├── app/               # Next.js App Router (layout, page, globals.css)
+│   ├── components/        # React components (layout, bento, hero, ui)
+│   └── data/              # TypeScript data (certificates, education, experiences, profile)
+├── public/                # Static assets (images, pdf, CNAME, .nojekyll)
+├── tools/
+│   └── png_to_webp.py     # Image optimization
+└── design/                # Design documentation
+```
+
+## Common Patterns
+
+### Adding a New Certification
+
+1. Add image to `images-before-optimization/certification/`
+2. Convert to WebP using `tools/png_to_webp.py`
+3. Move WebP to `public/images/certification/`
+4. Add entry to `src/data/certificates.ts`
+5. CertificationsCard.tsx renders from this data
+
+### Adding a New Section (Next.js App Router)
+
+1. Add data to appropriate file in `src/data/`
+2. Create or extend component in `src/components/bento/`
+3. Add section to BentoGrid in `src/app/page.tsx`
+4. Use semantic HTML (`section`, `article`) with proper heading hierarchy
+
+### Modifying Styles
+
+1. Use existing CSS variables when possible
+2. Add new variables to `:root` in globals.css if creating new design tokens
+3. Test across all breakpoints
+4. Check reduced motion support
+
+## Layout and Bento Grid Patterns (Next.js/Tailwind)
+
+**Critical: Equal widths and heights for paired sections.**
+
+- Sections in the same row must have identical total width
+- Use `flex flex-col gap-6` parent; sibling rows use `flex w-full min-w-0`
+- Paired sections need `flex min-h-full flex-col` and `flex-1` for equal height
+- Always add `min-w-0` to flex/grid children to prevent overflow
+- When mapping lists with potential duplicates, use `key={\`${item}-${index}\`}`
+
+## Responsive Design (Mobile-First)
+
+- **Tailwind breakpoints:** sm: 640px, md: 768px, lg: 1024px
+- **Horizontal padding:** `px-4 sm:px-6` on main containers
+- **Touch targets:** Minimum 44x44px (`min-h-[44px] min-w-[44px]`)
+- **Navbar:** Hamburger below md; use `aria-expanded`, `aria-controls`, `aria-label`
+- Test at 320px, 375px, 768px+; no horizontal scroll at 320px
+
+## Color Palette (Brand Colors)
+
+- Primary: `#3366CC`; Primary Dark: `#204090`; Accent: `#66CCFF`
+- Always use CSS variables (`--color-*`), never hardcode
+
+## Performance
+
+- WebP images via `tools/png_to_webp.py`
+- Preconnect/dns-prefetch for third-party domains
+- Lazy load below-fold images
+
+## Important Notes
+
+- **Never remove accessibility features** (skip links, ARIA labels, alt text)
+- **Never remove security** (noopener noreferrer on external links)
+- **Keep performance optimized** - aim for fast load times
+- **Preserve SEO elements** - meta tags, structured data
+- **Use WebP images** for all new image assets
+
+## Contact Information (For Context)
+
+- **Name:** Andrii Lytvynenko
+- **Title:** Senior DevOps & Cloud Engineer
+- **Location:** Czestochowa, Poland
+- **Website:** https://alytvynenko.net

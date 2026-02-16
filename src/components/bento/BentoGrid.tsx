@@ -13,39 +13,39 @@ export function BentoGrid() {
 		<div className="mx-auto max-w-6xl px-4 pb-24 sm:px-6">
 			<div className="flex flex-col gap-6">
 				{/* About + Highlights - flex row, each 50%, same total width as Skills */}
-				<div className="flex w-full min-w-0 flex-col gap-6 md:flex-row md:items-stretch">
+				<section aria-label="About and highlights" className="flex w-full min-w-0 flex-col gap-6 md:flex-row md:items-stretch">
 					<div className="flex min-w-0 flex-1" id="about">
 						<AboutCard />
 					</div>
 					<div className="flex min-w-0 flex-1">
 						<HighlightsCard />
 					</div>
-				</div>
+				</section>
 
 				{/* Skills - full width, identical to About+Highlights row above */}
-				<div className="flex w-full min-w-0">
+				<section aria-label="Skills" className="flex w-full min-w-0">
 					<SkillsCard />
-				</div>
+				</section>
 
 				{/* Certifications + Contact & Languages - equal height via grid */}
-				<div className="grid w-full min-w-0 grid-cols-1 gap-6 md:grid-cols-[2fr_1fr]">
+				<section aria-label="Certifications and contact" className="grid w-full min-w-0 grid-cols-1 gap-6 md:grid-cols-[2fr_1fr]">
 					<div className="flex min-h-0 min-w-0" id="certifications">
 						<CertificationsCard />
 					</div>
 					<div className="flex min-h-0 min-w-0 flex-col" id="contact">
 						<ContactCard />
 					</div>
-				</div>
+				</section>
 
 				{/* Experience */}
-				<div className="w-full" id="experience">
+				<section aria-label="Experience" className="w-full" id="experience">
 					<ExperienceCard />
-				</div>
+				</section>
 
 				{/* Education */}
-				<div className="w-full">
+				<section aria-label="Education" className="w-full">
 					<EducationCard />
-				</div>
+				</section>
 			</div>
 		</div>
 	);

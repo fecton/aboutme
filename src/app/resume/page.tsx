@@ -5,11 +5,29 @@ import { Footer } from "@/components/layout/Footer";
 import { PdfViewer } from "@/components/ui/PdfViewer";
 import { profile } from "@/data/profile";
 
+const SITE_URL = "https://alytvynenko.net";
+const PROFILE_IMAGE = `${SITE_URL}/images/tm-easy-profile.webp`;
+
 export const metadata: Metadata = {
 	title: "Resume - Andrii Lytvynenko",
 	description:
 		"Resume of Andrii Lytvynenko, Senior DevOps & Cloud Engineer. AWS & Kubernetes Certified. Available for B2B contracts.",
 	robots: { index: false, follow: true },
+	openGraph: {
+		title: "Resume - Andrii Lytvynenko | Senior DevOps & Cloud Engineer",
+		description:
+			"Resume of Andrii Lytvynenko, Senior DevOps & Cloud Engineer. AWS & Kubernetes Certified. Available for B2B contracts.",
+		url: `${SITE_URL}/resume/`,
+		images: [{ url: PROFILE_IMAGE, width: 250, height: 250, alt: "Andrii Lytvynenko" }],
+		type: "profile",
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: "Resume - Andrii Lytvynenko",
+		description:
+			"Resume of Andrii Lytvynenko, Senior DevOps & Cloud Engineer. AWS & Kubernetes Certified. Available for B2B contracts.",
+		images: [PROFILE_IMAGE],
+	},
 };
 
 export default function ResumePage() {

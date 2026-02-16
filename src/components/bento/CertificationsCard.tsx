@@ -19,7 +19,7 @@ export function CertificationsCard() {
 
 	return (
 		<GlassCard className="h-full">
-			<h2 className="mb-6 text-2xl font-bold tracking-tight text-white">
+			<h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground">
 				Certifications
 			</h2>
 			<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -58,7 +58,7 @@ export function CertificationsCard() {
 									href={cert.link}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="group block cursor-pointer rounded-lg transition-opacity hover:opacity-90"
+									className="group block cursor-pointer rounded-lg text-center transition-opacity hover:opacity-90"
 								>
 									<div className="mb-2 flex justify-center">
 										<Image
@@ -73,7 +73,7 @@ export function CertificationsCard() {
 									<h4 className="mb-2 text-center text-sm font-medium text-foreground">
 										{cert.title}
 									</h4>
-									<span className="block text-center text-xs text-accent group-hover:underline">
+									<span className="inline-block rounded-lg bg-accent/25 px-3 py-1.5 text-center text-xs font-medium text-accent-dark dark:bg-accent/50 dark:text-accent-light group-hover:bg-accent/35 dark:group-hover:bg-accent/65 group-hover:underline">
 										Verify
 									</span>
 								</a>

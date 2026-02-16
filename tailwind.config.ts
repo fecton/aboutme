@@ -22,6 +22,7 @@ const config: Config = {
 				"apple-gray": "#a1a1a6",
 				accent: "#3366CC",
 				"accent-dark": "#204090",
+				"accent-light": "var(--color-accent-light)",
 			},
 			fontFamily: {
 				sans: [

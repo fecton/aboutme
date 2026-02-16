@@ -1,0 +1,37 @@
+---
+description: Performance, Core Web Vitals, security, code patterns
+globs:
+  - "**/*.ts"
+  - "**/*.tsx"
+alwaysApply: false
+---
+
+# Development Standards
+
+## Core Web Vitals
+
+- **LCP** (Largest Contentful Paint): Target < 2.5s
+- **CLS** (Cumulative Layout Shift): Target < 0.1
+- **INP** (Interactions to Next Paint): Target < 200ms for responsiveness
+
+## Images
+
+- Use WebP format (convert via `tools/png_to_webp.py`)
+- Specify width and height on all images
+- Use `loading="lazy"` for below-fold; `loading="eager"` for above-fold
+- Descriptive alt text for all images
+
+## Links
+
+- Use `rel="noopener noreferrer"` for external links with `target="_blank"`
+
+## Resource Hints
+
+- `preconnect` for critical third-party domains (e.g., analytics)
+- `dns-prefetch` for optional third parties
+
+## Error Handling
+
+- Wrap async code in try-catch
+- Use descriptive error logging
+- Provide fallbacks where appropriate

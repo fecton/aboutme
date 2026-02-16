@@ -1,0 +1,11 @@
+/*
+  Cache-Control: public, max-age=3600
+
+/images/*
+  Cache-Control: public, max-age=86400
+
+/_next/*
+  Cache-Control: public, max-age=86400
+
+/pdf/*
+  Cache-Control: public, max-age=86400

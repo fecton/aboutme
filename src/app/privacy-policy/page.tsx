@@ -3,11 +3,29 @@ import Link from "next/link";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 
+const SITE_URL = "https://alytvynenko.net";
+const PROFILE_IMAGE = `${SITE_URL}/images/tm-easy-profile.webp`;
+
 export const metadata: Metadata = {
 	title: "Privacy Policy - Andrii Lytvynenko",
 	description:
 		"Privacy Policy for Andrii Lytvynenko's personal website. Learn how we handle your data, cookies, and your rights under GDPR.",
 	robots: { index: false, follow: true },
+	openGraph: {
+		title: "Privacy Policy - Andrii Lytvynenko",
+		description:
+			"Privacy Policy for Andrii Lytvynenko's personal website. Learn how we handle your data, cookies, and your rights under GDPR.",
+		url: `${SITE_URL}/privacy-policy/`,
+		images: [{ url: PROFILE_IMAGE, width: 250, height: 250, alt: "Andrii Lytvynenko" }],
+		type: "website",
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: "Privacy Policy - Andrii Lytvynenko",
+		description:
+			"Privacy Policy for Andrii Lytvynenko's personal website. Learn how we handle your data, cookies, and your rights under GDPR.",
+		images: [PROFILE_IMAGE],
+	},
 };
 
 export default function PrivacyPolicyPage() {

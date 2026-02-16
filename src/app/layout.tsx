@@ -81,7 +81,6 @@ const personJsonLd = {
 	url: SITE_URL,
 	image: PROFILE_IMAGE,
 	email: "a.v.lytvynenko2004@gmail.com",
-	telephone: "+48-XXX-XXX-XXX",
 	address: {
 		"@type": "PostalAddress",
 		addressLocality: "Czestochowa",
