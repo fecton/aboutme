@@ -52,6 +52,10 @@ export function Footer() {
 					<Link href="/privacy-policy" className="hover:text-foreground">
 						Privacy Policy
 					</Link>
+					{" · "}
+					<Link href="/cookie-policy" className="hover:text-foreground">
+						Cookie Policy
+					</Link>
 				</p>
 				<ul className="flex justify-center gap-6">
 					<li>
