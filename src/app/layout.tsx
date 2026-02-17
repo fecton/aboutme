@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ReduceEffectsProvider } from "@/components/providers/ReduceEffectsProvider";
+import { ConsentProvider } from "@/components/providers/ConsentProvider";
 import "./globals.css";
 
 const SITE_URL = "https://alytvynenko.net";
@@ -173,18 +173,7 @@ export default function RootLayout({
 				<link rel="dns-prefetch" href="https://www.google-analytics.com" />
 			</head>
 			<body suppressHydrationWarning>
-				<Script
-					src="https://www.googletagmanager.com/gtag/js?id=G-LKHDQT8Z81"
-					strategy="afterInteractive"
-				/>
-				<Script id="google-analytics" strategy="afterInteractive">
-					{`
-						window.dataLayer = window.dataLayer || [];
-						function gtag(){dataLayer.push(arguments);}
-						gtag('js', new Date());
-						gtag('config', 'G-LKHDQT8Z81');
-					`}
-				</Script>
+				<ConsentProvider>
 				<script
 					type="application/ld+json"
 					dangerouslySetInnerHTML={{
@@ -203,6 +192,7 @@ export default function RootLayout({
 				<ThemeProvider>
 					<ReduceEffectsProvider>{children}</ReduceEffectsProvider>
 				</ThemeProvider>
+				</ConsentProvider>
 			</body>
 		</html>
 	);

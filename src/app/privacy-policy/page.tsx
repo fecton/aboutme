@@ -185,7 +185,12 @@ export default function PrivacyPolicyPage() {
 							</h2>
 							<p>
 								Cookies are small text files stored on your device when you visit
-								a website. This Website uses the following types of cookies:
+								a website. This Website uses the following types of cookies. For
+								a detailed list of cookies, including Google Analytics, see our{" "}
+								<Link href="/cookie-policy" className="text-accent hover:underline">
+									Cookie Policy
+								</Link>
+								.
 							</p>
 							<div className="my-6 overflow-x-auto">
 								<table className="w-full border-collapse border border-border">
