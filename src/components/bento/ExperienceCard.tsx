@@ -1,6 +1,7 @@
 "use client";
 
 import { GlassCard } from "@/components/ui/GlassCard";
+import { ExpandableDescription } from "@/components/ui/ExpandableDescription";
 import { ExpandableTagList } from "@/components/ui/ExpandableTagList";
 import { experiences } from "@/data/experiences";
 import { motion, useReducedMotion } from "framer-motion";
@@ -88,10 +89,7 @@ export function ExperienceCard() {
 							</span>
 						</div>
 						<p className="mb-4 text-sm text-muted">{exp.dates}</p>
-						<div
-							className="prose prose-sm dark:prose-invert max-w-none text-muted [&_ul]:list-disc [&_ul]:pl-6 [&_li]:mb-1"
-							dangerouslySetInnerHTML={{ __html: exp.description }}
-						/>
+						<ExpandableDescription html={exp.description} />
 						{exp.disciplines && (
 							<ExpandableTagList
 								title="Technologies & Skills"
