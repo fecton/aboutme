@@ -9,6 +9,8 @@ export interface Experience {
 	present: boolean;
 	description: string;
 	disciplines: string;
+	company_logo?: string;
+	client_logo?: string;
 }
 
 export const experiences: Experience[] = [
@@ -30,6 +32,7 @@ export const experiences: Experience[] = [
 </ul>`,
 		disciplines:
 			"AWS (EC2, ECS, ECS Fargate, S3, Lambda, API Gateway, RDS, ElastiCache Redis, CloudFront, Route53, VPC, IAM, CloudWatch, SSM Parameter Store, Secrets Manager, SNS, SQS, EventBridge, Auto Scaling, Security Groups, NAT Gateway), AWS Cost Explorer, AWS Savings Plans, AWS Organizations, Terraform, Terragrunt, Terraform Modules, Amazon Managed Grafana, Amazon Managed Prometheus, Prometheus, PromQL, Grafana, CloudWatch Logs, CloudWatch Metrics, CloudWatch Alarms, OpenTelemetry, node_exporter, windows_exporter, sql_exporter, AlertManager, MSSQL, SQL Server, PostgreSQL, MySQL, C#, .NET, .NET Core, ASP.NET, PowerShell, Bash, Python, REST APIs, GitLab CI, GitHub Actions, Docker, Docker Compose, Kubernetes, Helm, YAML, JSON, Git, Linux (Ubuntu, Amazon Linux), Windows Server, Infrastructure as Code (IaC), CI/CD Pipelines, Multi-Account Strategy, FinOps, Cost Optimization, Serverless Architecture, Microservices, Monitoring & Observability, Log Aggregation, Jira, Confluence.",
+		company_logo: "geniusee.webp",
 	},
 	{
 		position: "Senior/Lead DevOps Engineer",
@@ -49,6 +52,8 @@ export const experiences: Experience[] = [
 </ul>`,
 		disciplines:
 			"HLASM, Java, Spring Boot, Python, AWS, EC2, Lambda, S3, Block Storage, Networking, Apache Airflow, Terraform, Jenkins, Jules, Spinnaker, PostgreSQL, Splunk, Dynatrace.",
+		company_logo: "luxoft.webp",
+		client_logo: "chase.webp",
 	},
 	{
 		position: "DevOps Engineer",
@@ -83,6 +88,8 @@ export const experiences: Experience[] = [
 </ul>`,
 		disciplines:
 			"Terraform Enterprise, Bash (Shell), Python, Groovy, Jenkins, Gerrit, AWS (Lambda, VPC, EC2, S3, CloudFront, Route53, CloudWatch, SNS, Auto Scaling, Load Balancers, Transit Gateway, EKS), Kubernetes (K8S), Grafana, Prometheus, AWS CloudWatch, Jenkins, Git, Gerrit, FinOps (Cost optimization practices), High Availability Architectures, Network Design & Redesign, Transit Gateway, Load Balancing, Java (application debugging), Python, Groovy, Bash (scripting and automation), Lucidchart, draw.io, Jira, Confluence.",
+		company_logo: "luxoft.webp",
+		client_logo: "mercedes.webp",
 	},
 	{
 		position: "DevOps Engineer",
