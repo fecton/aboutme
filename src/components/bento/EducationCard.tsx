@@ -45,7 +45,17 @@ export function EducationCard() {
 								Graduated
 							</span>
 						</div>
-						<div className="mb-2">
+						<div className="mb-2 flex items-center gap-2">
+							{edu.university_logo && (
+								<img
+									src={`/images/education/${edu.university_logo}`}
+									alt={`${edu.university_title} logo`}
+									width={40}
+									height={40}
+									loading="lazy"
+									className="shrink-0 rounded-lg"
+								/>
+							)}
 							{edu.university_link ? (
 								<a
 									href={edu.university_link}

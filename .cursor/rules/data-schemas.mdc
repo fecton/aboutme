@@ -63,10 +63,14 @@ interface Experience {
   present: boolean;
   description: string;  // HTML string, e.g. <ul><li>...</li></ul>
   disciplines: string;
+  company_logo?: string;  // filename in public/images/companies/
+  client_logo?: string;   // filename in public/images/companies/
 }
 ```
 
 **Export:** `experiences: Experience[]`
+
+**Company logos:** Place WebP files in `public/images/companies/`. Convert via `tools/png_to_webp.py` (copy script to folder containing PNGs, then run).
 
 ## certificates.ts
 
@@ -103,10 +107,13 @@ interface Education {
   diploma_supplement_pdf: string;
   description: string;
   disciplines: string;
+  university_logo?: string;  // filename in public/images/education/
 }
 ```
 
 **Export:** `educations: Education[]`
+
+**University logos:** Place WebP files in `public/images/education/`. Convert via `tools/png_to_webp.py` (copy script to folder containing PNGs, then run).
 
 ## projects.ts
 

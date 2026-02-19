@@ -57,8 +57,18 @@ export function ExperienceCard() {
 								</span>
 							</div>
 						</div>
-						<div className="mb-2 flex flex-wrap gap-2 text-sm text-muted">
-							<span>
+						<div className="mb-2 flex flex-wrap items-center gap-2 text-sm text-muted">
+							<span className="flex items-center gap-2">
+								{exp.company_logo && (
+									<img
+										src={`/images/companies/${exp.company_logo}`}
+										alt={`${exp.company} logo`}
+										width={40}
+										height={40}
+										loading="lazy"
+										className="shrink-0 rounded-lg"
+									/>
+								)}
 								{exp.company_link ? (
 									<a
 										href={exp.company_link}
@@ -73,7 +83,17 @@ export function ExperienceCard() {
 								)}
 							</span>
 							<span>•</span>
-							<span>
+							<span className="flex items-center gap-2">
+								{exp.client_logo && (
+									<img
+										src={`/images/companies/${exp.client_logo}`}
+										alt={`${exp.client} logo`}
+										width={40}
+										height={40}
+										loading="lazy"
+										className="shrink-0 rounded-lg"
+									/>
+								)}
 								{exp.client_link ? (
 									<a
 										href={exp.client_link}
