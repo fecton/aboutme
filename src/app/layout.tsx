@@ -62,8 +62,11 @@ export const metadata: Metadata = {
 	},
 	manifest: "/manifest.json",
 	icons: {
-		icon: "/images/favicon.ico",
-		apple: "/images/favicon.ico",
+		icon: [
+			{ url: "/images/favicon.svg", type: "image/svg+xml" },
+			{ url: "/images/favicon.ico", sizes: "any" },
+		],
+		apple: "/images/apple-touch-icon.png",
 	},
 	themeColor: "#3366CC",
 	appleWebApp: {
