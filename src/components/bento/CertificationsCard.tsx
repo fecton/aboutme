@@ -29,7 +29,7 @@ export function CertificationsCard() {
 					return (
 						<motion.article
 							key={cert.title}
-							className={`rounded-xl border p-4 ${
+							className={`flex min-h-full flex-col rounded-xl border p-4 ${
 								isEarned
 									? "border-border bg-surface"
 									: "border-border/50 bg-surface/50"
@@ -44,7 +44,7 @@ export function CertificationsCard() {
 							}
 						>
 							<span
-								className={`mb-2 inline-block rounded-full px-2 py-0.5 text-xs ${
+								className={`mb-2 inline-block self-center rounded-full px-2 py-0.5 text-center text-xs ${
 									isEarned
 										? "bg-green-100 text-green-800 dark:bg-green-900/95 dark:text-green-100"
 										: "bg-amber-100 text-amber-800 dark:bg-amber-900/95 dark:text-amber-100"
@@ -57,7 +57,7 @@ export function CertificationsCard() {
 									href={cert.link}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="group block cursor-pointer rounded-lg text-center transition-opacity hover:opacity-90"
+									className="group flex flex-1 flex-col cursor-pointer rounded-lg text-center transition-opacity hover:opacity-90"
 								>
 									<div className="mb-2 flex justify-center">
 										<img
@@ -72,12 +72,12 @@ export function CertificationsCard() {
 									<h4 className="mb-2 text-center text-sm font-medium text-foreground">
 										{cert.title}
 									</h4>
-									<span className="inline-block rounded-lg bg-accent/25 px-3 py-1.5 text-center text-xs font-medium text-accent-dark dark:bg-accent/50 dark:text-accent-light group-hover:bg-accent/35 dark:group-hover:bg-accent/65 group-hover:underline">
+									<span className="mt-auto inline-block rounded-lg bg-accent/25 px-3 py-1.5 text-center text-xs font-medium text-accent-dark dark:bg-accent/50 dark:text-accent-light group-hover:bg-accent/35 dark:group-hover:bg-accent/65 group-hover:underline">
 										Verify
 									</span>
 								</a>
 							) : (
-								<>
+								<div className="flex flex-1 flex-col">
 									<div className="mb-2 flex justify-center">
 										<img
 											src={`/images/certification/${cert.image}`}
@@ -91,12 +91,12 @@ export function CertificationsCard() {
 									<h4 className="mb-2 text-center text-sm font-medium text-foreground">
 										{cert.title}
 									</h4>
-								</>
-							)}
-							{isPlanned && !isEarned && (
-								<p className="text-center text-xs text-muted">
-									Target: {cert.planned_year}
-								</p>
+									{isPlanned && (
+										<p className="mt-auto text-center text-xs text-muted">
+											Target: {cert.planned_year}
+										</p>
+									)}
+								</div>
 							)}
 						</motion.article>
 					);
