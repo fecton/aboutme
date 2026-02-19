@@ -1,10 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { ExpandableTagList } from "@/components/ui/ExpandableTagList";
 import { educations } from "@/data/education";
 import { motion, useReducedMotion } from "framer-motion";
 import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
+
+const DIPLOMA_VIEWER_PATH = "/pdf/diploma.pdf";
+const DIPLOMA_SUPPLEMENT_VIEWER_PATH = "/pdf/diploma-suplement.pdf";
 
 const springTransition = {
 	type: "spring" as const,
@@ -58,26 +62,42 @@ export function EducationCard() {
 						<p className="mb-4 text-sm text-muted">{edu.dates}</p>
 						{(edu.diploma_pdf || edu.diploma_supplement_pdf) && (
 							<div className="mb-4 flex gap-4">
-								{edu.diploma_pdf && (
-									<a
-										href={edu.diploma_pdf}
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-sm text-accent hover:underline"
-									>
-										View Diploma
-									</a>
-								)}
-								{edu.diploma_supplement_pdf && (
-									<a
-										href={edu.diploma_supplement_pdf}
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-sm text-accent hover:underline"
-									>
-										View Diploma Supplement
-									</a>
-								)}
+								{edu.diploma_pdf &&
+									(edu.diploma_pdf === DIPLOMA_VIEWER_PATH ? (
+										<Link
+											href="/viewer/diploma"
+											className="text-sm text-accent hover:underline"
+										>
+											View Diploma
+										</Link>
+									) : (
+										<a
+											href={edu.diploma_pdf}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="text-sm text-accent hover:underline"
+										>
+											View Diploma
+										</a>
+									))}
+								{edu.diploma_supplement_pdf &&
+									(edu.diploma_supplement_pdf === DIPLOMA_SUPPLEMENT_VIEWER_PATH ? (
+										<Link
+											href="/viewer/diploma-supplement"
+											className="text-sm text-accent hover:underline"
+										>
+											View Diploma Supplement
+										</Link>
+									) : (
+										<a
+											href={edu.diploma_supplement_pdf}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="text-sm text-accent hover:underline"
+										>
+											View Diploma Supplement
+										</a>
+									))}
 							</div>
 						)}
 						<div

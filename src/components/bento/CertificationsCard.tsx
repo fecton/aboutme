@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { certificates } from "@/data/certificates";
 import { motion, useReducedMotion } from "framer-motion";
@@ -61,7 +60,7 @@ export function CertificationsCard() {
 									className="group block cursor-pointer rounded-lg text-center transition-opacity hover:opacity-90"
 								>
 									<div className="mb-2 flex justify-center">
-										<Image
+										<img
 											src={`/images/certification/${cert.image}`}
 											alt={cert.title}
 											width={80}
@@ -80,7 +79,7 @@ export function CertificationsCard() {
 							) : (
 								<>
 									<div className="mb-2 flex justify-center">
-										<Image
+										<img
 											src={`/images/certification/${cert.image}`}
 											alt={cert.title}
 											width={80}

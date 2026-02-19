@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { profile } from "@/data/profile";
@@ -58,15 +57,15 @@ export function HeroSection() {
 				>
 					<motion.div
 						variants={itemVariants}
-						className="relative mb-6 h-48 w-48 sm:h-[250px] sm:w-[250px]"
+						className="relative mb-6 h-48 w-48 sm:h-[250px] sm:w-[250px] overflow-hidden rounded-full border-2 border-border"
 					>
-						<Image
+						<img
 							src={profile.profileImage}
 							alt="Andrii Lytvynenko, Senior DevOps and Cloud Engineer with expertise in AWS, Kubernetes, and cloud infrastructure"
-							fill
-							priority
-							sizes="(max-width: 640px) 192px, 250px"
-							className="rounded-full border-2 border-border object-cover"
+							width={250}
+							height={250}
+							loading="eager"
+							className="h-full w-full object-cover"
 						/>
 					</motion.div>
 
