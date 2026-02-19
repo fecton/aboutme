@@ -171,6 +171,38 @@ export default function RootLayout({
 			<head>
 				<link rel="preconnect" href="https://www.googletagmanager.com" />
 				<link rel="dns-prefetch" href="https://www.google-analytics.com" />
+				{/* Strip Dark Reader / extension-injected attributes before React hydrates to avoid hydration mismatch */}
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `
+(function(){
+	function clean(el){
+		if(!el||!el.removeAttribute)return;
+		if(el.hasAttribute('data-darkreader-inline-stroke'))el.removeAttribute('data-darkreader-inline-stroke');
+		if(el.hasAttribute('data-darkreader-inline-color'))el.removeAttribute('data-darkreader-inline-color');
+		if(el.style){
+			if(el.style.getPropertyValue('--darkreader-inline-stroke'))el.style.removeProperty('--darkreader-inline-stroke');
+			if(el.style.getPropertyValue('--darkreader-inline-color'))el.style.removeProperty('--darkreader-inline-color');
+		}
+	}
+	function run(){
+		if(document.querySelectorAll)document.querySelectorAll('svg,img').forEach(clean);
+	}
+	function start(){
+		run();
+		var obs=new MutationObserver(run);
+		obs.observe(document.documentElement,{attributes:true,subtree:true,attributeFilter:['style','data-darkreader-inline-stroke','data-darkreader-inline-color']});
+		setTimeout(function(){obs.disconnect();},500);
+	}
+	if(document.readyState==='loading'){
+		document.addEventListener('DOMContentLoaded',start);
+	}else{
+		start();
+	}
+})();
+						`.trim(),
+					}}
+				/>
 			</head>
 			<body suppressHydrationWarning>
 				<ConsentProvider>

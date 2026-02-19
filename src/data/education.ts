@@ -16,7 +16,7 @@ export const educations: Education[] = [
 		university_link: "https://khai.edu/en/",
 		dates: "2021 September - 2025 August",
 		diploma_pdf: "/pdf/diploma.pdf",
-		diploma_supplement_pdf: "/pdf/diploma-supplement.pdf",
+		diploma_supplement_pdf: "/pdf/diploma-suplement.pdf",
 		description:
 			"Professionally, a Bachelor in this field may hold positions in the information technologies industry such as Information Technology Expert, Technician on System Administration, Specialist in Software Design and Testing, Specialist in Computer Software Design, and Technician-Programmer in IT departments of educational institutions, scientific-research, design, production, public, private, and IT enterprises. The educational program has provided the ability to solve complex specialized and practical problems in computer science, apply legal frameworks and international standards, use modern programming languages to create system and application software, ensure information protection in computer systems, design, implement, and maintain computer systems and networks, and systematically administer and operate existing information technologies.",
 		disciplines:
