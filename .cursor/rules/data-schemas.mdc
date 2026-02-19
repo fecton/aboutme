@@ -1,0 +1,144 @@
+---
+description: Data interfaces and file reference for portfolio content
+globs:
+  - "src/data/**/*.ts"
+alwaysApply: false
+---
+
+# Data Schemas
+
+Reference for data interfaces and file locations. Use when creating or extending data files.
+
+## profile.ts
+
+**Location:** `src/data/profile.ts`
+
+**Interfaces:**
+
+```typescript
+interface Highlight {
+  number: string;
+  label: string;
+}
+
+interface SkillCategory {
+  title: string;
+  icon: string;
+  skills: string[];
+  primary?: string[];
+}
+
+interface SocialLink {
+  name: string;
+  url: string;
+  icon: string;
+  ariaLabel: string;
+}
+
+interface Language {
+  flag: string;
+  name: string;
+  level: string;
+  native?: boolean;
+}
+```
+
+**Export:** `profile` with: name, title, subtitle, availability, profileImage, email, location, resumeUrl, bio (intro, experience, passion), highlights, skills, socialLinks, footerSocialLinks, trustBadges, languages
+
+## experiences.ts
+
+**Location:** `src/data/experiences.ts`
+
+**Interface:**
+
+```typescript
+interface Experience {
+  position: string;
+  work_mode: string;
+  company: string;
+  company_link: string;
+  client: string;
+  client_link: string;
+  dates: string;
+  present: boolean;
+  description: string;  // HTML string, e.g. <ul><li>...</li></ul>
+  disciplines: string;
+}
+```
+
+**Export:** `experiences: Experience[]`
+
+## certificates.ts
+
+**Location:** `src/data/certificates.ts`
+
+**Interface:**
+
+```typescript
+interface Certificate {
+  title: string;
+  image: string;       // filename in public/images/certification/
+  link: string;
+  planned_year: string;
+}
+```
+
+**Export:** `certificates: Certificate[]`
+
+**Images:** Place WebP files in `public/images/certification/`. Convert via `tools/png_to_webp.py`.
+
+## education.ts
+
+**Location:** `src/data/education.ts`
+
+**Interface:**
+
+```typescript
+interface Education {
+  specialty_title: string;
+  university_title: string;
+  university_link: string;
+  dates: string;
+  diploma_pdf: string;           // path like /pdf/diploma.pdf
+  diploma_supplement_pdf: string;
+  description: string;
+  disciplines: string;
+}
+```
+
+**Export:** `educations: Education[]`
+
+## projects.ts
+
+**Location:** `src/data/projects.ts`
+
+**Interface:**
+
+```typescript
+interface Project {
+  title: string;
+  description: string;
+  link: string;
+  linkLabel?: string;
+  technologies: string;
+  year?: string;
+  image?: string;
+}
+```
+
+**Export:** `projects: Project[]`
+
+## skillIcons.ts
+
+**Location:** `src/data/skillIcons.ts`
+
+**Purpose:** Map skill display names to `{ path: string; title: string }` for SkillsCard. Use `simple-icons` package for most icons; add manual SVG paths for icons not in the package (e.g., AWS, Azure, PowerShell).
+
+**Export:** `skillIconMap: Record<string, { path: string; title: string }>`
+
+## Adding New Data
+
+1. Define interface in appropriate file in `src/data/`
+2. Export the array or object
+3. Import in the bento component that renders it (e.g., CertificationsCard imports from certificates.ts)
+4. Add or wire the section in BentoGrid if it is a new section type
