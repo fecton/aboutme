@@ -64,7 +64,7 @@ export function SkillsCard() {
 											<svg
 												className="h-3.5 w-3.5 shrink-0"
 												fill="currentColor"
-												viewBox="0 0 24 24"
+												viewBox={iconData.viewBox ?? "0 0 24 24"}
 												aria-hidden
 											>
 												<path d={iconData.path} />

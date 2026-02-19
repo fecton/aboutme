@@ -4,6 +4,7 @@ import { GlassCard } from "@/components/ui/GlassCard";
 import { ExpandableDescription } from "@/components/ui/ExpandableDescription";
 import { ExpandableTagList } from "@/components/ui/ExpandableTagList";
 import { experiences } from "@/data/experiences";
+import { getIconForDiscipline } from "@/data/skillIcons";
 import { motion, useReducedMotion } from "framer-motion";
 import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
 
@@ -114,6 +115,7 @@ export function ExperienceCard() {
 							<ExpandableTagList
 								title="Technologies & Skills"
 								items={[exp.disciplines]}
+								getIcon={getIconForDiscipline}
 							/>
 						)}
 					</motion.article>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { ExpandableTagList } from "@/components/ui/ExpandableTagList";
 import { educations } from "@/data/education";
+import { getIconForDiscipline } from "@/data/skillIcons";
 import { motion, useReducedMotion } from "framer-motion";
 import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
 
@@ -118,6 +119,7 @@ export function EducationCard() {
 							<ExpandableTagList
 								title="Courses & Disciplines"
 								items={[edu.disciplines]}
+								getIcon={getIconForDiscipline}
 							/>
 						)}
 					</motion.article>
