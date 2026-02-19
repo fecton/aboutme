@@ -16,6 +16,9 @@ interface ExpandableTagListProps {
 	items: string[];
 	className?: string;
 	tagClassName?: string;
+	getIcon?: (
+		item: string
+	) => { path: string; title?: string; viewBox?: string } | null;
 }
 
 export function ExpandableTagList({
@@ -23,6 +26,7 @@ export function ExpandableTagList({
 	items,
 	className = "",
 	tagClassName = "",
+	getIcon,
 }: ExpandableTagListProps) {
 	const [isOpen, setIsOpen] = useState(false);
 	const prefersReducedMotion = useReducedMotion();
@@ -112,29 +116,42 @@ export function ExpandableTagList({
 								hidden: {},
 							}}
 						>
-							{parsedItems.map((item, index) => (
-								<motion.span
-									key={`${item}-${index}`}
-									variants={{
-										visible: {
-											opacity: 1,
-											scale: 1,
-											y: 0,
-										},
-										hidden: prefersReducedMotion
-											? { opacity: 1, scale: 1, y: 0 }
-											: {
-													opacity: 0,
-													scale: 0.85,
-													y: 4,
-												},
-									}}
-									transition={prefersReducedMotion ? instantTransition : springTransition}
-									className={`rounded-lg border border-border bg-surface px-2 py-1 text-xs text-muted transition-colors hover:border-accent/30 hover:bg-accent/10 hover:text-foreground ${tagClassName}`}
-								>
-									{item}
-								</motion.span>
-							))}
+							{parsedItems.map((item, index) => {
+								const iconData = getIcon?.(item);
+								return (
+									<motion.span
+										key={`${item}-${index}`}
+										variants={{
+											visible: {
+												opacity: 1,
+												scale: 1,
+												y: 0,
+											},
+											hidden: prefersReducedMotion
+												? { opacity: 1, scale: 1, y: 0 }
+												: {
+														opacity: 0,
+														scale: 0.85,
+														y: 4,
+													},
+										}}
+										transition={prefersReducedMotion ? instantTransition : springTransition}
+										className={`flex items-center gap-1.5 rounded-lg border border-border bg-surface px-2 py-1 text-xs text-muted transition-colors hover:border-accent/30 hover:bg-accent/10 hover:text-foreground ${tagClassName}`}
+									>
+										{iconData && (
+											<svg
+												className="h-3.5 w-3.5 shrink-0"
+												fill="currentColor"
+												viewBox={iconData.viewBox ?? "0 0 24 24"}
+												aria-hidden
+											>
+												<path d={iconData.path} />
+											</svg>
+										)}
+										{item}
+									</motion.span>
+								);
+							})}
 						</motion.div>
 					</motion.div>
 				)}
