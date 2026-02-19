@@ -35,3 +35,7 @@ alwaysApply: false
 - Wrap async code in try-catch
 - Use descriptive error logging
 - Provide fallbacks where appropriate
+
+## Rebuild Context
+
+- When scaffolding a new project, ensure `tools/png_to_webp.py` exists for image optimization (run from certification folder with PIL installed)

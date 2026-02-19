@@ -1,0 +1,130 @@
+---
+description: Step-by-step guide to scaffold and deploy a similar portfolio from scratch
+globs:
+  - "**/*.tsx"
+  - "**/*.ts"
+  - "next.config*"
+  - "tailwind.config*"
+alwaysApply: false
+---
+
+# Rebuild Blueprint: Portfolio Website
+
+Use this guide to scaffold and configure a similar portfolio from scratch.
+
+## Prerequisites
+
+- Node 20+
+- npm
+- Git
+
+## Scaffolding Order
+
+1. Create Next.js app: `npx create-next-app@latest` with App Router, TypeScript, Tailwind, ESLint
+2. Install dependencies: `npm install framer-motion next-themes simple-icons`
+3. Create folder structure per project-overview:
+   - `src/app/` (layout, page, globals.css)
+   - `src/components/` (layout, bento, hero, ui, providers)
+   - `src/data/` (profile, experiences, certificates, education, projects, skillIcons)
+   - `public/` (images, pdf, CNAME, .nojekyll)
+   - `tools/` (png_to_webp.py)
+
+## Configuration Files
+
+### next.config.js
+
+```javascript
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: "export",
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
+  },
+};
+module.exports = nextConfig;
+```
+
+### tailwind.config.ts
+
+- Set `darkMode: "class"`
+- Extend theme: colors (background, foreground, muted, surface, border, accent), fontFamily, backdropBlur, animation, keyframes
+- Content paths: `./src/pages/**/*`, `./src/components/**/*`, `./src/app/**/*`
+
+### tsconfig.json
+
+- Add path alias: `"@/*": ["./src/*"]`
+
+## Providers Setup
+
+Wrap the app in `src/app/layout.tsx` with:
+
+1. **ConsentProvider** (outermost)
+2. **ThemeProvider** (next-themes)
+3. **ReduceEffectsProvider** (respects prefers-reduced-motion)
+
+Include skip link, JSON-LD scripts, and preconnect/dns-prefetch in layout.
+
+## Page Structure
+
+```tsx
+<Navbar />
+<main id="main-content">
+  <HeroSection />
+  <BentoGrid />
+</main>
+<Footer />
+```
+
+## Bento Grid Layout
+
+- Container: `mx-auto max-w-6xl px-4 pb-24 sm:px-6`
+- Parent: `flex flex-col gap-6`
+- Sections: `flex w-full min-w-0` or `grid w-full min-w-0 grid-cols-1 gap-6 md:grid-cols-[2fr_1fr]`
+- Paired sections: `flex min-w-0 flex-1` for equal width; `flex min-h-full flex-col` for equal height
+- Section IDs for anchor links: `#about`, `#experience`, `#contact`, `#certifications`
+
+## Deployment (GitHub Pages)
+
+### Workflow (.github/workflows/deploy.yml)
+
+- Trigger: push to `main`, `develop`
+- Steps: checkout, setup-node (v20, cache npm), npm ci, npm run build
+- Deploy: peaceiris/actions-gh-pages, publish_dir: `./out`
+
+### Repo Settings
+
+1. Settings → Pages → Source: Deploy from a branch
+2. Branch: `gh-pages`, folder: root
+3. Workflow creates `gh-pages` on first run
+
+### Custom Domain
+
+- Add `public/CNAME` with domain (e.g., `alytvynenko.net`)
+- Add `public/.nojekyll` (empty file) to disable Jekyll processing
+
+## Content Customization Checklist
+
+Replace in `src/data/`:
+
+- profile.ts (name, title, bio, social links, skills, highlights)
+- experiences.ts
+- certificates.ts
+- education.ts
+- projects.ts (if using PortfolioCard)
+
+Update in `src/app/layout.tsx`:
+
+- metadata (title, description, keywords, openGraph, twitter)
+- personJsonLd and professionalServiceJsonLd
+- SITE_URL and PROFILE_IMAGE constants
+
+Update in `public/manifest.json`:
+
+- name, short_name, description, theme_color
+
+## Brand Customization
+
+- **globals.css**: `:root` and `:root.dark` CSS variables (--color-background, --color-foreground, --color-accent, --mesh-gradient)
+- **tailwind.config.ts**: theme.extend.colors (accent, accent-dark, accent-light)
+- **manifest.json**: theme_color, background_color

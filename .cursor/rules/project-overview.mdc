@@ -1,15 +1,17 @@
 ---
-description: Core project rules for Andrii Lytvynenko's portfolio
+description: Core project rules for portfolio website (maintain or rebuild)
 alwaysApply: true
 ---
 
-# Cursor Rules for Andrii Lytvynenko's Portfolio Website
+# Cursor Rules for Portfolio Website
+
+## Blueprint Mode
+
+These rules support both **maintaining** this site and **rebuilding a similar portfolio from scratch**. For full rebuild instructions, see `rebuild-blueprint.mdc` and `data-schemas.mdc`.
 
 ## Project Overview
 
-This is a personal portfolio website for Andrii Lytvynenko, a Senior DevOps & Cloud Engineer. The site is a Progressive Web App (PWA) built with Next.js, React, TypeScript, and Tailwind CSS.
-
-**Live URL:** https://alytvynenko.net
+This is a personal portfolio website. The site is a Progressive Web App (PWA) built with Next.js, React, TypeScript, and Tailwind CSS.
 
 ## Tech Stack
 
@@ -148,7 +150,9 @@ This is a personal portfolio website for Andrii Lytvynenko, a Senior DevOps & Cl
 - **Preserve SEO elements** - meta tags, structured data
 - **Use WebP images** for all new image assets
 
-## Contact Information (For Context)
+## Customization Section (Replace When Rebuilding)
+
+Replace these values when rebuilding for a different person:
 
 - **Name:** Andrii Lytvynenko
 - **Title:** Senior DevOps & Cloud Engineer
