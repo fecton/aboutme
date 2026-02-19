@@ -84,7 +84,7 @@ export function CategorizedTagList({
 				aria-controls={contentId}
 				aria-label={isOpen ? `Collapse ${title}` : `Expand to show ${title}`}
 				id={triggerId}
-				className="group flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg py-1 font-medium text-foreground transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+				className="group flex min-h-[44px] min-w-[44px] w-full cursor-pointer items-center gap-2 rounded-lg py-2 font-medium text-foreground transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
 			>
 				<span>{title}</span>
 				<motion.span
