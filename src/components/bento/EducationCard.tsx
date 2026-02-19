@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { GlassCard } from "@/components/ui/GlassCard";
-import { ExpandableTagList } from "@/components/ui/ExpandableTagList";
+import { CategorizedTagList } from "@/components/ui/CategorizedTagList";
 import { educations } from "@/data/education";
 import { getIconForDiscipline } from "@/data/skillIcons";
 import { motion, useReducedMotion } from "framer-motion";
@@ -116,7 +116,7 @@ export function EducationCard() {
 							dangerouslySetInnerHTML={{ __html: edu.description }}
 						/>
 						{edu.disciplines && (
-							<ExpandableTagList
+							<CategorizedTagList
 								title="Courses & Disciplines"
 								items={[edu.disciplines]}
 								getIcon={getIconForDiscipline}

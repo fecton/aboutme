@@ -241,6 +241,110 @@ const AWS_SERVICES = new Set([
 	"MWAA",
 ]);
 
+/** Skill categories for grouped display (order preserved) */
+export const SKILL_CATEGORIES = [
+	{ id: "cloud", title: "Cloud & Infrastructure", order: 0 },
+	{ id: "iac", title: "Infrastructure as Code", order: 1 },
+	{ id: "containers", title: "Containers & Orchestration", order: 2 },
+	{ id: "cicd", title: "CI/CD & Automation", order: 3 },
+	{ id: "databases", title: "Databases", order: 4 },
+	{ id: "monitoring", title: "Monitoring & Observability", order: 5 },
+	{ id: "programming", title: "Programming & Scripting", order: 6 },
+	{ id: "web", title: "Web & Frontend", order: 7 },
+	{ id: "tools", title: "Tools & Platforms", order: 8 },
+	{ id: "other", title: "Other", order: 9 },
+] as const;
+
+/** Skill -> category id mapping */
+const skillCategoryMap: Record<string, string> = {
+	// Cloud
+	AWS: "cloud",
+	Azure: "cloud",
+	GCP: "cloud",
+	CloudFormation: "cloud",
+	ECS: "cloud",
+	CloudWatch: "cloud",
+	// IaC
+	Terraform: "iac",
+	Terragrunt: "iac",
+	Ansible: "iac",
+	// Containers
+	Kubernetes: "containers",
+	Docker: "containers",
+	"Docker Compose": "containers",
+	Helm: "containers",
+	// CI/CD
+	Jenkins: "cicd",
+	"GitHub Actions": "cicd",
+	"GitLab CI": "cicd",
+	Spinnaker: "cicd",
+	"Apache Airflow": "cicd",
+	// Databases
+	PostgreSQL: "databases",
+	MySQL: "databases",
+	Redis: "databases",
+	MongoDB: "databases",
+	InfluxDB: "databases",
+	MariaDB: "databases",
+	SQLite: "databases",
+	// Monitoring
+	Grafana: "monitoring",
+	Prometheus: "monitoring",
+	Datadog: "monitoring",
+	Dynatrace: "monitoring",
+	Splunk: "monitoring",
+	OpenTelemetry: "monitoring",
+	// Programming
+	Python: "programming",
+	Bash: "programming",
+	Groovy: "programming",
+	Java: "programming",
+	PowerShell: "programming",
+	C: "programming",
+	"C++": "programming",
+	Cpp: "programming",
+	".NET": "programming",
+	".NET Core": "programming",
+	"ASP.NET": "programming",
+	"Spring Boot": "programming",
+	Spring: "programming",
+	// Web
+	HTML: "web",
+	JavaScript: "web",
+	CSS: "web",
+	PHP: "web",
+	Laravel: "web",
+	jQuery: "web",
+	Django: "web",
+	Flask: "web",
+	// Tools
+	Git: "tools",
+	GitHub: "tools",
+	Nginx: "tools",
+	Apache: "tools",
+	Jira: "tools",
+	Confluence: "tools",
+	Gerrit: "tools",
+	"draw.io": "tools",
+	YAML: "tools",
+	JSON: "tools",
+	CMake: "tools",
+	VMware: "tools",
+	VirtualBox: "tools",
+	Ubuntu: "tools",
+	CentOS: "tools",
+	Linux: "tools",
+	Debian: "tools",
+	Arduino: "tools",
+	Kafka: "tools",
+	"Apache Kafka": "tools",
+	// Explicit uncategorized
+	"Version Control": "tools",
+	FinOps: "other",
+	MSSQL: "databases",
+	"SQL Server": "databases",
+};
+
 /** Alias map for discipline string variations (display text -> canonical key in skillIconMap) */
 const disciplineAliases: Record<string, string> = {
 	"Bash Shell": "Bash",
@@ -259,7 +363,59 @@ const disciplineAliases: Record<string, string> = {
 	"C Programming Language": "C",
 	"Microsoft Azure DevOps": "Azure",
 	"Microsoft Azure Pipelines": "Azure",
+	MSSQL: "SQL Server",
+	VMWare: "VMware",
+	"VMWare Linux": "VMware",
 };
+
+// Add AWS services to cloud category
+for (const svc of AWS_SERVICES) {
+	skillCategoryMap[svc] = "cloud";
+}
+
+/**
+ * Get category id for a discipline/skill string.
+ * Normalizes via alias and first token; returns "other" if unknown.
+ */
+export function getCategoryForDiscipline(item: string): string {
+	const trimmed = item.trim();
+	if (!trimmed) return "other";
+
+	// Exact match
+	const exact = skillCategoryMap[trimmed];
+	if (exact) return exact;
+
+	// Alias: resolve to canonical key, then lookup category
+	const alias = disciplineAliases[trimmed];
+	if (alias && skillCategoryMap[alias]) return skillCategoryMap[alias];
+
+	// First token (before space or parenthesis)
+	const firstToken = trimmed.split(/[\s(]/)[0]?.trim();
+	if (firstToken && skillCategoryMap[firstToken]) return skillCategoryMap[firstToken];
+
+	// AWS prefix or known AWS services
+	if (
+		trimmed.startsWith("AWS ") ||
+		trimmed.startsWith("AWS(") ||
+		trimmed.startsWith("Amazon ")
+	)
+		return "cloud";
+	if (AWS_SERVICES.has(trimmed) || AWS_SERVICES.has(firstToken || ""))
+		return "cloud";
+
+	return "other";
+}
+
+/**
+ * Get canonical form for a discipline (for deduplication).
+ * Returns alias target if mapped, otherwise the trimmed original.
+ */
+export function getCanonicalForDiscipline(item: string): string {
+	const trimmed = item.trim();
+	if (!trimmed) return "";
+	const alias = disciplineAliases[trimmed];
+	return alias ?? trimmed;
+}
 
 /**
  * Get icon for a discipline/skill string from experiences or education.

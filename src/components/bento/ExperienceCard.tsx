@@ -2,7 +2,7 @@
 
 import { GlassCard } from "@/components/ui/GlassCard";
 import { ExpandableDescription } from "@/components/ui/ExpandableDescription";
-import { ExpandableTagList } from "@/components/ui/ExpandableTagList";
+import { CategorizedTagList } from "@/components/ui/CategorizedTagList";
 import { experiences } from "@/data/experiences";
 import { getIconForDiscipline } from "@/data/skillIcons";
 import { motion, useReducedMotion } from "framer-motion";
@@ -112,7 +112,7 @@ export function ExperienceCard() {
 						<p className="mb-4 text-sm text-muted">{exp.dates}</p>
 						<ExpandableDescription html={exp.description} />
 						{exp.disciplines && (
-							<ExpandableTagList
+							<CategorizedTagList
 								title="Technologies & Skills"
 								items={[exp.disciplines]}
 								getIcon={getIconForDiscipline}
