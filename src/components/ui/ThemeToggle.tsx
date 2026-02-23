@@ -1,18 +1,15 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
+import { useIsMounted } from "@/lib/hooks";
 
 const THEME_TRANSITION_DURATION = 500;
 
 export function ThemeToggle() {
 	const { setTheme, resolvedTheme } = useTheme();
-	const [mounted, setMounted] = useState(false);
+	const mounted = useIsMounted();
 	const buttonRef = useRef<HTMLButtonElement>(null);
-
-	useEffect(() => {
-		setMounted(true);
-	}, []);
 
 	const handleToggle = async () => {
 		const isDark = resolvedTheme === "dark";

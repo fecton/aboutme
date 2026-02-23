@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -20,10 +20,11 @@ export function Navbar() {
 	const pathname = usePathname();
 	const { reduceEffects } = useReduceEffects();
 
-	// Close menu on route change or when clicking a link
-	useEffect(() => {
+	const [prevPathname, setPrevPathname] = useState(pathname);
+	if (prevPathname !== pathname) {
+		setPrevPathname(pathname);
 		setIsMenuOpen(false);
-	}, [pathname]);
+	}
 
 	const closeMenu = () => setIsMenuOpen(false);
 

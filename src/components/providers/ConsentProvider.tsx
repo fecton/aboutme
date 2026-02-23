@@ -1,31 +1,47 @@
 "use client";
 
 import Script from "next/script";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useSyncExternalStore } from "react";
 import { CookieConsentBanner, CONSENT_KEY } from "@/components/ui/CookieConsentBanner";
 import { GA_MEASUREMENT_ID } from "@/lib/analytics";
+import { useIsMounted } from "@/lib/hooks";
 
 type ConsentStatus = "accepted" | "rejected" | null;
 
-function getStoredConsent(): ConsentStatus {
-	if (typeof window === "undefined") return null;
+const consentListeners = new Set<() => void>();
+
+function subscribeToConsent(callback: () => void) {
+	consentListeners.add(callback);
+	return () => {
+		consentListeners.delete(callback);
+	};
+}
+
+function getConsentSnapshot(): ConsentStatus {
 	const stored = localStorage.getItem(CONSENT_KEY);
 	if (stored === "accepted" || stored === "rejected") return stored;
 	return null;
 }
 
-export function ConsentProvider({ children }: { children: React.ReactNode }) {
-	const [consent, setConsentState] = useState<ConsentStatus>(null);
-	const [mounted, setMounted] = useState(false);
+function getConsentServerSnapshot(): ConsentStatus {
+	return null;
+}
 
-	useEffect(() => {
-		setConsentState(getStoredConsent());
-		setMounted(true);
-	}, []);
+function setStoredConsent(value: "accepted" | "rejected") {
+	localStorage.setItem(CONSENT_KEY, value);
+	consentListeners.forEach((cb) => cb());
+}
+
+export function ConsentProvider({ children }: { children: React.ReactNode }) {
+	const mounted = useIsMounted();
+	const consent = useSyncExternalStore(
+		subscribeToConsent,
+		getConsentSnapshot,
+		getConsentServerSnapshot,
+	);
 
 	const setConsent = useCallback((value: "accepted" | "rejected") => {
-		localStorage.setItem(CONSENT_KEY, value);
-		setConsentState(value);
+		setStoredConsent(value);
 	}, []);
 
 	return (
