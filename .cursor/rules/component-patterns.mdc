@@ -1,0 +1,63 @@
+---
+description: React component patterns - server vs client, animation hooks, color tokens
+globs: "**/*.tsx"
+alwaysApply: false
+---
+
+# Component Patterns
+
+## Server vs Client Components
+
+Only add `"use client"` when the component uses hooks, event handlers, browser APIs, or Framer Motion.
+
+**Server components** (no `"use client"`):
+- Static layout wrappers (e.g., `BentoGrid`)
+- Components rendering only data and child client components (e.g., `AboutCard`, `Footer`)
+
+**Client components** (need `"use client"`):
+- Components using `useState`, `useEffect`, `useReduceEffects`, `useReducedMotion`
+- Components with `onClick`, `onSubmit`, or other event handlers
+- Components using `motion.*` from Framer Motion
+
+## Reduced Motion Pattern
+
+Every animated component must support the app's LiteMode toggle AND the browser's `prefers-reduced-motion`:
+
+```tsx
+const { reduceEffects } = useReduceEffects();
+const prefersReducedMotion = useReducedMotion();
+const skipAnimations = reduceEffects || prefersReducedMotion;
+
+// Usage with Framer Motion:
+initial={skipAnimations ? false : { opacity: 0, y: 20 }}
+animate={skipAnimations ? { opacity: 1, y: 0 } : undefined}
+whileInView={skipAnimations ? undefined : { opacity: 1, y: 0 }}
+```
+
+Avoid Tailwind CSS animations (like `animate-pulse`) for elements that should respect LiteMode -- they only respond to the browser media query, not the React context.
+
+## Color Tokens
+
+All colors must go through CSS variables or the Tailwind theme. Never hardcode hex values in components.
+
+```tsx
+// WRONG: hardcoded color
+className="bg-[#3366CC] text-[#ffffff]"
+
+// CORRECT: theme token
+className="bg-accent text-white"
+```
+
+Status badges (earned/planned, current/remote) use Tailwind semantic colors (`green`, `blue`, `amber`) with explicit `dark:` variants. These are acceptable exceptions to the CSS variable rule.
+
+## Heading Hierarchy
+
+Inside bento cards with an `<h2>` section title, sub-items must use `<h3>`, never `<h4>`. The hierarchy is: page `h1` (hero) -> card `h2` -> sub-items `h3`.
+
+## Decorative SVGs
+
+All decorative SVGs must have `aria-hidden` attribute:
+
+```tsx
+<svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
+```

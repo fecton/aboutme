@@ -31,29 +31,40 @@ Use this guide to scaffold and configure a similar portfolio from scratch.
 
 ## Configuration Files
 
-### next.config.js
+### next.config.ts
 
-```javascript
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+```typescript
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,
   images: {
     unoptimized: true,
   },
 };
-module.exports = nextConfig;
+
+export default nextConfig;
 ```
 
 ### tailwind.config.ts
 
 - Set `darkMode: "class"`
-- Extend theme: colors (background, foreground, muted, surface, border, accent), fontFamily, backdropBlur, animation, keyframes
-- Content paths: `./src/pages/**/*`, `./src/components/**/*`, `./src/app/**/*`
+- All colors via CSS variables: `accent: { DEFAULT: "var(--color-accent)", dark: "var(--color-accent-dark)", light: "var(--color-accent-light)" }`
+- Content paths: `./src/components/**/*`, `./src/app/**/*` (no `src/pages/`)
 
 ### tsconfig.json
 
-- Add path alias: `"@/*": ["./src/*"]`
+- `"jsx": "preserve"` (Next.js SWC handles JSX)
+- Path alias: `"@/*": ["./src/*"]`
+
+### eslint.config.mjs
+
+- Flat config extending `eslint-config-next/core-web-vitals`
+
+### postcss.config.mjs
+
+- Plugins: `tailwindcss` and `autoprefixer`
 
 ## Providers Setup
 
@@ -88,8 +99,8 @@ Include skip link, JSON-LD scripts, and preconnect/dns-prefetch in layout.
 
 ### Workflow (.github/workflows/deploy.yml)
 
-- Trigger: push to `main`, `develop`
-- Steps: checkout, setup-node (v20, cache npm), npm ci, npm run build
+- Trigger: push to `main` only
+- Steps: checkout, setup-node (v20, cache npm), npm ci, lint, type check, build
 - Deploy: peaceiris/actions-gh-pages, publish_dir: `./out`
 
 ### Repo Settings
@@ -126,5 +137,5 @@ Update in `public/manifest.json`:
 ## Brand Customization
 
 - **globals.css**: `:root` and `:root.dark` CSS variables (--color-background, --color-foreground, --color-accent, --mesh-gradient)
-- **tailwind.config.ts**: theme.extend.colors (accent, accent-dark, accent-light)
+- **tailwind.config.ts**: theme.extend.colors via CSS variables (accent.DEFAULT, accent.dark, accent.light)
 - **manifest.json**: theme_color, background_color

@@ -81,8 +81,10 @@ This is a personal portfolio website. The site is a Progressive Web App (PWA) bu
 /
 ├── src/
 │   ├── app/               # Next.js App Router (layout, page, globals.css)
-│   ├── components/        # React components (layout, bento, hero, ui)
-│   └── data/              # TypeScript data (certificates, education, experiences, profile)
+│   ├── components/        # React components (layout, bento, hero, ui, providers)
+│   ├── data/              # TypeScript data (certificates, education, experiences, profile)
+│   ├── lib/               # Shared utilities (animations.ts, iconPaths.ts, analytics.ts)
+│   └── types/             # TypeScript declarations
 ├── public/                # Static assets (images, pdf, CNAME, .nojekyll)
 ├── tools/
 │   └── png_to_webp.py     # Image optimization

@@ -4,12 +4,7 @@ import { GlassCard } from "@/components/ui/GlassCard";
 import { certificates } from "@/data/certificates";
 import { motion, useReducedMotion } from "framer-motion";
 import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
-
-const springTransition = {
-	type: "spring" as const,
-	stiffness: 300,
-	damping: 30,
-};
+import { springTransition } from "@/lib/animations";
 
 export function CertificationsCard() {
 	const { reduceEffects } = useReduceEffects();
@@ -69,10 +64,10 @@ export function CertificationsCard() {
 											className="rounded-lg"
 										/>
 									</div>
-									<h4 className="mb-2 text-center text-sm font-medium text-foreground">
+									<h3 className="mb-2 text-center text-sm font-medium text-foreground">
 										{cert.title}
-									</h4>
-									<span className="mt-auto inline-block rounded-lg bg-accent/25 px-3 py-1.5 text-center text-xs font-medium text-accent-dark dark:bg-accent/50 dark:text-accent-light group-hover:bg-accent/35 dark:group-hover:bg-accent/65 group-hover:underline">
+									</h3>
+									<span className="mt-auto inline-block rounded-full bg-blue-200 px-3 py-1.5 text-center text-xs font-medium text-blue-800 dark:bg-blue-900/95 dark:text-blue-100 group-hover:bg-blue-300 dark:group-hover:bg-blue-800/95 group-hover:underline">
 										Verify
 									</span>
 								</a>
@@ -88,9 +83,9 @@ export function CertificationsCard() {
 											className="rounded-lg"
 										/>
 									</div>
-									<h4 className="mb-2 text-center text-sm font-medium text-foreground">
+									<h3 className="mb-2 text-center text-sm font-medium text-foreground">
 										{cert.title}
-									</h4>
+									</h3>
 									{isPlanned && (
 										<p className="mt-auto text-center text-xs text-muted">
 											Target: {cert.planned_year}

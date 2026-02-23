@@ -7,12 +7,7 @@ import { experiences } from "@/data/experiences";
 import { getIconForDiscipline } from "@/data/skillIcons";
 import { motion, useReducedMotion } from "framer-motion";
 import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
-
-const springTransition = {
-	type: "spring" as const,
-	stiffness: 300,
-	damping: 30,
-};
+import { springTransition } from "@/lib/animations";
 
 export function ExperienceCard() {
 	const { reduceEffects } = useReduceEffects();

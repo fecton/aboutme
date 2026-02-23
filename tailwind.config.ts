@@ -3,7 +3,6 @@ import type { Config } from "tailwindcss";
 const config: Config = {
 	darkMode: "class",
 	content: [
-		"./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
 		"./src/components/**/*.{js,ts,jsx,tsx,mdx}",
 		"./src/app/**/*.{js,ts,jsx,tsx,mdx}",
 	],
@@ -18,11 +17,11 @@ const config: Config = {
 					hover: "var(--color-surface-hover)",
 				},
 				border: "var(--color-border)",
-				"apple-dark": "#1c1c1e",
-				"apple-gray": "#a1a1a6",
-				accent: "#3366CC",
-				"accent-dark": "#204090",
-				"accent-light": "var(--color-accent-light)",
+				accent: {
+					DEFAULT: "var(--color-accent)",
+					dark: "var(--color-accent-dark)",
+					light: "var(--color-accent-light)",
+				},
 			},
 			fontFamily: {
 				sans: [
@@ -32,12 +31,6 @@ const config: Config = {
 					"Segoe UI",
 					"sans-serif",
 				],
-			},
-			backdropBlur: {
-				glass: "20px",
-			},
-			borderColor: {
-				glass: "rgba(255, 255, 255, 0.1)",
 			},
 			animation: {
 				"fade-in": "fadeIn 0.6s ease-out forwards",
