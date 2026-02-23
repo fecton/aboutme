@@ -7,14 +7,7 @@ import {
 	getCanonicalForDiscipline,
 	SKILL_CATEGORIES,
 } from "@/data/skillIcons";
-
-const springTransition = {
-	type: "spring" as const,
-	stiffness: 180,
-	damping: 28,
-};
-
-const instantTransition = { duration: 0 };
+import { softSpringTransition as springTransition, instantTransition } from "@/lib/animations";
 
 interface CategorizedTagListProps {
 	title: string;

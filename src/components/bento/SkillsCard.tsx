@@ -5,12 +5,7 @@ import { profile } from "@/data/profile";
 import { skillIconMap } from "@/data/skillIcons";
 import { motion, useReducedMotion } from "framer-motion";
 import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
-
-const springTransition = {
-	type: "spring" as const,
-	stiffness: 300,
-	damping: 30,
-};
+import { springTransition } from "@/lib/animations";
 
 const iconPaths: Record<string, string> = {
 	cloud: "M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z",
@@ -42,7 +37,7 @@ export function SkillsCard() {
 						viewport={{ once: true }}
 						transition={{ ...springTransition, delay: categoryIndex * 0.05 }}
 					>
-						<h4 className="mb-3 flex items-center gap-2 font-semibold text-foreground">
+						<h3 className="mb-3 flex items-center gap-2 font-semibold text-foreground">
 							<svg
 								className="h-4 w-4 text-accent"
 								fill="currentColor"
@@ -51,15 +46,20 @@ export function SkillsCard() {
 								<path d={iconPaths[category.icon] || ""} />
 							</svg>
 							{category.title}
-						</h4>
-						<div className="flex flex-wrap gap-2">
-							{category.skills.map((skill) => {
-								const iconData = skillIconMap[skill];
-								return (
-									<span
-										key={skill}
-										className="flex items-center gap-1.5 rounded-lg px-2 py-1 text-sm border border-border bg-surface text-muted"
-									>
+						</h3>
+					<div className="flex flex-wrap gap-2">
+						{category.skills.map((skill) => {
+							const iconData = skillIconMap[skill];
+							const isPrimary = category.primary?.includes(skill);
+							return (
+								<span
+									key={skill}
+									className={`flex items-center gap-1.5 rounded-lg px-2 py-1 text-sm border ${
+										isPrimary
+											? "border-accent/30 bg-accent/10 text-foreground font-medium"
+											: "border-border bg-surface text-muted"
+									}`}
+								>
 										{iconData && (
 											<svg
 												className="h-3.5 w-3.5 shrink-0"

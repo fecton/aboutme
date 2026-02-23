@@ -1,0 +1,56 @@
+---
+description: Configuration standards - Next.js, Tailwind, ESLint, TypeScript, CI/CD
+globs:
+  - "next.config*"
+  - "tailwind.config*"
+  - "tsconfig*"
+  - "eslint.config*"
+  - "postcss.config*"
+  - ".github/**"
+alwaysApply: false
+---
+
+# Configuration Standards
+
+## Next.js Config
+
+- File must be `next.config.ts` (TypeScript, ESM), not `.js` or `.mjs`
+- Use `import type { NextConfig }` and `export default`
+
+## Tailwind Config
+
+- All theme colors must reference CSS variables, never hardcoded hex:
+
+```typescript
+colors: {
+  accent: {
+    DEFAULT: "var(--color-accent)",
+    dark: "var(--color-accent-dark)",
+    light: "var(--color-accent-light)",
+  },
+}
+```
+
+- Content paths: only `./src/components/**/*` and `./src/app/**/*` (no `src/pages/`)
+- Remove unused theme extensions; don't add values that components use via arbitrary values
+
+## TypeScript Config
+
+- `"jsx": "preserve"` (Next.js SWC handles transformation)
+- Path alias: `"@/*": ["./src/*"]`
+
+## ESLint
+
+- Uses flat config: `eslint.config.mjs`
+- Extends `eslint-config-next/core-web-vitals` natively (no `FlatCompat` wrapper)
+- Lint script: `"lint": "eslint ."`
+
+## PostCSS
+
+- Must include both `tailwindcss` and `autoprefixer` plugins
+
+## CI/CD (GitHub Actions)
+
+- Deploy only from `main` branch (never `develop` or feature branches)
+- Pipeline must include: `npm ci` -> `npm run lint` -> `npx tsc --noEmit` -> `npm run build` -> deploy
+- Pin Node version to match `.nvmrc` (currently 20)

@@ -2,14 +2,7 @@
 
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useState } from "react";
-
-const springTransition = {
-	type: "spring" as const,
-	stiffness: 180,
-	damping: 28,
-};
-
-const instantTransition = { duration: 0 };
+import { softSpringTransition as springTransition, instantTransition } from "@/lib/animations";
 
 interface ExpandableTagListProps {
 	title: string;

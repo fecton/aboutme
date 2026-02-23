@@ -4,12 +4,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { profile } from "@/data/profile";
 import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
-
-const springTransition = {
-	type: "spring" as const,
-	stiffness: 300,
-	damping: 30,
-};
+import { springTransition } from "@/lib/animations";
 
 const containerVariants = {
 	hidden: { opacity: 0 },

@@ -4,12 +4,7 @@ import { GlassCard } from "@/components/ui/GlassCard";
 import { profile } from "@/data/profile";
 import { motion, useReducedMotion } from "framer-motion";
 import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
-
-const springTransition = {
-	type: "spring" as const,
-	stiffness: 300,
-	damping: 30,
-};
+import { springTransition } from "@/lib/animations";
 
 const highlightIconPaths: Record<string, string> = {
 	briefcase:

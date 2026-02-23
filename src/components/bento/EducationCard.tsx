@@ -7,15 +7,10 @@ import { educations } from "@/data/education";
 import { getIconForDiscipline } from "@/data/skillIcons";
 import { motion, useReducedMotion } from "framer-motion";
 import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
+import { springTransition } from "@/lib/animations";
 
 const DIPLOMA_VIEWER_PATH = "/pdf/diploma.pdf";
 const DIPLOMA_SUPPLEMENT_VIEWER_PATH = "/pdf/diploma-suplement.pdf";
-
-const springTransition = {
-	type: "spring" as const,
-	stiffness: 300,
-	damping: 30,
-};
 
 export function EducationCard() {
 	const { reduceEffects } = useReduceEffects();

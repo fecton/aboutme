@@ -1,0 +1,42 @@
+---
+description: Shared modules and DRY patterns - animations, icons, and reusable constants
+globs:
+  - "**/*.ts"
+  - "**/*.tsx"
+alwaysApply: false
+---
+
+# Shared Modules
+
+## Animation Constants
+
+All animation transitions live in `src/lib/animations.ts`. Never define `springTransition` or `instantTransition` locally in a component.
+
+```typescript
+// src/lib/animations.ts exports:
+import { springTransition } from "@/lib/animations";              // stiffness: 300, damping: 30
+import { softSpringTransition } from "@/lib/animations";          // stiffness: 180, damping: 28
+import { softSpringTransition as springTransition } from "@/lib/animations"; // alias for expandable UI
+import { instantTransition } from "@/lib/animations";             // { duration: 0 }
+```
+
+- **`springTransition`**: Default for cards, hero, layout animations
+- **`softSpringTransition`**: For expandable/collapsible UI (tag lists, descriptions)
+- **`instantTransition`**: For reduced-motion fallbacks
+
+## Icon Paths
+
+Social media SVG paths live in `src/lib/iconPaths.ts`. Never duplicate icon path strings across components.
+
+```typescript
+import { socialIconPaths } from "@/lib/iconPaths";
+// Keys: email, facebook, instagram, github, linkedin, telegram, whatsapp
+```
+
+## Skill Icons
+
+Technology/skill icons live in `src/data/skillIcons.ts` using the `simple-icons` package. When adding a new skill:
+1. Import from `simple-icons` if available
+2. Add to `skillIconMap`
+3. Add to `skillCategoryMap` for categorized display
+4. Add alias in `disciplineAliases` if the skill appears with variant names in data

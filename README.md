@@ -2,11 +2,11 @@
 
 > https://alytvynenko.net
 
-Senior DevOps & Cloud Engineer portfolio built with Next.js 14, Tailwind CSS, and Framer Motion. Features an Apple/Telegram-inspired design with glassmorphism, bento grid layout, and dark mode.
+Senior DevOps & Cloud Engineer portfolio built with Next.js 16, Tailwind CSS, and Framer Motion. Features an Apple/Telegram-inspired design with glassmorphism, bento grid layout, and dark mode.
 
 ## Tech Stack
 
-- **Framework:** Next.js 14 (App Router)
+- **Framework:** Next.js 16 (App Router)
 - **Styling:** Tailwind CSS
 - **Animation:** Framer Motion
 - **Language:** TypeScript
@@ -30,7 +30,7 @@ Static export outputs to the `out/` directory.
 
 ## Deployment
 
-The site deploys to GitHub Pages via GitHub Actions on push to `main` or `develop` branches.
+The site deploys to GitHub Pages via GitHub Actions on push to the `main` branch.
 
 **Setup:**
 1. Go to repo **Settings** → **Pages**

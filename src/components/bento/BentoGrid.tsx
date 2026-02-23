@@ -1,12 +1,9 @@
-"use client";
-
 import { AboutCard } from "./AboutCard";
 import { HighlightsCard } from "./HighlightsCard";
 import { SkillsCard } from "./SkillsCard";
 import { CertificationsCard } from "./CertificationsCard";
 import { EducationCard } from "./EducationCard";
 import { ExperienceCard } from "./ExperienceCard";
-// import { PortfolioCard } from "./PortfolioCard";
 import { ContactCard } from "./ContactCard";
 
 export function BentoGrid() {
@@ -42,11 +39,6 @@ export function BentoGrid() {
 				<section aria-label="Experience" className="w-full" id="experience">
 					<ExperienceCard />
 				</section>
-
-				{/* Portfolio - disabled for now */}
-				{/* <section aria-label="Portfolio" className="w-full" id="portfolio">
-					<PortfolioCard />
-				</section> */}
 
 				{/* Education */}
 				<section aria-label="Education" className="w-full">

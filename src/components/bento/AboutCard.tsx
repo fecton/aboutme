@@ -1,5 +1,3 @@
-"use client";
-
 import { GlassCard } from "@/components/ui/GlassCard";
 import { profile } from "@/data/profile";
 

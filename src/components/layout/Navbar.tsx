@@ -11,7 +11,6 @@ import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
 const navLinks = [
 	{ href: "/#about", label: "About" },
 	{ href: "/#experience", label: "Experience" },
-	// { href: "/#portfolio", label: "Portfolio" },
 	{ href: "/#contact", label: "Contact" },
 	{ href: "/privacy-policy", label: "Privacy" },
 ];
