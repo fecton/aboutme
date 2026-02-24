@@ -34,7 +34,9 @@ function truncatePlainText(html: string, maxChars: number): {
 	if (stripped.length <= maxChars) {
 		return { truncated: html, full: html, needsExpand: false };
 	}
-	const truncated = stripped.slice(0, maxChars).trim() + "…";
+	const rough = stripped.slice(0, maxChars);
+	const lastSpace = rough.lastIndexOf(" ");
+	const truncated = (lastSpace > 0 ? rough.slice(0, lastSpace) : rough).trim() + "…";
 	return {
 		truncated: `<p>${truncated}</p>`,
 		full: html,
@@ -53,7 +55,10 @@ function getAdditionalListItems(html: string, maxBullets: number): string[] {
 function getAdditionalPlainHtml(html: string, maxChars: number): string | null {
 	const stripped = html.replace(/<[^>]*>/g, "").trim();
 	if (stripped.length <= maxChars) return null;
-	const additional = stripped.slice(maxChars).trim();
+	const rough = stripped.slice(0, maxChars);
+	const lastSpace = rough.lastIndexOf(" ");
+	const splitAt = lastSpace > 0 ? lastSpace : maxChars;
+	const additional = stripped.slice(splitAt).trim();
 	return additional ? `<p>${additional}</p>` : null;
 }
 
@@ -87,7 +92,7 @@ export function ExpandableDescription({
 	if (!html.trim()) return null;
 
 	const proseClass =
-		"prose prose-sm dark:prose-invert max-w-none text-muted [&_ul]:list-disc [&_ul]:pl-6 [&_li]:mb-1";
+		"prose prose-sm dark:prose-invert max-w-none text-muted [&_ul]:list-disc [&_ul]:pl-6 [&_li]:mb-1 [&_a]:text-accent [&_a]:underline [&_a]:transition-colors hover:[&_a]:text-accent-dark dark:hover:[&_a]:text-accent-light";
 
 	return (
 		<div className={className}>

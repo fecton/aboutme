@@ -100,8 +100,12 @@ export const experiences: Experience[] = [
 		client_link: "",
 		dates: "2021 January - 2023 January",
 		present: false,
-		description:
-			"AWS/Azure Cloud engineering, Delivering continuous integration and deployment using GitOps and Cloud platforms. Automating processes with Jenkins, Terraform, Ansible, and Docker containerization. Operating different distributions like CentOS and Ubuntu administering and writing bash scripts for making backups, and auto-setup scripts for the Linux environment. Worked with different Python frameworks (Flask, Aiogram, Tkinter, etc.)",
+		description: `<ul>
+<li>Performed AWS and Azure cloud engineering, delivering continuous integration and deployment pipelines using GitOps practices and cloud platforms.</li>
+<li>Automated infrastructure provisioning and configuration management with Jenkins, Terraform, Ansible, and Docker containerization.</li>
+<li>Administered Linux servers (CentOS, Ubuntu), writing Bash scripts for automated backups and environment setup.</li>
+<li>Developed applications and automation tools using Python frameworks (Flask, Aiogram, Tkinter).</li>
+</ul>`,
 		disciplines:
 			"Amazon DynamoDB, Amazon EC2, Amazon Elastic Container Registry (ECR), Amazon Elastic Kubernetes Service (Amazon EKS), Amazon Relational Database Service (RDS), Amazon S3, Amazon VPC (Virtual Private Cloud), Ansible, AWS, AWS Lambda, C Programming Language, C#, C++, CentOS, CI/CD, CI/CD Fundamentals, CMake, Configuration Management, Continuous Deployment, Continuous Integration, Database Administration, Debian GNU/Linux, DevOps Fundamentals, DevOps Tools, Django, Docker, Docker Compose, Firewalls, Flask, Git, GITBash, GitHub, GitHub Actions, GitHub CI, Google Test, HashiCorp Terraform, Jenkins, Jenkins Pipeline, Kubernetes, Linux, Linux Virtualization, Load Balancing, MariaDB, Microservices, Microsoft Azure DevOps, Microsoft Azure Pipelines, Microsoft Visual Studio, Microsoft Windows, Microsoft Windows 10, MongoDB, MySQL, PostgreSQL, Python, Python Testing, Redis, SQL, SQLite, Version Control, VirtualBox, VM, VMware, VMWare Linux, VPN, Vulnerability Scanners, YAML.",
 	},
