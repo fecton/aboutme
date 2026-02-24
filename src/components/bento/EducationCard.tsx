@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { GlassCard } from "@/components/ui/GlassCard";
+import { ExpandableDescription } from "@/components/ui/ExpandableDescription";
 import { CategorizedTagList } from "@/components/ui/CategorizedTagList";
 import { educations } from "@/data/education";
 import { getIconForDiscipline } from "@/data/skillIcons";
@@ -106,10 +107,7 @@ export function EducationCard() {
 									))}
 							</div>
 						)}
-						<div
-							className="prose prose-sm dark:prose-invert max-w-none text-muted"
-							dangerouslySetInnerHTML={{ __html: edu.description }}
-						/>
+					<ExpandableDescription html={edu.description} />
 						{edu.disciplines && (
 							<CategorizedTagList
 								title="Courses & Disciplines"
