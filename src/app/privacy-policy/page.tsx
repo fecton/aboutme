@@ -80,8 +80,10 @@ export default function PrivacyPolicyPage() {
 							</h2>
 							<p>The data controller responsible for your personal data is:</p>
 							<div className="my-6 rounded-xl border-l-4 border-accent bg-surface p-6">
-								<p className="font-semibold text-foreground">Andrii Lytvynenko</p>
-								<p className="text-muted">Czestochowa, Poland</p>
+								<p className="font-semibold text-foreground">Andrii Lytvynenko Tech Solutions</p>
+								<p className="text-muted">NIP: 9492279891</p>
+								<p className="text-muted">REGON: 543171480</p>
+								<p className="text-muted">Registered Address: Czestochowa, Poland</p>
 								<p className="text-muted">
 									<a
 										href="mailto:a.v.lytvynenko2004@gmail.com"
@@ -115,6 +117,9 @@ export default function PrivacyPolicyPage() {
 								<li>
 									<strong className="text-foreground">Technical Data:</strong> IP
 									address (anonymized), referring URL, date and time of visit
+								</li>
+								<li>
+									<strong className="text-foreground">Server Logs:</strong> Standard website server logs, including public IP addresses, browser information, time of request, and HTTP response codes. This technical data is collected specifically for the security and technical functioning of the website.
 								</li>
 								<li>
 									<strong className="text-foreground">Location Data:</strong> General
@@ -154,8 +159,8 @@ export default function PrivacyPolicyPage() {
 								information.
 							</div>
 							<p>
-								Google may transfer this data to servers in the United States.
-								Google is certified under the EU-U.S. Data Privacy Framework.
+								Google may transfer this data to servers located in the United States.
+								To ensure the protection of your personal data during these cross-border transfers, Google relies on the EU-U.S. Data Privacy Framework certification and Standard Contractual Clauses (SCCs) approved by the European Commission.
 							</p>
 							<p>
 								Learn more:{" "}
@@ -261,16 +266,16 @@ export default function PrivacyPolicyPage() {
 							</p>
 							<ul className="list-disc space-y-2 pl-6 text-muted">
 								<li>
-									<strong className="text-foreground">Legitimate Interest (Art.
-									6(1)(f) GDPR):</strong> For analytics purposes to improve the
-									Website and understand visitor behavior. I have conducted a
-									balancing test to ensure my interests do not override your
-									rights.
-								</li>
-								<li>
 									<strong className="text-foreground">Contract Performance (Art.
 									6(1)(b) GDPR):</strong> When you contact me regarding potential
-									B2B collaboration or services.
+									B2B collaboration or services, processing is necessary for taking steps prior to entering a contract.
+								</li>
+								<li>
+									<strong className="text-foreground">Legitimate Interest (Art.
+									6(1)(f) GDPR):</strong> For analytics purposes to improve the
+									Website and understand visitor behavior, and for processing B2B inquiries as part of my legitimate business interests. I have conducted a
+									balancing test to ensure my interests do not override your
+									rights.
 								</li>
 								<li>
 									<strong className="text-foreground">Consent (Art. 6(1)(a)
@@ -322,13 +327,13 @@ export default function PrivacyPolicyPage() {
 							<p>
 								Your data may be transferred to and processed in countries
 								outside the European Economic Area (EEA), particularly the
-								United States. When such transfers occur, I ensure appropriate
-								safeguards are in place:
+								United States (e.g., through Google Analytics). When such transfers occur, I ensure appropriate
+								safeguards are in place to protect your European users' data:
 							</p>
 							<ul className="list-disc space-y-2 pl-6 text-muted">
-								<li>EU-U.S. Data Privacy Framework certification (Google)</li>
+								<li>EU-U.S. Data Privacy Framework certification (e.g., Google LLC)</li>
 								<li>
-									Standard Contractual Clauses approved by the European
+									Standard Contractual Clauses (SCCs) approved by the European
 									Commission
 								</li>
 							</ul>
@@ -348,11 +353,11 @@ export default function PrivacyPolicyPage() {
 								<li>
 									<strong className="text-foreground">Email Communications:</strong>{" "}
 									As long as necessary for business purposes or as required by
-									law
+									law. For B2B inquiries where a professional contract is not ultimately signed, communications are retained for 12 months after the last communication.
 								</li>
 								<li>
 									<strong className="text-foreground">Server Logs:</strong> Typically
-									90 days
+									90 days, retained specifically for the security and technical functioning of the website
 								</li>
 							</ul>
 
@@ -411,7 +416,7 @@ export default function PrivacyPolicyPage() {
 								<strong className="text-foreground">
 									President of the Personal Data Protection Office (UODO)
 								</strong>
-								:{" "}
+								: ul. Stanisława Moniuszki 1A, 00-014 Warsaw. Website:{" "}
 								<a
 									href="https://uodo.gov.pl"
 									target="_blank"
@@ -478,7 +483,10 @@ export default function PrivacyPolicyPage() {
 								Privacy Policy or your personal data, please contact me:
 							</p>
 							<div className="my-6 rounded-xl border-l-4 border-accent bg-surface p-6">
-								<p className="font-semibold text-foreground">Andrii Lytvynenko</p>
+								<p className="font-semibold text-foreground">Andrii Lytvynenko Tech Solutions</p>
+								<p className="text-muted">NIP: 9492279891</p>
+								<p className="text-muted">REGON: 543171480</p>
+								<p className="text-muted">Registered Address: Czestochowa, Poland</p>
 								<p className="text-muted">
 									Email:{" "}
 									<a
