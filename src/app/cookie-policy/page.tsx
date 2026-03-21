@@ -77,8 +77,10 @@ export default function CookiePolicyPage() {
 							</h2>
 							<p>The data controller responsible for cookies on this Website is:</p>
 							<div className="my-6 rounded-xl border-l-4 border-accent bg-surface p-6">
-								<p className="font-semibold text-foreground">Andrii Lytvynenko</p>
-								<p className="text-muted">Czestochowa, Poland</p>
+								<p className="font-semibold text-foreground">Andrii Lytvynenko Tech Solutions</p>
+								<p className="text-muted">NIP: 9492279891</p>
+								<p className="text-muted">REGON: 543171480</p>
+								<p className="text-muted">Registered Address: Czestochowa, Poland</p>
 								<p className="text-muted">
 									<a
 										href="mailto:a.v.lytvynenko2004@gmail.com"
@@ -131,7 +133,7 @@ export default function CookiePolicyPage() {
 												<code className="text-foreground">theme</code>
 											</td>
 											<td className="border border-border px-4 py-3 text-muted">
-												Stores your light/dark theme preference (localStorage)
+												Technical session management: Stores your light/dark theme preference (localStorage)
 											</td>
 											<td className="border border-border px-4 py-3 text-muted">
 												Persistent
@@ -142,10 +144,10 @@ export default function CookiePolicyPage() {
 												<code className="text-foreground">cookie-consent</code>
 											</td>
 											<td className="border border-border bg-surface px-4 py-3 text-muted">
-												Stores your cookie consent choice (localStorage)
+												Technical session management: Stores your cookie consent choice (localStorage)
 											</td>
 											<td className="border border-border bg-surface px-4 py-3 text-muted">
-												Persistent
+												Persistent (1 year)
 											</td>
 										</tr>
 									</tbody>
@@ -181,7 +183,7 @@ export default function CookiePolicyPage() {
 												<code className="text-foreground">_ga</code>
 											</td>
 											<td className="border border-border px-4 py-3 text-muted">
-												Distinguishes unique users
+												Analytics: Used to distinguish unique users and calculate visitor, session, and campaign data for the site's analytics reports.
 											</td>
 											<td className="border border-border px-4 py-3 text-muted">
 												2 years
@@ -192,7 +194,7 @@ export default function CookiePolicyPage() {
 												<code className="text-foreground">_ga_*</code>
 											</td>
 											<td className="border border-border bg-surface px-4 py-3 text-muted">
-												Persists session state (e.g.{" "}
+												Analytics: Used to persist session state and maintain session status (e.g.{" "}
 												<code className="text-foreground">_ga_G-LKHDQT8Z81</code>)
 											</td>
 											<td className="border border-border bg-surface px-4 py-3 text-muted">
