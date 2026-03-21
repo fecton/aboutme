@@ -174,6 +174,12 @@ export default function RootLayout({
 			<head>
 				<link rel="preconnect" href="https://www.googletagmanager.com" />
 				<link rel="dns-prefetch" href="https://www.google-analytics.com" />
+				<link
+					rel="alternate"
+					type="application/rss+xml"
+					title="Andrii Lytvynenko - Blog"
+					href="/blog/rss.xml"
+				/>
 				{/* Strip Dark Reader / extension-injected attributes before React hydrates to avoid hydration mismatch */}
 				<script
 					dangerouslySetInnerHTML={{

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Andrii Lytvynenko - DevOps &amp; Cloud Engineering Blog</title>
+        <link>https://alytvynenko.net/blog/</link>
+        <description>Articles on DevOps, Cloud Engineering, Kubernetes, AWS, Terraform, and infrastructure best practices.</description>
+        <lastBuildDate>Tue, 24 Feb 2026 01:38:01 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <image>
+            <title>Andrii Lytvynenko - DevOps &amp; Cloud Engineering Blog</title>
+            <url>https://alytvynenko.net/images/tm-easy-profile.webp</url>
+            <link>https://alytvynenko.net/blog/</link>
+        </image>
+        <copyright>All rights reserved 2026, Andrii Lytvynenko</copyright>
+        <item>
+            <title><![CDATA[Building a DevOps Blog with Next.js and MDX]]></title>
+            <link>https://alytvynenko.net/blog/hello-world/</link>
+            <guid isPermaLink="false">https://alytvynenko.net/blog/hello-world/</guid>
+            <pubDate>Tue, 24 Feb 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[How I built a static blog into my portfolio using Next.js App Router, MDX, and GitHub Pages — with a path toward paid content.]]></description>
+            <author>a.v.lytvynenko2004@gmail.com (Andrii Lytvynenko)</author>
+        </item>
+    </channel>
+</rss>

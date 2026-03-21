@@ -4,7 +4,7 @@ import { GlassCard } from "@/components/ui/GlassCard";
 import { profile } from "@/data/profile";
 import { motion, useReducedMotion } from "framer-motion";
 import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
-import { springTransition } from "@/lib/animations";
+import { springTransition, instantTransition } from "@/lib/animations";
 import { socialIconPaths } from "@/lib/iconPaths";
 
 export function ContactCard() {
@@ -82,11 +82,10 @@ export function ContactCard() {
 						<motion.div
 							key={lang.name}
 							className="col-span-3 grid grid-cols-subgrid items-center gap-x-4 rounded-lg border border-border bg-surface px-3 py-2"
-							initial={skipAnimations ? false : { opacity: 0, x: -10 }}
-							animate={skipAnimations ? { opacity: 1, x: 0 } : undefined}
-							whileInView={skipAnimations ? undefined : { opacity: 1, x: 0 }}
+							initial={{ opacity: 0, x: -10 }}
+							whileInView={{ opacity: 1, x: 0 }}
 							viewport={{ once: true }}
-							transition={springTransition}
+							transition={skipAnimations ? instantTransition : springTransition}
 						>
 							<span className="text-lg">{lang.flag}</span>
 							<span className="text-foreground">{lang.name}</span>

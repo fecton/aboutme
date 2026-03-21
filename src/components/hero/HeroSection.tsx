@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { profile } from "@/data/profile";
 import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
-import { springTransition } from "@/lib/animations";
+import { springTransition, instantTransition } from "@/lib/animations";
 
 const containerVariants = {
 	hidden: { opacity: 0 },
@@ -17,12 +17,32 @@ const containerVariants = {
 	},
 };
 
+const instantContainerVariants = {
+	hidden: { opacity: 0 },
+	visible: {
+		opacity: 1,
+		transition: {
+			staggerChildren: 0,
+			delayChildren: 0,
+		},
+	},
+};
+
 const itemVariants = {
 	hidden: { opacity: 0, y: 20 },
 	visible: {
 		opacity: 1,
 		y: 0,
 		transition: springTransition,
+	},
+};
+
+const instantItemVariants = {
+	hidden: { opacity: 0, y: 20 },
+	visible: {
+		opacity: 1,
+		y: 0,
+		transition: instantTransition,
 	},
 };
 
@@ -46,12 +66,12 @@ export function HeroSection() {
 			<div className="relative mx-auto max-w-6xl px-4 sm:px-6">
 				<motion.div
 					className="flex flex-col items-center text-center"
-					variants={skipAnimations ? undefined : containerVariants}
-					initial={skipAnimations ? false : "hidden"}
-					animate={skipAnimations ? false : "visible"}
+					variants={skipAnimations ? instantContainerVariants : containerVariants}
+					initial="hidden"
+					animate="visible"
 				>
 					<motion.div
-						variants={itemVariants}
+						variants={skipAnimations ? instantItemVariants : itemVariants}
 						className="relative mb-6 h-48 w-48 sm:h-[250px] sm:w-[250px] overflow-hidden rounded-full border-2 border-border"
 					>
 						<img
@@ -65,7 +85,7 @@ export function HeroSection() {
 					</motion.div>
 
 					<motion.div
-						variants={skipAnimations ? undefined : itemVariants}
+						variants={skipAnimations ? instantItemVariants : itemVariants}
 						className={`mb-3 flex items-center gap-2 rounded-full border border-border px-4 py-2 ${
 							reduceEffects ? "bg-background" : "bg-surface backdrop-blur-[20px]"
 						}`}
@@ -75,28 +95,28 @@ export function HeroSection() {
 					</motion.div>
 
 					<motion.h1
-						variants={itemVariants}
+						variants={skipAnimations ? instantItemVariants : itemVariants}
 						className="mb-2 text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl"
 					>
 						Hello! I am {profile.name}
 					</motion.h1>
 
 					<motion.p
-						variants={itemVariants}
+						variants={skipAnimations ? instantItemVariants : itemVariants}
 						className="mb-1 text-xl font-bold text-foreground md:text-2xl"
 					>
 						{profile.title}
 					</motion.p>
 
 					<motion.p
-						variants={itemVariants}
+						variants={skipAnimations ? instantItemVariants : itemVariants}
 						className="mb-8 text-lg text-muted"
 					>
 						{profile.subtitle}
 					</motion.p>
 
 					<motion.div
-						variants={itemVariants}
+						variants={skipAnimations ? instantItemVariants : itemVariants}
 						className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap"
 					>
 						<Link

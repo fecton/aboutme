@@ -7,7 +7,7 @@ import { experiences } from "@/data/experiences";
 import { getIconForDiscipline } from "@/data/skillIcons";
 import { motion, useReducedMotion } from "framer-motion";
 import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
-import { springTransition } from "@/lib/animations";
+import { springTransition, instantTransition } from "@/lib/animations";
 
 export function ExperienceCard() {
 	const { reduceEffects } = useReduceEffects();
@@ -28,11 +28,10 @@ export function ExperienceCard() {
 								? "border-accent/30 bg-accent/5"
 								: "border-border bg-surface"
 						}`}
-						initial={skipAnimations ? false : { opacity: 0, y: 20 }}
-						animate={skipAnimations ? { opacity: 1, y: 0 } : undefined}
-						whileInView={skipAnimations ? undefined : { opacity: 1, y: 0 }}
+						initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
-						transition={{ ...springTransition, delay: index * 0.05 }}
+						transition={skipAnimations ? instantTransition : { ...springTransition, delay: index * 0.05 }}
 					>
 						<div className="mb-2 flex flex-wrap items-center justify-between gap-2">
 							<h3 className="font-semibold text-foreground">{exp.position}</h3>

@@ -8,7 +8,7 @@ import { educations } from "@/data/education";
 import { getIconForDiscipline } from "@/data/skillIcons";
 import { motion, useReducedMotion } from "framer-motion";
 import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
-import { springTransition } from "@/lib/animations";
+import { springTransition, instantTransition } from "@/lib/animations";
 
 const DIPLOMA_VIEWER_PATH = "/pdf/diploma.pdf";
 const DIPLOMA_SUPPLEMENT_VIEWER_PATH = "/pdf/diploma-suplement.pdf";
@@ -28,11 +28,10 @@ export function EducationCard() {
 					<motion.article
 						key={edu.university_title + edu.specialty_title}
 						className="rounded-xl border border-border bg-surface p-6"
-						initial={skipAnimations ? false : { opacity: 0, y: 20 }}
-						animate={skipAnimations ? { opacity: 1, y: 0 } : undefined}
-						whileInView={skipAnimations ? undefined : { opacity: 1, y: 0 }}
+						initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
-						transition={{ ...springTransition, delay: index * 0.1 }}
+						transition={skipAnimations ? instantTransition : { ...springTransition, delay: index * 0.1 }}
 					>
 						<div className="mb-2 flex flex-wrap items-center justify-between gap-2">
 							<h3 className="font-semibold text-foreground">

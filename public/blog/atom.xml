@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://alytvynenko.net/blog/</id>
+    <title>Andrii Lytvynenko - DevOps &amp; Cloud Engineering Blog</title>
+    <updated>2026-02-24T01:38:01.448Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <author>
+        <name>Andrii Lytvynenko</name>
+        <email>a.v.lytvynenko2004@gmail.com</email>
+        <uri>https://alytvynenko.net</uri>
+    </author>
+    <link rel="alternate" href="https://alytvynenko.net/blog/"/>
+    <subtitle>Articles on DevOps, Cloud Engineering, Kubernetes, AWS, Terraform, and infrastructure best practices.</subtitle>
+    <logo>https://alytvynenko.net/images/tm-easy-profile.webp</logo>
+    <icon>https://alytvynenko.net/images/favicon.ico</icon>
+    <rights>All rights reserved 2026, Andrii Lytvynenko</rights>
+    <entry>
+        <title type="html"><![CDATA[Building a DevOps Blog with Next.js and MDX]]></title>
+        <id>https://alytvynenko.net/blog/hello-world/</id>
+        <link href="https://alytvynenko.net/blog/hello-world/"/>
+        <updated>2026-02-24T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[How I built a static blog into my portfolio using Next.js App Router, MDX, and GitHub Pages — with a path toward paid content.]]></summary>
+        <author>
+            <name>Andrii Lytvynenko</name>
+            <email>a.v.lytvynenko2004@gmail.com</email>
+            <uri>https://alytvynenko.net</uri>
+        </author>
+    </entry>
+</feed>

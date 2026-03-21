@@ -1,0 +1,108 @@
+---
+title: "Building a DevOps Blog with Next.js and MDX"
+date: "2026-02-24"
+description: "How I built a static blog into my portfolio using Next.js App Router, MDX, and GitHub Pages — with a path toward paid content."
+tags: ["nextjs", "devops", "blogging"]
+published: true
+premium: false
+---
+
+## Why a Blog?
+
+As engineers, we solve problems every day. A blog is one of the best ways to share those solutions, build credibility, and give back to the community that helped us grow.
+
+This site is built with **Next.js 16**, **Tailwind CSS**, and **MDX** — a combination that gives me the flexibility of React components inside Markdown content.
+
+## The Tech Stack
+
+Here's what powers this blog:
+
+- **Next.js App Router** with static export for GitHub Pages
+- **MDX** via `next-mdx-remote` for rich content authoring
+- **Tailwind CSS Typography** for beautiful prose styling
+- **Shiki** for syntax highlighting with dark/light theme support
+- **gray-matter** for YAML frontmatter parsing
+
+## Code Highlighting
+
+One of the key features is proper syntax highlighting. Here's an example Terraform configuration:
+
+```hcl
+resource "aws_instance" "web" {
+  ami           = "ami-0c55b159cbfafe1f0"
+  instance_type = "t3.micro"
+
+  tags = {
+    Name        = "web-server"
+    Environment = "production"
+  }
+}
+```
+
+And a Kubernetes deployment:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.27
+          ports:
+            - containerPort: 80
+```
+
+## Rich Media Embeds
+
+This blog supports embedded media components you can use directly in MDX.
+
+### Diagrams with PlantUML
+
+Architecture diagrams render at build time via the PlantUML server — no client-side JS required:
+
+<PlantUML alt="CI/CD deployment flow">
+{`@startuml
+actor Developer
+participant "Git Repo" as Git
+participant "CI/CD Pipeline" as CI
+participant "Container Registry" as CR
+participant "Kubernetes" as K8s
+
+Developer -> Git: Push code
+Git -> CI: Trigger build
+CI -> CI: Run tests
+CI -> CR: Push image
+CI -> K8s: Deploy
+K8s -> K8s: Rolling update
+@enduml`}
+</PlantUML>
+
+### Audio and Video Players
+
+Embed audio and video files stored in `public/media/`:
+
+```mdx
+<AudioPlayer src="/media/episode.mp3" title="Podcast Episode" />
+<VideoPlayer src="/media/demo.mp4" title="Demo Recording" poster="/media/poster.webp" />
+```
+
+## What's Next
+
+This blog is just the beginning. Future plans include:
+
+1. **More DevOps content** — deep dives into Kubernetes, Terraform, and AWS
+2. **CI/CD tutorials** — real-world pipeline patterns
+3. **Premium content** — in-depth guides and architecture breakdowns
+
+Stay tuned for more posts!

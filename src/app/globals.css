@@ -133,6 +133,43 @@
 	@apply outline-none ring-2 ring-border ring-offset-2 ring-offset-background;
 }
 
+/* Blog prose — code blocks styled by rehype-pretty-code + shiki */
+[data-rehype-pretty-code-figure] {
+	@apply relative my-6;
+}
+
+[data-rehype-pretty-code-figure] pre {
+	@apply overflow-x-auto rounded-xl border border-border px-5 py-4;
+	background: var(--color-surface) !important;
+	margin: 0;
+}
+
+[data-rehype-pretty-code-figure] code {
+	@apply text-sm leading-relaxed;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+[data-rehype-pretty-code-figure] code > [data-line] {
+	@apply border-l-2 border-transparent px-1;
+}
+
+/* Inline code inside prose */
+.prose :where(code):not(:where(pre *)) {
+	@apply rounded-md border border-border bg-surface px-1.5 py-0.5 text-sm font-normal;
+}
+.prose :where(code):not(:where(pre *))::before,
+.prose :where(code):not(:where(pre *))::after {
+	content: "" !important;
+}
+
+/* Apply shiki token colors based on theme */
+[data-rehype-pretty-code-figure] code span {
+	color: var(--shiki-light);
+}
+:root.dark [data-rehype-pretty-code-figure] code span {
+	color: var(--shiki-dark);
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
 	*,
