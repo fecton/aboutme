@@ -8,6 +8,10 @@ import {
 	SKILL_CATEGORIES,
 } from "@/data/skillIcons";
 import { softSpringTransition as springTransition, instantTransition } from "@/lib/animations";
+import {
+	getDisciplineChipDisplayLabel,
+	parseDisciplineListItems,
+} from "@/lib/discipline-segments";
 
 interface CategorizedTagListProps {
 	title: string;
@@ -30,10 +34,7 @@ export function CategorizedTagList({
 	const prefersReducedMotion = useReducedMotion();
 
 	const { parsedItems, groupedByCategory } = useMemo(() => {
-		const parsed = items
-			.flatMap((s) => s.split(/,\s*/))
-			.map((s) => s.trim().replace(/\.$/, ""))
-			.filter(Boolean);
+		const parsed = parseDisciplineListItems(items);
 
 		const grouped: Record<string, string[]> = {};
 		const seen: Record<string, Set<string>> = {};
@@ -179,9 +180,12 @@ export function CategorizedTagList({
 										<div className="flex flex-wrap gap-2">
 											{catItems.map((item, index) => {
 												const iconData = getIcon?.(item);
+												const label = getDisciplineChipDisplayLabel(item);
+												const ariaLabel = label || iconData?.title || item;
 												return (
 													<motion.span
 														key={`${item}-${index}`}
+														aria-label={ariaLabel}
 														variants={{
 															visible: {
 																opacity: 1,
@@ -213,7 +217,7 @@ export function CategorizedTagList({
 																<path d={iconData.path} />
 															</svg>
 														)}
-														{item}
+														{label}
 													</motion.span>
 												);
 											})}

@@ -51,7 +51,7 @@ export const experiences: Experience[] = [
 <li>Collaborated with cross-functional international teams including DevOps, QA, Developers, Architects, and Analysts.</li>
 </ul>`,
 		disciplines:
-			"HLASM, Java, Spring Boot, Python, AWS, EC2, Lambda, S3, Block Storage, Networking, Apache Airflow, Terraform, Jenkins, Jules, Spinnaker, PostgreSQL, Splunk, Dynatrace.",
+			"HLASM, Java, Spring Boot, Python, EC2, Lambda, S3, Block Storage, Networking, Apache Airflow, Terraform, Jenkins, Jules, Spinnaker, PostgreSQL, Splunk, Dynatrace.",
 		company_logo: "luxoft.webp",
 		client_logo: "chase.webp",
 	},
@@ -87,7 +87,7 @@ export const experiences: Experience[] = [
 <li>Implemented a GenAI-powered log analyzer using AWS Bedrock (OpenAI GPT-4.0), reducing incident investigation time by 60% through automated pattern recognition and root cause analysis.</li>
 </ul>`,
 		disciplines:
-			"Terraform Enterprise, Bash (Shell), Python, Groovy, Jenkins, Gerrit, AWS (Lambda, VPC, EC2, S3, CloudFront, Route53, CloudWatch, SNS, Auto Scaling, Load Balancers, Transit Gateway, EKS), Kubernetes, Grafana, Prometheus, AWS CloudWatch, Git, FinOps (Cost optimization practices), High Availability Architectures, Network Design & Redesign, Load Balancing, Java (application debugging), Lucidchart, draw.io, Jira, Confluence.",
+			"Terraform Enterprise, Terraform, Terragrunt, Bash (Shell), Python, Groovy, Jenkins, Gerrit, AWS (Lambda, VPC, EC2, S3, CloudFront, Route53, CloudWatch, EventBridge, Kinesis, SNS, Auto Scaling, Load Balancers, Transit Gateway, EKS), Kubernetes, Grafana, Prometheus, AlertManager, InfluxDB, Flux, SQL, Kafka, Zookeeper, HAProxy, Nginx, AWS Bedrock, Git, FinOps (Cost optimization practices), High Availability Architectures, Network Design & Redesign, Load Balancing, Java (application debugging), Lucidchart, draw.io, Jira, Confluence.",
 		company_logo: "luxoft.webp",
 		client_logo: "mercedes.webp",
 	},

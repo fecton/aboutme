@@ -51,7 +51,7 @@ export const profile = {
 		{
 			title: "Cloud Platforms",
 			icon: "cloud",
-			skills: ["AWS", "Azure", "GCP"],
+			skills: ["AWS", "Azure", "GCP", "Amazon Kinesis", "AWS Bedrock"],
 			primary: ["AWS"],
 		},
 		{
@@ -63,7 +63,7 @@ export const profile = {
 		{
 			title: "Containers & Orchestration",
 			icon: "cubes",
-			skills: ["Kubernetes", "Docker", "ECS", "Helm"],
+			skills: ["Kubernetes", "Docker", "Kafka", "ECS", "Helm"],
 			primary: ["Kubernetes", "Docker"],
 		},
 		{
@@ -75,7 +75,7 @@ export const profile = {
 		{
 			title: "Monitoring & Observability",
 			icon: "chart",
-			skills: ["Grafana", "Prometheus", "CloudWatch", "Datadog", "Dynatrace"],
+			skills: ["Grafana", "Prometheus", "CloudWatch", "InfluxDB", "Datadog", "Dynatrace"],
 			primary: ["Grafana", "Prometheus"],
 		},
 		{

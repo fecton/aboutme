@@ -3,6 +3,10 @@
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import { softSpringTransition as springTransition, instantTransition } from "@/lib/animations";
+import {
+	getDisciplineChipDisplayLabel,
+	parseDisciplineListItems,
+} from "@/lib/discipline-segments";
 
 interface ExpandableTagListProps {
 	title: string;
@@ -23,10 +27,7 @@ export function ExpandableTagList({
 }: ExpandableTagListProps) {
 	const [isOpen, setIsOpen] = useState(false);
 	const prefersReducedMotion = useReducedMotion();
-	const parsedItems = items
-		.flatMap((s) => s.split(/,\s*/))
-		.map((s) => s.trim().replace(/\.$/, ""))
-		.filter(Boolean);
+	const parsedItems = parseDisciplineListItems(items);
 
 	if (parsedItems.length === 0) return null;
 
@@ -111,9 +112,12 @@ export function ExpandableTagList({
 						>
 							{parsedItems.map((item, index) => {
 								const iconData = getIcon?.(item);
+								const label = getDisciplineChipDisplayLabel(item);
+								const ariaLabel = label || iconData?.title || item;
 								return (
 									<motion.span
 										key={`${item}-${index}`}
+										aria-label={ariaLabel}
 										variants={{
 											visible: {
 												opacity: 1,
@@ -141,7 +145,7 @@ export function ExpandableTagList({
 												<path d={iconData.path} />
 											</svg>
 										)}
-										{item}
+										{label}
 									</motion.span>
 								);
 							})}
