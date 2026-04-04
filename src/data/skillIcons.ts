@@ -119,6 +119,16 @@ export const skillIconMap: Record<
 > = {
 	// Cloud Platforms
 	AWS: manualPaths.AWS,
+	"AWS Bedrock": {
+		path: awsLogoPath,
+		title: "AWS Bedrock",
+		viewBox: "0 0 304 182",
+	},
+	"Amazon Kinesis": {
+		path: awsLogoPath,
+		title: "Amazon Kinesis",
+		viewBox: "0 0 304 182",
+	},
 	Azure: manualPaths.Azure,
 	GCP: fromSimpleIcon(siGooglecloud, "Google Cloud"),
 	// IaC
@@ -140,6 +150,7 @@ export const skillIconMap: Record<
 	// Monitoring
 	Grafana: fromSimpleIcon(siGrafana, "Grafana"),
 	Prometheus: fromSimpleIcon(siPrometheus, "Prometheus"),
+	AlertManager: fromSimpleIcon(siPrometheus, "Alertmanager"),
 	CloudWatch: manualPaths.CloudWatch,
 	Datadog: fromSimpleIcon(siDatadog, "Datadog"),
 	Dynatrace: fromSimpleIcon(siDynatrace, "Dynatrace"),
@@ -155,7 +166,10 @@ export const skillIconMap: Record<
 	Redis: fromSimpleIcon(siRedis, "Redis"),
 	MongoDB: fromSimpleIcon(siMongodb, "MongoDB"),
 	InfluxDB: fromSimpleIcon(siInfluxdb, "InfluxDB"),
+	// InfluxDB Flux (query language); uses InfluxDB icon, not Facebook Flux
+	Flux: { path: siInfluxdb.path, title: "InfluxDB Flux" },
 	MariaDB: fromSimpleIcon(siMariadb, "MariaDB"),
+	SQL: fromSimpleIcon(siMysql, "SQL"),
 	SQLite: fromSimpleIcon(siSqlite, "SQLite"),
 	// Web/Dev
 	Git: fromSimpleIcon(siGit, "Git"),
@@ -179,6 +193,8 @@ export const skillIconMap: Record<
 	"Apache Airflow": fromSimpleIcon(siApacheairflow, "Apache Airflow"),
 	"Apache Kafka": fromSimpleIcon(siApachekafka, "Apache Kafka"),
 	Kafka: fromSimpleIcon(siApachekafka, "Apache Kafka"),
+	Zookeeper: fromSimpleIcon(siApachekafka, "Apache ZooKeeper"),
+	HAProxy: fromSimpleIcon(siNginx, "HAProxy"),
 	// Platforms
 	Ubuntu: fromSimpleIcon(siUbuntu, "Ubuntu"),
 	CentOS: fromSimpleIcon(siCentos, "CentOS"),
@@ -239,6 +255,10 @@ const AWS_SERVICES = new Set([
 	"NLB",
 	"EBS",
 	"MWAA",
+	"DynamoDB",
+	"Fargate",
+	"Kinesis",
+	"Bedrock",
 ]);
 
 /** Skill categories for grouped display (order preserved) */
@@ -273,6 +293,9 @@ const skillCategoryMap: Record<string, string> = {
 	Docker: "containers",
 	"Docker Compose": "containers",
 	Helm: "containers",
+	Kafka: "containers",
+	Zookeeper: "containers",
+	"Apache Kafka": "containers",
 	// CI/CD
 	Jenkins: "cicd",
 	"GitHub Actions": "cicd",
@@ -287,9 +310,12 @@ const skillCategoryMap: Record<string, string> = {
 	InfluxDB: "databases",
 	MariaDB: "databases",
 	SQLite: "databases",
+	SQL: "databases",
 	// Monitoring
 	Grafana: "monitoring",
 	Prometheus: "monitoring",
+	AlertManager: "monitoring",
+	Flux: "monitoring",
 	Datadog: "monitoring",
 	Dynatrace: "monitoring",
 	Splunk: "monitoring",
@@ -321,6 +347,7 @@ const skillCategoryMap: Record<string, string> = {
 	Git: "tools",
 	GitHub: "tools",
 	Nginx: "tools",
+	HAProxy: "tools",
 	Apache: "tools",
 	Jira: "tools",
 	Confluence: "tools",
@@ -336,8 +363,6 @@ const skillCategoryMap: Record<string, string> = {
 	Linux: "tools",
 	Debian: "tools",
 	Arduino: "tools",
-	Kafka: "tools",
-	"Apache Kafka": "tools",
 	// Explicit uncategorized
 	"Version Control": "tools",
 	FinOps: "other",
@@ -355,6 +380,7 @@ const disciplineAliases: Record<string, string> = {
 	"C#": ".NET",
 	"Cascading Style Sheets (CSS)": "CSS",
 	"Terraform Enterprise": "Terraform",
+	Alertmanager: "AlertManager",
 	"HashiCorp Terraform": "Terraform",
 	"Apache WEB Server": "Apache",
 	GITBash: "Git",
@@ -366,6 +392,15 @@ const disciplineAliases: Record<string, string> = {
 	MSSQL: "SQL Server",
 	VMWare: "VMware",
 	"VMWare Linux": "VMware",
+	// Amazon / AWS long-form discipline strings → short chip labels (AWS icon via AWS_SERVICES)
+	"Amazon DynamoDB": "DynamoDB",
+	"Amazon EC2": "EC2",
+	"Amazon Elastic Container Registry (ECR)": "ECR",
+	"Amazon Elastic Kubernetes Service (Amazon EKS)": "EKS",
+	"Amazon Relational Database Service (RDS)": "RDS",
+	"Amazon S3": "S3",
+	"Amazon VPC (Virtual Private Cloud)": "VPC",
+	"ECS Fargate": "Fargate",
 };
 
 // Add AWS services to cloud category
