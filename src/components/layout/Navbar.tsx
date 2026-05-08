@@ -11,6 +11,7 @@ import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
 const navLinks = [
 	{ href: "/#about", label: "About" },
 	{ href: "/#experience", label: "Experience" },
+	{ href: "/resume/", label: "Resume" },
 	{ href: "/#contact", label: "Contact" },
 	{ href: "/privacy-policy", label: "Privacy" },
 ];
@@ -29,13 +30,10 @@ export function Navbar() {
 	const closeMenu = () => setIsMenuOpen(false);
 
 	return (
-		<motion.nav
+		<nav
 			className={`fixed left-0 right-0 top-0 z-50 border-b border-border ${
 				reduceEffects ? "bg-background" : "bg-surface backdrop-blur-[20px]"
 			}`}
-			initial={{ y: -100 }}
-			animate={{ y: 0 }}
-			transition={{ type: "spring", stiffness: 300, damping: 30 }}
 		>
 			<div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
 				<Link
@@ -126,6 +124,6 @@ export function Navbar() {
 					</motion.div>
 				)}
 			</AnimatePresence>
-		</motion.nav>
+		</nav>
 	);
 }
