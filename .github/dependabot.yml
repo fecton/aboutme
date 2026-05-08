@@ -32,8 +32,10 @@ updates:
           - minor
           - patch
     ignore:
-      # Pinned for Node 20 compatibility (cspell 10+ requires Node 22).
-      - dependency-name: cspell
+      # Major version bumps require manual migration (e.g. tailwindcss 3 → 4
+      # changed the PostCSS plugin architecture and broke the build, and
+      # cspell 10+ dropped Node 20 support). Open them yourself when ready.
+      - dependency-name: "*"
         update-types: [version-update:semver-major]
 
   - package-ecosystem: github-actions
@@ -51,3 +53,9 @@ updates:
       actions:
         patterns:
           - "*"
+        update-types:
+          - minor
+          - patch
+    ignore:
+      - dependency-name: "*"
+        update-types: [version-update:semver-major]
