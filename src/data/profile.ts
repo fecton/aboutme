@@ -106,7 +106,7 @@ export const profile = {
 		},
 		{
 			name: "WhatsApp",
-			url: "https://wa.link/kyuzw3",
+			url: "https://wa.me/48451224798",
 			icon: "whatsapp",
 			ariaLabel: "WhatsApp contact (opens in new tab)",
 		},

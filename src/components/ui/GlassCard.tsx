@@ -1,8 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
 import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
-import { springTransition } from "@/lib/animations";
 
 interface GlassCardProps {
 	children: React.ReactNode;
@@ -11,21 +9,14 @@ interface GlassCardProps {
 
 export function GlassCard({ children, className = "" }: GlassCardProps) {
 	const { reduceEffects } = useReduceEffects();
-	const prefersReducedMotion = useReducedMotion();
-	const skipAnimations = reduceEffects || prefersReducedMotion;
 
 	return (
-		<motion.div
+		<div
 			className={`w-full rounded-2xl border border-border p-6 md:p-8 ${
 				reduceEffects ? "bg-background" : "bg-surface backdrop-blur-[20px]"
 			} ${className}`}
-			initial={skipAnimations ? false : { opacity: 0, y: 20 }}
-			animate={skipAnimations ? { opacity: 1, y: 0 } : undefined}
-			whileInView={skipAnimations ? undefined : { opacity: 1, y: 0 }}
-			viewport={{ once: true, margin: "-50px" }}
-			transition={springTransition}
 		>
 			{children}
-		</motion.div>
+		</div>
 	);
 }
