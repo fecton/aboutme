@@ -4,7 +4,6 @@ import { GlassCard } from "@/components/ui/GlassCard";
 import { certificates } from "@/data/certificates";
 import { motion, useReducedMotion } from "framer-motion";
 import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
-import { springTransition } from "@/lib/animations";
 
 export function CertificationsCard() {
 	const { reduceEffects } = useReduceEffects();
@@ -17,7 +16,7 @@ export function CertificationsCard() {
 				Certifications
 			</h2>
 			<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-				{certificates.map((cert, index) => {
+				{certificates.map((cert) => {
 					const isEarned = cert.link && cert.link !== "";
 					const isPlanned = cert.planned_year && cert.planned_year.length !== 0;
 
@@ -29,11 +28,6 @@ export function CertificationsCard() {
 									? "border-border bg-surface"
 									: "border-border/50 bg-surface/50"
 							}`}
-							initial={skipAnimations ? false : { opacity: 0, y: 10 }}
-							animate={skipAnimations ? { opacity: 1, y: 0 } : undefined}
-							whileInView={skipAnimations ? undefined : { opacity: 1, y: 0 }}
-							viewport={{ once: true }}
-							transition={{ ...springTransition, delay: index * 0.05 }}
 							whileHover={
 								isEarned && !skipAnimations ? { scale: 1.02 } : undefined
 							}

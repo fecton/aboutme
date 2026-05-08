@@ -80,7 +80,7 @@ export default function CookiePolicyPage() {
 								<p className="font-semibold text-foreground">Andrii Lytvynenko Tech Solutions</p>
 								<p className="text-muted">NIP: 9492279891</p>
 								<p className="text-muted">REGON: 543171480</p>
-								<p className="text-muted">Registered Address: Czestochowa, Poland</p>
+								<p className="text-muted">Registered Address: Częstochowa, Poland</p>
 								<p className="text-muted">
 									<a
 										href="mailto:a.v.lytvynenko2004@gmail.com"
@@ -183,7 +183,7 @@ export default function CookiePolicyPage() {
 												<code className="text-foreground">_ga</code>
 											</td>
 											<td className="border border-border px-4 py-3 text-muted">
-												Analytics: Used to distinguish unique users and calculate visitor, session, and campaign data for the site's analytics reports.
+												Analytics: Used to distinguish unique users and calculate visitor, session, and campaign data for the site&apos;s analytics reports.
 											</td>
 											<td className="border border-border px-4 py-3 text-muted">
 												2 years
