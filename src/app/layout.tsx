@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ReduceEffectsProvider } from "@/components/providers/ReduceEffectsProvider";
 import { ConsentProvider } from "@/components/providers/ConsentProvider";
@@ -68,10 +68,13 @@ export const metadata: Metadata = {
 		],
 		apple: "/images/apple-touch-icon.png",
 	},
-	themeColor: "#3366CC",
 	appleWebApp: {
 		statusBarStyle: "default",
 	},
+};
+
+export const viewport: Viewport = {
+	themeColor: "#3366CC",
 };
 
 const personJsonLd = {
@@ -86,7 +89,7 @@ const personJsonLd = {
 	email: "a.v.lytvynenko2004@gmail.com",
 	address: {
 		"@type": "PostalAddress",
-		addressLocality: "Czestochowa",
+		addressLocality: "Częstochowa",
 		addressRegion: "Silesian Voivodeship",
 		addressCountry: "PL",
 	},
@@ -130,7 +133,8 @@ const personJsonLd = {
 	seeks: {
 		"@type": "JobPosting",
 		hiringOrganization: { "@type": "Person", name: "Andrii Lytvynenko" },
-		jobLocation: { "@type": "Place", address: { "@type": "PostalAddress", addressCountry: "Worldwide - Remote" } },
+		jobLocationType: "TELECOMMUTE",
+		applicantLocationRequirements: { "@type": "Country", name: "Worldwide" },
 		title: "B2B DevOps & Cloud Engineering Contracts",
 		description: "Available for B2B contract work in DevOps, Cloud Infrastructure, AWS, Kubernetes, and Infrastructure as Code",
 		employmentType: "CONTRACTOR",
@@ -147,7 +151,7 @@ const professionalServiceJsonLd = {
 	image: PROFILE_IMAGE,
 	priceRange: "$$-$$$",
 	email: "a.v.lytvynenko2004@gmail.com",
-	address: { "@type": "PostalAddress", addressLocality: "Czestochowa", addressCountry: "Poland" },
+	address: { "@type": "PostalAddress", addressLocality: "Częstochowa", addressCountry: "PL" },
 	areaServed: [{ "@type": "Country", name: "Poland" }, { "@type": "Place", name: "European Union" }, { "@type": "Place", name: "Worldwide" }],
 	serviceType: [
 		"DevOps Consulting",

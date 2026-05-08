@@ -5,34 +5,22 @@ import { ExpandableDescription } from "@/components/ui/ExpandableDescription";
 import { CategorizedTagList } from "@/components/ui/CategorizedTagList";
 import { experiences } from "@/data/experiences";
 import { getIconForDiscipline } from "@/data/skillIcons";
-import { motion, useReducedMotion } from "framer-motion";
-import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
-import { springTransition } from "@/lib/animations";
 
 export function ExperienceCard() {
-	const { reduceEffects } = useReduceEffects();
-	const prefersReducedMotion = useReducedMotion();
-	const skipAnimations = reduceEffects || prefersReducedMotion;
-
 	return (
 		<GlassCard>
 			<h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground">
 				Experience
 			</h2>
 			<div className="space-y-6">
-				{experiences.map((exp, index) => (
-					<motion.article
+				{experiences.map((exp) => (
+					<article
 						key={exp.company + exp.position + exp.dates}
 						className={`rounded-xl border p-6 ${
 							exp.present
 								? "border-accent/30 bg-accent/5"
 								: "border-border bg-surface"
 						}`}
-						initial={skipAnimations ? false : { opacity: 0, y: 20 }}
-						animate={skipAnimations ? { opacity: 1, y: 0 } : undefined}
-						whileInView={skipAnimations ? undefined : { opacity: 1, y: 0 }}
-						viewport={{ once: true }}
-						transition={{ ...springTransition, delay: index * 0.05 }}
 					>
 						<div className="mb-2 flex flex-wrap items-center justify-between gap-2">
 							<h3 className="font-semibold text-foreground">{exp.position}</h3>
@@ -113,7 +101,7 @@ export function ExperienceCard() {
 								getIcon={getIconForDiscipline}
 							/>
 						)}
-					</motion.article>
+					</article>
 				))}
 			</div>
 		</GlassCard>

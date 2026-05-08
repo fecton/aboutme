@@ -6,33 +6,21 @@ import { ExpandableDescription } from "@/components/ui/ExpandableDescription";
 import { CategorizedTagList } from "@/components/ui/CategorizedTagList";
 import { educations } from "@/data/education";
 import { getIconForDiscipline } from "@/data/skillIcons";
-import { motion, useReducedMotion } from "framer-motion";
-import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
-import { springTransition } from "@/lib/animations";
 
 const DIPLOMA_VIEWER_PATH = "/pdf/diploma.pdf";
-const DIPLOMA_SUPPLEMENT_VIEWER_PATH = "/pdf/diploma-suplement.pdf";
+const DIPLOMA_SUPPLEMENT_VIEWER_PATH = "/pdf/diploma-supplement.pdf";
 
 export function EducationCard() {
-	const { reduceEffects } = useReduceEffects();
-	const prefersReducedMotion = useReducedMotion();
-	const skipAnimations = reduceEffects || prefersReducedMotion;
-
 	return (
 		<GlassCard>
 			<h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground">
 				Education
 			</h2>
 			<div className="space-y-6">
-				{educations.map((edu, index) => (
-					<motion.article
+				{educations.map((edu) => (
+					<article
 						key={edu.university_title + edu.specialty_title}
 						className="rounded-xl border border-border bg-surface p-6"
-						initial={skipAnimations ? false : { opacity: 0, y: 20 }}
-						animate={skipAnimations ? { opacity: 1, y: 0 } : undefined}
-						whileInView={skipAnimations ? undefined : { opacity: 1, y: 0 }}
-						viewport={{ once: true }}
-						transition={{ ...springTransition, delay: index * 0.1 }}
 					>
 						<div className="mb-2 flex flex-wrap items-center justify-between gap-2">
 							<h3 className="font-semibold text-foreground">
@@ -115,7 +103,7 @@ export function EducationCard() {
 								getIcon={getIconForDiscipline}
 							/>
 						)}
-					</motion.article>
+					</article>
 				))}
 			</div>
 		</GlassCard>

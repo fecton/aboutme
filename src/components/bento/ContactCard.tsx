@@ -79,14 +79,9 @@ export function ContactCard() {
 				<div className="min-w-0 overflow-hidden pr-2">
 					<div className="grid grid-cols-1 gap-y-3 sm:grid-cols-[auto_1fr_minmax(8rem,12rem)] sm:gap-x-4">
 					{profile.languages.map((lang) => (
-						<motion.div
+						<div
 							key={lang.name}
 							className="col-span-3 grid grid-cols-subgrid items-center gap-x-4 rounded-lg border border-border bg-surface px-3 py-2"
-							initial={skipAnimations ? false : { opacity: 0, x: -10 }}
-							animate={skipAnimations ? { opacity: 1, x: 0 } : undefined}
-							whileInView={skipAnimations ? undefined : { opacity: 1, x: 0 }}
-							viewport={{ once: true }}
-							transition={springTransition}
 						>
 							<span className="text-lg">{lang.flag}</span>
 							<span className="text-foreground">{lang.name}</span>
@@ -97,7 +92,7 @@ export function ContactCard() {
 							>
 								{lang.level}
 							</span>
-						</motion.div>
+						</div>
 					))}
 					</div>
 				</div>

@@ -17,7 +17,7 @@ export const educations: Education[] = [
 		university_link: "https://khai.edu/en/",
 		dates: "2021 September - 2025 August",
 		diploma_pdf: "/pdf/diploma.pdf",
-		diploma_supplement_pdf: "/pdf/diploma-suplement.pdf",
+		diploma_supplement_pdf: "/pdf/diploma-supplement.pdf",
 		description: `<ul>
 <li>Bachelor's degree in Computer Engineering with focus on computer networks and systems.</li>
 <li>Developed skills in system and application software design using modern programming languages.</li>

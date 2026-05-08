@@ -28,7 +28,7 @@ const DOCUMENT_CONFIG: Record<
 		description: "Bachelor's degree diploma from Kharkiv Aviation Institute.",
 	},
 	"diploma-supplement": {
-		src: "/pdf/diploma-suplement.pdf",
+		src: "/pdf/diploma-supplement.pdf",
 		title: "Diploma Supplement",
 		downloadName: "diploma-supplement.pdf",
 		pageTitle: "Diploma Supplement - Andrii Lytvynenko",
