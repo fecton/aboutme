@@ -38,7 +38,7 @@ export function Navbar() {
 			<div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
 				<Link
 					href="/"
-					className="text-lg font-bold tracking-tight text-foreground transition-colors hover:text-accent"
+					className="whitespace-nowrap text-lg font-bold tracking-tight text-foreground transition-colors hover:text-accent"
 					aria-label="Go to homepage"
 				>
 					AL Tech Solutions
