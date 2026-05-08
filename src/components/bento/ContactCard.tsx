@@ -77,14 +77,14 @@ export function ContactCard() {
 					Languages
 				</h2>
 				<div className="min-w-0 overflow-hidden pr-2">
-					<div className="grid grid-cols-1 gap-y-3 sm:grid-cols-[auto_1fr_minmax(8rem,12rem)] sm:gap-x-4">
+					<div className="flex flex-col gap-y-3 sm:grid sm:grid-cols-[auto_1fr_minmax(8rem,12rem)] sm:gap-x-4">
 					{profile.languages.map((lang) => (
 						<div
 							key={lang.name}
-							className="col-span-3 grid grid-cols-subgrid items-center gap-x-4 rounded-lg border border-border bg-surface px-3 py-2"
+							className="flex items-center gap-x-4 rounded-lg border border-border bg-surface px-3 py-2 sm:col-span-3 sm:grid sm:grid-cols-subgrid"
 						>
-							<span className="text-lg">{lang.flag}</span>
-							<span className="text-foreground">{lang.name}</span>
+							<span className="inline-block min-w-[1.5em] text-lg leading-none">{lang.flag}</span>
+							<span className="flex-1 text-foreground">{lang.name}</span>
 							<span
 								className={`text-right text-sm ${
 									lang.native ? "text-accent" : "text-muted"
