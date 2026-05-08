@@ -1,0 +1,53 @@
+{
+	"version": "0.2",
+	"language": "en,en-GB",
+	"useGitignore": true,
+	"ignorePaths": [
+		".next/**",
+		"out/**",
+		"node_modules/**",
+		"package-lock.json",
+		"public/pdf/**",
+		"src/lib/iconPaths.ts",
+		"src/data/skillIcons.ts"
+	],
+	"words": [
+		"Aiogram",
+		"alytvynenko",
+		"Andrii",
+		"Corosync",
+		"Częstochowa",
+		"darkreader",
+		"epam",
+		"EPAM",
+		"fecton",
+		"geniusee",
+		"Geniusee",
+		"glassmorphism",
+		"HLASM",
+		"khai",
+		"Laravel",
+		"LKHDQT",
+		"Lucidchart",
+		"luxoft",
+		"Luxoft",
+		"lvmlockd",
+		"Lytvynenko",
+		"MBUX",
+		"Moniuszki",
+		"MWAA",
+		"noopener",
+		"noreferrer",
+		"REGON",
+		"Stanisława",
+		"Tkinter",
+		"UODO",
+		"Voivodeship"
+	],
+	"flagWords": [],
+	"ignoreRegExpList": [
+		"https?://[^\\s)\"']+",
+		"\\bd=\"[^\"]+\"",
+		"viewBox=\"[^\"]+\""
+	]
+}

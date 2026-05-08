@@ -7,6 +7,8 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "eslint .",
+		"typecheck": "tsc --noEmit",
+		"spell": "cspell --no-progress 'src/**/*.{ts,tsx}' '*.md'",
 		"favicon": "node tools/generate-favicon.mjs",
 		"logos": "node tools/fetch-official-logos.mjs"
 	},
@@ -23,6 +25,7 @@
 		"@types/react": "^19.0.0",
 		"@types/react-dom": "^19.0.0",
 		"autoprefixer": "^10.4.24",
+		"cspell": "^10.0.0",
 		"eslint": "^9",
 		"eslint-config-next": "^16.1.6",
 		"postcss": "^8",
