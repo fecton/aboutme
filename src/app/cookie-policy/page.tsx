@@ -183,7 +183,7 @@ export default function CookiePolicyPage() {
 												<code className="text-foreground">_ga</code>
 											</td>
 											<td className="border border-border px-4 py-3 text-muted">
-												Analytics: Used to distinguish unique users and calculate visitor, session, and campaign data for the site's analytics reports.
+												Analytics: Used to distinguish unique users and calculate visitor, session, and campaign data for the site&apos;s analytics reports.
 											</td>
 											<td className="border border-border px-4 py-3 text-muted">
 												2 years

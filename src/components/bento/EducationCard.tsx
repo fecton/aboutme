@@ -11,7 +11,7 @@ import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
 import { springTransition } from "@/lib/animations";
 
 const DIPLOMA_VIEWER_PATH = "/pdf/diploma.pdf";
-const DIPLOMA_SUPPLEMENT_VIEWER_PATH = "/pdf/diploma-suplement.pdf";
+const DIPLOMA_SUPPLEMENT_VIEWER_PATH = "/pdf/diploma-supplement.pdf";
 
 export function EducationCard() {
 	const { reduceEffects } = useReduceEffects();

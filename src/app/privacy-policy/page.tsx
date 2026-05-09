@@ -328,7 +328,7 @@ export default function PrivacyPolicyPage() {
 								Your data may be transferred to and processed in countries
 								outside the European Economic Area (EEA), particularly the
 								United States (e.g., through Google Analytics). When such transfers occur, I ensure appropriate
-								safeguards are in place to protect your European users' data:
+								safeguards are in place to protect your European users&apos; data:
 							</p>
 							<ul className="list-disc space-y-2 pl-6 text-muted">
 								<li>EU-U.S. Data Privacy Framework certification (e.g., Google LLC)</li>

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ReduceEffectsProvider } from "@/components/providers/ReduceEffectsProvider";
 import { ConsentProvider } from "@/components/providers/ConsentProvider";
@@ -68,10 +68,13 @@ export const metadata: Metadata = {
 		],
 		apple: "/images/apple-touch-icon.png",
 	},
-	themeColor: "#3366CC",
 	appleWebApp: {
 		statusBarStyle: "default",
 	},
+};
+
+export const viewport: Viewport = {
+	themeColor: "#3366CC",
 };
 
 const personJsonLd = {
