@@ -1,11 +1,6 @@
-"use client";
-
 import { GlassCard } from "@/components/ui/GlassCard";
 import { profile } from "@/data/profile";
 import { skillIconMap } from "@/data/skillIcons";
-import { motion, useReducedMotion } from "framer-motion";
-import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
-import { springTransition } from "@/lib/animations";
 
 const iconPaths: Record<string, string> = {
 	cloud: "M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z",
@@ -17,25 +12,16 @@ const iconPaths: Record<string, string> = {
 };
 
 export function SkillsCard() {
-	const { reduceEffects } = useReduceEffects();
-	const prefersReducedMotion = useReducedMotion();
-	const skipAnimations = reduceEffects || prefersReducedMotion;
-
 	return (
 		<GlassCard>
 			<h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground">
 				Technical Skills
 			</h2>
 			<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-				{profile.skills.map((category, categoryIndex) => (
-					<motion.div
+				{profile.skills.map((category) => (
+					<div
 						key={category.title}
 						className="rounded-xl border border-border bg-surface p-4"
-						initial={skipAnimations ? false : { opacity: 0, y: 10 }}
-						animate={skipAnimations ? { opacity: 1, y: 0 } : undefined}
-						whileInView={skipAnimations ? undefined : { opacity: 1, y: 0 }}
-						viewport={{ once: true }}
-						transition={{ ...springTransition, delay: categoryIndex * 0.05 }}
 					>
 						<h3 className="mb-3 flex items-center gap-2 font-semibold text-foreground">
 							<svg
@@ -75,7 +61,7 @@ export function SkillsCard() {
 								);
 							})}
 						</div>
-					</motion.div>
+					</div>
 				))}
 			</div>
 		</GlassCard>

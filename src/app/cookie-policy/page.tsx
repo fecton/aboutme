@@ -80,7 +80,7 @@ export default function CookiePolicyPage() {
 								<p className="font-semibold text-foreground">Andrii Lytvynenko Tech Solutions</p>
 								<p className="text-muted">NIP: 9492279891</p>
 								<p className="text-muted">REGON: 543171480</p>
-								<p className="text-muted">Registered Address: Czestochowa, Poland</p>
+								<p className="text-muted">Registered Address: Częstochowa, Poland</p>
 								<p className="text-muted">
 									<a
 										href="mailto:a.v.lytvynenko2004@gmail.com"

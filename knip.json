@@ -1,0 +1,27 @@
+{
+	"$schema": "https://unpkg.com/knip@6/schema.json",
+	"entry": [
+		"src/app/**/page.tsx",
+		"src/app/**/layout.tsx",
+		"src/app/**/not-found.tsx",
+		"next.config.ts",
+		"tailwind.config.ts",
+		"postcss.config.mjs",
+		"eslint.config.mjs",
+		"playwright.config.ts",
+		"tests/**/*.spec.ts",
+		"tools/**/*.mjs"
+	],
+	"project": [
+		"src/**/*.{ts,tsx}",
+		"tests/**/*.{ts,tsx}"
+	],
+	"ignoreDependencies": [
+		"serve",
+		"postcss-load-config",
+		"autoprefixer"
+	],
+	"ignoreBinaries": [
+		"playwright"
+	]
+}

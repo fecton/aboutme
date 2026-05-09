@@ -1,0 +1,61 @@
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: Europe/Warsaw
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+    groups:
+      # Bundle dev-only updates so weekly noise stays in one PR.
+      dev-dependencies:
+        dependency-type: development
+        update-types:
+          - minor
+          - patch
+      # Bundle React + Next together — these tend to need to move in lockstep.
+      react-and-next:
+        patterns:
+          - "next"
+          - "next-themes"
+          - "eslint-config-next"
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+        update-types:
+          - minor
+          - patch
+    ignore:
+      # Major version bumps require manual migration (e.g. tailwindcss 3 → 4
+      # changed the PostCSS plugin architecture and broke the build, and
+      # cspell 10+ dropped Node 20 support). Open them yourself when ready.
+      - dependency-name: "*"
+        update-types: [version-update:semver-major]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: Europe/Warsaw
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - github-actions
+    groups:
+      actions:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
+    ignore:
+      - dependency-name: "*"
+        update-types: [version-update:semver-major]

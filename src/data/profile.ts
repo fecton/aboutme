@@ -31,7 +31,7 @@ export const profile = {
 	availability: "Available for Q4 2026 Projects",
 	profileImage: "/images/tm-easy-profile.webp",
 	email: "a.v.lytvynenko2004@gmail.com",
-	location: "Czestochowa, Poland (EU)",
+	location: "Częstochowa, Poland (EU)",
 	resumeUrl: "/pdf/resume.pdf",
 	bio: {
 		intro:
@@ -106,7 +106,7 @@ export const profile = {
 		},
 		{
 			name: "WhatsApp",
-			url: "https://wa.link/kyuzw3",
+			url: "https://wa.me/48451224798",
 			icon: "whatsapp",
 			ariaLabel: "WhatsApp contact (opens in new tab)",
 		},
@@ -123,7 +123,7 @@ export const profile = {
 		{ title: "EU-Based", icon: "map-marker" },
 	],
 	languages: [
-		{ flag: "🇺🇸", name: "English", level: "Upper-Intermediate (B2)" },
+		{ flag: "🇬🇧", name: "English", level: "Upper-Intermediate (B2)" },
 		{ flag: "🇺🇦", name: "Ukrainian", level: "Native", native: true },
 		{ flag: "🇷🇺", name: "Russian", level: "Native", native: true },
 		{ flag: "🇵🇱", name: "Polish", level: "Upper-Intermediate (B2)" },

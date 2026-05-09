@@ -83,7 +83,7 @@ export default function PrivacyPolicyPage() {
 								<p className="font-semibold text-foreground">Andrii Lytvynenko Tech Solutions</p>
 								<p className="text-muted">NIP: 9492279891</p>
 								<p className="text-muted">REGON: 543171480</p>
-								<p className="text-muted">Registered Address: Czestochowa, Poland</p>
+								<p className="text-muted">Registered Address: Częstochowa, Poland</p>
 								<p className="text-muted">
 									<a
 										href="mailto:a.v.lytvynenko2004@gmail.com"
@@ -436,7 +436,6 @@ export default function PrivacyPolicyPage() {
 							</p>
 							<ul className="list-disc space-y-2 pl-6 text-muted">
 								<li>HTTPS encryption for all data transmission</li>
-								<li>Content Security Policy (CSP) headers</li>
 								<li>Regular security reviews</li>
 								<li>Limited access to personal data</li>
 							</ul>
@@ -486,7 +485,7 @@ export default function PrivacyPolicyPage() {
 								<p className="font-semibold text-foreground">Andrii Lytvynenko Tech Solutions</p>
 								<p className="text-muted">NIP: 9492279891</p>
 								<p className="text-muted">REGON: 543171480</p>
-								<p className="text-muted">Registered Address: Czestochowa, Poland</p>
+								<p className="text-muted">Registered Address: Częstochowa, Poland</p>
 								<p className="text-muted">
 									Email:{" "}
 									<a

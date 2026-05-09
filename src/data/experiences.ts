@@ -62,7 +62,7 @@ export const experiences: Experience[] = [
 		company_link: "https://www.luxoft.com/",
 		client: "3 projects - Mercedes-Benz User Experience (MBUX) NTG6 / NTG7 / Gen20x",
 		client_link: "https://www.mercedes-benz.com/",
-		dates: "2023 February - 2025 September",
+		dates: "2023 February - 2025 July",
 		present: false,
 		description: `<ul>
 <li>Led urgent and time-limited Terraform Enterprise migration from Terragrunt, completing it in 30% of the planned time (1 month instead of 3 months) with half the team size (3-5 instead of 10 engineers); provided daily reports to stakeholders on development status, performance tracking, and management via team calls, Jira comments, and Confluence pages.</li>
@@ -84,7 +84,7 @@ export const experiences: Experience[] = [
 <li>Developed monitoring and observability solutions: created dashboards with Grafana visualizations and alerts, prepared database queries in SQL and Flux for InfluxDB, and implemented Kubernetes and EC2 monitoring with Prometheus; automated incident ticket creation using Grafana, AlertManager, and Jira Alert.</li>
 <li>Performed regular upgrades and maintenance for Jenkins, Gerrit, Kafka, Zookeeper, Terragrunt, Terraform, Terraform Enterprise, InfluxDB, Grafana, Prometheus, Kubernetes, Ubuntu, HAProxy, and Nginx.</li>
 <li>Developed Single Sign-On (SSO) plugins for Gerrit in Java, enabling unified authentication across enterprise systems.</li>
-<li>Implemented a GenAI-powered log analyzer using AWS Bedrock (OpenAI GPT-4.0), reducing incident investigation time by 60% through automated pattern recognition and root cause analysis.</li>
+<li>Implemented a GenAI-powered log analyzer using AWS Bedrock (Anthropic Claude), reducing incident investigation time by 60% through automated pattern recognition and root cause analysis.</li>
 </ul>`,
 		disciplines:
 			"Terraform Enterprise, Terraform, Terragrunt, Bash (Shell), Python, Groovy, Jenkins, Gerrit, AWS (Lambda, VPC, EC2, S3, CloudFront, Route53, CloudWatch, EventBridge, Kinesis, SNS, Auto Scaling, Load Balancers, Transit Gateway, EKS), Kubernetes, Grafana, Prometheus, AlertManager, InfluxDB, Flux, SQL, Kafka, Zookeeper, HAProxy, Nginx, AWS Bedrock, Git, FinOps (Cost optimization practices), High Availability Architectures, Network Design & Redesign, Load Balancing, Java (application debugging), Lucidchart, draw.io, Jira, Confluence.",

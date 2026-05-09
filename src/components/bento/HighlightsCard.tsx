@@ -1,10 +1,5 @@
-"use client";
-
 import { GlassCard } from "@/components/ui/GlassCard";
 import { profile } from "@/data/profile";
-import { motion, useReducedMotion } from "framer-motion";
-import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
-import { springTransition } from "@/lib/animations";
 
 const highlightIconPaths: Record<string, string> = {
 	briefcase:
@@ -20,7 +15,6 @@ const highlightIcons = ["briefcase", "award", "chart", "shield"];
 const trustBadgeIconPaths: Record<string, string> = {
 	shield:
 		"M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z",
-	file: "M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z",
 	briefcase:
 		"M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z",
 	"map-marker":
@@ -28,10 +22,6 @@ const trustBadgeIconPaths: Record<string, string> = {
 };
 
 export function HighlightsCard() {
-	const { reduceEffects } = useReduceEffects();
-	const prefersReducedMotion = useReducedMotion();
-	const skipAnimations = reduceEffects || prefersReducedMotion;
-
 	return (
 		<GlassCard className="flex h-full flex-col">
 			<h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground">
@@ -40,14 +30,9 @@ export function HighlightsCard() {
 			<div className="flex min-h-0 flex-1 flex-col gap-6">
 				<div className="grid min-h-0 flex-1 grid-cols-1 gap-4 sm:grid-cols-2">
 					{profile.highlights.map((highlight, index) => (
-						<motion.div
+						<div
 							key={highlight.label}
 							className="flex flex-col items-center justify-center gap-2 rounded-xl border border-border bg-surface p-4 text-center"
-							initial={skipAnimations ? false : { opacity: 0, y: 10 }}
-							animate={skipAnimations ? { opacity: 1, y: 0 } : undefined}
-							whileInView={skipAnimations ? undefined : { opacity: 1, y: 0 }}
-							viewport={{ once: true }}
-							transition={{ ...springTransition, delay: index * 0.05 }}
 						>
 							<svg
 								className="h-5 w-5 shrink-0 text-accent"
@@ -67,7 +52,7 @@ export function HighlightsCard() {
 								{highlight.number}
 							</div>
 							<div className="text-sm text-muted">{highlight.label}</div>
-						</motion.div>
+						</div>
 					))}
 				</div>
 				<div className="border-t border-border pt-4">
@@ -75,16 +60,11 @@ export function HighlightsCard() {
 						Trust & Compliance
 					</h3>
 					<div className="flex flex-wrap gap-3">
-						{profile.trustBadges.map((badge, index) => (
-							<motion.span
+						{profile.trustBadges.map((badge) => (
+							<span
 								key={badge.title}
 								className="flex items-center gap-2 rounded-lg border border-border bg-surface px-3 py-2 text-sm text-muted"
 								title={badge.title}
-								initial={skipAnimations ? false : { opacity: 0, y: 5 }}
-								animate={skipAnimations ? { opacity: 1, y: 0 } : undefined}
-								whileInView={skipAnimations ? undefined : { opacity: 1, y: 0 }}
-								viewport={{ once: true }}
-								transition={{ ...springTransition, delay: 0.2 + index * 0.05 }}
 							>
 								<svg
 									className="h-4 w-4 shrink-0 text-accent"
@@ -100,7 +80,7 @@ export function HighlightsCard() {
 									/>
 								</svg>
 								{badge.title}
-							</motion.span>
+							</span>
 						))}
 					</div>
 				</div>

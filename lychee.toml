@@ -1,0 +1,36 @@
+# Lychee link-checker config — used by .github/workflows/ci.yml
+
+# Treat anti-bot status codes as success:
+#   403 — Mercedes-Benz, EPAM, etc. block non-browser User-Agents
+#   429 — Instagram rate-limits CI runners
+#   999 — LinkedIn returns this for any non-browser request
+accept = ["200..=299", "403", "429", "999"]
+
+max_concurrency = 4
+no_progress = true
+
+# Scan source files, not just markdown.
+extensions = ["md", "ts", "tsx", "xml", "json"]
+
+# Don't follow redirects through more than 5 hops.
+max_redirects = 5
+
+# Skip these — either site-internal patterns or known-good but bot-blocked.
+# LinkedIn returns 404/405/999 to non-browser clients, so exclude entirely.
+# Telegram and WhatsApp short links don't respond well to HEAD/GET probes.
+exclude = [
+    "^https?://localhost",
+    "^https?://127\\.0\\.0\\.1",
+    "^https://(www\\.)?linkedin\\.com/",
+    "^https://wa\\.me/",
+    "^https://t\\.me/",
+    "^https://api\\.whatsapp\\.com/",
+]
+
+# What to scan: source files + content files. Skip build output.
+exclude_path = [
+    "node_modules",
+    ".next",
+    "out",
+    "public/pdf",
+]

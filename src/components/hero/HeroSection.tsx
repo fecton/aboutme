@@ -1,35 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
 import { profile } from "@/data/profile";
 import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
-import { springTransition } from "@/lib/animations";
-
-const containerVariants = {
-	hidden: { opacity: 0 },
-	visible: {
-		opacity: 1,
-		transition: {
-			staggerChildren: 0.15,
-			delayChildren: 0.2,
-		},
-	},
-};
-
-const itemVariants = {
-	hidden: { opacity: 0, y: 20 },
-	visible: {
-		opacity: 1,
-		y: 0,
-		transition: springTransition,
-	},
-};
 
 export function HeroSection() {
 	const { reduceEffects } = useReduceEffects();
-	const prefersReducedMotion = useReducedMotion();
-	const skipAnimations = reduceEffects || prefersReducedMotion;
 
 	return (
 		<section className="relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-24">
@@ -44,61 +20,40 @@ export function HeroSection() {
 			</div>
 
 			<div className="relative mx-auto max-w-6xl px-4 sm:px-6">
-				<motion.div
-					className="flex flex-col items-center text-center"
-					variants={skipAnimations ? undefined : containerVariants}
-					initial={skipAnimations ? false : "hidden"}
-					animate={skipAnimations ? false : "visible"}
-				>
-					<motion.div
-						variants={itemVariants}
-						className="relative mb-6 h-48 w-48 sm:h-[250px] sm:w-[250px] overflow-hidden rounded-full border-2 border-border"
-					>
+				<div className="flex flex-col items-center text-center">
+					<div className="relative mb-6 h-48 w-48 sm:h-[250px] sm:w-[250px] overflow-hidden rounded-full border-2 border-border">
 						<img
 							src={profile.profileImage}
 							alt="Andrii Lytvynenko, Senior DevOps and Cloud Engineer with expertise in AWS, Kubernetes, and cloud infrastructure"
 							width={250}
 							height={250}
 							loading="eager"
+							fetchPriority="high"
+							decoding="async"
 							className="h-full w-full object-cover"
 						/>
-					</motion.div>
+					</div>
 
-					<motion.div
-						variants={skipAnimations ? undefined : itemVariants}
+					<div
 						className={`mb-3 flex items-center gap-2 rounded-full border border-border px-4 py-2 ${
 							reduceEffects ? "bg-background" : "bg-surface backdrop-blur-[20px]"
 						}`}
 					>
 						<span className="h-2 w-2 animate-pulse rounded-full bg-green-500 dark:bg-green-400" />
 						<span className="text-sm text-foreground">{profile.availability}</span>
-					</motion.div>
+					</div>
 
-					<motion.h1
-						variants={itemVariants}
-						className="mb-2 text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl"
-					>
+					<h1 className="mb-2 text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
 						Hello! I am {profile.name}
-					</motion.h1>
+					</h1>
 
-					<motion.p
-						variants={itemVariants}
-						className="mb-1 text-xl font-bold text-foreground md:text-2xl"
-					>
+					<p className="mb-1 text-xl font-bold text-foreground md:text-2xl">
 						{profile.title}
-					</motion.p>
+					</p>
 
-					<motion.p
-						variants={itemVariants}
-						className="mb-8 text-lg text-muted"
-					>
-						{profile.subtitle}
-					</motion.p>
+					<p className="mb-8 text-lg text-muted">{profile.subtitle}</p>
 
-					<motion.div
-						variants={itemVariants}
-						className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap"
-					>
+					<div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
 						<Link
 							href="/resume/"
 							className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl border border-border bg-accent px-6 py-3 font-medium text-white transition-all hover:bg-accent-dark focus-visible:ring-2 focus-visible:ring-border"
@@ -114,8 +69,8 @@ export function HeroSection() {
 						>
 							Download Resume
 						</a>
-					</motion.div>
-				</motion.div>
+					</div>
+				</div>
 			</div>
 		</section>
 	);
