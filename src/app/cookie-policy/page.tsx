@@ -9,12 +9,12 @@ const PROFILE_IMAGE = `${SITE_URL}/images/tm-easy-profile.webp`;
 export const metadata: Metadata = {
 	title: "Cookie Policy - Andrii Lytvynenko",
 	description:
-		"Cookie Policy for alytvynenko.net. Learn about the cookies we use, including Google Analytics, and how to manage your preferences.",
+		"Cookie Policy for alytvynenko.net. Learn about the cookies I use, including Google Analytics, and how to manage your preferences.",
 	robots: { index: false, follow: true },
 	openGraph: {
 		title: "Cookie Policy - Andrii Lytvynenko",
 		description:
-			"Cookie Policy for alytvynenko.net. Learn about the cookies we use, including Google Analytics, and how to manage your preferences.",
+			"Cookie Policy for alytvynenko.net. Learn about the cookies I use, including Google Analytics, and how to manage your preferences.",
 		url: `${SITE_URL}/cookie-policy/`,
 		images: [{ url: PROFILE_IMAGE, width: 250, height: 250, alt: "Andrii Lytvynenko" }],
 		type: "website",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 		card: "summary_large_image",
 		title: "Cookie Policy - Andrii Lytvynenko",
 		description:
-			"Cookie Policy for alytvynenko.net. Learn about the cookies we use, including Google Analytics, and how to manage your preferences.",
+			"Cookie Policy for alytvynenko.net. Learn about the cookies I use, including Google Analytics, and how to manage your preferences.",
 		images: [PROFILE_IMAGE],
 	},
 };
@@ -58,17 +58,17 @@ export default function CookiePolicyPage() {
 						<h1 className="mb-2 text-4xl font-bold tracking-tight text-foreground">
 							Cookie Policy
 						</h1>
-						<p className="mb-8 text-muted">Last updated: February 16, 2026</p>
+						<p className="mb-8 text-muted">Last updated: May 15, 2026</p>
 
 						<div className="prose prose-lg dark:prose-invert max-w-none">
 							<p>
-								This Cookie Policy explains how <strong>alytvynenko.net</strong> (the
+								This Cookie Policy explains how <strong>alytvynenko.net</strong>{" "}(the
 								&quot;Website&quot;) uses cookies and similar technologies. It
-								complements our{" "}
+								complements my{" "}
 								<Link href="/privacy-policy" className="text-accent hover:underline">
 									Privacy Policy
 								</Link>
-								, which provides broader information about how we collect and use
+								, which provides broader information about how I collect and use
 								your data.
 							</p>
 
@@ -97,27 +97,29 @@ export default function CookiePolicyPage() {
 							<p>
 								Cookies are small text files stored on your device when you visit
 								a website. They help websites remember your preferences, improve
-								performance, and provide analytics. This Website uses cookies only
-								after you have given your consent via our cookie banner.
+								performance, and provide analytics. This Website uses analytics
+								cookies only after you have given your consent via the cookie
+								banner.
 							</p>
 
 							<h2 className="mt-10 border-b border-border pb-2 text-2xl font-bold text-foreground">
-								3. Cookies We Use
+								3. Cookies I Use
 							</h2>
 
 							<h3 className="mt-6 text-xl font-semibold text-foreground">
-								3.1 Essential Cookies
+								3.1 Essential Site Storage
 							</h3>
 							<p>
-								These cookies are necessary for the Website to function. They
-								include:
+								The following items are necessary for the Website to function.
+								They are stored as browser localStorage entries (not HTTP
+								cookies), but serve similar purposes:
 							</p>
 							<div className="my-6 overflow-x-auto">
 								<table className="w-full border-collapse border border-border">
 									<thead>
 										<tr>
 											<th className="border border-border bg-accent/30 px-4 py-3 text-left font-semibold text-foreground">
-												Cookie Name
+												Name
 											</th>
 											<th className="border border-border bg-accent/30 px-4 py-3 text-left font-semibold text-foreground">
 												Purpose
@@ -133,10 +135,10 @@ export default function CookiePolicyPage() {
 												<code className="text-foreground">theme</code>
 											</td>
 											<td className="border border-border px-4 py-3 text-muted">
-												Technical session management: Stores your light/dark theme preference (localStorage)
+												Stores your light/dark theme preference
 											</td>
 											<td className="border border-border px-4 py-3 text-muted">
-												Persistent
+												Persistent (until cleared)
 											</td>
 										</tr>
 										<tr>
@@ -144,10 +146,10 @@ export default function CookiePolicyPage() {
 												<code className="text-foreground">cookie-consent</code>
 											</td>
 											<td className="border border-border bg-surface px-4 py-3 text-muted">
-												Technical session management: Stores your cookie consent choice (localStorage)
+												Stores your cookie consent choice
 											</td>
 											<td className="border border-border bg-surface px-4 py-3 text-muted">
-												Persistent (1 year)
+												Persistent (until cleared)
 											</td>
 										</tr>
 									</tbody>
@@ -158,8 +160,8 @@ export default function CookiePolicyPage() {
 								3.2 Analytics Cookies (Google Analytics 4)
 							</h3>
 							<p>
-								When you accept analytics cookies, we use Google Analytics 4 (GA4)
-								to understand how visitors use our Website. GA4 sets the
+								When you accept analytics cookies, I use Google Analytics 4 (GA4)
+								to understand how visitors use the Website. GA4 sets the
 								following first-party cookies:
 							</p>
 							<div className="my-6 overflow-x-auto">

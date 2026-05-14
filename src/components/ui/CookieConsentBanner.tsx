@@ -41,7 +41,7 @@ export function CookieConsentBanner({
 		>
 			<div className="mx-auto max-w-6xl sm:mx-0">
 				<p id="cookie-consent-description" className="mb-4 text-sm text-foreground">
-					We use cookies to analyze site traffic via Google Analytics. You can
+					I use cookies to analyze site traffic via Google Analytics. You can
 					accept or reject analytics cookies.{" "}
 					<Link
 						href="/cookie-policy"
