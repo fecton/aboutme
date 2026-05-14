@@ -9,12 +9,12 @@ const PROFILE_IMAGE = `${SITE_URL}/images/tm-easy-profile.webp`;
 export const metadata: Metadata = {
 	title: "Privacy Policy - Andrii Lytvynenko",
 	description:
-		"Privacy Policy for Andrii Lytvynenko's personal website. Learn how we handle your data, cookies, and your rights under GDPR.",
+		"Privacy Policy for Andrii Lytvynenko's personal website. Learn how I handle your data, cookies, and your rights under GDPR.",
 	robots: { index: false, follow: true },
 	openGraph: {
 		title: "Privacy Policy - Andrii Lytvynenko",
 		description:
-			"Privacy Policy for Andrii Lytvynenko's personal website. Learn how we handle your data, cookies, and your rights under GDPR.",
+			"Privacy Policy for Andrii Lytvynenko's personal website. Learn how I handle your data, cookies, and your rights under GDPR.",
 		url: `${SITE_URL}/privacy-policy/`,
 		images: [{ url: PROFILE_IMAGE, width: 250, height: 250, alt: "Andrii Lytvynenko" }],
 		type: "website",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 		card: "summary_large_image",
 		title: "Privacy Policy - Andrii Lytvynenko",
 		description:
-			"Privacy Policy for Andrii Lytvynenko's personal website. Learn how we handle your data, cookies, and your rights under GDPR.",
+			"Privacy Policy for Andrii Lytvynenko's personal website. Learn how I handle your data, cookies, and your rights under GDPR.",
 		images: [PROFILE_IMAGE],
 	},
 };
@@ -58,11 +58,11 @@ export default function PrivacyPolicyPage() {
 						<h1 className="mb-2 text-4xl font-bold tracking-tight text-foreground">
 							Privacy Policy
 						</h1>
-						<p className="mb-8 text-muted">Last updated: January 19, 2026</p>
+						<p className="mb-8 text-muted">Last updated: May 15, 2026</p>
 
 						<div className="prose prose-lg dark:prose-invert max-w-none">
 							<p>
-								Welcome to <strong>alytvynenko.net</strong> (the &quot;Website&quot;),
+								Welcome to <strong>alytvynenko.net</strong>{" "}(the &quot;Website&quot;),
 								operated by Andrii Lytvynenko (&quot;I&quot;, &quot;me&quot;, or
 								&quot;my&quot;). I am committed to protecting your privacy and
 								handling your personal data in compliance with the General Data
@@ -102,8 +102,23 @@ export default function PrivacyPolicyPage() {
 								2.1 Information Collected Automatically
 							</h3>
 							<p>
-								When you visit my Website, certain information is collected
-								automatically through cookies and similar technologies:
+								The information collected automatically depends on whether you
+								accept analytics cookies via the consent banner.
+							</p>
+							<p className="mt-4">
+								<strong className="text-foreground">
+									Always (regardless of consent):
+								</strong>
+							</p>
+							<ul className="list-disc space-y-2 pl-6 text-muted">
+								<li>
+									<strong className="text-foreground">Server Logs:</strong> Standard server logs (including public IP addresses, browser information, time of request, and HTTP response codes) are processed by GitHub, the hosting provider, for the security and technical functioning of the Website. I do not have direct access to these logs.
+								</li>
+							</ul>
+							<p className="mt-4">
+								<strong className="text-foreground">
+									Only after you accept analytics cookies (via Google Analytics 4):
+								</strong>
 							</p>
 							<ul className="list-disc space-y-2 pl-6 text-muted">
 								<li>
@@ -115,15 +130,14 @@ export default function PrivacyPolicyPage() {
 									visited, time spent on pages, click patterns, scroll depth
 								</li>
 								<li>
-									<strong className="text-foreground">Technical Data:</strong> IP
-									address (anonymized), referring URL, date and time of visit
-								</li>
-								<li>
-									<strong className="text-foreground">Server Logs:</strong> Standard website server logs, including public IP addresses, browser information, time of request, and HTTP response codes. This technical data is collected specifically for the security and technical functioning of the website.
+									<strong className="text-foreground">Technical Data:</strong>{" "}
+									Referring URL, date and time of visit (GA4 does not store full
+									IP addresses)
 								</li>
 								<li>
 									<strong className="text-foreground">Location Data:</strong> General
-									geographic location (country/region level only)
+									geographic location (country/region level only), derived from IP
+									by Google
 								</li>
 							</ul>
 
@@ -144,13 +158,15 @@ export default function PrivacyPolicyPage() {
 								3. Analytics Services
 							</h2>
 							<p>
-								I use the following third-party analytics services to understand
-								how visitors interact with my Website:
+								I use Google Analytics 4 to understand how visitors interact with
+								my Website. Analytics scripts are only loaded after you accept
+								analytics cookies via the consent banner. If you reject, no
+								analytics scripts are loaded and no analytics cookies are set.
 							</p>
 							<p>
-								This Website uses Google Analytics 4, a web analytics service
-								provided by Google LLC. Google Analytics uses cookies to analyze
-								your use of the Website.
+								When enabled, Google Analytics 4 (a web analytics service
+								provided by Google LLC) uses cookies to analyze your use of the
+								Website.
 							</p>
 							<div className="my-6 rounded-xl border-l-4 border-accent bg-surface p-4">
 								<strong className="text-foreground">Data Collected:</strong> Page
@@ -191,7 +207,7 @@ export default function PrivacyPolicyPage() {
 							<p>
 								Cookies are small text files stored on your device when you visit
 								a website. This Website uses the following types of cookies. For
-								a detailed list of cookies, including Google Analytics, see our{" "}
+								a detailed list of cookies, including Google Analytics, see the{" "}
 								<Link href="/cookie-policy" className="text-accent hover:underline">
 									Cookie Policy
 								</Link>
@@ -218,11 +234,12 @@ export default function PrivacyPolicyPage() {
 												<strong className="text-foreground">Essential</strong>
 											</td>
 											<td className="border border-border px-4 py-3 text-muted">
-												Required for the Website to function properly (e.g.,
-												service worker)
+												Required for site preferences and consent management
+												(stored as browser localStorage; see the Cookie Policy
+												for details)
 											</td>
 											<td className="border border-border px-4 py-3 text-muted">
-												Session
+												Persistent
 											</td>
 										</tr>
 										<tr>
@@ -266,21 +283,24 @@ export default function PrivacyPolicyPage() {
 							</p>
 							<ul className="list-disc space-y-2 pl-6 text-muted">
 								<li>
+									<strong className="text-foreground">Consent (Art. 6(1)(a)
+									GDPR):</strong> For loading Google Analytics and the resulting
+									analytics cookies. No analytics processing occurs until you opt
+									in via the cookie banner, and you can withdraw consent at any
+									time.
+								</li>
+								<li>
 									<strong className="text-foreground">Contract Performance (Art.
 									6(1)(b) GDPR):</strong> When you contact me regarding potential
 									B2B collaboration or services, processing is necessary for taking steps prior to entering a contract.
 								</li>
 								<li>
 									<strong className="text-foreground">Legitimate Interest (Art.
-									6(1)(f) GDPR):</strong> For analytics purposes to improve the
-									Website and understand visitor behavior, and for processing B2B inquiries as part of my legitimate business interests. I have conducted a
-									balancing test to ensure my interests do not override your
-									rights.
-								</li>
-								<li>
-									<strong className="text-foreground">Consent (Art. 6(1)(a)
-									GDPR):</strong> Where explicitly obtained for specific
-									processing activities.
+									6(1)(f) GDPR):</strong> For the security and technical
+									functioning of the Website (e.g., server logs processed by
+									GitHub as the hosting provider) and for handling general
+									inquiries from B2B contacts. I have conducted a balancing test
+									to ensure my interests do not override your rights.
 								</li>
 							</ul>
 
@@ -313,7 +333,16 @@ export default function PrivacyPolicyPage() {
 								</li>
 								<li>
 									<strong className="text-foreground">Hosting Provider:</strong>{" "}
-									GitHub Pages, which hosts this Website
+									GitHub, Inc. (GitHub Pages), which hosts this Website. See the{" "}
+									<a
+										href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="text-accent hover:underline"
+									>
+										GitHub Privacy Statement
+									</a>{" "}
+									for details.
 								</li>
 								<li>
 									<strong className="text-foreground">Legal Authorities:</strong> If
@@ -356,8 +385,8 @@ export default function PrivacyPolicyPage() {
 									law. For B2B inquiries where a professional contract is not ultimately signed, communications are retained for 12 months after the last communication.
 								</li>
 								<li>
-									<strong className="text-foreground">Server Logs:</strong> Typically
-									90 days, retained specifically for the security and technical functioning of the website
+									<strong className="text-foreground">Server Logs:</strong> Retained
+									by GitHub as the hosting provider, according to its own retention practices, for the security and technical functioning of the Website
 								</li>
 							</ul>
 
