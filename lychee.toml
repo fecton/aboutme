@@ -18,6 +18,7 @@ max_redirects = 5
 # Skip these — either site-internal patterns or known-good but bot-blocked.
 # LinkedIn returns 404/405/999 to non-browser clients, so exclude entirely.
 # Telegram and WhatsApp short links don't respond well to HEAD/GET probes.
+# uodo.gov.pl (Polish DPA) uses a national-CA cert lychee's truststore rejects.
 exclude = [
     "^https?://localhost",
     "^https?://127\\.0\\.0\\.1",
@@ -25,6 +26,7 @@ exclude = [
     "^https://wa\\.me/",
     "^https://t\\.me/",
     "^https://api\\.whatsapp\\.com/",
+    "^https://(www\\.)?uodo\\.gov\\.pl/",
 ]
 
 # What to scan: source files + content files. Skip build output.
