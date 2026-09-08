@@ -19,7 +19,13 @@ Only add `"use client"` when the component uses hooks, event handlers, browser A
 - Components with `onClick`, `onSubmit`, or other event handlers
 - Components using `motion.*` from Framer Motion
 
-## Reduced Motion Pattern
+## Consent and third-party scripts
+
+Analytics must stay consent-first. `ConsentProvider` owns the `cookie-consent` key and injects GA only when the value is `"accepted"`. Do not add `next/script` gtag tags in pages or layout. E2E home tests dismiss the banner with `localStorage.setItem("cookie-consent", "rejected")`.
+
+## Lite Mode (ReduceEffects)
+
+`useReduceEffects()` is not only a manual toggle. On first visit (no `reduce-effects` key) the provider auto-enables Lite Mode on low-end / Save-Data / reduced-motion devices. Treat `reduceEffects === true` as the source of truth for skipping blur and Framer Motion, even when the OS motion preference is "no preference".
 
 Every animated component must support the app's LiteMode toggle AND the browser's `prefers-reduced-motion`:
 
