@@ -36,7 +36,24 @@ import { socialIconPaths } from "@/lib/iconPaths";
 ## Skill Icons
 
 Technology/skill icons live in `src/data/skillIcons.ts` using the `simple-icons` package. When adding a new skill:
-1. Import from `simple-icons` if available
-2. Add to `skillIconMap`
-3. Add to `skillCategoryMap` for categorized display
-4. Add alias in `disciplineAliases` if the skill appears with variant names in data
+1. Import from `simple-icons` if available (or add a manual SVG path)
+2. Add to exported `skillIconMap`
+3. Add to the **private** `skillCategoryMap` (category ids come from exported `SKILL_CATEGORIES`)
+4. Add an entry to the **private** `disciplineAliases` map if experience/education text uses a variant name
+
+Lookups from raw discipline strings (do not reimplement):
+
+- `getCategoryForDiscipline(item)` → category id or `"other"`
+- `getCanonicalForDiscipline(item)` → alias target for dedupe
+- `getIconForDiscipline(item)` → icon or `null`
+
+## Discipline chip parsing
+
+`src/lib/discipline-segments.ts` turns comma-separated experience/education strings into chip labels:
+
+- Split on commas that are not inside parentheses
+- Expand `AWS (EKS, S3)` into separate services
+- Strip a redundant `AWS ` prefix
+- Lone `AWS` is icon-only (`getDisciplineChipDisplayLabel` returns `""`; keep `aria-label`)
+
+`CategorizedTagList` / `ExpandableTagList` consume these helpers. Pass the raw data string; do not pre-split in the card.
