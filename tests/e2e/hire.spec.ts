@@ -9,7 +9,7 @@ async function openHire(page: Page) {
 }
 
 test.describe("hire conversion page", () => {
-	test("renders the four-block wire on desktop and mobile", async ({ page }) => {
+	test("renders the v1.1 section order on desktop and mobile", async ({ page }) => {
 		await openHire(page);
 
 		await expect(page.locator("nav")).toBeVisible();
@@ -20,6 +20,17 @@ test.describe("hire conversion page", () => {
 		await expect(page.getByText(hire.offer)).toBeVisible();
 		await expect(page.getByText(hire.trustLine)).toBeVisible();
 
+		const headings = await page.locator("main h1, main h2").allTextContents();
+		expect(headings.map((text) => text.trim())).toEqual([
+			hire.headline,
+			hire.audienceHeading,
+			hire.packagesHeading,
+			hire.proofHeading,
+			hire.engageHeading,
+			hire.faqHeading,
+			hire.contactHeading,
+		]);
+
 		const heroTalk = page.getByRole("link", { name: hire.ctaPrimary }).first();
 		await expect(heroTalk).toBeVisible();
 		await expect(heroTalk).toHaveAttribute("href", "#contact");
@@ -28,8 +39,13 @@ test.describe("hire conversion page", () => {
 		await expect(seeResume).toBeVisible();
 		await expect(seeResume).toHaveAttribute("href", /\/$/);
 
+		for (const item of hire.audience) {
+			await expect(page.getByText(item.line)).toBeVisible();
+		}
+
 		for (const pkg of hire.packages) {
 			const card = page.getByRole("heading", { level: 3, name: pkg.title }).locator("..");
+			await expect(card.getByText(pkg.pain)).toBeVisible();
 			await expect(card.getByText(pkg.deliverables)).toBeVisible();
 			await expect(card.getByText(pkg.bestFor)).toBeVisible();
 			if (pkg.footnote) {
@@ -39,9 +55,11 @@ test.describe("hire conversion page", () => {
 				await expect(card.getByText(pkg.credentials)).toBeVisible();
 			}
 			const body = await card.innerText();
+			const painAt = body.indexOf(pkg.pain);
 			const bestAt = body.indexOf(pkg.bestFor);
 			const deliverablesAt = body.indexOf(pkg.deliverables);
-			expect(bestAt).toBeGreaterThanOrEqual(0);
+			expect(painAt).toBeGreaterThanOrEqual(0);
+			expect(bestAt).toBeGreaterThan(painAt);
 			expect(deliverablesAt).toBeGreaterThan(bestAt);
 			const trailing = pkg.footnote ?? pkg.credentials;
 			if (trailing) {
@@ -72,6 +90,19 @@ test.describe("hire conversion page", () => {
 		for (const badge of hire.badges) {
 			await expect(certBadges.getByRole("link", { name: badge.label })).toBeVisible();
 		}
+
+		for (const step of hire.engageSteps) {
+			await expect(page.getByRole("heading", { level: 3, name: step.title })).toBeVisible();
+			await expect(page.getByText(step.detail)).toBeVisible();
+		}
+
+		for (const item of hire.faqs) {
+			await expect(page.getByText(item.question)).toBeVisible();
+			await expect(page.getByText(item.answer)).toBeHidden();
+		}
+		await page.getByText(hire.faqs[0].question).click();
+		await expect(page.getByText(hire.faqs[0].answer)).toBeVisible();
+		await expect(page.getByText(hire.faqs[1].answer)).toBeHidden();
 
 		const contact = page.locator("#contact");
 		await expect(
@@ -139,6 +170,52 @@ test.describe("hire conversion page", () => {
 		expect(boxes[2]!.x).toBeGreaterThan(boxes[1]!.x);
 	});
 
+	test("keeps three Who it’s for cards on one row from md up", async ({
+		page,
+	}, testInfo) => {
+		test.skip(
+			!testInfo.project.name.includes("desktop"),
+			"One-row audience grid is asserted on desktop",
+		);
+
+		await openHire(page);
+
+		const boxes = [];
+		for (const item of hire.audience) {
+			const box = await page.getByText(item.line).boundingBox();
+			expect(box).toBeTruthy();
+			boxes.push(box!);
+		}
+		const top = Math.min(...boxes.map((box) => box.y));
+		const bottom = Math.max(...boxes.map((box) => box.y));
+		expect(bottom - top).toBeLessThan(48);
+		expect(boxes[1]!.x).toBeGreaterThan(boxes[0]!.x);
+		expect(boxes[2]!.x).toBeGreaterThan(boxes[1]!.x);
+	});
+
+	test("keeps How we engage as a three-step strip from md up", async ({
+		page,
+	}, testInfo) => {
+		test.skip(
+			!testInfo.project.name.includes("desktop"),
+			"One-row engage strip is asserted on desktop",
+		);
+
+		await openHire(page);
+
+		const boxes = [];
+		for (const step of hire.engageSteps) {
+			const box = await page.getByRole("heading", { level: 3, name: step.title }).boundingBox();
+			expect(box).toBeTruthy();
+			boxes.push(box!);
+		}
+		const top = Math.min(...boxes.map((box) => box.y));
+		const bottom = Math.max(...boxes.map((box) => box.y));
+		expect(bottom - top).toBeLessThan(24);
+		expect(boxes[1]!.x).toBeGreaterThan(boxes[0]!.x);
+		expect(boxes[2]!.x).toBeGreaterThan(boxes[1]!.x);
+	});
+
 	test("stacks package cards and uses full-width primary CTAs on mobile", async ({
 		page,
 	}, testInfo) => {
@@ -167,6 +244,27 @@ test.describe("hire conversion page", () => {
 		expect(talkBox).toBeTruthy();
 		expect(viewport).toBeTruthy();
 		expect(talkBox!.width).toBeGreaterThan(viewport!.width * 0.7);
+	});
+
+	test("stacks How we engage steps on mobile", async ({ page }, testInfo) => {
+		test.skip(
+			!testInfo.project.name.includes("mobile"),
+			"Engage stacking is asserted on the Pixel project",
+		);
+
+		await openHire(page);
+
+		const titles = hire.engageSteps.map((step) =>
+			page.getByRole("heading", { level: 3, name: step.title }),
+		);
+		const boxes = [];
+		for (const title of titles) {
+			const box = await title.boundingBox();
+			expect(box).toBeTruthy();
+			boxes.push(box!);
+		}
+		expect(boxes[1]!.y).toBeGreaterThan(boxes[0]!.y + boxes[0]!.height - 1);
+		expect(boxes[2]!.y).toBeGreaterThan(boxes[1]!.y + boxes[1]!.height - 1);
 	});
 
 	test("has no serious or critical axe violations", async ({ page }) => {

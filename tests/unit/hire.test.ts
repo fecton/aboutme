@@ -67,14 +67,64 @@ describe("hire conversion copy", () => {
 			"build/test/deploy + IaC gates; Grafana/Prometheus/CloudWatch + OpenTelemetry; runbook-ready dashboards",
 		);
 		expect(hire.packages[2].footnote).toBe("Tools used, not productized SKUs.");
+		expect(hire.packages.map((pkg) => pkg.pain)).toEqual([
+			"Spend is up. Visibility isn’t.",
+			"Migrations stall. Platforms aren’t reproducible.",
+			"Ships are slow. Incidents are loud.",
+		]);
 
 		for (const pkg of hire.packages) {
-			const blob = `${pkg.title} ${pkg.deliverables} ${pkg.bestFor} ${pkg.footnote ?? ""} ${pkg.credentials ?? ""}`;
+			const blob = `${pkg.title} ${pkg.pain} ${pkg.deliverables} ${pkg.bestFor} ${pkg.footnote ?? ""} ${pkg.credentials ?? ""}`;
 			expect(blob).not.toMatch(FORBIDDEN_SKU);
+			expect(blob).not.toMatch(/geniusee/i);
 			expect(pkg.ctaLabel).toBe("Let’s talk");
 			expect(pkg.ctaHref).toBe("#contact");
 			expect(pkg.bestForLabel).toBe("Best for");
 		}
+	});
+
+	it("locks v1.1 Who it’s for, How we engage, and FAQ copy", () => {
+		expect(hire.audienceHeading).toBe("Who it’s for");
+		expect(hire.audience.map((item) => item.line)).toEqual([
+			"Engineering leads buried in ops toil",
+			"CTOs watching cloud spend climb without a clear plan",
+			"Product teams blocked by fragile delivery or noisy incidents",
+		]);
+		expect(hire.audience).toHaveLength(3);
+
+		expect(hire.engageHeading).toBe("How we engage");
+		expect(
+			hire.engageSteps.map((step) => `${step.title} — ${step.detail}`),
+		).toEqual([
+			"Intake — short call, scope in writing",
+			"Delivery — focused engagement, progress you can see",
+			"Handoff — docs/runbooks; no lock-in",
+		]);
+
+		expect(hire.faqHeading).toBe("FAQ");
+		expect(hire.faqs.map((item) => item.question)).toEqual([
+			"Do I need a full-time DevOps hire?",
+			"How soon can we start?",
+			"Will you work with our existing stack?",
+			"What happens after kickoff?",
+		]);
+		expect(hire.faqs.map((item) => item.answer)).toEqual([
+			"Often no — a scoped engagement unblocks the bottleneck first.",
+			"Usually within days after scope is agreed in writing.",
+			"Yes — AWS-first; I meet your tools where they are.",
+			"Delivery against the written scope, then a clean handoff.",
+		]);
+
+		const v11 = [
+			hire.audienceHeading,
+			...hire.audience.map((item) => item.line),
+			hire.engageHeading,
+			...hire.engageSteps.map((step) => `${step.title} ${step.detail}`),
+			hire.faqHeading,
+			...hire.faqs.map((item) => `${item.question} ${item.answer}`),
+		].join("\n");
+		expect(v11).not.toMatch(FORBIDDEN_SKU);
+		expect(v11).not.toMatch(/geniusee/i);
 	});
 
 	it("deep-links locked proof teasers to the resume experience section", () => {

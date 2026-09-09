@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { HireHero } from "@/components/hire/HireHero";
+import { HireAudience } from "@/components/hire/HireAudience";
 import { HirePackages } from "@/components/hire/HirePackages";
 import { HireProof } from "@/components/hire/HireProof";
+import { HireEngage } from "@/components/hire/HireEngage";
+import { HireFaq } from "@/components/hire/HireFaq";
 import { HireContact } from "@/components/hire/HireContact";
 import { hire, hirePageMeta } from "@/data/hire";
 
@@ -68,8 +71,11 @@ export default function HirePage() {
 				<HireHero />
 				<div className="mx-auto max-w-6xl px-4 pb-24 sm:px-6">
 					<div className="flex flex-col gap-12 md:gap-16">
+						<HireAudience />
 						<HirePackages />
 						<HireProof />
+						<HireEngage />
+						<HireFaq />
 						<HireContact />
 					</div>
 				</div>
