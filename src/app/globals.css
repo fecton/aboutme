@@ -11,6 +11,7 @@
 	--color-muted: #595961;
 	--color-surface: rgba(0, 0, 0, 0.03);
 	--color-surface-hover: rgba(0, 0, 0, 0.06);
+	--color-surface-solid: #ffffff;
 	--color-border: rgba(0, 0, 0, 0.08);
 	--color-accent: #3366cc;
 	--color-accent-dark: #204090;
@@ -49,6 +50,7 @@
 	--color-muted: #a1a1a6;
 	--color-surface: rgba(255, 255, 255, 0.05);
 	--color-surface-hover: rgba(255, 255, 255, 0.1);
+	--color-surface-solid: #1c1c1e;
 	--color-border: rgba(255, 255, 255, 0.1);
 	--color-accent: #3366cc;
 	--color-accent-dark: #204090;

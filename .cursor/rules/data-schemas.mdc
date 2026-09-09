@@ -43,7 +43,7 @@ interface Language {
 }
 ```
 
-**Export:** `profile` with: name, title, subtitle, availability, profileImage, email, location, resumeUrl, bio (intro, experience, passion), highlights, skills, socialLinks, footerSocialLinks, trustBadges, languages
+**Export:** `profile` with: name, title, headline, subtitle, availability, ctaPrimary, ctaSecondary, trustLine, profileImage, email, location, resumeUrl, bio (intro, experience, passion), highlights, skills, socialLinks, footerSocialLinks, trustBadges, languages
 
 ## experiences.ts
 

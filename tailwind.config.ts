@@ -15,6 +15,7 @@ const config: Config = {
 				surface: {
 					DEFAULT: "var(--color-surface)",
 					hover: "var(--color-surface-hover)",
+					solid: "var(--color-surface-solid)",
 				},
 				border: "var(--color-border)",
 				accent: {
