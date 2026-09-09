@@ -63,11 +63,29 @@ test.describe("home page renders", () => {
 		).toBeVisible();
 		await expect(
 			page.getByText(
-				"Senior DevOps & Cloud Engineer — AWS & Kubernetes, B2B from the EU. Enterprise work with JP Morgan Chase and Mercedes-Benz: up to 50% cloud cost reduction, ~70% fewer incidents.",
+				"Senior DevOps & Cloud Engineer — AWS & Kubernetes, B2B from the EU. Enterprise work via Luxoft (JPMorgan Chase / Mercedes-Benz): up to 50% cloud cost reduction, ~70% fewer incidents.",
 			),
 		).toBeVisible();
 		await expect(page.getByText("B2B · GDPR · Poland (EU)")).toBeVisible();
+		await expect(page.getByText("GDPR Compliant")).toHaveCount(0);
 		await expect(page.getByRole("link", { name: "View Resume" })).toHaveCount(0);
+
+		await expect(
+			page.getByText(
+				"My experience includes enterprise client work via Luxoft — notably JPMorgan Chase and Mercedes-Benz — leading infrastructure migrations, cutting cloud costs by up to 50%, and architecting high-availability systems that handle hundreds of thousands of requests per second.",
+			),
+		).toBeVisible();
+
+		const highlights = page
+			.getByRole("heading", { level: 2, name: "Key Highlights" })
+			.locator("..");
+		await expect(highlights.getByText("Up to 50%")).toBeVisible();
+		await expect(highlights.getByText("Cost reduction (Luxoft engagements)")).toBeVisible();
+		await expect(highlights.getByText("~70%")).toBeVisible();
+		await expect(
+			highlights.getByText("Fewer incidents (Mercedes-Benz / Luxoft)"),
+		).toBeVisible();
+		await expect(page.getByText("Cloud Certifications")).toHaveCount(0);
 
 		const talk = page.getByRole("link", { name: "Let’s talk" });
 		await expect(talk).toBeVisible();
@@ -78,6 +96,14 @@ test.describe("home page renders", () => {
 		const downloadResume = page.getByRole("link", { name: "Download resume" });
 		await expect(downloadResume).toBeVisible();
 		await expect(downloadResume).toHaveAttribute("href", /resume\.pdf$/);
+
+		const contactCard = page.getByRole("heading", { level: 2, name: "Contact" }).locator("..");
+		await expect(
+			contactCard.getByText(/B2B inquiries only\. I’ll use your message to reply/),
+		).toBeVisible();
+		await expect(
+			contactCard.getByRole("link", { name: "Privacy Policy" }),
+		).toHaveAttribute("href", /\/privacy-policy\/?/);
 
 		await page.goto("/resume/");
 		await expect(page.locator("iframe")).toBeVisible();

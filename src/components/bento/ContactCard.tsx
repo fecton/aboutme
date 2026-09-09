@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { profile } from "@/data/profile";
 import { motion, useReducedMotion } from "framer-motion";
@@ -70,6 +71,16 @@ export function ContactCard() {
 						</motion.a>
 					))}
 				</div>
+				<p className="mt-4 text-sm leading-relaxed text-muted">
+					{profile.contactDisclaimerBefore}
+					<Link
+						href="/privacy-policy"
+						className="text-accent hover:underline focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+					>
+						{profile.contactDisclaimerLink}
+					</Link>
+					{profile.contactDisclaimerAfter}
+				</p>
 			</GlassCard>
 
 			<GlassCard variant="solid" className="flex min-h-0 flex-1 flex-col">

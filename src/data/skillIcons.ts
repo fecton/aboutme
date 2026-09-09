@@ -266,13 +266,14 @@ export const SKILL_CATEGORIES = [
 	{ id: "cloud", title: "Cloud & Infrastructure", order: 0 },
 	{ id: "iac", title: "Infrastructure as Code", order: 1 },
 	{ id: "containers", title: "Containers & Orchestration", order: 2 },
-	{ id: "cicd", title: "CI/CD & Automation", order: 3 },
-	{ id: "databases", title: "Databases", order: 4 },
-	{ id: "monitoring", title: "Monitoring & Observability", order: 5 },
-	{ id: "programming", title: "Programming & Scripting", order: 6 },
-	{ id: "web", title: "Web & Frontend", order: 7 },
-	{ id: "tools", title: "Tools & Platforms", order: 8 },
-	{ id: "other", title: "Other", order: 9 },
+	{ id: "streaming", title: "Data streaming & GenAI", order: 3 },
+	{ id: "cicd", title: "CI/CD & Automation", order: 4 },
+	{ id: "databases", title: "Databases", order: 5 },
+	{ id: "monitoring", title: "Monitoring & Observability", order: 6 },
+	{ id: "programming", title: "Programming & Scripting", order: 7 },
+	{ id: "web", title: "Web & Frontend", order: 8 },
+	{ id: "tools", title: "Tools & Platforms", order: 9 },
+	{ id: "other", title: "Other", order: 10 },
 ] as const;
 
 /** Skill -> category id mapping */
@@ -293,9 +294,14 @@ const skillCategoryMap: Record<string, string> = {
 	Docker: "containers",
 	"Docker Compose": "containers",
 	Helm: "containers",
-	Kafka: "containers",
-	Zookeeper: "containers",
-	"Apache Kafka": "containers",
+	// Data streaming & GenAI
+	Kafka: "streaming",
+	Zookeeper: "tools",
+	"Apache Kafka": "streaming",
+	"Amazon Kinesis": "streaming",
+	"AWS Bedrock": "streaming",
+	Kinesis: "streaming",
+	Bedrock: "streaming",
 	// CI/CD
 	Jenkins: "cicd",
 	"GitHub Actions": "cicd",
@@ -407,6 +413,12 @@ const disciplineAliases: Record<string, string> = {
 for (const svc of AWS_SERVICES) {
 	skillCategoryMap[svc] = "cloud";
 }
+
+// Streaming / GenAI services are AWS-backed but are not "cloud platforms".
+skillCategoryMap.Kinesis = "streaming";
+skillCategoryMap.Bedrock = "streaming";
+skillCategoryMap["Amazon Kinesis"] = "streaming";
+skillCategoryMap["AWS Bedrock"] = "streaming";
 
 /**
  * Get category id for a discipline/skill string.

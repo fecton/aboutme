@@ -18,6 +18,12 @@ test.describe("consent-first analytics", () => {
 
 		await expect(page.getByRole("dialog", { name: "Cookie consent" })).toBeVisible();
 		await expect(page.locator(GTM_SCRIPT)).toHaveCount(0);
+		await expect(
+			page.locator('link[rel="preconnect"][href*="googletagmanager"]'),
+		).toHaveCount(0);
+		await expect(
+			page.locator('link[rel="dns-prefetch"][href*="google-analytics"]'),
+		).toHaveCount(0);
 		expect(await page.evaluate(() => localStorage.getItem("cookie-consent"))).toBeNull();
 	});
 
