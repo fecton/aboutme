@@ -267,6 +267,39 @@ test.describe("hire conversion page", () => {
 		expect(boxes[2]!.y).toBeGreaterThan(boxes[1]!.y + boxes[1]!.height - 1);
 	});
 
+	test("document title and OG/Twitter follow hire meta, not the locked H1", async ({
+		page,
+	}) => {
+		await openHire(page);
+
+		await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+			"Hire DevOps that cuts cloud cost and keeps systems up.",
+		);
+		await expect(page).toHaveTitle(
+			"Hire DevOps (AWS & Kubernetes) | Q4 2026 | Andrii Lytvynenko",
+		);
+		await expect(page.locator('meta[name="description"]')).toHaveAttribute(
+			"content",
+			"B2B DevOps from the EU — cloud cost & reliability, IaC/Kubernetes, CI/CD & observability. Case-study outcomes, not guarantees. Proof on the resume.",
+		);
+		await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
+			"content",
+			"Hire DevOps (AWS & Kubernetes) | Q4 2026 | Andrii Lytvynenko",
+		);
+		await expect(page.locator('meta[property="og:description"]')).toHaveAttribute(
+			"content",
+			"B2B DevOps from the EU — cloud cost & reliability, IaC/Kubernetes, CI/CD & observability. Case-study outcomes, not guarantees. Proof on the resume.",
+		);
+		await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute(
+			"content",
+			"Hire DevOps (AWS & Kubernetes) | Q4 2026 | Andrii Lytvynenko",
+		);
+		await expect(page.locator('meta[name="twitter:description"]')).toHaveAttribute(
+			"content",
+			"B2B DevOps from the EU — cloud cost & reliability, IaC/Kubernetes, CI/CD & observability. Case-study outcomes, not guarantees. Proof on the resume.",
+		);
+	});
+
 	test("JSON-LD keeps packages and service schema without employer or job-seeking", async ({
 		page,
 	}) => {

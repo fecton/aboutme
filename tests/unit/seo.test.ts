@@ -6,7 +6,7 @@ import {
 	personJsonLd,
 	professionalServiceJsonLd,
 } from "@/lib/json-ld";
-import { hire } from "@/data/hire";
+import { hire, hirePageMeta } from "@/data/hire";
 import { certificates } from "@/data/certificates";
 
 const HIRE_FLAVORED_HOME = /Hire a Senior|Hire Senior DevOps/i;
@@ -96,9 +96,21 @@ describe("public JSON-LD", () => {
 		).toEqual(hire.packages.map((pkg) => pkg.title));
 	});
 
-	it("does not change the locked /hire title", () => {
+	it("does not change the locked /hire H1", () => {
 		expect(hire.headline).toBe(
 			"Hire DevOps that cuts cloud cost and keeps systems up.",
 		);
+	});
+});
+
+describe("/hire meta is document title, not H1", () => {
+	it("uses the Q4 2026 document title for OG and Twitter", () => {
+		expect(hirePageMeta.title).toBe(
+			"Hire DevOps (AWS & Kubernetes) | Q4 2026 | Andrii Lytvynenko",
+		);
+		expect(hirePageMeta.description).toBe(
+			"B2B DevOps from the EU — cloud cost & reliability, IaC/Kubernetes, CI/CD & observability. Case-study outcomes, not guarantees. Proof on the resume.",
+		);
+		expect(hirePageMeta.title).not.toBe(hire.headline);
 	});
 });
