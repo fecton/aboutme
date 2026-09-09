@@ -12,11 +12,11 @@ The site is a **static export** (`output: "export"`) deployed to GitHub Pages. T
 - **Styling:** Tailwind CSS **v3** (do not auto-upgrade to v4 — PostCSS plugin layout changed and breaks the build)
 - **Animation:** Framer Motion
 - **Language:** TypeScript
-- **Node:** 20 (see `.nvmrc`)
+- **Node:** 22 (see `.nvmrc`)
 
 ## Prerequisites
 
-- Node 20+ (match `.nvmrc`)
+- Node 22+ (match `.nvmrc`)
 - npm
 - For image conversion: Python 3 + Pillow (`pip install pillow`)
 - For e2e: Chromium via Playwright (`npx playwright install chromium`)

@@ -14,7 +14,7 @@ Use this guide to scaffold and configure a similar portfolio from scratch.
 
 ## Prerequisites
 
-- Node 20+
+- Node 22+
 - npm
 - Git
 
@@ -104,7 +104,7 @@ Add `.github/workflows/ci.yml` alongside deploy: lint, typecheck, build, cspell,
 ### Workflow (.github/workflows/deploy.yml)
 
 - Trigger: push to `main` only
-- Steps: checkout, setup-node (v20, cache npm), npm ci, lint, type check, build
+- Steps: checkout, setup-node (`.nvmrc`, cache npm), npm ci, lint, type check, build
 - Deploy: peaceiris/actions-gh-pages, publish_dir: `./out`
 
 ### Repo Settings
