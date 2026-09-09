@@ -53,7 +53,7 @@ colors: {
 
 Two workflows — do not collapse them:
 
-- **PR / branch CI** (`.github/workflows/ci.yml`): pull requests to `main`, and pushes except `main`/`gh-pages`. Jobs: lint + typecheck + build (artifact `out`), cspell, lychee, knip, Playwright (needs the `out` artifact). Concurrency cancels in-progress runs on the same ref.
+- **PR / branch CI** (`.github/workflows/ci.yml`): pull requests to `main`, and pushes except `main`/`gh-pages`. Jobs: lint + typecheck + unit tests + build (artifact `out`), cspell, lychee, knip, Playwright (needs the `out` artifact). Concurrency cancels in-progress runs on the same ref.
 - **Deploy** (`.github/workflows/deploy.yml`): push to `main` only. `npm ci` → `lint` → `typecheck` → `build` → `peaceiris/actions-gh-pages` (`publish_dir: ./out`). Never deploy from feature branches.
 
 Shared rules:

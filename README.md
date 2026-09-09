@@ -42,6 +42,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | `npm run lint` | ESLint |
 | `npm run typecheck` | `tsc --noEmit` |
 | `npm run spell` | cspell on `src/**/*.{ts,tsx}` and root `*.md` |
+| `npm test` | Vitest unit tests (parsers, skill lookups) |
 | `npm run knip` | Unused export / dead-code check |
 | `npm run e2e` | Playwright smoke + axe (expects `out/` unless you override the URL) |
 | `npm run favicon` | Rebuild favicon/PWA icons from `tools/favicon-source.svg` |
@@ -55,6 +56,7 @@ CI (`.github/workflows/ci.yml`) runs on pull requests to `main` and on pushes th
 npm ci
 npm run lint
 npm run typecheck
+npm test
 npm run build
 npm run spell
 npm run knip
@@ -81,7 +83,7 @@ To hit a running `next dev` instead:
 PLAYWRIGHT_BASE_URL=http://localhost:3000 npm run e2e
 ```
 
-Tests cover home visibility (hero, navbar, every bento `h2`), resume iframe + download, policy pages, diploma viewer pages, 404 chrome, and axe WCAG 2 A/AA (serious/critical only). Home tests set `localStorage.cookie-consent = "rejected"` so the banner does not overlay measurements.
+Tests cover home visibility (hero, navbar, every bento `h2`), resume iframe + download, policy pages, diploma viewer pages, 404 chrome, axe WCAG 2 A/AA (serious/critical only), consent-first GA gating, Lite Mode persistence, and experience chip expansion. Home tests that measure layout set `localStorage.cookie-consent = "rejected"` so the banner does not overlay measurements.
 
 Common failure: cards or hero stuck at `opacity: 0` after a Framer Motion change. The smoke test asserts computed opacity > 0.5.
 
