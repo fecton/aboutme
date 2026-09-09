@@ -36,6 +36,18 @@ alwaysApply: false
 - Use descriptive error logging
 - Provide fallbacks where appropriate
 
+## Local verification (before a PR)
+
+Match `.github/workflows/ci.yml` rather than lint-only:
+
+```bash
+npm run lint && npm run typecheck && npm test && npm run build && npm run spell && npm run knip
+npm run e2e   # requires out/ from the build step
+```
+
+Playwright asserts visibility (computed opacity), not just DOM presence. If you change hero, GlassCard, or Framer Motion `initial` values, run e2e.
+
 ## Rebuild Context
 
 - When scaffolding a new project, ensure `tools/png_to_webp.py` exists for image optimization (run from certification folder with PIL installed)
+- Also copy favicon (`tools/generate-favicon.mjs`) and logo fetch (`tools/fetch-official-logos.mjs`) if you want the same asset pipeline

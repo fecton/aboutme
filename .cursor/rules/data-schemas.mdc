@@ -117,9 +117,7 @@ interface Education {
 
 ## projects.ts
 
-**Location:** `src/data/projects.ts`
-
-**Interface:**
+Not present in this repository. If you add a portfolio section, create `src/data/projects.ts` with:
 
 ```typescript
 interface Project {
@@ -139,9 +137,15 @@ interface Project {
 
 **Location:** `src/data/skillIcons.ts`
 
-**Purpose:** Map skill display names to `{ path: string; title: string }` for SkillsCard. Use `simple-icons` package for most icons; add manual SVG paths for icons not in the package (e.g., AWS, Azure, PowerShell).
+**Purpose:** Map skill display names to `{ path: string; title: string; viewBox?: string }` for SkillsCard and discipline chips. Use `simple-icons` for most icons; add manual SVG paths for icons not in the package (e.g., AWS, Azure, PowerShell).
 
-**Export:** `skillIconMap: Record<string, { path: string; title: string }>`
+**Exports:**
+
+- `skillIconMap`
+- `SKILL_CATEGORIES` — ordered category metadata (`cloud`, `iac`, `containers`, …, `other`)
+- `getCategoryForDiscipline`, `getCanonicalForDiscipline`, `getIconForDiscipline`
+
+`skillCategoryMap` and `disciplineAliases` are module-private. Experience/education `disciplines` strings are parsed by `src/lib/discipline-segments.ts` before these lookups.
 
 ## Adding New Data
 

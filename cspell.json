@@ -24,6 +24,9 @@
 		"geniusee",
 		"Geniusee",
 		"glassmorphism",
+		"gtag",
+		"nojekyll",
+		"peaceiris",
 		"HLASM",
 		"khai",
 		"Laravel",
@@ -41,8 +44,10 @@
 		"REGON",
 		"Stanisława",
 		"Tkinter",
+		"vitest",
 		"UODO",
-		"Voivodeship"
+		"Voivodeship",
+		"WCAG"
 	],
 	"flagWords": [],
 	"ignoreRegExpList": [

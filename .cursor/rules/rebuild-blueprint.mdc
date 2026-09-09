@@ -70,11 +70,15 @@ export default nextConfig;
 
 Wrap the app in `src/app/layout.tsx` with:
 
-1. **ConsentProvider** (outermost)
-2. **ThemeProvider** (next-themes)
-3. **ReduceEffectsProvider** (respects prefers-reduced-motion)
+1. **ConsentProvider** (outermost) — cookie banner + GA scripts **only** after `localStorage.cookie-consent === "accepted"`. Measurement ID: `src/lib/analytics.ts`.
+2. **ThemeProvider** (next-themes, `attribute="class"`, `storageKey="theme"`, `defaultTheme="system"`)
+3. **ReduceEffectsProvider** — Lite Mode. Reads `localStorage.reduce-effects`. If unset, auto-enables when `prefers-reduced-motion` is reduce, `deviceMemory <= 4`, `hardwareConcurrency <= 4`, or `connection.saveData`.
 
-Include skip link, JSON-LD scripts, and preconnect/dns-prefetch in layout.
+Include skip link, JSON-LD scripts, and preconnect/dns-prefetch in layout. Do not load `gtag` in `layout.tsx` itself.
+
+## PR validation (optional but this repo has it)
+
+Add `.github/workflows/ci.yml` alongside deploy: lint, typecheck, build, cspell, lychee, knip, Playwright against `out/`. See `README.md` and `config-and-tooling.mdc`.
 
 ## Page Structure
 
@@ -122,7 +126,8 @@ Replace in `src/data/`:
 - experiences.ts
 - certificates.ts
 - education.ts
-- projects.ts (if using PortfolioCard)
+- skillIcons.ts (icons, categories, aliases)
+- projects.ts only if you add a portfolio/projects section (this repo does not ship it)
 
 Update in `src/app/layout.tsx`:
 
