@@ -7,8 +7,12 @@ import {
 } from "@/data/skillIcons";
 
 describe("getCategoryForDiscipline", () => {
-	it("returns the mapped category for an exact skill name", () => {
-		expect(getCategoryForDiscipline("Terraform")).toBe("iac");
+	it("classifies Kafka and AWS streaming/GenAI services as streaming, not containers or cloud", () => {
+		expect(getCategoryForDiscipline("Kafka")).toBe("streaming");
+		expect(getCategoryForDiscipline("Apache Kafka")).toBe("streaming");
+		expect(getCategoryForDiscipline("Amazon Kinesis")).toBe("streaming");
+		expect(getCategoryForDiscipline("AWS Bedrock")).toBe("streaming");
+		expect(getCategoryForDiscipline("Kinesis")).toBe("streaming");
 		expect(getCategoryForDiscipline("Docker")).toBe("containers");
 	});
 

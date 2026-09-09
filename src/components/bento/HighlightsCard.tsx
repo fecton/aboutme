@@ -48,7 +48,7 @@ export function HighlightsCard() {
 									}
 								/>
 							</svg>
-							<div className="text-2xl font-bold text-accent md:text-3xl">
+							<div className="text-2xl font-bold leading-tight text-accent md:text-3xl">
 								{highlight.number}
 							</div>
 							<div className="text-sm text-muted">{highlight.label}</div>

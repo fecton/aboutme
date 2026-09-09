@@ -29,11 +29,16 @@ export const profile = {
 	title: "Senior DevOps & Cloud Engineer",
 	headline: "Cloud infrastructure that costs less and stays up.",
 	subtitle:
-		"Senior DevOps & Cloud Engineer — AWS & Kubernetes, B2B from the EU. Enterprise work with JP Morgan Chase and Mercedes-Benz: up to 50% cloud cost reduction, ~70% fewer incidents.",
+		"Senior DevOps & Cloud Engineer — AWS & Kubernetes, B2B from the EU. Enterprise work via Luxoft (JPMorgan Chase / Mercedes-Benz): up to 50% cloud cost reduction, ~70% fewer incidents.",
 	availability: "Available for Q4 2026 Projects",
 	ctaPrimary: "Let’s talk",
 	ctaSecondary: "Download resume",
 	trustLine: "B2B · GDPR · Poland (EU)",
+	contactDisclaimerBefore:
+		"B2B inquiries only. I’ll use your message to reply and talk through a possible engagement (pre-contract). Details in the ",
+	contactDisclaimerLink: "Privacy Policy",
+	contactDisclaimerAfter:
+		". No obligation until we agree scope in writing.",
 	profileImage: "/images/tm-easy-profile.webp",
 	email: "a.v.lytvynenko2004@gmail.com",
 	location: "Częstochowa, Poland (EU)",
@@ -42,21 +47,21 @@ export const profile = {
 		intro:
 			"I'm a Senior DevOps & Cloud Engineer with 5+ years of experience designing, implementing, and optimizing cloud infrastructure for enterprise clients. I specialize in building scalable, secure, and cost-efficient solutions using AWS, Kubernetes, and Infrastructure as Code practices.",
 		experience:
-			"My experience spans working with Fortune 500 companies like JP Morgan Chase and Mercedes-Benz, where I've led critical infrastructure migrations, reduced cloud costs by up to 50%, and architected high-availability systems handling hundreds of thousands of requests per second.",
+			"My experience includes enterprise client work via Luxoft — notably JPMorgan Chase and Mercedes-Benz — leading infrastructure migrations, cutting cloud costs by up to 50%, and architecting high-availability systems that handle hundreds of thousands of requests per second.",
 		passion:
-			"I'm passionate about automation, continuous improvement, and mentoring teams. Whether it's a complex Terraform migration or implementing GenAI-powered monitoring solutions, I focus on delivering measurable business value.",
+			"I'm passionate about automation, continuous improvement, and mentoring teams. Whether it's a complex Terraform migration or using GenAI to speed up log analysis, I focus on delivering measurable business value.",
 	},
 	highlights: [
 		{ number: "5+", label: "Years of Experience" },
-		{ number: "5+", label: "Cloud Certifications" },
-		{ number: "50%", label: "Cost Reduction Achieved" },
-		{ number: "70%", label: "Incident Reduction" },
+		{ number: "5+", label: "Certifications" },
+		{ number: "Up to 50%", label: "Cost reduction (Luxoft engagements)" },
+		{ number: "~70%", label: "Fewer incidents (Mercedes-Benz / Luxoft)" },
 	] as Highlight[],
 	skills: [
 		{
 			title: "Cloud Platforms",
 			icon: "cloud",
-			skills: ["AWS", "Azure", "GCP", "Amazon Kinesis", "AWS Bedrock"],
+			skills: ["AWS", "Azure"],
 			primary: ["AWS"],
 		},
 		{
@@ -68,8 +73,13 @@ export const profile = {
 		{
 			title: "Containers & Orchestration",
 			icon: "cubes",
-			skills: ["Kubernetes", "Docker", "Kafka", "ECS", "Helm"],
+			skills: ["Kubernetes", "Docker", "ECS", "Helm"],
 			primary: ["Kubernetes", "Docker"],
+		},
+		{
+			title: "Data streaming & GenAI",
+			icon: "stream",
+			skills: ["Amazon Kinesis", "Kafka", "AWS Bedrock"],
 		},
 		{
 			title: "CI/CD & Automation",
@@ -123,9 +133,9 @@ export const profile = {
 		{ name: "LinkedIn", url: "https://www.linkedin.com/in/andrii-fecton/", icon: "linkedin" },
 	],
 	trustBadges: [
-		{ title: "GDPR Compliant", icon: "shield" },
-		{ title: "B2B Contracts", icon: "briefcase" },
-		{ title: "EU-Based", icon: "map-marker" },
+		{ title: "B2B", icon: "briefcase" },
+		{ title: "GDPR", icon: "shield" },
+		{ title: "Poland (EU)", icon: "map-marker" },
 	],
 	languages: [
 		{ flag: "🇬🇧", name: "English", level: "Upper-Intermediate (B2)" },

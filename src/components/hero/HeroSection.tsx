@@ -54,7 +54,7 @@ export function HeroSection() {
 						{profile.subtitle}
 					</p>
 
-					<div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
+					<div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
 						<a
 							href="#contact"
 							className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl bg-accent px-6 py-3 font-medium text-white transition-all hover:bg-accent-dark focus-visible:ring-2 focus-visible:ring-border"
@@ -65,7 +65,7 @@ export function HeroSection() {
 							href={profile.resumeUrl}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl border border-border px-6 py-3 font-medium text-foreground transition-all hover:bg-surface-hover focus-visible:ring-2 focus-visible:ring-border"
+							className="flex min-h-[44px] min-w-[44px] items-center justify-center px-2 py-2 text-sm font-medium text-muted underline decoration-border underline-offset-4 transition-all hover:text-foreground sm:rounded-xl sm:border sm:border-border sm:px-6 sm:py-3 sm:text-base sm:text-foreground sm:no-underline sm:hover:bg-surface-hover"
 							download="Andrii_Lytvynenko_Resume.pdf"
 						>
 							{profile.ctaSecondary}

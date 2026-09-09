@@ -176,8 +176,6 @@ export default function RootLayout({
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head>
-				<link rel="preconnect" href="https://www.googletagmanager.com" />
-				<link rel="dns-prefetch" href="https://www.google-analytics.com" />
 				{/* Strip Dark Reader / extension-injected attributes before React hydrates to avoid hydration mismatch */}
 				<script
 					dangerouslySetInnerHTML={{
