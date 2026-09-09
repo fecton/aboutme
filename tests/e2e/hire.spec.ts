@@ -38,11 +38,25 @@ test.describe("hire conversion page", () => {
 			if (pkg.credentials) {
 				await expect(card.getByText(pkg.credentials)).toBeVisible();
 			}
-			await expect(card.getByRole("link", { name: pkg.ctaLabel })).toHaveAttribute(
-				"href",
-				"#contact",
-			);
+			const body = await card.innerText();
+			const bestAt = body.indexOf(pkg.bestFor);
+			const deliverablesAt = body.indexOf(pkg.deliverables);
+			expect(bestAt).toBeGreaterThanOrEqual(0);
+			expect(deliverablesAt).toBeGreaterThan(bestAt);
+			const trailing = pkg.footnote ?? pkg.credentials;
+			if (trailing) {
+				expect(body.indexOf(trailing)).toBeGreaterThan(deliverablesAt);
+			}
+			const pkgTalk = card.getByRole("link", { name: pkg.ctaLabel });
+			await expect(pkgTalk).toHaveAttribute("href", "#contact");
+			await expect(pkgTalk).not.toHaveClass(/bg-accent/);
+			await expect(pkgTalk).toHaveClass(/border-border/);
 		}
+
+		const contactPrimary = page
+			.locator("#contact")
+			.getByRole("link", { name: hire.contactCtaLabel });
+		await expect(contactPrimary).toHaveClass(/bg-accent/);
 
 		for (const teaser of hire.proofTeasers) {
 			await expect(page.getByText(teaser.line)).toBeVisible();
@@ -50,6 +64,9 @@ test.describe("hire conversion page", () => {
 		const viewLinks = page.getByRole("link", { name: "View on resume" });
 		await expect(viewLinks).toHaveCount(hire.proofTeasers.length);
 		await expect(viewLinks.first()).toHaveAttribute("href", /\/#experience/);
+		await expect(
+			page.getByRole("heading", { level: 2, name: hire.proofHeading }).locator("xpath=following-sibling::*[1]"),
+		).toHaveClass(/md:grid-cols-3/);
 
 		const certBadges = page.getByRole("list", { name: "Certifications" });
 		for (const badge of hire.badges) {
@@ -94,6 +111,27 @@ test.describe("hire conversion page", () => {
 			"href",
 			/\/hire\/?/,
 		);
+	});
+
+	test("keeps three proof teasers on one row from md up", async ({ page }, testInfo) => {
+		test.skip(
+			!testInfo.project.name.includes("desktop"),
+			"One-row proof grid is asserted on desktop",
+		);
+
+		await openHire(page);
+
+		const boxes = [];
+		for (const teaser of hire.proofTeasers) {
+			const box = await page.getByText(teaser.line).boundingBox();
+			expect(box).toBeTruthy();
+			boxes.push(box!);
+		}
+		const top = Math.min(...boxes.map((box) => box.y));
+		const bottom = Math.max(...boxes.map((box) => box.y));
+		expect(bottom - top).toBeLessThan(24);
+		expect(boxes[1]!.x).toBeGreaterThan(boxes[0]!.x);
+		expect(boxes[2]!.x).toBeGreaterThan(boxes[1]!.x);
 	});
 
 	test("stacks package cards and uses full-width primary CTAs on mobile", async ({

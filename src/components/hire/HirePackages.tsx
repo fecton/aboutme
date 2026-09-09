@@ -31,26 +31,26 @@ export function HirePackages() {
 							<h3 className="mb-3 text-xl font-semibold tracking-tight text-foreground">
 								{pkg.title}
 							</h3>
-							<p className="mb-4 leading-relaxed text-muted">{pkg.deliverables}</p>
 							<p className="mb-4 leading-relaxed text-foreground">
 								<span className="font-semibold">{pkg.bestForLabel}: </span>
 								{pkg.bestFor}
 							</p>
-							{pkg.credentials ? (
-								<p className="mb-4 text-sm font-medium text-foreground">
-									{pkg.credentials}
-								</p>
-							) : null}
-							{pkg.footnote ? (
-								<p className="mb-6 mt-auto text-sm leading-relaxed text-muted">
-									{pkg.footnote}
-								</p>
-							) : (
-								<div className="mb-6 mt-auto" />
-							)}
+							<p className="mb-4 leading-relaxed text-muted">{pkg.deliverables}</p>
+							<div className="mb-6 mt-auto">
+								{pkg.credentials ? (
+									<p className="text-sm font-medium text-foreground">
+										{pkg.credentials}
+									</p>
+								) : null}
+								{pkg.footnote ? (
+									<p className="text-sm leading-relaxed text-muted">
+										{pkg.footnote}
+									</p>
+								) : null}
+							</div>
 							<a
 								href={pkg.ctaHref}
-								className="flex min-h-[44px] w-full items-center justify-center rounded-xl bg-accent px-6 py-3 font-medium text-white transition-all hover:bg-accent-dark focus-visible:ring-2 focus-visible:ring-border"
+								className="flex min-h-[44px] w-full items-center justify-center rounded-xl border border-border px-6 py-3 font-medium text-foreground transition-all hover:bg-surface-hover focus-visible:ring-2 focus-visible:ring-border"
 							>
 								{pkg.ctaLabel}
 							</a>
