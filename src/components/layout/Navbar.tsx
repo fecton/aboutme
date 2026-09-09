@@ -7,13 +7,7 @@ import { usePathname } from "next/navigation";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { LiteModeToggle } from "@/components/ui/LiteModeToggle";
 import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
-
-const navLinks = [
-	{ href: "/#about", label: "About" },
-	{ href: "/#experience", label: "Experience" },
-	{ href: "/resume/", label: "Resume" },
-	{ href: "/#contact", label: "Contact" },
-];
+import { navLinks } from "@/data/nav";
 
 export function Navbar() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -44,7 +38,7 @@ export function Navbar() {
 				</Link>
 
 				{/* Desktop nav - hidden below md */}
-				<div className="hidden items-center gap-4 md:flex md:gap-8">
+				<div className="hidden items-center gap-4 md:flex md:gap-6 lg:gap-8">
 					{navLinks.map((link) => (
 						<Link
 							key={link.href}

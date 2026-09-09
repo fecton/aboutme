@@ -1,6 +1,7 @@
 export interface HirePackage {
 	id: string;
 	title: string;
+	pain: string;
 	bestForLabel: string;
 	bestFor: string;
 	deliverables: string;
@@ -8,6 +9,23 @@ export interface HirePackage {
 	credentials?: string;
 	ctaLabel: string;
 	ctaHref: string;
+}
+
+export interface HireAudienceItem {
+	id: string;
+	line: string;
+}
+
+export interface HireEngageStep {
+	id: string;
+	title: string;
+	detail: string;
+}
+
+export interface HireFaqItem {
+	id: string;
+	question: string;
+	answer: string;
 }
 
 export interface HireProofTeaser {
@@ -35,11 +53,27 @@ export const hire = {
 	ctaPrimaryHref: "#contact",
 	ctaSecondary: "See full resume",
 	ctaSecondaryHref: "/",
+	audienceHeading: "Who it’s for",
+	audience: [
+		{
+			id: "engineering-leads",
+			line: "Engineering leads buried in ops toil",
+		},
+		{
+			id: "cto",
+			line: "CTOs watching cloud spend climb without a clear plan",
+		},
+		{
+			id: "product-teams",
+			line: "Product teams blocked by fragile delivery or noisy incidents",
+		},
+	] as HireAudienceItem[],
 	packagesHeading: "Packages",
 	packages: [
 		{
 			id: "cloud-cost-audit",
 			title: "Cloud cost & reliability audit",
+			pain: "Spend is up. Visibility isn’t.",
 			bestForLabel: "Best for",
 			bestFor: "teams bleeding spend or flying blind on HA/monitoring",
 			deliverables:
@@ -51,6 +85,7 @@ export const hire = {
 		{
 			id: "iac-kubernetes",
 			title: "IaC & Kubernetes platforms",
+			pain: "Migrations stall. Platforms aren’t reproducible.",
 			bestForLabel: "Best for",
 			bestFor: "Terraform/EKS (or ECS) delivery and migrations",
 			deliverables:
@@ -62,6 +97,7 @@ export const hire = {
 		{
 			id: "ci-cd-observability",
 			title: "CI/CD & observability",
+			pain: "Ships are slow. Incidents are loud.",
 			bestForLabel: "Best for",
 			bestFor: "pipeline + golden-signals maturity",
 			deliverables:
@@ -106,6 +142,48 @@ export const hire = {
 			href: "/#certifications",
 		},
 	] as HireBadge[],
+	engageHeading: "How we engage",
+	engageSteps: [
+		{
+			id: "intake",
+			title: "Intake",
+			detail: "short call, scope in writing",
+		},
+		{
+			id: "delivery",
+			title: "Delivery",
+			detail: "focused engagement, progress you can see",
+		},
+		{
+			id: "handoff",
+			title: "Handoff",
+			detail: "docs/runbooks; no lock-in",
+		},
+	] as HireEngageStep[],
+	faqHeading: "FAQ",
+	faqs: [
+		{
+			id: "full-time",
+			question: "Do I need a full-time DevOps hire?",
+			answer:
+				"Often no — a scoped engagement unblocks the bottleneck first.",
+		},
+		{
+			id: "start",
+			question: "How soon can we start?",
+			answer: "Usually within days after scope is agreed in writing.",
+		},
+		{
+			id: "existing-stack",
+			question: "Will you work with our existing stack?",
+			answer: "Yes — AWS-first; I meet your tools where they are.",
+		},
+		{
+			id: "after-kickoff",
+			question: "What happens after kickoff?",
+			answer: "Delivery against the written scope, then a clean handoff.",
+		},
+	] as HireFaqItem[],
 	contactHeading: "Let’s talk",
 	contactCtaLabel: "Let’s talk",
 	contactDisclaimerBefore:

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { hireHref } from "@/data/nav";
 import { profile } from "@/data/profile";
 import { socialIconPaths } from "@/lib/iconPaths";
 
@@ -37,7 +38,7 @@ export function Footer() {
 					Copyright &copy; 2022-2026 Andrii Lytvynenko
 				</p>
 				<p className="mb-8 text-center text-sm text-muted">
-					<Link href="/hire" className="hover:text-foreground">
+					<Link href={hireHref} className="hover:text-foreground">
 						Hire
 					</Link>
 					{" · "}

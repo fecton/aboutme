@@ -110,7 +110,7 @@ test.describe("home page renders", () => {
 		await expect(page.locator("a[download]")).toContainText(/Download/i);
 	});
 
-	test("primary nav is About Experience Resume Contact; Privacy is footer-only", async ({
+	test("primary nav is About Experience Resume Hire Contact; Privacy is footer-only", async ({
 		page,
 	}) => {
 		await page.goto("/");
@@ -123,16 +123,55 @@ test.describe("home page renders", () => {
 			await menuButton.click();
 		}
 
-		await expect(nav.getByRole("link", { name: "About" })).toBeVisible();
-		await expect(nav.getByRole("link", { name: "Experience" })).toBeVisible();
-		await expect(nav.getByRole("link", { name: "Resume" })).toBeVisible();
-		await expect(nav.getByRole("link", { name: "Contact" })).toBeVisible();
+		const navLabels = (await nav.getByRole("link").allTextContents())
+			.map((label) => label.trim())
+			.filter((label) =>
+				["About", "Experience", "Resume", "Hire", "Contact"].includes(label),
+			);
+		expect(navLabels).toEqual([
+			"About",
+			"Experience",
+			"Resume",
+			"Hire",
+			"Contact",
+		]);
+
+		const hireNav = nav.getByRole("link", { name: "Hire" });
+		await expect(hireNav).toBeVisible();
+		await expect(hireNav).toHaveAttribute("href", /\/hire\/?/);
+		await expect(hireNav).not.toHaveClass(/bg-accent/);
 		await expect(nav.getByRole("link", { name: "Privacy" })).toHaveCount(0);
-		await expect(nav.getByRole("link", { name: "Hire" })).toHaveCount(0);
-		await expect(page.locator("footer").getByRole("link", { name: "Hire" })).toBeVisible();
+		await expect(page.locator("footer").getByRole("link", { name: "Hire" })).toHaveAttribute(
+			"href",
+			/\/hire\/?/,
+		);
 		await expect(
 			page.locator("footer").getByRole("link", { name: "Privacy Policy" }),
 		).toBeVisible();
+	});
+
+	test("homepage Hire nav goes to /hire without a hero Hire button", async ({
+		page,
+	}) => {
+		await page.goto("/");
+		await page.evaluate(() => localStorage.setItem("cookie-consent", "rejected"));
+		await page.reload();
+
+		const hero = page.locator("#main-content > section").first();
+		await expect(hero.getByRole("link", { name: "Let’s talk" })).toBeVisible();
+		await expect(hero.getByRole("link", { name: "Download resume" })).toBeVisible();
+		await expect(hero.getByRole("link", { name: "Hire" })).toHaveCount(0);
+
+		const menuButton = page.getByRole("button", { name: /Open menu/i });
+		if (await menuButton.isVisible()) {
+			await menuButton.click();
+		}
+
+		await page.locator("nav").getByRole("link", { name: "Hire" }).click();
+		await expect(page).toHaveURL(/\/hire\/?/);
+		await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+			"Hire DevOps that cuts cloud cost and keeps systems up.",
+		);
 	});
 });
 

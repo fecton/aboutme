@@ -31,6 +31,9 @@ export function HirePackages() {
 							<h3 className="mb-3 text-xl font-semibold tracking-tight text-foreground">
 								{pkg.title}
 							</h3>
+							<p className="mb-3 text-sm leading-relaxed text-muted">
+								{pkg.pain}
+							</p>
 							<p className="mb-4 leading-relaxed text-foreground">
 								<span className="font-semibold">{pkg.bestForLabel}: </span>
 								{pkg.bestFor}
