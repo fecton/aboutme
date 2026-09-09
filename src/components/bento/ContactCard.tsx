@@ -75,7 +75,7 @@ export function ContactCard() {
 					{profile.contactDisclaimerBefore}
 					<Link
 						href="/privacy-policy"
-						className="text-accent hover:underline focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+						className="text-accent underline underline-offset-2 hover:text-accent-dark focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
 					>
 						{profile.contactDisclaimerLink}
 					</Link>
