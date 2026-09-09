@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { useState, useMemo } from "react";
+import { useId, useMemo, useState } from "react";
 import {
 	getCategoryForDiscipline,
 	getCanonicalForDiscipline,
@@ -32,6 +32,7 @@ export function CategorizedTagList({
 }: CategorizedTagListProps) {
 	const [isOpen, setIsOpen] = useState(false);
 	const prefersReducedMotion = useReducedMotion();
+	const instanceId = useId().replace(/:/g, "");
 
 	const { parsedItems, groupedByCategory } = useMemo(() => {
 		const parsed = parseDisciplineListItems(items);
@@ -66,8 +67,12 @@ export function CategorizedTagList({
 		orderedCategories.push("other");
 	}
 
-	const contentId = `${title.replace(/\s+/g, "-").toLowerCase()}-content`;
-	const triggerId = `${title.replace(/\s+/g, "-").toLowerCase()}-trigger`;
+	const slug = title
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, "-")
+		.replace(/^-|-$/g, "");
+	const contentId = `${slug}-content-${instanceId}`;
+	const triggerId = `${slug}-trigger-${instanceId}`;
 
 	return (
 		<div className={`mt-4 ${className}`}>
@@ -103,10 +108,10 @@ export function CategorizedTagList({
 					</svg>
 				</motion.span>
 			</button>
-			<AnimatePresence initial={false}>
+			<div id={contentId}>
+				<AnimatePresence initial={false}>
 				{isOpen && (
 					<motion.div
-						id={contentId}
 						initial={prefersReducedMotion ? false : { height: 0, opacity: 0 }}
 						animate={{
 							height: "auto",
@@ -228,7 +233,8 @@ export function CategorizedTagList({
 						</motion.div>
 					</motion.div>
 				)}
-			</AnimatePresence>
+				</AnimatePresence>
+			</div>
 		</div>
 	);
 }

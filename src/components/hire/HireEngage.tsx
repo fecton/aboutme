@@ -14,7 +14,7 @@ export function HireEngage() {
 				<ol className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
 					{hire.engageSteps.map((step, index) => (
 						<li key={step.id} className="min-w-0">
-							<p className="mb-2 text-sm font-medium text-muted">
+							<p className="mb-2 text-sm font-medium text-muted" aria-hidden>
 								{index + 1}
 							</p>
 							<h3 className="mb-2 text-xl font-semibold tracking-tight text-foreground">

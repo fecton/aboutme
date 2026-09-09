@@ -1,13 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { homePageMeta } from "@/data/seo";
-import {
-	offerCatalogJsonLd,
-	person,
-	personJsonLd,
-	professionalServiceJsonLd,
-} from "@/lib/json-ld";
+import * as jsonLd from "@/lib/json-ld";
 import { hire, hirePageMeta } from "@/data/hire";
 import { certificates } from "@/data/certificates";
+
+const { person, personJsonLd } = jsonLd;
 
 const HIRE_FLAVORED_HOME = /Hire a Senior|Hire Senior DevOps/i;
 
@@ -73,27 +70,14 @@ describe("public JSON-LD", () => {
 		expect(blob).not.toMatch(/@gmail\.com/);
 	});
 
-	it("keeps OfferCatalog offers and ProfessionalService on /hire without worksFor", () => {
-		expect(professionalServiceJsonLd["@type"]).toBe("ProfessionalService");
-		expect(professionalServiceJsonLd.url).toBe("https://alytvynenko.net/hire/");
-		expect(professionalServiceJsonLd).not.toHaveProperty("email");
-		expect(professionalServiceJsonLd.provider).toEqual(person);
-		expect(professionalServiceJsonLd.provider).not.toHaveProperty("worksFor");
-		expect(jsonOf(professionalServiceJsonLd)).not.toMatch(/"worksFor"/);
-		expect(jsonOf(professionalServiceJsonLd)).not.toMatch(/JobPosting/);
-		expect(jsonOf(professionalServiceJsonLd)).not.toMatch(/@gmail\.com/);
-
-		expect(offerCatalogJsonLd["@type"]).toBe("OfferCatalog");
-		expect(offerCatalogJsonLd.url).toBe("https://alytvynenko.net/hire/");
-		expect(offerCatalogJsonLd.itemListElement).toHaveLength(hire.packages.length);
-		expect(offerCatalogJsonLd.itemListElement.map((offer) => offer["@type"])).toEqual([
-			"Offer",
-			"Offer",
-			"Offer",
-		]);
-		expect(
-			offerCatalogJsonLd.itemListElement.map((offer) => offer.itemOffered.name),
-		).toEqual(hire.packages.map((pkg) => pkg.title));
+	it("strips OfferCatalog and ProfessionalService while the competitive hold stands", () => {
+		expect(jsonLd).not.toHaveProperty("professionalServiceJsonLd");
+		expect(jsonLd).not.toHaveProperty("offerCatalogJsonLd");
+		expect(jsonOf(jsonLd)).not.toMatch(/OfferCatalog/);
+		expect(jsonOf(jsonLd)).not.toMatch(/ProfessionalService/);
+		expect(jsonOf(jsonLd)).not.toMatch(/Geniusee/);
+		expect(jsonOf(personJsonLd)).not.toMatch(/"worksFor"/);
+		expect(jsonOf(personJsonLd)).not.toMatch(/"seeks"/);
 	});
 
 	it("does not change the locked /hire H1", () => {

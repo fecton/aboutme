@@ -2,16 +2,17 @@ import { describe, expect, it } from "vitest";
 import { hireHref, navLinks } from "@/data/nav";
 
 describe("primary nav", () => {
-	it("adds Hire between Resume and Contact at equal weight", () => {
-		expect(navLinks.map((link) => link.label)).toEqual([
-			"About",
-			"Experience",
-			"Resume",
-			"Hire",
-			"Contact",
-		]);
-		expect(navLinks.find((link) => link.label === "Hire")?.href).toBe("/hire/");
+	it("keeps About Experience Resume Contact and omits Hire from chrome", () => {
+		const labels: string[] = navLinks.map((link) => link.label);
+		expect(labels).toEqual(["About", "Experience", "Resume", "Contact"]);
+		expect(labels).not.toContain("Hire");
+		expect(labels.some((label) => /privacy/i.test(label))).toBe(false);
+		expect(labels.some((label) => /work|proof/i.test(label))).toBe(false);
+	});
+
+	it("keeps /hire live as an unlinked route", () => {
 		expect(hireHref).toBe("/hire/");
-		expect(navLinks.some((link) => /privacy/i.test(link.label))).toBe(false);
+		const hrefs: string[] = navLinks.map((link) => link.href);
+		expect(hrefs).not.toContain(hireHref);
 	});
 });
