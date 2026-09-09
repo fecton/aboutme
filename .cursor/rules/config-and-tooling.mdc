@@ -51,6 +51,20 @@ colors: {
 
 ## CI/CD (GitHub Actions)
 
-- Deploy only from `main` branch (never `develop` or feature branches)
-- Pipeline must include: `npm ci` -> `npm run lint` -> `npx tsc --noEmit` -> `npm run build` -> deploy
-- Pin Node version to match `.nvmrc` (currently 20)
+Two workflows — do not collapse them:
+
+- **PR / branch CI** (`.github/workflows/ci.yml`): pull requests to `main`, and pushes except `main`/`gh-pages`. Jobs: lint + typecheck + unit tests + build (artifact `out`), cspell, lychee, knip, Playwright (needs the `out` artifact). Concurrency cancels in-progress runs on the same ref.
+- **Deploy** (`.github/workflows/deploy.yml`): push to `main` only. `npm ci` → `lint` → `typecheck` → `build` → `peaceiris/actions-gh-pages` (`publish_dir: ./out`). Never deploy from feature branches.
+
+Shared rules:
+
+- Pin Node with `node-version-file: .nvmrc` (currently 20)
+- Use `npm ci` in CI, not `npm install`
+- Playwright serves the static export (`npx serve out` on port 4173). Tests must `npm run build` first locally
+- Lychee config is `lychee.toml` (accept 403/429/999; exclude bot-blocked hosts)
+- Dependabot (`.github/dependabot.yml`) groups minor/patch updates and **ignores all semver-major** bumps. Tailwind must stay on v3; cspell 10+ drops Node 20
+
+## Tailwind version pin
+
+- Runtime dependency is `tailwindcss@^3.4.19` with `postcss` + `autoprefixer`
+- Tailwind v4 is a breaking PostCSS plugin change. Do not bump the major in this repo without a dedicated migration

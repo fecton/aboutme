@@ -9,7 +9,9 @@
 		"postcss.config.mjs",
 		"eslint.config.mjs",
 		"playwright.config.ts",
+		"vitest.config.ts",
 		"tests/**/*.spec.ts",
+		"tests/**/*.test.ts",
 		"tools/**/*.mjs"
 	],
 	"project": [
