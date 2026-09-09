@@ -50,7 +50,6 @@ const offerCatalogJsonLd = {
 			"@type": "Service",
 			name: pkg.title,
 			description: pkg.deliverables,
-			areaServed: ["European Union", "Worldwide"],
 		},
 	})),
 };

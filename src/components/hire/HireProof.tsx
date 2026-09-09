@@ -29,7 +29,6 @@ export function HireProof() {
 					<li key={badge.label}>
 						<Link
 							href={badge.href}
-							aria-label={badge.ariaLabel}
 							className="flex min-h-[44px] items-center rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-surface-hover"
 						>
 							{badge.label}

@@ -115,9 +115,8 @@ describe("hire conversion copy", () => {
 		expect(earnedTitles).toMatch(/Solutions Architect - Associate/);
 	});
 
-	it("keeps conversion metadata in the SEO length band", () => {
-		expect(hirePageMeta.title).toMatch(/Hire/);
-		expect(hirePageMeta.description.length).toBeGreaterThanOrEqual(120);
-		expect(hirePageMeta.description.length).toBeLessThanOrEqual(170);
+	it("keeps page metadata on Copywriter strings only", () => {
+		expect(hirePageMeta.title).toBe(hire.headline);
+		expect(hirePageMeta.description).toBe(`${hire.headline} ${hire.offer}`);
 	});
 });

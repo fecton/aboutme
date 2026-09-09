@@ -20,7 +20,6 @@ export interface HireProofTeaser {
 export interface HireBadge {
 	label: string;
 	href: string;
-	ariaLabel: string;
 }
 
 /** Locked contact disclaimer. Concatenate before + link + after to rebuild the exact sentence. */
@@ -97,17 +96,14 @@ export const hire = {
 		{
 			label: "CKA",
 			href: "/#certifications",
-			ariaLabel: "Certified Kubernetes Administrator — view certifications on resume",
 		},
 		{
 			label: "Terraform Associate",
 			href: "/#certifications",
-			ariaLabel: "HashiCorp Terraform Associate — view certifications on resume",
 		},
 		{
 			label: "AWS SAA",
 			href: "/#certifications",
-			ariaLabel: "AWS Solutions Architect Associate — view certifications on resume",
 		},
 	] as HireBadge[],
 	contactHeading: "Let’s talk",
@@ -121,7 +117,6 @@ export const hire = {
 };
 
 export const hirePageMeta = {
-	title: "Hire | AWS & Kubernetes B2B - Andrii Lytvynenko",
-	description:
-		"Hire AWS-first DevOps packages from the EU: a cost & reliability audit, IaC & Kubernetes, and CI/CD & observability. B2B only — proof is on the resume.",
+	title: hire.headline,
+	description: `${hire.headline} ${hire.offer}`,
 };

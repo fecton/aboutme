@@ -53,9 +53,7 @@ test.describe("hire conversion page", () => {
 
 		const certBadges = page.getByRole("list", { name: "Certifications" });
 		for (const badge of hire.badges) {
-			await expect(
-				certBadges.getByRole("link", { name: badge.ariaLabel }),
-			).toBeVisible();
+			await expect(certBadges.getByRole("link", { name: badge.label })).toBeVisible();
 		}
 
 		const contact = page.locator("#contact");
