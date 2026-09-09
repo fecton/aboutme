@@ -92,7 +92,9 @@ test.describe("hire conversion page", () => {
 		).toBeVisible();
 	});
 
-	test("keeps resume-first nav and exposes Hire in the footer", async ({ page }) => {
+	test("includes Hire in primary nav at equal weight and in the footer", async ({
+		page,
+	}) => {
 		await openHire(page);
 
 		const nav = page.locator("nav");
@@ -104,8 +106,11 @@ test.describe("hire conversion page", () => {
 		await expect(nav.getByRole("link", { name: "About" })).toBeVisible();
 		await expect(nav.getByRole("link", { name: "Experience" })).toBeVisible();
 		await expect(nav.getByRole("link", { name: "Resume" })).toBeVisible();
+		const hireNav = nav.getByRole("link", { name: "Hire" });
+		await expect(hireNav).toBeVisible();
+		await expect(hireNav).toHaveAttribute("href", /\/hire\/?/);
+		await expect(hireNav).not.toHaveClass(/bg-accent/);
 		await expect(nav.getByRole("link", { name: "Contact" })).toBeVisible();
-		await expect(nav.getByRole("link", { name: "Hire" })).toHaveCount(0);
 		await expect(nav.getByRole("link", { name: "Privacy" })).toHaveCount(0);
 		await expect(page.locator("footer").getByRole("link", { name: "Hire" })).toHaveAttribute(
 			"href",
