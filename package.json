@@ -10,13 +10,14 @@
 		"typecheck": "tsc --noEmit",
 		"spell": "cspell --no-progress 'src/**/*.{ts,tsx}' '*.md'",
 		"e2e": "playwright test",
+		"test": "vitest run",
 		"knip": "knip --reporter compact",
 		"favicon": "node tools/generate-favicon.mjs",
 		"logos": "node tools/fetch-official-logos.mjs"
 	},
 	"dependencies": {
 		"framer-motion": "^12.43.0",
-		"next": "^16.2.6",
+		"next": "^16.3.3",
 		"next-themes": "^0.4.6",
 		"react": "^19.2.6",
 		"react-dom": "^19.2.6",
@@ -38,6 +39,7 @@
 		"sharp": "^0.34.5",
 		"tailwindcss": "^3.4.19",
 		"to-ico": "^1.1.5",
-		"typescript": "^5"
+		"typescript": "^5",
+		"vitest": "^3.2.7"
 	}
 }

@@ -58,7 +58,7 @@ export default function CookiePolicyPage() {
 						<h1 className="mb-2 text-4xl font-bold tracking-tight text-foreground">
 							Cookie Policy
 						</h1>
-						<p className="mb-8 text-muted">Last updated: May 15, 2026</p>
+						<p className="mb-8 text-muted">Last updated: September 8, 2026</p>
 
 						<div className="prose prose-lg dark:prose-invert max-w-none">
 							<p>
@@ -149,6 +149,17 @@ export default function CookiePolicyPage() {
 												Stores your cookie consent choice
 											</td>
 											<td className="border border-border bg-surface px-4 py-3 text-muted">
+												Persistent (until cleared)
+											</td>
+										</tr>
+										<tr>
+											<td className="border border-border px-4 py-3 text-muted">
+												<code className="text-foreground">reduce-effects</code>
+											</td>
+											<td className="border border-border px-4 py-3 text-muted">
+												Stores Lite Mode (fewer visual effects). If unset, the site may enable it automatically on low-memory, low-core, Save-Data, or reduced-motion devices
+											</td>
+											<td className="border border-border px-4 py-3 text-muted">
 												Persistent (until cleared)
 											</td>
 										</tr>
