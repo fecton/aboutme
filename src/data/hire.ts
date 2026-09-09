@@ -194,7 +194,9 @@ export const hire = {
 	privacyPolicyHref: "/privacy-policy",
 };
 
+/** Document/OG title — not the locked H1 (`hire.headline`). */
 export const hirePageMeta = {
-	title: hire.headline,
-	description: `${hire.headline} ${hire.offer}`,
+	title: "Hire DevOps (AWS & Kubernetes) | Q4 2026 | Andrii Lytvynenko",
+	description:
+		"B2B DevOps from the EU — cloud cost & reliability, IaC/Kubernetes, CI/CD & observability. Case-study outcomes, not guarantees. Proof on the resume.",
 };

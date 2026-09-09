@@ -165,8 +165,16 @@ describe("hire conversion copy", () => {
 		expect(earnedTitles).toMatch(/Solutions Architect - Associate/);
 	});
 
-	it("keeps page metadata on Copywriter strings only", () => {
-		expect(hirePageMeta.title).toBe(hire.headline);
-		expect(hirePageMeta.description).toBe(`${hire.headline} ${hire.offer}`);
+	it("keeps document/OG title off the locked H1", () => {
+		expect(hire.headline).toBe(
+			"Hire DevOps that cuts cloud cost and keeps systems up.",
+		);
+		expect(hirePageMeta.title).toBe(
+			"Hire DevOps (AWS & Kubernetes) | Q4 2026 | Andrii Lytvynenko",
+		);
+		expect(hirePageMeta.title).not.toBe(hire.headline);
+		expect(hirePageMeta.description).toBe(
+			"B2B DevOps from the EU — cloud cost & reliability, IaC/Kubernetes, CI/CD & observability. Case-study outcomes, not guarantees. Proof on the resume.",
+		);
 	});
 });

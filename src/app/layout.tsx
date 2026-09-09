@@ -2,7 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ReduceEffectsProvider } from "@/components/providers/ReduceEffectsProvider";
 import { ConsentProvider } from "@/components/providers/ConsentProvider";
-import { certificates } from "@/data/certificates";
+import { homePageMeta } from "@/data/seo";
+import { personJsonLd } from "@/lib/json-ld";
 import "./globals.css";
 
 const SITE_URL = "https://alytvynenko.net";
@@ -10,9 +11,8 @@ const PROFILE_IMAGE = `${SITE_URL}/images/tm-easy-profile.webp`;
 
 export const metadata: Metadata = {
 	metadataBase: new URL(SITE_URL),
-	title: "Andrii Lytvynenko - Senior DevOps & Cloud Engineer",
-	description:
-		"Hire a Senior DevOps & Cloud Engineer with 5+ years of experience. Expert in AWS, Terraform, Kubernetes, CI/CD. Available for B2B contracts and remote consulting worldwide. Based in Poland, EU.",
+	title: homePageMeta.title,
+	description: homePageMeta.description,
 	keywords: [
 		"DevOps consultant",
 		"Cloud infrastructure consultant",
@@ -30,9 +30,8 @@ export const metadata: Metadata = {
 	authors: [{ name: "Andrii Lytvynenko" }],
 	creator: "Andrii Lytvynenko",
 	openGraph: {
-		title: "Hire Senior DevOps & Cloud Engineer | AWS Certified | B2B Contracts",
-		description:
-			"Senior DevOps & Cloud Engineer with 5+ years of experience. Expert in AWS, Terraform, Kubernetes, CI/CD. Available for B2B contracts worldwide. Based in Poland, EU.",
+		title: homePageMeta.ogTitle,
+		description: homePageMeta.ogDescription,
 		url: SITE_URL,
 		siteName: "Andrii Lytvynenko - DevOps & Cloud Engineering Services",
 		images: [
@@ -48,9 +47,8 @@ export const metadata: Metadata = {
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Hire Senior DevOps & Cloud Engineer | AWS Certified",
-		description:
-			"5+ years experience | Expert in AWS, Kubernetes, Terraform, CI/CD | Available for B2B contracts worldwide",
+		title: homePageMeta.ogTitle,
+		description: homePageMeta.ogDescription,
 		images: [PROFILE_IMAGE],
 		creator: "@fecton",
 	},
@@ -76,99 +74,6 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
 	themeColor: "#3366CC",
-};
-
-const personJsonLd = {
-	"@context": "https://schema.org",
-	"@type": "Person",
-	name: "Andrii Lytvynenko",
-	jobTitle: "Senior DevOps & Cloud Engineer",
-	description:
-		"Senior DevOps & Cloud Engineer with 5+ years of experience in AWS, Terraform, Kubernetes, and cloud infrastructure. Available for B2B contracts and consulting worldwide.",
-	url: SITE_URL,
-	image: PROFILE_IMAGE,
-	email: "a.v.lytvynenko2004@gmail.com",
-	address: {
-		"@type": "PostalAddress",
-		addressLocality: "Częstochowa",
-		addressRegion: "Silesian Voivodeship",
-		addressCountry: "PL",
-	},
-	sameAs: [
-		"https://www.linkedin.com/in/andrii-fecton/",
-		"https://github.com/fecton",
-		"https://www.facebook.com/andrii.lytvynenko.official",
-		"https://www.instagram.com/andrii.lytvynenko/",
-		"https://t.me/fecton",
-	],
-	knowsAbout: [
-		"DevOps",
-		"Cloud Engineering",
-		"AWS",
-		"Terraform",
-		"Kubernetes",
-		"Docker",
-		"CI/CD",
-		"Infrastructure as Code",
-		"Jenkins",
-		"Python",
-		"Bash",
-		"Linux",
-	],
-	knowsLanguage: [
-		{ "@type": "Language", name: "English", alternateName: "en" },
-		{ "@type": "Language", name: "Ukrainian", alternateName: "uk" },
-		{ "@type": "Language", name: "Russian", alternateName: "ru" },
-		{ "@type": "Language", name: "Polish", alternateName: "pl" },
-	],
-	alumniOf: [
-		{ "@type": "EducationalOrganization", name: "Kharkiv Aviation Institute", url: "https://khai.edu/en/" },
-		{ "@type": "EducationalOrganization", name: "EPAM University", url: "https://www.epamglobalcampus.com/" },
-	],
-	worksFor: { "@type": "Organization", name: "Geniusee Inc.", url: "https://geniusee.com/" },
-	hasCredential: certificates
-		.filter((cert) => Boolean(cert.link))
-		.map((cert) => ({
-			"@type": "EducationalOccupationalCredential",
-			name: cert.title,
-			credentialCategory: "Professional Certification",
-		})),
-	seeks: {
-		"@type": "JobPosting",
-		hiringOrganization: { "@type": "Person", name: "Andrii Lytvynenko" },
-		jobLocationType: "TELECOMMUTE",
-		applicantLocationRequirements: { "@type": "Country", name: "Worldwide" },
-		title: "B2B DevOps & Cloud Engineering Contracts",
-		description: "Available for B2B contract work in DevOps, Cloud Infrastructure, AWS, Kubernetes, and Infrastructure as Code",
-		employmentType: "CONTRACTOR",
-	},
-};
-
-const professionalServiceJsonLd = {
-	"@context": "https://schema.org",
-	"@type": "ProfessionalService",
-	name: "Andrii Lytvynenko - DevOps & Cloud Engineering Services",
-	description:
-		"Professional DevOps and Cloud Engineering services including AWS consulting, Kubernetes implementation, Terraform infrastructure as code, CI/CD pipeline development, and cloud migration.",
-	url: SITE_URL,
-	image: PROFILE_IMAGE,
-	priceRange: "$$-$$$",
-	email: "a.v.lytvynenko2004@gmail.com",
-	address: { "@type": "PostalAddress", addressLocality: "Częstochowa", addressCountry: "PL" },
-	areaServed: [{ "@type": "Country", name: "Poland" }, { "@type": "Place", name: "European Union" }, { "@type": "Place", name: "Worldwide" }],
-	serviceType: [
-		"DevOps Consulting",
-		"Cloud Infrastructure Design",
-		"AWS Consulting",
-		"Kubernetes Implementation",
-		"Terraform Development",
-		"CI/CD Pipeline Development",
-		"Cloud Migration",
-		"Infrastructure as Code",
-		"Cloud Cost Optimization",
-		"Security & Compliance",
-	],
-	sameAs: ["https://www.linkedin.com/in/andrii-fecton/", "https://github.com/fecton"],
 };
 
 export default function RootLayout({
@@ -218,12 +123,6 @@ export default function RootLayout({
 					type="application/ld+json"
 					dangerouslySetInnerHTML={{
 						__html: JSON.stringify(personJsonLd),
-					}}
-				/>
-				<script
-					type="application/ld+json"
-					dangerouslySetInnerHTML={{
-						__html: JSON.stringify(professionalServiceJsonLd),
 					}}
 				/>
 				<a href="#main-content" className="skip-link">
