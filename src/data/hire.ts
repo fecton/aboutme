@@ -1,10 +1,11 @@
 export interface HirePackage {
 	id: string;
 	title: string;
-	pitch: string;
 	bestForLabel: string;
 	bestFor: string;
-	footnote: string;
+	deliverables: string;
+	footnote?: string;
+	credentials?: string;
 	ctaLabel: string;
 	ctaHref: string;
 }
@@ -28,50 +29,45 @@ export const HIRE_CONTACT_DISCLAIMER =
 
 export const hire = {
 	availability: "Available for Q4 2026 Projects",
-	headline: "Cloud infrastructure that costs less and stays up.",
-	offer: "AWS & Kubernetes B2B from the EU.",
+	headline: "Hire DevOps that cuts cloud cost and keeps systems up.",
+	offer: "AWS & Kubernetes · B2B from the EU · Proof on the resume",
+	trustLine: "B2B · GDPR · Poland (EU)",
 	ctaPrimary: "Let’s talk",
 	ctaPrimaryHref: "#contact",
 	ctaSecondary: "See full resume",
 	ctaSecondaryHref: "/",
-	packagesHeading: "AWS-first packages",
+	packagesHeading: "Packages",
 	packages: [
 		{
-			id: "cloud-finops-audit",
+			id: "cloud-cost-audit",
 			title: "Cloud cost & reliability audit",
-			pitch:
-				"A focused AWS review of spend, reliability, and the highest-leverage fixes—so you know what to change first.",
 			bestForLabel: "Best for",
-			bestFor:
-				"Teams staring at an AWS bill they cannot explain, or an environment that pages the same people every week.",
-			footnote:
-				"Cost and reliability outcomes depend on the current estate, baseline, and agreed scope — not a savings or uptime guarantee.",
+			bestFor: "teams bleeding spend or flying blind on HA/monitoring",
+			deliverables:
+				"Cost Explorer + Savings Plans/rightsizing; HA & monitoring gap review; prioritized quick wins with $ or risk impact",
+			footnote: "Outcomes are case-study style — not guaranteed %.",
 			ctaLabel: "Let’s talk",
 			ctaHref: "#contact",
 		},
 		{
 			id: "iac-kubernetes",
-			title: "IaC & Kubernetes platform",
-			pitch:
-				"Production-grade Terraform and Kubernetes on AWS: consistent environments, safer changes, and a platform your team can operate.",
+			title: "IaC & Kubernetes platforms",
 			bestForLabel: "Best for",
-			bestFor:
-				"Teams that need Terraform and EKS they can hand over—not a snowflake cluster only one engineer understands.",
-			footnote:
-				"Delivery and operability depend on starting access, baseline, and agreed scope — not a timeline or outcome guarantee.",
+			bestFor: "Terraform/EKS (or ECS) delivery and migrations",
+			deliverables:
+				"Terraform/Terragrunt (TFE migration proof); EKS and/or ECS; HA (multi-AZ, ingress/LB, backup/restore)",
+			credentials: "Terraform Assoc · CKA · SAA",
 			ctaLabel: "Let’s talk",
 			ctaHref: "#contact",
 		},
 		{
-			id: "cicd-observability",
+			id: "ci-cd-observability",
 			title: "CI/CD & observability",
-			pitch:
-				"CI/CD and observability on AWS so releases are repeatable and incidents are visible before users feel them.",
 			bestForLabel: "Best for",
-			bestFor:
-				"Teams still shipping from a laptop, or finding out about outages from customers instead of Grafana.",
-			footnote:
-				"Signal quality and pipeline coverage depend on the systems in scope — not a coverage or incident-reduction guarantee.",
+			bestFor: "pipeline + golden-signals maturity",
+			deliverables:
+				"build/test/deploy + IaC gates; Grafana/Prometheus/CloudWatch + OpenTelemetry; runbook-ready dashboards",
+			footnote: "Tools used, not productized SKUs.",
 			ctaLabel: "Let’s talk",
 			ctaHref: "#contact",
 		},
@@ -79,26 +75,20 @@ export const hire = {
 	proofHeading: "Proof",
 	proofTeasers: [
 		{
-			id: "mercedes-incidents",
-			line: "Luxoft / Mercedes-Benz: ~70% fewer incidents after a high-availability network redesign.",
+			id: "tfe-migration",
+			line: "TFE migration in ~1 mo vs 3 planned (Luxoft / Mercedes)",
 			linkLabel: "View on resume",
 			href: "/#experience",
 		},
 		{
-			id: "luxoft-finops",
-			line: "Luxoft FinOps: test-environment costs down 50% and production 20%, without performance degradation.",
+			id: "network-ha",
+			line: "Network HA redesign — ~70% fewer incidents (scoped)",
 			linkLabel: "View on resume",
 			href: "/#experience",
 		},
 		{
-			id: "terraform-migration",
-			line: "Luxoft / Mercedes-Benz: Terraform Enterprise migration finished in 30% of the planned time.",
-			linkLabel: "View on resume",
-			href: "/#experience",
-		},
-		{
-			id: "jpmorgan-platform",
-			line: "JPMorgan Chase via Luxoft: Terraform across environments, with Dynatrace, Datadog, and CloudWatch.",
+			id: "cloud-cost",
+			line: "Cloud cost cut — up to 50% (via Luxoft engagements)",
 			linkLabel: "View on resume",
 			href: "/#experience",
 		},
@@ -110,18 +100,17 @@ export const hire = {
 			ariaLabel: "Certified Kubernetes Administrator — view certifications on resume",
 		},
 		{
-			label: "Terraform",
+			label: "Terraform Associate",
 			href: "/#certifications",
 			ariaLabel: "HashiCorp Terraform Associate — view certifications on resume",
 		},
 		{
-			label: "SAA",
+			label: "AWS SAA",
 			href: "/#certifications",
 			ariaLabel: "AWS Solutions Architect Associate — view certifications on resume",
 		},
 	] as HireBadge[],
 	contactHeading: "Let’s talk",
-	contactIntro: "B2B from Poland (EU). Pick a channel and I’ll reply.",
 	contactCtaLabel: "Let’s talk",
 	contactDisclaimerBefore:
 		"B2B inquiries only. I’ll use your message to reply and talk through a possible engagement (pre-contract). Details in the ",

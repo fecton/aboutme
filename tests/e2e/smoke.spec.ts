@@ -141,7 +141,7 @@ test.describe("subpages render with navigation", () => {
 	for (const { path, h1 } of [
 		{ path: "/privacy-policy/", h1: /Privacy Policy/i },
 		{ path: "/cookie-policy/", h1: /Cookie Policy/i },
-		{ path: "/hire/", h1: /Cloud infrastructure that costs less and stays up/i },
+		{ path: "/hire/", h1: /Hire DevOps that cuts cloud cost and keeps systems up/i },
 	]) {
 		test(`${path} renders nav + footer + h1`, async ({ page }) => {
 			await page.goto(path);

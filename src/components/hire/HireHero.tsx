@@ -55,6 +55,8 @@ export function HireHero() {
 							{hire.ctaSecondary}
 						</Link>
 					</div>
+
+					<p className="mt-4 text-sm text-muted">{hire.trustLine}</p>
 				</div>
 			</div>
 		</section>

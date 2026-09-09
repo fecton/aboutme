@@ -23,11 +23,10 @@ export function HireContact() {
 			<GlassCard variant="solid">
 				<h2
 					id="hire-contact-heading"
-					className="mb-2 text-2xl font-bold tracking-tight text-foreground"
+					className="mb-6 text-2xl font-bold tracking-tight text-foreground"
 				>
 					{hire.contactHeading}
 				</h2>
-				<p className="mb-6 text-muted">{hire.contactIntro}</p>
 				<div className="mb-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
 					<a
 						href={`mailto:${profile.email}`}

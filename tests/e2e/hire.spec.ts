@@ -18,6 +18,7 @@ test.describe("hire conversion page", () => {
 		await expect(page.getByText(hire.availability)).toBeVisible();
 		await expect(page.getByRole("heading", { level: 1 })).toHaveText(hire.headline);
 		await expect(page.getByText(hire.offer)).toBeVisible();
+		await expect(page.getByText(hire.trustLine)).toBeVisible();
 
 		const heroTalk = page.getByRole("link", { name: hire.ctaPrimary }).first();
 		await expect(heroTalk).toBeVisible();
@@ -29,9 +30,14 @@ test.describe("hire conversion page", () => {
 
 		for (const pkg of hire.packages) {
 			const card = page.getByRole("heading", { level: 3, name: pkg.title }).locator("..");
-			await expect(card.getByText(pkg.pitch)).toBeVisible();
-			await expect(card.getByText(new RegExp(`${pkg.bestForLabel}\\.`))).toBeVisible();
-			await expect(card.getByText(/not a .+ guarantee/i)).toBeVisible();
+			await expect(card.getByText(pkg.deliverables)).toBeVisible();
+			await expect(card.getByText(pkg.bestFor)).toBeVisible();
+			if (pkg.footnote) {
+				await expect(card.getByText(pkg.footnote)).toBeVisible();
+			}
+			if (pkg.credentials) {
+				await expect(card.getByText(pkg.credentials)).toBeVisible();
+			}
 			await expect(card.getByRole("link", { name: pkg.ctaLabel })).toHaveAttribute(
 				"href",
 				"#contact",
@@ -45,8 +51,11 @@ test.describe("hire conversion page", () => {
 		await expect(viewLinks).toHaveCount(hire.proofTeasers.length);
 		await expect(viewLinks.first()).toHaveAttribute("href", /\/#experience/);
 
+		const certBadges = page.getByRole("list", { name: "Certifications" });
 		for (const badge of hire.badges) {
-			await expect(page.getByRole("link", { name: badge.label })).toBeVisible();
+			await expect(
+				certBadges.getByRole("link", { name: badge.ariaLabel }),
+			).toBeVisible();
 		}
 
 		const contact = page.locator("#contact");
