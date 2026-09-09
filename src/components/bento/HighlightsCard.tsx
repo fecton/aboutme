@@ -23,7 +23,7 @@ const trustBadgeIconPaths: Record<string, string> = {
 
 export function HighlightsCard() {
 	return (
-		<GlassCard className="flex h-full flex-col">
+		<GlassCard variant="solid" className="flex h-full flex-col">
 			<h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground">
 				Key Highlights
 			</h2>

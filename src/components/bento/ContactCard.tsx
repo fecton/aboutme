@@ -14,7 +14,7 @@ export function ContactCard() {
 
 	return (
 		<div className="flex h-full flex-col gap-6">
-			<GlassCard>
+			<GlassCard variant="solid">
 				<h2 className="mb-4 text-2xl font-bold tracking-tight text-foreground">
 					Contact
 				</h2>
@@ -72,7 +72,7 @@ export function ContactCard() {
 				</div>
 			</GlassCard>
 
-			<GlassCard className="flex min-h-0 flex-1 flex-col">
+			<GlassCard variant="solid" className="flex min-h-0 flex-1 flex-col">
 				<h2 className="mb-4 text-2xl font-bold tracking-tight text-foreground">
 					Languages
 				</h2>

@@ -27,8 +27,13 @@ export interface Language {
 export const profile = {
 	name: "Andrii Lytvynenko",
 	title: "Senior DevOps & Cloud Engineer",
-	subtitle: "AWS & Kubernetes Certified | B2B Contractor",
+	headline: "Cloud infrastructure that costs less and stays up.",
+	subtitle:
+		"Senior DevOps & Cloud Engineer — AWS & Kubernetes, B2B from the EU. Enterprise work with JP Morgan Chase and Mercedes-Benz: up to 50% cloud cost reduction, ~70% fewer incidents.",
 	availability: "Available for Q4 2026 Projects",
+	ctaPrimary: "Let’s talk",
+	ctaSecondary: "Download resume",
+	trustLine: "B2B · GDPR · Poland (EU)",
 	profileImage: "/images/tm-easy-profile.webp",
 	email: "a.v.lytvynenko2004@gmail.com",
 	location: "Częstochowa, Poland (EU)",

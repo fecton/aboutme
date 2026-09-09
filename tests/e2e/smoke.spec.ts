@@ -48,20 +48,63 @@ test.describe("home page renders", () => {
 		expect(invisibleArticles, "articles stuck at opacity 0").toBe(0);
 	});
 
-	test("hero CTAs link to resume page that renders an iframe", async ({ page }) => {
+	test("hero copy, CTAs, and resume page match the above-fold handoff", async ({
+		page,
+	}) => {
 		await page.goto("/");
 		await page.evaluate(() => localStorage.setItem("cookie-consent", "rejected"));
 		await page.reload();
 
-		// "View Resume" CTA in hero (visible on every viewport, unlike the nav link).
-		const viewResume = page.getByRole("link", { name: "View Resume" });
-		await expect(viewResume).toBeVisible();
-		await viewResume.click();
-		await expect(page).toHaveURL(/\/resume\/?$/);
+		await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+			"Cloud infrastructure that costs less and stays up.",
+		);
+		await expect(
+			page.getByText("Available for Q4 2026 Projects"),
+		).toBeVisible();
+		await expect(
+			page.getByText(
+				"Senior DevOps & Cloud Engineer — AWS & Kubernetes, B2B from the EU. Enterprise work with JP Morgan Chase and Mercedes-Benz: up to 50% cloud cost reduction, ~70% fewer incidents.",
+			),
+		).toBeVisible();
+		await expect(page.getByText("B2B · GDPR · Poland (EU)")).toBeVisible();
+		await expect(page.getByRole("link", { name: "View Resume" })).toHaveCount(0);
 
-		// Resume page must show the iframe AND a download fallback.
+		const talk = page.getByRole("link", { name: "Let’s talk" });
+		await expect(talk).toBeVisible();
+		await expect(talk).toHaveAttribute("href", "#contact");
+		await talk.click();
+		await expect(page.getByRole("heading", { level: 2, name: "Contact" })).toBeVisible();
+
+		const downloadResume = page.getByRole("link", { name: "Download resume" });
+		await expect(downloadResume).toBeVisible();
+		await expect(downloadResume).toHaveAttribute("href", /resume\.pdf$/);
+
+		await page.goto("/resume/");
 		await expect(page.locator("iframe")).toBeVisible();
 		await expect(page.locator("a[download]")).toContainText(/Download/i);
+	});
+
+	test("primary nav is About Experience Resume Contact; Privacy is footer-only", async ({
+		page,
+	}) => {
+		await page.goto("/");
+		await page.evaluate(() => localStorage.setItem("cookie-consent", "rejected"));
+		await page.reload();
+
+		const nav = page.locator("nav");
+		const menuButton = page.getByRole("button", { name: /Open menu/i });
+		if (await menuButton.isVisible()) {
+			await menuButton.click();
+		}
+
+		await expect(nav.getByRole("link", { name: "About" })).toBeVisible();
+		await expect(nav.getByRole("link", { name: "Experience" })).toBeVisible();
+		await expect(nav.getByRole("link", { name: "Resume" })).toBeVisible();
+		await expect(nav.getByRole("link", { name: "Contact" })).toBeVisible();
+		await expect(nav.getByRole("link", { name: "Privacy" })).toHaveCount(0);
+		await expect(
+			page.locator("footer").getByRole("link", { name: "Privacy Policy" }),
+		).toBeVisible();
 	});
 });
 

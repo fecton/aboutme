@@ -13,7 +13,6 @@ const navLinks = [
 	{ href: "/#experience", label: "Experience" },
 	{ href: "/resume/", label: "Resume" },
 	{ href: "/#contact", label: "Contact" },
-	{ href: "/privacy-policy", label: "Privacy" },
 ];
 
 export function Navbar() {
