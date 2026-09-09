@@ -137,7 +137,8 @@ Or run `npm run logos` for Wikimedia-sourced company/university marks. See `publ
 
 | Path | Source |
 |------|--------|
-| `/` | `src/app/page.tsx` — hero + bento grid |
+| `/` | `src/app/page.tsx` — hero + bento grid (detailed resume) |
+| `/hire/` | Conversion page with AWS-first packages; deep-links to `/#experience` |
 | `/resume/` | Resume iframe + download |
 | `/viewer/{resume\|diploma\|diploma-supplement}/` | Shared PDF viewer (`generateStaticParams`) |
 | `/privacy-policy/`, `/cookie-policy/` | Legal pages (`robots: noindex`) |
@@ -160,7 +161,7 @@ Push to `main` runs lint → typecheck → build → `peaceiris/actions-gh-pages
 src/
 ├── app/           # App Router pages, layout, globals.css
 ├── components/    # layout, bento, hero, ui, providers
-├── data/          # profile, experiences, certificates, education, skillIcons
+├── data/          # profile, hire, experiences, certificates, education, skillIcons
 ├── lib/           # animations, analytics, discipline parsing, hooks
 └── types/
 public/            # images, pdf, CNAME, manifest, sitemap

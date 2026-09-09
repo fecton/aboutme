@@ -37,6 +37,10 @@ export function Footer() {
 					Copyright &copy; 2022-2026 Andrii Lytvynenko
 				</p>
 				<p className="mb-8 text-center text-sm text-muted">
+					<Link href="/hire" className="hover:text-foreground">
+						Hire
+					</Link>
+					{" · "}
 					<Link href="/privacy-policy" className="hover:text-foreground">
 						Privacy Policy
 					</Link>
