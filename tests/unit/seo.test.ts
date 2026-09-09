@@ -1,0 +1,104 @@
+import { describe, expect, it } from "vitest";
+import { homePageMeta } from "@/data/seo";
+import {
+	offerCatalogJsonLd,
+	person,
+	personJsonLd,
+	professionalServiceJsonLd,
+} from "@/lib/json-ld";
+import { hire } from "@/data/hire";
+import { certificates } from "@/data/certificates";
+
+const HIRE_FLAVORED_HOME = /Hire a Senior|Hire Senior DevOps/i;
+
+function jsonOf(value: unknown) {
+	return JSON.stringify(value);
+}
+
+describe("home meta is resume source of truth", () => {
+	it("keeps the document title and resume-flavored descriptions", () => {
+		expect(homePageMeta.title).toBe(
+			"Andrii Lytvynenko - Senior DevOps & Cloud Engineer",
+		);
+		expect(homePageMeta.description).toBe(
+			"Andrii Lytvynenko — Senior DevOps & Cloud Engineer. AWS, Kubernetes, Terraform. Cost and reliability proof on the resume. Based in Poland (EU) · B2B.",
+		);
+		expect(homePageMeta.ogTitle).toBe(
+			"Andrii Lytvynenko | Senior DevOps & Cloud Engineer",
+		);
+		expect(homePageMeta.ogDescription).toBe(
+			"Senior DevOps & Cloud Engineer — AWS, Kubernetes, Terraform. Cost and reliability proof on the resume. Poland (EU) · B2B.",
+		);
+	});
+
+	it("does not use hire-flavored home strings", () => {
+		const blob = jsonOf(homePageMeta);
+		expect(blob).not.toMatch(HIRE_FLAVORED_HOME);
+		expect(blob).not.toMatch(/Hire a Senior/i);
+		expect(blob).not.toMatch(/AWS Certified \| B2B Contracts/i);
+	});
+});
+
+describe("public JSON-LD", () => {
+	it("keeps Person identity fields without employer, job-seeking, or email", () => {
+		expect(personJsonLd["@type"]).toBe("Person");
+		expect(personJsonLd.name).toBe("Andrii Lytvynenko");
+		expect(personJsonLd.jobTitle).toBe("Senior DevOps & Cloud Engineer");
+		expect(personJsonLd.url).toBe("https://alytvynenko.net/");
+		expect(personJsonLd.image).toContain("tm-easy-profile.webp");
+		expect(personJsonLd.sameAs.length).toBeGreaterThan(0);
+		expect(personJsonLd.knowsAbout).toEqual(
+			expect.arrayContaining(["AWS", "Kubernetes", "Terraform"]),
+		);
+		expect(personJsonLd.address).toMatchObject({
+			"@type": "PostalAddress",
+			addressCountry: "PL",
+		});
+		expect(personJsonLd.hasCredential.map((cred) => cred.name)).toEqual(
+			certificates.filter((cert) => Boolean(cert.link)).map((cert) => cert.title),
+		);
+
+		expect(personJsonLd).not.toHaveProperty("worksFor");
+		expect(personJsonLd).not.toHaveProperty("seeks");
+		expect(personJsonLd).not.toHaveProperty("email");
+		expect(person).not.toHaveProperty("worksFor");
+		expect(person).not.toHaveProperty("seeks");
+		expect(person).not.toHaveProperty("email");
+
+		const blob = jsonOf(personJsonLd);
+		expect(blob).not.toMatch(/"worksFor"/);
+		expect(blob).not.toMatch(/"seeks"/);
+		expect(blob).not.toMatch(/JobPosting/);
+		expect(blob).not.toMatch(/Geniusee/);
+		expect(blob).not.toMatch(/@gmail\.com/);
+	});
+
+	it("keeps OfferCatalog offers and ProfessionalService on /hire without worksFor", () => {
+		expect(professionalServiceJsonLd["@type"]).toBe("ProfessionalService");
+		expect(professionalServiceJsonLd.url).toBe("https://alytvynenko.net/hire/");
+		expect(professionalServiceJsonLd).not.toHaveProperty("email");
+		expect(professionalServiceJsonLd.provider).toEqual(person);
+		expect(professionalServiceJsonLd.provider).not.toHaveProperty("worksFor");
+		expect(jsonOf(professionalServiceJsonLd)).not.toMatch(/"worksFor"/);
+		expect(jsonOf(professionalServiceJsonLd)).not.toMatch(/JobPosting/);
+		expect(jsonOf(professionalServiceJsonLd)).not.toMatch(/@gmail\.com/);
+
+		expect(offerCatalogJsonLd["@type"]).toBe("OfferCatalog");
+		expect(offerCatalogJsonLd.url).toBe("https://alytvynenko.net/hire/");
+		expect(offerCatalogJsonLd.itemListElement).toHaveLength(hire.packages.length);
+		expect(offerCatalogJsonLd.itemListElement.map((offer) => offer["@type"])).toEqual([
+			"Offer",
+			"Offer",
+			"Offer",
+		]);
+		expect(
+			offerCatalogJsonLd.itemListElement.map((offer) => offer.itemOffered.name),
+		).toEqual(hire.packages.map((pkg) => pkg.title));
+	});
+
+	it("does not change the locked /hire title", () => {
+		expect(hire.headline).toBe(
+			"Hire DevOps that cuts cloud cost and keeps systems up.",
+		);
+	});
+});

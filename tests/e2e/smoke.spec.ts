@@ -173,6 +173,49 @@ test.describe("home page renders", () => {
 			"Hire DevOps that cuts cloud cost and keeps systems up.",
 		);
 	});
+
+	test("home meta is resume SoT, not hire-flavored", async ({ page }) => {
+		await page.goto("/");
+
+		await expect(page).toHaveTitle(
+			"Andrii Lytvynenko - Senior DevOps & Cloud Engineer",
+		);
+		await expect(page.locator('meta[name="description"]')).toHaveAttribute(
+			"content",
+			"Andrii Lytvynenko — Senior DevOps & Cloud Engineer. AWS, Kubernetes, Terraform. Cost and reliability proof on the resume. Based in Poland (EU) · B2B.",
+		);
+		await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
+			"content",
+			"Andrii Lytvynenko | Senior DevOps & Cloud Engineer",
+		);
+		await expect(page.locator('meta[property="og:description"]')).toHaveAttribute(
+			"content",
+			"Senior DevOps & Cloud Engineer — AWS, Kubernetes, Terraform. Cost and reliability proof on the resume. Poland (EU) · B2B.",
+		);
+		await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute(
+			"content",
+			"Andrii Lytvynenko | Senior DevOps & Cloud Engineer",
+		);
+		await expect(page.locator('meta[name="twitter:description"]')).toHaveAttribute(
+			"content",
+			"Senior DevOps & Cloud Engineer — AWS, Kubernetes, Terraform. Cost and reliability proof on the resume. Poland (EU) · B2B.",
+		);
+
+		const head = await page.locator("head").innerHTML();
+		expect(head).not.toMatch(/Hire a Senior/i);
+		expect(head).not.toMatch(/Hire Senior DevOps/i);
+
+		const graphs = (
+			await page.locator('script[type="application/ld+json"]').allTextContents()
+		).map((text) => JSON.parse(text) as Record<string, unknown>);
+		const types = graphs.map((graph) => graph["@type"]);
+		expect(types).toContain("Person");
+		expect(types).not.toContain("ProfessionalService");
+		expect(types).not.toContain("OfferCatalog");
+		expect(JSON.stringify(graphs)).not.toMatch(/"worksFor"/);
+		expect(JSON.stringify(graphs)).not.toMatch(/JobPosting/);
+		expect(JSON.stringify(graphs)).not.toMatch(/@gmail\.com/);
+	});
 });
 
 test.describe("subpages render with navigation", () => {

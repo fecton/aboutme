@@ -267,6 +267,56 @@ test.describe("hire conversion page", () => {
 		expect(boxes[2]!.y).toBeGreaterThan(boxes[1]!.y + boxes[1]!.height - 1);
 	});
 
+	test("JSON-LD keeps packages and service schema without employer or job-seeking", async ({
+		page,
+	}) => {
+		await openHire(page);
+
+		await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+			"Hire DevOps that cuts cloud cost and keeps systems up.",
+		);
+
+		const graphs = (
+			await page.locator('script[type="application/ld+json"]').allTextContents()
+		).map((text) => JSON.parse(text) as Record<string, unknown>);
+		const blob = JSON.stringify(graphs);
+
+		expect(blob).not.toMatch(/"worksFor"/);
+		expect(blob).not.toMatch(/"seeks"/);
+		expect(blob).not.toMatch(/JobPosting/);
+		expect(blob).not.toMatch(/Geniusee/);
+		expect(blob).not.toMatch(/@gmail\.com/);
+
+		const types = graphs.map((graph) => graph["@type"]);
+		expect(types).toEqual(
+			expect.arrayContaining(["Person", "ProfessionalService", "OfferCatalog"]),
+		);
+
+		const person = graphs.find((graph) => graph["@type"] === "Person");
+		expect(person).toMatchObject({
+			name: "Andrii Lytvynenko",
+			jobTitle: "Senior DevOps & Cloud Engineer",
+			url: "https://alytvynenko.net/",
+		});
+		expect(person).not.toHaveProperty("email");
+		expect(person).not.toHaveProperty("worksFor");
+		expect(person).not.toHaveProperty("seeks");
+
+		const service = graphs.find((graph) => graph["@type"] === "ProfessionalService");
+		expect(service).toMatchObject({
+			url: "https://alytvynenko.net/hire/",
+		});
+		expect(service).not.toHaveProperty("email");
+		const provider = service?.provider as Record<string, unknown> | undefined;
+		expect(provider).toMatchObject({ "@type": "Person", name: "Andrii Lytvynenko" });
+		expect(provider).not.toHaveProperty("worksFor");
+
+		const catalog = graphs.find((graph) => graph["@type"] === "OfferCatalog");
+		const offers = catalog?.itemListElement as Array<Record<string, unknown>>;
+		expect(offers).toHaveLength(hire.packages.length);
+		expect(offers.every((offer) => offer["@type"] === "Offer")).toBe(true);
+	});
+
 	test("has no serious or critical axe violations", async ({ page }) => {
 		await openHire(page);
 

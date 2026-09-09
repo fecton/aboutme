@@ -8,7 +8,8 @@ import { HireProof } from "@/components/hire/HireProof";
 import { HireEngage } from "@/components/hire/HireEngage";
 import { HireFaq } from "@/components/hire/HireFaq";
 import { HireContact } from "@/components/hire/HireContact";
-import { hire, hirePageMeta } from "@/data/hire";
+import { hirePageMeta } from "@/data/hire";
+import { offerCatalogJsonLd, professionalServiceJsonLd } from "@/lib/json-ld";
 
 const SITE_URL = "https://alytvynenko.net";
 const PROFILE_IMAGE = `${SITE_URL}/images/tm-easy-profile.webp`;
@@ -41,25 +42,15 @@ export const metadata: Metadata = {
 	},
 };
 
-const offerCatalogJsonLd = {
-	"@context": "https://schema.org",
-	"@type": "OfferCatalog",
-	name: hire.packagesHeading,
-	url: HIRE_URL,
-	itemListElement: hire.packages.map((pkg, index) => ({
-		"@type": "Offer",
-		position: index + 1,
-		itemOffered: {
-			"@type": "Service",
-			name: pkg.title,
-			description: pkg.deliverables,
-		},
-	})),
-};
-
 export default function HirePage() {
 	return (
 		<>
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{
+					__html: JSON.stringify(professionalServiceJsonLd),
+				}}
+			/>
 			<script
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{
