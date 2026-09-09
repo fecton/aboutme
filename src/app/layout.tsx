@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ReduceEffectsProvider } from "@/components/providers/ReduceEffectsProvider";
 import { ConsentProvider } from "@/components/providers/ConsentProvider";
+import { certificates } from "@/data/certificates";
 import "./globals.css";
 
 const SITE_URL = "https://alytvynenko.net";
@@ -125,11 +126,13 @@ const personJsonLd = {
 		{ "@type": "EducationalOrganization", name: "EPAM University", url: "https://www.epamglobalcampus.com/" },
 	],
 	worksFor: { "@type": "Organization", name: "Geniusee Inc.", url: "https://geniusee.com/" },
-	hasCredential: [
-		{ "@type": "EducationalOccupationalCredential", name: "AWS Certified Solutions Architect - Associate", credentialCategory: "Professional Certification" },
-		{ "@type": "EducationalOccupationalCredential", name: "Certified Kubernetes Administrator (CKA)", credentialCategory: "Professional Certification" },
-		{ "@type": "EducationalOccupationalCredential", name: "HashiCorp Certified: Terraform Associate", credentialCategory: "Professional Certification" },
-	],
+	hasCredential: certificates
+		.filter((cert) => Boolean(cert.link))
+		.map((cert) => ({
+			"@type": "EducationalOccupationalCredential",
+			name: cert.title,
+			credentialCategory: "Professional Certification",
+		})),
 	seeks: {
 		"@type": "JobPosting",
 		hiringOrganization: { "@type": "Person", name: "Andrii Lytvynenko" },
