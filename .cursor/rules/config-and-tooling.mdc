@@ -58,11 +58,11 @@ Two workflows — do not collapse them:
 
 Shared rules:
 
-- Pin Node with `node-version-file: .nvmrc` (currently 20)
+- Pin Node with `node-version-file: .nvmrc` (currently 22)
 - Use `npm ci` in CI, not `npm install`
 - Playwright serves the static export (`npx serve out` on port 4173). Tests must `npm run build` first locally
 - Lychee config is `lychee.toml` (accept 403/429/999; exclude bot-blocked hosts)
-- Dependabot (`.github/dependabot.yml`) groups minor/patch updates and **ignores all semver-major** bumps. Tailwind must stay on v3; cspell 10+ drops Node 20
+- Dependabot (`.github/dependabot.yml`) groups minor/patch updates and **ignores all semver-major** bumps. Tailwind must stay on v3. Vitest 5 needs Node 22 (the runtime this repo pins).
 
 ## Tailwind version pin
 
