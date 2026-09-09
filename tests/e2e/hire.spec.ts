@@ -91,16 +91,27 @@ test.describe("hire conversion page", () => {
 			await expect(certBadges.getByRole("link", { name: badge.label })).toBeVisible();
 		}
 
-		for (const step of hire.engageSteps) {
-			await expect(page.getByRole("heading", { level: 3, name: step.title })).toBeVisible();
+		for (const [index, step] of hire.engageSteps.entries()) {
+			const heading = page.getByRole("heading", { level: 3, name: step.title });
+			await expect(heading).toBeVisible();
 			await expect(page.getByText(step.detail)).toBeVisible();
+			const stepNumber = heading.locator("xpath=preceding-sibling::p[1]");
+			await expect(stepNumber).toHaveText(String(index + 1));
+			await expect(stepNumber).toHaveAttribute("aria-hidden", "true");
 		}
 
 		for (const item of hire.faqs) {
-			await expect(page.getByText(item.question)).toBeVisible();
+			await expect(
+				page.getByRole("heading", { level: 3, name: item.question }),
+			).toBeVisible();
 			await expect(page.getByText(item.answer)).toBeHidden();
 		}
-		await page.getByText(hire.faqs[0].question).click();
+		const firstFaq = page.locator("details").filter({
+			has: page.getByRole("heading", { level: 3, name: hire.faqs[0].question }),
+		});
+		const firstSummary = firstFaq.locator("summary");
+		await expect(firstSummary).toHaveCSS("display", "block");
+		await firstSummary.click();
 		await expect(page.getByText(hire.faqs[0].answer)).toBeVisible();
 		await expect(page.getByText(hire.faqs[1].answer)).toBeHidden();
 
@@ -123,7 +134,7 @@ test.describe("hire conversion page", () => {
 		).toBeVisible();
 	});
 
-	test("includes Hire in primary nav at equal weight and in the footer", async ({
+	test("omits Hire from primary nav and footer while the page stays live", async ({
 		page,
 	}) => {
 		await openHire(page);
@@ -137,16 +148,13 @@ test.describe("hire conversion page", () => {
 		await expect(nav.getByRole("link", { name: "About" })).toBeVisible();
 		await expect(nav.getByRole("link", { name: "Experience" })).toBeVisible();
 		await expect(nav.getByRole("link", { name: "Resume" })).toBeVisible();
-		const hireNav = nav.getByRole("link", { name: "Hire" });
-		await expect(hireNav).toBeVisible();
-		await expect(hireNav).toHaveAttribute("href", /\/hire\/?/);
-		await expect(hireNav).not.toHaveClass(/bg-accent/);
 		await expect(nav.getByRole("link", { name: "Contact" })).toBeVisible();
+		await expect(nav.getByRole("link", { name: "Hire" })).toHaveCount(0);
+		await expect(nav.getByRole("link", { name: "Work" })).toHaveCount(0);
+		await expect(nav.getByRole("link", { name: "Proof" })).toHaveCount(0);
 		await expect(nav.getByRole("link", { name: "Privacy" })).toHaveCount(0);
-		await expect(page.locator("footer").getByRole("link", { name: "Hire" })).toHaveAttribute(
-			"href",
-			/\/hire\/?/,
-		);
+		await expect(page.locator("footer").getByRole("link", { name: "Hire" })).toHaveCount(0);
+		await expect(page).toHaveURL(/\/hire\/?/);
 	});
 
 	test("keeps three proof teasers on one row from md up", async ({ page }, testInfo) => {
@@ -300,7 +308,7 @@ test.describe("hire conversion page", () => {
 		);
 	});
 
-	test("JSON-LD keeps packages and service schema without employer or job-seeking", async ({
+	test("JSON-LD keeps Person cleanup and strips acquisition schema", async ({
 		page,
 	}) => {
 		await openHire(page);
@@ -319,11 +327,11 @@ test.describe("hire conversion page", () => {
 		expect(blob).not.toMatch(/JobPosting/);
 		expect(blob).not.toMatch(/Geniusee/);
 		expect(blob).not.toMatch(/@gmail\.com/);
+		expect(blob).not.toMatch(/OfferCatalog/);
+		expect(blob).not.toMatch(/ProfessionalService/);
 
 		const types = graphs.map((graph) => graph["@type"]);
-		expect(types).toEqual(
-			expect.arrayContaining(["Person", "ProfessionalService", "OfferCatalog"]),
-		);
+		expect(types).toEqual(["Person"]);
 
 		const person = graphs.find((graph) => graph["@type"] === "Person");
 		expect(person).toMatchObject({
@@ -334,20 +342,6 @@ test.describe("hire conversion page", () => {
 		expect(person).not.toHaveProperty("email");
 		expect(person).not.toHaveProperty("worksFor");
 		expect(person).not.toHaveProperty("seeks");
-
-		const service = graphs.find((graph) => graph["@type"] === "ProfessionalService");
-		expect(service).toMatchObject({
-			url: "https://alytvynenko.net/hire/",
-		});
-		expect(service).not.toHaveProperty("email");
-		const provider = service?.provider as Record<string, unknown> | undefined;
-		expect(provider).toMatchObject({ "@type": "Person", name: "Andrii Lytvynenko" });
-		expect(provider).not.toHaveProperty("worksFor");
-
-		const catalog = graphs.find((graph) => graph["@type"] === "OfferCatalog");
-		const offers = catalog?.itemListElement as Array<Record<string, unknown>>;
-		expect(offers).toHaveLength(hire.packages.length);
-		expect(offers.every((offer) => offer["@type"] === "Offer")).toBe(true);
 	});
 
 	test("has no serious or critical axe violations", async ({ page }) => {

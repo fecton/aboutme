@@ -9,7 +9,6 @@ import { HireEngage } from "@/components/hire/HireEngage";
 import { HireFaq } from "@/components/hire/HireFaq";
 import { HireContact } from "@/components/hire/HireContact";
 import { hirePageMeta } from "@/data/hire";
-import { offerCatalogJsonLd, professionalServiceJsonLd } from "@/lib/json-ld";
 
 const SITE_URL = "https://alytvynenko.net";
 const PROFILE_IMAGE = `${SITE_URL}/images/tm-easy-profile.webp`;
@@ -45,18 +44,6 @@ export const metadata: Metadata = {
 export default function HirePage() {
 	return (
 		<>
-			<script
-				type="application/ld+json"
-				dangerouslySetInnerHTML={{
-					__html: JSON.stringify(professionalServiceJsonLd),
-				}}
-			/>
-			<script
-				type="application/ld+json"
-				dangerouslySetInnerHTML={{
-					__html: JSON.stringify(offerCatalogJsonLd),
-				}}
-			/>
 			<Navbar />
 			<main id="main-content">
 				<HireHero />

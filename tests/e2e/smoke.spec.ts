@@ -110,7 +110,7 @@ test.describe("home page renders", () => {
 		await expect(page.locator("a[download]")).toContainText(/Download/i);
 	});
 
-	test("primary nav is About Experience Resume Hire Contact; Privacy is footer-only", async ({
+	test("primary nav is About Experience Resume Contact; Hire is unlinked chrome", async ({
 		page,
 	}) => {
 		await page.goto("/");
@@ -126,31 +126,23 @@ test.describe("home page renders", () => {
 		const navLabels = (await nav.getByRole("link").allTextContents())
 			.map((label) => label.trim())
 			.filter((label) =>
-				["About", "Experience", "Resume", "Hire", "Contact"].includes(label),
+				["About", "Experience", "Resume", "Hire", "Contact", "Work", "Proof"].includes(
+					label,
+				),
 			);
-		expect(navLabels).toEqual([
-			"About",
-			"Experience",
-			"Resume",
-			"Hire",
-			"Contact",
-		]);
+		expect(navLabels).toEqual(["About", "Experience", "Resume", "Contact"]);
 
-		const hireNav = nav.getByRole("link", { name: "Hire" });
-		await expect(hireNav).toBeVisible();
-		await expect(hireNav).toHaveAttribute("href", /\/hire\/?/);
-		await expect(hireNav).not.toHaveClass(/bg-accent/);
+		await expect(nav.getByRole("link", { name: "Hire" })).toHaveCount(0);
+		await expect(nav.getByRole("link", { name: "Work" })).toHaveCount(0);
+		await expect(nav.getByRole("link", { name: "Proof" })).toHaveCount(0);
 		await expect(nav.getByRole("link", { name: "Privacy" })).toHaveCount(0);
-		await expect(page.locator("footer").getByRole("link", { name: "Hire" })).toHaveAttribute(
-			"href",
-			/\/hire\/?/,
-		);
+		await expect(page.locator("footer").getByRole("link", { name: "Hire" })).toHaveCount(0);
 		await expect(
 			page.locator("footer").getByRole("link", { name: "Privacy Policy" }),
 		).toBeVisible();
 	});
 
-	test("homepage Hire nav goes to /hire without a hero Hire button", async ({
+	test("homepage soft CTA is resume-only and /hire stays live unlinked", async ({
 		page,
 	}) => {
 		await page.goto("/");
@@ -161,17 +153,63 @@ test.describe("home page renders", () => {
 		await expect(hero.getByRole("link", { name: "Let’s talk" })).toBeVisible();
 		await expect(hero.getByRole("link", { name: "Download resume" })).toBeVisible();
 		await expect(hero.getByRole("link", { name: "Hire" })).toHaveCount(0);
+		await expect(hero.getByRole("link", { name: "Work" })).toHaveCount(0);
+		await expect(hero.getByRole("link", { name: "Proof" })).toHaveCount(0);
 
 		const menuButton = page.getByRole("button", { name: /Open menu/i });
 		if (await menuButton.isVisible()) {
 			await menuButton.click();
 		}
+		await expect(page.locator("nav").getByRole("link", { name: "Hire" })).toHaveCount(0);
 
-		await page.locator("nav").getByRole("link", { name: "Hire" }).click();
+		await page.goto("/hire/");
 		await expect(page).toHaveURL(/\/hire\/?/);
 		await expect(page.getByRole("heading", { level: 1 })).toHaveText(
 			"Hire DevOps that cuts cloud cost and keeps systems up.",
 		);
+	});
+
+	test("experience and education accordions have unique ids and live aria-controls", async ({
+		page,
+	}) => {
+		await page.goto("/");
+		await page.evaluate(() => localStorage.setItem("cookie-consent", "rejected"));
+		await page.reload();
+
+		const triggers = page.getByRole("button", {
+			name: /Expand to show (Technologies & Skills|Courses & Disciplines)/i,
+		});
+		const count = await triggers.count();
+		expect(count).toBe(8);
+
+		const ids: string[] = [];
+		const controls: string[] = [];
+		for (let i = 0; i < count; i++) {
+			const trigger = triggers.nth(i);
+			const id = await trigger.getAttribute("id");
+			const ariaControls = await trigger.getAttribute("aria-controls");
+			expect(id, "accordion trigger is missing id").toBeTruthy();
+			expect(ariaControls, "accordion trigger is missing aria-controls").toBeTruthy();
+			if (!id || !ariaControls) {
+				throw new Error("accordion trigger missing id or aria-controls");
+			}
+			ids.push(id);
+			controls.push(ariaControls);
+
+			const targetExists = await page.evaluate(
+				(targetId) => Boolean(document.getElementById(targetId)),
+				ariaControls,
+			);
+			expect(targetExists, `aria-controls="${ariaControls}" missing from DOM`).toBe(
+				true,
+			);
+		}
+
+		expect(new Set(ids).size).toBe(ids.length);
+		expect(new Set(controls).size).toBe(controls.length);
+		expect(ids).not.toContain("technologies-&-skills-trigger");
+		expect(ids).not.toContain("courses-&-disciplines-trigger");
+		expect(ids.every((id) => !id.includes("&"))).toBe(true);
 	});
 
 	test("home meta is resume SoT, not hire-flavored", async ({ page }) => {
