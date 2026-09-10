@@ -18,10 +18,12 @@ import {
 	renderLlmsTxt,
 	resolveRelatedExperience,
 	splitWritingBody,
+	writingArticlePath,
 	writingNotePageSeo,
 	writingSitemapEntries,
 	writingTechArticleJsonLd,
 } from "@/lib/writing";
+import { serializeJsonLd } from "@/lib/json-ld";
 
 const SAMPLE_SLUG = "layered-terraform-gke-lab";
 
@@ -235,5 +237,24 @@ Body
 		expect(split.tldr).toBe("Short");
 		expect(split.faq).toBe("Q");
 		expect(loadAllNotes().length).toBe(notes.length);
+	});
+
+	it("validates kebab-case slugs and escapes JSON-LD for script tags", () => {
+		expect(writingArticlePath(SAMPLE_SLUG)).toBe(`/writing/${SAMPLE_SLUG}/`);
+		expect(() => writingArticlePath("javascript:alert(1)")).toThrow(
+			/Invalid Writing slug/,
+		);
+		expect(() => writingArticlePath("Layered_Lab")).toThrow(
+			/Invalid Writing slug/,
+		);
+		expect(() =>
+			parseWritingNoteFile("Not Safe.mdx", "---\ntitle: x\n---\n"),
+		).toThrow(/Invalid Writing slug/);
+
+		const json = serializeJsonLd({
+			headline: "</script><script>alert(1)",
+		});
+		expect(json).not.toContain("<");
+		expect(json).toContain("\\u003c/script>");
 	});
 });

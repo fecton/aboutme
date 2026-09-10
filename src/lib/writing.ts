@@ -23,6 +23,7 @@ import {
 const WRITING_CONTENT_DIR = path.join(process.cwd(), "content", "writing");
 
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
+const WRITING_SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
 	return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -319,14 +320,24 @@ function parseNoteFrontmatter(
 	};
 }
 
+function assertWritingSlug(slug: string): string {
+	if (!WRITING_SLUG_PATTERN.test(slug)) {
+		throw new Error(
+			`Invalid Writing slug "${slug}" (use lowercase kebab-case)`,
+		);
+	}
+	return slug;
+}
+
+export function writingArticlePath(slug: string): string {
+	return `/writing/${assertWritingSlug(slug)}/`;
+}
+
 export function parseWritingNoteFile(
 	filename: string,
 	raw: string,
 ): WritingNote {
-	const slug = filename.replace(/\.mdx$/, "");
-	if (slug === "llms.txt" || slug === "") {
-		throw new Error(`Invalid Writing filename "${filename}"`);
-	}
+	const slug = assertWritingSlug(filename.replace(/\.mdx$/, ""));
 
 	const parsed = matter(raw);
 	const meta = parseNoteFrontmatter(parsed.data, slug);

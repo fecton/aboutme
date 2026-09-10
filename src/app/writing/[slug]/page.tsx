@@ -5,6 +5,7 @@ import { WritingArticle } from "@/components/writing/WritingArticle";
 import { WritingArticleBar } from "@/components/writing/WritingArticleBar";
 import { WRITING_SITE_URL } from "@/data/writing";
 import { compileWritingMdx } from "@/lib/compile-writing-mdx";
+import { serializeJsonLd } from "@/lib/json-ld";
 import {
 	buildWritingToc,
 	getNoteBySlug,
@@ -88,7 +89,7 @@ export default async function WritingNotePage({ params }: Props) {
 			<script
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{
-					__html: JSON.stringify(writingTechArticleJsonLd(note)),
+					__html: serializeJsonLd(writingTechArticleJsonLd(note)),
 				}}
 			/>
 			<WritingArticleBar title={note.title} toc={toc} />

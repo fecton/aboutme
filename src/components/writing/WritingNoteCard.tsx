@@ -1,6 +1,6 @@
 import type { WritingNoteMeta } from "@/data/writing";
 import { WRITING_TYPE_LABELS } from "@/data/writing";
-import { formatWritingDate } from "@/lib/writing";
+import { formatWritingDate, writingArticlePath } from "@/lib/writing";
 import Link from "next/link";
 
 interface WritingNoteCardProps {
@@ -10,7 +10,7 @@ interface WritingNoteCardProps {
 
 export function WritingNoteCard({ note, headingLevel }: WritingNoteCardProps) {
 	const Heading = headingLevel;
-	const articleHref = `/writing/${note.slug}/`;
+	const articleHref = writingArticlePath(note.slug);
 
 	return (
 		<article className="rounded-2xl border border-border bg-surface-solid p-6">
