@@ -38,11 +38,17 @@ export function Footer() {
 					Copyright &copy; 2022-2026 Andrii Lytvynenko
 				</p>
 				<p className="mb-8 text-center text-sm text-muted">
-					<Link href="/privacy-policy" className="hover:text-foreground">
+					<Link
+						href="/privacy-policy"
+						className="inline-flex min-h-[44px] items-center hover:text-foreground"
+					>
 						Privacy Policy
 					</Link>
 					{" · "}
-					<Link href="/cookie-policy" className="hover:text-foreground">
+					<Link
+						href="/cookie-policy"
+						className="inline-flex min-h-[44px] items-center hover:text-foreground"
+					>
 						Cookie Policy
 					</Link>
 					{" · "}
