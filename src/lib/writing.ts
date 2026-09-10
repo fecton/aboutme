@@ -20,11 +20,7 @@ import {
 	WRITING_SITE_URL,
 } from "@/data/writing";
 
-const WRITING_CONTENT_DIR = path.join(
-	process.cwd(),
-	"content",
-	"writing",
-);
+const WRITING_CONTENT_DIR = path.join(process.cwd(), "content", "writing");
 
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 
