@@ -168,6 +168,25 @@ test.describe("hire conversion page", () => {
 		await expect(page).toHaveURL(/\/hire\/?/);
 	});
 
+	test("does not feature the diploma org or Academic/labs blurb", async ({
+		page,
+	}) => {
+		await openHire(page);
+
+		await expect(page.getByText("devops-skill-demonstration")).toHaveCount(0);
+		await expect(
+			page.getByText(
+				"Diploma project (KhAI): GCP/GKE platform lab with layered Terraform (init → in-cluster ops → config) and observability — skills demonstration, not a client engagement.",
+			),
+		).toHaveCount(0);
+		await expect(
+			page.getByRole("heading", { name: "GCP/GKE platform lab" }),
+		).toHaveCount(0);
+		await expect(
+			page.getByRole("link", { name: /0-documentation/ }),
+		).toHaveCount(0);
+	});
+
 	test("keeps three proof teasers on one row from md up", async ({
 		page,
 	}, testInfo) => {
