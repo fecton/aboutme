@@ -27,7 +27,7 @@ export function EducationCard() {
 								{edu.specialty_title}
 							</h3>
 							<span className="rounded-full bg-accent/25 px-2 py-0.5 text-xs text-accent-dark dark:bg-accent/90 dark:text-white">
-								Graduated
+								{edu.badge ?? "Graduated"}
 							</span>
 						</div>
 						<div className="mb-2 flex items-center gap-2">

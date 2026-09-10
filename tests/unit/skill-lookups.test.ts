@@ -10,6 +10,10 @@ describe("getCategoryForDiscipline", () => {
 	it("returns the mapped category for an exact skill name", () => {
 		expect(getCategoryForDiscipline("Terraform")).toBe("iac");
 		expect(getCategoryForDiscipline("Docker")).toBe("containers");
+		expect(getCategoryForDiscipline("GKE")).toBe("containers");
+		expect(getCategoryForDiscipline("Google Kubernetes Engine")).toBe(
+			"containers",
+		);
 	});
 
 	it("classifies Kafka and AWS streaming/GenAI services as streaming, not containers or cloud", () => {
@@ -70,6 +74,10 @@ describe("getIconForDiscipline", () => {
 		);
 		expect(getIconForDiscipline("EC2")).toEqual(skillIconMap.AWS);
 		expect(getIconForDiscipline("Amazon S3")).toEqual(skillIconMap.AWS);
+		expect(getIconForDiscipline("GKE")).toEqual(skillIconMap.GKE);
+		expect(getIconForDiscipline("Google Kubernetes Engine")).toEqual(
+			skillIconMap.GKE,
+		);
 	});
 
 	it("returns null for empty or unknown skills", () => {

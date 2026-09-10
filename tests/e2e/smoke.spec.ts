@@ -214,7 +214,7 @@ test.describe("home page renders", () => {
 			name: /Expand to show (Technologies & Skills|Courses & Disciplines)/i,
 		});
 		const count = await triggers.count();
-		expect(count).toBe(8);
+		expect(count).toBe(9);
 
 		const ids: string[] = [];
 		const controls: string[] = [];
@@ -248,6 +248,49 @@ test.describe("home page renders", () => {
 		expect(ids).not.toContain("technologies-&-skills-trigger");
 		expect(ids).not.toContain("courses-&-disciplines-trigger");
 		expect(ids.every((id) => !id.includes("&"))).toBe(true);
+	});
+
+	test("features devops-skill-demonstration as Academic/labs in Education", async ({
+		page,
+	}) => {
+		await page.goto("/");
+		await page.evaluate(() =>
+			localStorage.setItem("cookie-consent", "rejected"),
+		);
+		await page.reload();
+
+		const education = page.getByRole("region", { name: "Education" });
+		const lab = education.locator("article").filter({
+			has: page.getByRole("heading", {
+				level: 3,
+				name: "GCP/GKE platform lab",
+			}),
+		});
+
+		await expect(lab).toBeVisible();
+		await expect(lab.getByText("Academic lab")).toBeVisible();
+		await expect(
+			lab.getByRole("link", { name: "devops-skill-demonstration" }),
+		).toHaveAttribute("href", "https://github.com/devops-skill-demonstration");
+		await expect(
+			lab.getByText(
+				"Diploma project (KhAI): GCP/GKE platform lab with layered Terraform (init → in-cluster ops → config) and observability — skills demonstration, not a client engagement.",
+			),
+		).toBeVisible();
+		await expect(
+			lab.getByRole("link", { name: "GitHub repository: 0-documentation" }),
+		).toHaveAttribute(
+			"href",
+			"https://github.com/devops-skill-demonstration/0-documentation",
+		);
+
+		const experience = page.getByRole("region", { name: "Experience" });
+		await expect(
+			experience.getByText("devops-skill-demonstration"),
+		).toHaveCount(0);
+		await expect(
+			experience.getByText("skills demonstration, not a client engagement"),
+		).toHaveCount(0);
 	});
 
 	test("home meta is resume SoT, not hire-flavored", async ({ page }) => {

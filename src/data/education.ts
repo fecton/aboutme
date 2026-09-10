@@ -8,9 +8,37 @@ export interface Education {
 	description: string;
 	disciplines: string;
 	university_logo?: string;
+	/** Status chip; defaults to "Graduated" in EducationCard. */
+	badge?: string;
 }
 
+/** Locked Practices blurb — Academic/labs only, not Experience or /hire. */
+export const DIPLOMA_LAB_BLURB =
+	"Diploma project (KhAI): GCP/GKE platform lab with layered Terraform (init → in-cluster ops → config) and observability — skills demonstration, not a client engagement.";
+
+export const DIPLOMA_LAB_ORG_URL =
+	"https://github.com/devops-skill-demonstration";
+
+export const DIPLOMA_LAB_DOCS_URL =
+	"https://github.com/devops-skill-demonstration/0-documentation";
+
 export const educations: Education[] = [
+	// Academic/labs proof (GCP diploma lab). Career SoT stays AWS-first on Experience.
+	{
+		specialty_title: "GCP/GKE platform lab",
+		university_title: "devops-skill-demonstration",
+		university_link: DIPLOMA_LAB_ORG_URL,
+		dates: "2025 February - 2025 August",
+		diploma_pdf: "",
+		diploma_supplement_pdf: "",
+		description: `<ul>
+<li>${DIPLOMA_LAB_BLURB}</li>
+<li>Documented in the <a href="${DIPLOMA_LAB_DOCS_URL}" target="_blank" rel="noopener noreferrer">GitHub repository: 0-documentation</a>.</li>
+</ul>`,
+		disciplines:
+			"GCP, GKE, Terraform, Kubernetes, Docker, GitLab CI, Grafana, Prometheus, InfluxDB, HAProxy",
+		badge: "Academic lab",
+	},
 	{
 		specialty_title: "Computer Engineering: Computer Networks and Systems",
 		university_title: "Kharkiv Aviation Institute",

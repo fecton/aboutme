@@ -138,6 +138,7 @@ export const skillIconMap: Record<
 	Ansible: fromSimpleIcon(siAnsible, "Ansible"),
 	// Containers
 	Kubernetes: fromSimpleIcon(siKubernetes, "Kubernetes"),
+	GKE: fromSimpleIcon(siKubernetes, "Google Kubernetes Engine"),
 	Docker: fromSimpleIcon(siDocker, "Docker"),
 	"Docker Compose": fromSimpleIcon(siDocker, "Docker Compose"),
 	ECS: manualPaths.ECS,
@@ -291,6 +292,7 @@ const skillCategoryMap: Record<string, string> = {
 	Ansible: "iac",
 	// Containers
 	Kubernetes: "containers",
+	GKE: "containers",
 	Docker: "containers",
 	"Docker Compose": "containers",
 	Helm: "containers",
@@ -403,6 +405,8 @@ const disciplineAliases: Record<string, string> = {
 	"Amazon EC2": "EC2",
 	"Amazon Elastic Container Registry (ECR)": "ECR",
 	"Amazon Elastic Kubernetes Service (Amazon EKS)": "EKS",
+	"Google Kubernetes Engine": "GKE",
+	"Google Kubernetes Engine (GKE)": "GKE",
 	"Amazon Relational Database Service (RDS)": "RDS",
 	"Amazon S3": "S3",
 	"Amazon VPC (Virtual Private Cloud)": "VPC",
