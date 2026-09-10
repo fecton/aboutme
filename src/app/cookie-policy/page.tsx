@@ -58,7 +58,7 @@ export default function CookiePolicyPage() {
 						<h1 className="mb-2 text-4xl font-bold tracking-tight text-foreground">
 							Cookie Policy
 						</h1>
-						<p className="mb-8 text-muted">Last updated: September 8, 2026</p>
+						<p className="mb-8 text-muted">Last updated: September 10, 2026</p>
 
 						<div className="prose prose-lg dark:prose-invert max-w-none">
 							<p>
@@ -236,6 +236,9 @@ export default function CookiePolicyPage() {
 							<h2 className="mt-10 border-b border-border pb-2 text-2xl font-bold text-foreground">
 								4. Managing Cookies
 							</h2>
+							<p>
+								You can change your choice anytime via Cookie settings in the footer.
+							</p>
 							<p>You can control cookies in several ways:</p>
 							<ul className="list-disc space-y-2 pl-6 text-muted">
 								<li>

@@ -10,6 +10,11 @@ test.describe("policy copy matches live consent model", () => {
 		await expect(
 			page.getByText(/analytics cookies only after you have given your consent/i),
 		).toBeVisible();
+		await expect(
+			page.getByText(
+				"You can change your choice anytime via Cookie settings in the footer.",
+			),
+		).toBeVisible();
 	});
 
 	test("privacy policy states analytics load only after accept", async ({ page }) => {

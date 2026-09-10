@@ -70,7 +70,7 @@ export default nextConfig;
 
 Wrap the app in `src/app/layout.tsx` with:
 
-1. **ConsentProvider** (outermost) — cookie banner + GA scripts **only** after `localStorage.cookie-consent === "accepted"`. Measurement ID: `src/lib/analytics.ts`.
+1. **ConsentProvider** (outermost) — cookie banner + GA scripts **only** after `localStorage.cookie-consent === "accepted"`. Measurement ID: `src/lib/analytics.ts`. Footer **Cookie settings** reopens the banner via `reopenConsent()` (clears the key and unloads GA). Do not load `gtag` in `layout.tsx` itself.
 2. **ThemeProvider** (next-themes, `attribute="class"`, `storageKey="theme"`, `defaultTheme="system"`)
 3. **ReduceEffectsProvider** — Lite Mode. Reads `localStorage.reduce-effects`. If unset, auto-enables when `prefers-reduced-motion` is reduce, `deviceMemory <= 4`, `hardwareConcurrency <= 4`, or `connection.saveData`.
 

@@ -89,20 +89,21 @@ Common failure: cards or hero stuck at `opacity: 0` after a Framer Motion change
 
 ## Client-side preferences and consent
 
-No analytics load until the visitor accepts cookies. Implementation: `ConsentProvider` → `CookieConsentBanner` → GA scripts only when consent is `"accepted"`.
+No analytics load until the visitor accepts cookies. Implementation: `ConsentProvider` → `CookieConsentBanner` → GA scripts only when consent is `"accepted"`. Footer **Cookie settings** reopens the same banner (clears `cookie-consent`, unloads GA) so the visitor can choose again.
 
 | `localStorage` key | Values | Owner |
 |--------------------|--------|--------|
-| `cookie-consent` | `accepted` \| `rejected` | `CookieConsentBanner` / `ConsentProvider` |
+| `cookie-consent` | `accepted` \| `rejected` | `src/lib/consent.ts` (`ConsentProvider` / `CookieConsentBanner`) |
 | `theme` | `light` \| `dark` \| `system` | `ThemeProvider` (`next-themes`) |
 | `reduce-effects` | `true` \| `false` | `ReduceEffectsProvider` (Lite Mode) |
 
 **Consent-first analytics**
 
 - Measurement ID lives in `src/lib/analytics.ts` (`GA_MEASUREMENT_ID`).
-- GTM/GA scripts inject only after accept (`strategy="afterInteractive"`).
+- GTM/GA scripts inject only after accept (client-side, after the visitor opts in).
 - Reject (or no choice) → banner on first visit, no `gtag` script.
-- To re-test the banner: `localStorage.removeItem("cookie-consent")` and reload.
+- Footer **Cookie settings** reopens that gate without itself writing a choice. Accept loads GA; Reject unloads/stops it.
+- To re-test the banner: use Cookie settings, or `localStorage.removeItem("cookie-consent")` and reload.
 
 **Lite Mode** (`ReduceEffectsProvider`)
 
@@ -181,7 +182,7 @@ tools/             # favicon, logos, PNG→WebP
 | `cspell` fails on a new name or Polish word | Word not in `cspell.json` | Add it to `words`, or ignore generated SVG paths (already ignored) |
 | Lychee fails on a new external URL | Bot-blocked host or bad cert | Confirm the URL in a browser; add a narrow `exclude` in `lychee.toml` only if the site is known-good |
 | Knip reports unused files | New page/tool not in `knip.json` `entry` | Add `src/app/**/page.tsx`-style entries or `tools/**/*.mjs` |
-| Cookie banner never appears | Consent already stored | `localStorage.removeItem("cookie-consent")` |
+| Cookie banner never appears | Consent already stored | Footer **Cookie settings**, or `localStorage.removeItem("cookie-consent")` |
 | GA fires before accept | Script added outside `ConsentProvider` | Load gtag only when `consent === "accepted"` |
 | Lite Mode on by default on your laptop | Auto-detect (≤4 GB / ≤4 cores / Save-Data / reduced motion) | Toggle the navbar bolt, or set `localStorage.reduce-effects = "false"` |
 | Horizontal scroll at 320px | Flex child overflow | Add `min-w-0` on flex/grid children |

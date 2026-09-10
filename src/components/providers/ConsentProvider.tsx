@@ -1,36 +1,15 @@
 "use client";
 
-import Script from "next/script";
-import { useCallback, useSyncExternalStore } from "react";
-import { CookieConsentBanner, CONSENT_KEY } from "@/components/ui/CookieConsentBanner";
-import { GA_MEASUREMENT_ID } from "@/lib/analytics";
+import { useCallback, useEffect, useSyncExternalStore } from "react";
+import { CookieConsentBanner } from "@/components/ui/CookieConsentBanner";
+import {
+	getConsentServerSnapshot,
+	getConsentSnapshot,
+	setStoredConsent,
+	subscribeToConsent,
+} from "@/lib/consent";
+import { loadGoogleAnalytics, stopGoogleAnalytics } from "@/lib/analytics";
 import { useIsMounted } from "@/lib/hooks";
-
-type ConsentStatus = "accepted" | "rejected" | null;
-
-const consentListeners = new Set<() => void>();
-
-function subscribeToConsent(callback: () => void) {
-	consentListeners.add(callback);
-	return () => {
-		consentListeners.delete(callback);
-	};
-}
-
-function getConsentSnapshot(): ConsentStatus {
-	const stored = localStorage.getItem(CONSENT_KEY);
-	if (stored === "accepted" || stored === "rejected") return stored;
-	return null;
-}
-
-function getConsentServerSnapshot(): ConsentStatus {
-	return null;
-}
-
-function setStoredConsent(value: "accepted" | "rejected") {
-	localStorage.setItem(CONSENT_KEY, value);
-	consentListeners.forEach((cb) => cb());
-}
 
 export function ConsentProvider({ children }: { children: React.ReactNode }) {
 	const mounted = useIsMounted();
@@ -40,7 +19,18 @@ export function ConsentProvider({ children }: { children: React.ReactNode }) {
 		getConsentServerSnapshot,
 	);
 
+	useEffect(() => {
+		if (consent === "accepted") {
+			loadGoogleAnalytics();
+		}
+	}, [consent]);
+
 	const setConsent = useCallback((value: "accepted" | "rejected") => {
+		if (value === "accepted") {
+			loadGoogleAnalytics();
+		} else {
+			stopGoogleAnalytics();
+		}
 		setStoredConsent(value);
 	}, []);
 
@@ -48,29 +38,11 @@ export function ConsentProvider({ children }: { children: React.ReactNode }) {
 		<>
 			{children}
 			{mounted && (
-				<>
-					<CookieConsentBanner
-						consent={consent}
-						onAccept={() => setConsent("accepted")}
-						onReject={() => setConsent("rejected")}
-					/>
-					{consent === "accepted" && (
-						<>
-							<Script
-								src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-								strategy="afterInteractive"
-							/>
-							<Script id="google-analytics" strategy="afterInteractive">
-								{`
-									window.dataLayer = window.dataLayer || [];
-									function gtag(){dataLayer.push(arguments);}
-									gtag('js', new Date());
-									gtag('config', '${GA_MEASUREMENT_ID}');
-								`}
-							</Script>
-						</>
-					)}
-				</>
+				<CookieConsentBanner
+					consent={consent}
+					onAccept={() => setConsent("accepted")}
+					onReject={() => setConsent("rejected")}
+				/>
 			)}
 		</>
 	);
