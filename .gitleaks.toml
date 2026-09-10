@@ -1,0 +1,18 @@
+# Extends the default gitleaks rule set. Do not disable rules globally.
+title = "aboutme"
+
+[extend]
+useDefault = true
+
+# Historical GitHub Pages artifacts (`_next/static/chunks/*.js`) were committed
+# to this repo in Feb 2026 and later removed from HEAD. The default
+# sourcegraph-access-token rule matched Git blob SHA
+# 61eff022f2dad3c7468f5deb4f06652d15f2c143 inside a Wikimedia simple-icons
+# bash-logo URL (`.../social-bash-logo/tree/<sha>`), not a Sourcegraph token.
+# AND-restrict so real secrets outside `_next/` (and other rules inside it)
+# still fail the scan.
+[[allowlists]]
+description = "False positive: Git SHA in a Wikimedia bash-logo URL inside historical Next.js `_next/` chunks, not a Sourcegraph token"
+condition = "AND"
+ids = ["sourcegraph-access-token"]
+paths = ['''(^|/)_next/''']
