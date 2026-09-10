@@ -66,10 +66,10 @@ export const experiences: Experience[] = [
 		dates: "2023 February - 2025 July",
 		present: false,
 		description: `<ul>
-<li>Led urgent and time-limited Terraform Enterprise migration from Terragrunt, completing it in 30% of the planned time (1 month instead of 3 months) with half the team size (3-5 instead of 10 engineers); provided daily reports to stakeholders on development status, performance tracking, and management via team calls, Jira comments, and Confluence pages.</li>
-<li>Led network architecture redesign to eliminate Nginx network bottlenecks, applying high availability and reliability principles using AWS services (ALB, NLB, EC2, Route53, EKS, CloudFront, VPC, EventBridge), reworking legacy code, reducing incident frequency by 70%, and enabling the handling of high traffic peaks with hundreds of thousands of requests per second.</li>
-<li>Led documentation initiatives to improve transparency for clients and newly onboarded staff, creating complete infrastructure and testing documentation and knowledge-sharing procedures, resulting in improved team efficiency and engagement.</li>
-<li>Led urgent production Kubernetes cluster restoration during weekends following an incident, restoring from automated backups, implementing countermeasures, and documenting the event.</li>
+<li>Owned and delivered an urgent, time-limited Terraform Enterprise migration from Terragrunt, completing it in 30% of the planned time (1 month instead of 3 months) with half the team size (3–5 instead of 10 engineers); provided daily stakeholder updates on status and performance via team calls, Jira, and Confluence.</li>
+<li>Owned and delivered a network architecture redesign to eliminate Nginx bottlenecks, applying HA/reliability patterns on AWS (ALB, NLB, EC2, Route53, EKS, CloudFront, VPC, EventBridge), reworking legacy paths, reducing incident frequency by ~70%, and enabling peak traffic in the hundreds of thousands of requests per second.</li>
+<li>Owned documentation initiatives to improve transparency for clients and newly onboarded staff, creating infrastructure and testing docs plus knowledge-sharing procedures that improved team efficiency and engagement.</li>
+<li>Delivered an urgent weekend production Kubernetes cluster restoration after an incident — restored from automated backups, implemented countermeasures, and documented the event.</li>
 <li>Regularly mentored a team of 10 members, providing one-to-one support sessions.</li>
 <li>Implemented and maintained IAM policies, secrets management, and conducted regular security audits within the AWS environment.</li>
 <li>Designed and implemented Gerrit High Availability Cluster architecture using Corosync, Pacemaker, and distributed storage (GFS2, DLM, LVM, lvmlockd) with automation, eliminating downtime during maintenance operations.</li>

@@ -46,7 +46,7 @@ export const profile = {
 		intro:
 			"I'm a Senior DevOps & Cloud Engineer with 5+ years of experience designing, implementing, and optimizing cloud infrastructure for enterprise clients. I specialize in building scalable, secure, and cost-efficient solutions using AWS, Kubernetes, and Infrastructure as Code practices.",
 		experience:
-			"My experience includes enterprise client work via Luxoft — notably JPMorgan Chase and Mercedes-Benz — leading infrastructure migrations, cutting cloud costs by up to 50%, and architecting high-availability systems that handle hundreds of thousands of requests per second.",
+			"My experience includes enterprise client work via Luxoft — notably JPMorgan Chase and Mercedes-Benz — delivering infrastructure migrations, cutting cloud costs by up to 50%, and architecting high-availability systems that handle hundreds of thousands of requests per second.",
 		passion:
 			"I'm passionate about automation, continuous improvement, and mentoring teams. Whether it's a complex Terraform migration or using GenAI to speed up log analysis, I focus on delivering measurable business value.",
 	},

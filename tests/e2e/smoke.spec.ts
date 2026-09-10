@@ -80,7 +80,7 @@ test.describe("home page renders", () => {
 
 		await expect(
 			page.getByText(
-				"My experience includes enterprise client work via Luxoft — notably JPMorgan Chase and Mercedes-Benz — leading infrastructure migrations, cutting cloud costs by up to 50%, and architecting high-availability systems that handle hundreds of thousands of requests per second.",
+				"My experience includes enterprise client work via Luxoft — notably JPMorgan Chase and Mercedes-Benz — delivering infrastructure migrations, cutting cloud costs by up to 50%, and architecting high-availability systems that handle hundreds of thousands of requests per second.",
 			),
 		).toBeVisible();
 
