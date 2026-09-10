@@ -100,7 +100,7 @@ No analytics load until the visitor accepts cookies. Implementation: `ConsentPro
 **Consent-first analytics**
 
 - Measurement ID lives in `src/lib/analytics.ts` (`GA_MEASUREMENT_ID`).
-- GTM/GA scripts inject only after accept (`strategy="afterInteractive"`).
+- GTM/GA scripts inject only after accept (client-side, after the visitor opts in).
 - Reject (or no choice) → banner on first visit, no `gtag` script.
 - Footer **Cookie settings** reopens that gate without itself writing a choice. Accept loads GA; Reject unloads/stops it.
 - To re-test the banner: use Cookie settings, or `localStorage.removeItem("cookie-consent")` and reload.

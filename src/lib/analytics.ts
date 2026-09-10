@@ -1,4 +1,4 @@
-export const GA_MEASUREMENT_ID = "G-LKHDQT8Z81";
+const GA_MEASUREMENT_ID = "G-LKHDQT8Z81";
 
 const GA_DISABLE_KEY = `ga-disable-${GA_MEASUREMENT_ID}`;
 
@@ -21,10 +21,34 @@ export function isGoogleAnalyticsCookie(name: string): boolean {
 	);
 }
 
-export function enableGoogleAnalytics(): void {
+function enableGoogleAnalytics(): void {
 	const win = getAnalyticsWindow();
 	if (!win) return;
 	Object.assign(win, { [GA_DISABLE_KEY]: false });
+}
+
+export function loadGoogleAnalytics(): void {
+	if (typeof document === "undefined") return;
+	enableGoogleAnalytics();
+
+	if (!document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) {
+		const gtagScript = document.createElement("script");
+		gtagScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+		gtagScript.async = true;
+		document.head.appendChild(gtagScript);
+	}
+
+	if (!document.getElementById("google-analytics")) {
+		const configScript = document.createElement("script");
+		configScript.id = "google-analytics";
+		configScript.textContent = `
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA_MEASUREMENT_ID}');
+`;
+		document.head.appendChild(configScript);
+	}
 }
 
 export function stopGoogleAnalytics(): void {

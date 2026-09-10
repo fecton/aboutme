@@ -1,6 +1,6 @@
 import { stopGoogleAnalytics } from "@/lib/analytics";
 
-export const CONSENT_KEY = "cookie-consent";
+const CONSENT_KEY = "cookie-consent";
 
 export type ConsentStatus = "accepted" | "rejected" | null;
 
