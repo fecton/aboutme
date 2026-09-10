@@ -27,7 +27,7 @@ test.describe("Writing hub and article", () => {
 			}),
 		});
 		await expect(card).toBeVisible();
-		await expect(card.getByText("Lab")).toBeVisible();
+		await expect(card.getByText("Lab", { exact: true })).toBeVisible();
 		await expect(card.getByText("verified")).toBeVisible();
 		await expect(card.getByRole("link")).toHaveCount(1);
 		await expect(card.getByRole("link")).toHaveAttribute(

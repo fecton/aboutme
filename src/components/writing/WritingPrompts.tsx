@@ -19,7 +19,10 @@ export function WritingPrompts({ prompts }: { prompts: WritingPrompt[] }) {
 						<summary className="cursor-pointer list-none px-4 py-3 text-sm font-medium text-foreground min-h-[44px] flex items-center [&::-webkit-details-marker]:hidden">
 							{prompt.title}
 						</summary>
-						<pre className="overflow-x-auto border-t border-border p-4 font-mono text-sm leading-relaxed text-foreground whitespace-pre-wrap">
+						<pre
+							tabIndex={0}
+							className="overflow-x-auto border-t border-border p-4 font-mono text-sm leading-relaxed text-foreground whitespace-pre-wrap"
+						>
 							{prompt.body}
 						</pre>
 					</details>

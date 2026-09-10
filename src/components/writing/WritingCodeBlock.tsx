@@ -86,6 +86,7 @@ export function WritingCodeBlock({
 				</button>
 			</div>
 			<pre
+				tabIndex={0}
 				className={`overflow-x-auto p-4 font-mono text-sm leading-relaxed text-foreground ${className}`}
 			>
 				{children}
