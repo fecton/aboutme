@@ -110,7 +110,7 @@ const manualPaths: Record<
 // Build skill icon map from simple-icons + manual overrides
 const fromSimpleIcon = (
 	icon: { path: string; title: string },
-	title: string
+	title: string,
 ) => ({ path: icon.path, title });
 
 export const skillIconMap: Record<
@@ -438,7 +438,8 @@ export function getCategoryForDiscipline(item: string): string {
 
 	// First token (before space or parenthesis)
 	const firstToken = trimmed.split(/[\s(]/)[0]?.trim();
-	if (firstToken && skillCategoryMap[firstToken]) return skillCategoryMap[firstToken];
+	if (firstToken && skillCategoryMap[firstToken])
+		return skillCategoryMap[firstToken];
 
 	// AWS prefix or known AWS services
 	if (
@@ -469,7 +470,7 @@ export function getCanonicalForDiscipline(item: string): string {
  * Tries exact match, normalized match (first word), and aliases.
  */
 export function getIconForDiscipline(
-	item: string
+	item: string,
 ): { path: string; title?: string; viewBox?: string } | null {
 	const trimmed = item.trim();
 	if (!trimmed) return null;

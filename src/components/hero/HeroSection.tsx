@@ -35,7 +35,9 @@ export function HeroSection() {
 
 					<div
 						className={`mb-3 flex items-center gap-2 rounded-full border border-border px-4 py-2 ${
-							reduceEffects ? "bg-background" : "bg-surface backdrop-blur-[20px]"
+							reduceEffects
+								? "bg-background"
+								: "bg-surface backdrop-blur-[20px]"
 						}`}
 					>
 						<span
@@ -43,7 +45,9 @@ export function HeroSection() {
 								reduceEffects ? "" : "animate-pulse"
 							}`}
 						/>
-						<span className="text-sm text-foreground">{profile.availability}</span>
+						<span className="text-sm text-foreground">
+							{profile.availability}
+						</span>
 					</div>
 
 					<h1 className="mb-4 max-w-4xl text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">

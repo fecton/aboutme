@@ -10,7 +10,13 @@ const PROFILE_IMAGE = `${SITE_URL}/images/tm-easy-profile.webp`;
 
 const DOCUMENT_CONFIG: Record<
 	string,
-	{ src: string; title: string; downloadName: string; pageTitle: string; description: string }
+	{
+		src: string;
+		title: string;
+		downloadName: string;
+		pageTitle: string;
+		description: string;
+	}
 > = {
 	resume: {
 		src: "/pdf/resume.pdf",
@@ -62,7 +68,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			title: `${config.pageTitle} | Senior DevOps & Cloud Engineer`,
 			description: config.description,
 			url: `${SITE_URL}/viewer/${document}/`,
-			images: [{ url: PROFILE_IMAGE, width: 250, height: 250, alt: "Andrii Lytvynenko" }],
+			images: [
+				{
+					url: PROFILE_IMAGE,
+					width: 250,
+					height: 250,
+					alt: "Andrii Lytvynenko",
+				},
+			],
 			type: "profile",
 		},
 		twitter: {

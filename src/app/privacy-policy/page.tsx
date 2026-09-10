@@ -16,7 +16,9 @@ export const metadata: Metadata = {
 		description:
 			"Privacy Policy for Andrii Lytvynenko's personal website. Learn how I handle your data, cookies, and your rights under GDPR.",
 		url: `${SITE_URL}/privacy-policy/`,
-		images: [{ url: PROFILE_IMAGE, width: 250, height: 250, alt: "Andrii Lytvynenko" }],
+		images: [
+			{ url: PROFILE_IMAGE, width: 250, height: 250, alt: "Andrii Lytvynenko" },
+		],
 		type: "website",
 	},
 	twitter: {
@@ -62,12 +64,12 @@ export default function PrivacyPolicyPage() {
 
 						<div className="prose prose-lg dark:prose-invert max-w-none">
 							<p>
-								Welcome to <strong>alytvynenko.net</strong>{" "}(the &quot;Website&quot;),
-								operated by Andrii Lytvynenko (&quot;I&quot;, &quot;me&quot;, or
-								&quot;my&quot;). I am committed to protecting your privacy and
-								handling your personal data in compliance with the General Data
-								Protection Regulation (GDPR) and other applicable data protection
-								laws.
+								Welcome to <strong>alytvynenko.net</strong> (the
+								&quot;Website&quot;), operated by Andrii Lytvynenko
+								(&quot;I&quot;, &quot;me&quot;, or &quot;my&quot;). I am
+								committed to protecting your privacy and handling your personal
+								data in compliance with the General Data Protection Regulation
+								(GDPR) and other applicable data protection laws.
 							</p>
 
 							<p>
@@ -80,10 +82,14 @@ export default function PrivacyPolicyPage() {
 							</h2>
 							<p>The data controller responsible for your personal data is:</p>
 							<div className="my-6 rounded-xl border-l-4 border-accent bg-surface p-6">
-								<p className="font-semibold text-foreground">Andrii Lytvynenko Tech Solutions</p>
+								<p className="font-semibold text-foreground">
+									Andrii Lytvynenko Tech Solutions
+								</p>
 								<p className="text-muted">NIP: 9492279891</p>
 								<p className="text-muted">REGON: 543171480</p>
-								<p className="text-muted">Registered Address: Częstochowa, Poland</p>
+								<p className="text-muted">
+									Registered Address: Częstochowa, Poland
+								</p>
 								<p className="text-muted">
 									<a
 										href="mailto:a.v.lytvynenko2004@gmail.com"
@@ -112,17 +118,25 @@ export default function PrivacyPolicyPage() {
 							</p>
 							<ul className="list-disc space-y-2 pl-6 text-muted">
 								<li>
-									<strong className="text-foreground">Server Logs:</strong> Standard server logs (including public IP addresses, browser information, time of request, and HTTP response codes) are processed by GitHub, the hosting provider, for the security and technical functioning of the Website. I do not have direct access to these logs.
+									<strong className="text-foreground">Server Logs:</strong>{" "}
+									Standard server logs (including public IP addresses, browser
+									information, time of request, and HTTP response codes) are
+									processed by GitHub, the hosting provider, for the security
+									and technical functioning of the Website. I do not have direct
+									access to these logs.
 								</li>
 							</ul>
 							<p className="mt-4">
 								<strong className="text-foreground">
-									Only after you accept analytics cookies (via Google Analytics 4):
+									Only after you accept analytics cookies (via Google Analytics
+									4):
 								</strong>
 							</p>
 							<ul className="list-disc space-y-2 pl-6 text-muted">
 								<li>
-									<strong className="text-foreground">Device Information:</strong>{" "}
+									<strong className="text-foreground">
+										Device Information:
+									</strong>{" "}
 									Browser type, operating system, device type, screen resolution
 								</li>
 								<li>
@@ -135,9 +149,9 @@ export default function PrivacyPolicyPage() {
 									IP addresses)
 								</li>
 								<li>
-									<strong className="text-foreground">Location Data:</strong> General
-									geographic location (country/region level only), derived from IP
-									by Google
+									<strong className="text-foreground">Location Data:</strong>{" "}
+									General geographic location (country/region level only),
+									derived from IP by Google
 								</li>
 							</ul>
 
@@ -145,23 +159,26 @@ export default function PrivacyPolicyPage() {
 								2.2 Information You Provide
 							</h3>
 							<p>
-								This Website does not have contact forms or user registration. If
-								you contact me via email or other means listed on the Website, I
-								may collect:
+								This Website does not have contact forms or user registration.
+								If you contact me via email or other means listed on the
+								Website, I may collect:
 							</p>
 							<ul className="list-disc space-y-2 pl-6 text-muted">
 								<li>Your name and email address</li>
-								<li>Any other information you choose to provide in your message</li>
+								<li>
+									Any other information you choose to provide in your message
+								</li>
 							</ul>
 
 							<h2 className="mt-10 border-b border-border pb-2 text-2xl font-bold text-foreground">
 								3. Analytics Services
 							</h2>
 							<p>
-								I use Google Analytics 4 to understand how visitors interact with
-								my Website. Analytics scripts are only loaded after you accept
-								analytics cookies via the consent banner. If you reject, no
-								analytics scripts are loaded and no analytics cookies are set.
+								I use Google Analytics 4 to understand how visitors interact
+								with my Website. Analytics scripts are only loaded after you
+								accept analytics cookies via the consent banner. If you reject,
+								no analytics scripts are loaded and no analytics cookies are
+								set.
 							</p>
 							<p>
 								When enabled, Google Analytics 4 (a web analytics service
@@ -169,14 +186,17 @@ export default function PrivacyPolicyPage() {
 								Website.
 							</p>
 							<div className="my-6 rounded-xl border-l-4 border-accent bg-surface p-4">
-								<strong className="text-foreground">Data Collected:</strong> Page
-								views, session duration, bounce rate, traffic sources, demographic
-								information (age, gender, interests), device and browser
-								information.
+								<strong className="text-foreground">Data Collected:</strong>{" "}
+								Page views, session duration, bounce rate, traffic sources,
+								demographic information (age, gender, interests), device and
+								browser information.
 							</div>
 							<p>
-								Google may transfer this data to servers located in the United States.
-								To ensure the protection of your personal data during these cross-border transfers, Google relies on the EU-U.S. Data Privacy Framework certification and Standard Contractual Clauses (SCCs) approved by the European Commission.
+								Google may transfer this data to servers located in the United
+								States. To ensure the protection of your personal data during
+								these cross-border transfers, Google relies on the EU-U.S. Data
+								Privacy Framework certification and Standard Contractual Clauses
+								(SCCs) approved by the European Commission.
 							</p>
 							<p>
 								Learn more:{" "}
@@ -205,10 +225,14 @@ export default function PrivacyPolicyPage() {
 								4. Cookies
 							</h2>
 							<p>
-								Cookies are small text files stored on your device when you visit
-								a website. This Website uses the following types of cookies. For
-								a detailed list of cookies, including Google Analytics, see the{" "}
-								<Link href="/cookie-policy" className="text-accent hover:underline">
+								Cookies are small text files stored on your device when you
+								visit a website. This Website uses the following types of
+								cookies. For a detailed list of cookies, including Google
+								Analytics, see the{" "}
+								<Link
+									href="/cookie-policy"
+									className="text-accent hover:underline"
+								>
 									Cookie Policy
 								</Link>
 								.
@@ -244,7 +268,9 @@ export default function PrivacyPolicyPage() {
 										</tr>
 										<tr>
 											<td className="border border-border bg-surface px-4 py-3 text-muted">
-												<strong className="text-foreground">Analytics (Google)</strong>
+												<strong className="text-foreground">
+													Analytics (Google)
+												</strong>
 											</td>
 											<td className="border border-border bg-surface px-4 py-3 text-muted">
 												Measure Website traffic and user behavior
@@ -270,8 +296,8 @@ export default function PrivacyPolicyPage() {
 								<li>Set preferences for specific websites</li>
 							</ul>
 							<p>
-								Please note that blocking cookies may affect the functionality of
-								some websites.
+								Please note that blocking cookies may affect the functionality
+								of some websites.
 							</p>
 
 							<h2 className="mt-10 border-b border-border pb-2 text-2xl font-bold text-foreground">
@@ -283,24 +309,30 @@ export default function PrivacyPolicyPage() {
 							</p>
 							<ul className="list-disc space-y-2 pl-6 text-muted">
 								<li>
-									<strong className="text-foreground">Consent (Art. 6(1)(a)
-									GDPR):</strong> For loading Google Analytics and the resulting
-									analytics cookies. No analytics processing occurs until you opt
-									in via the cookie banner, and you can withdraw consent at any
-									time.
+									<strong className="text-foreground">
+										Consent (Art. 6(1)(a) GDPR):
+									</strong>{" "}
+									For loading Google Analytics and the resulting analytics
+									cookies. No analytics processing occurs until you opt in via
+									the cookie banner, and you can withdraw consent at any time.
 								</li>
 								<li>
-									<strong className="text-foreground">Contract Performance (Art.
-									6(1)(b) GDPR):</strong> When you contact me regarding potential
-									B2B collaboration or services, processing is necessary for taking steps prior to entering a contract.
+									<strong className="text-foreground">
+										Contract Performance (Art. 6(1)(b) GDPR):
+									</strong>{" "}
+									When you contact me regarding potential B2B collaboration or
+									services, processing is necessary for taking steps prior to
+									entering a contract.
 								</li>
 								<li>
-									<strong className="text-foreground">Legitimate Interest (Art.
-									6(1)(f) GDPR):</strong> For the security and technical
-									functioning of the Website (e.g., server logs processed by
-									GitHub as the hosting provider) and for handling general
-									inquiries from B2B contacts. I have conducted a balancing test
-									to ensure my interests do not override your rights.
+									<strong className="text-foreground">
+										Legitimate Interest (Art. 6(1)(f) GDPR):
+									</strong>{" "}
+									For the security and technical functioning of the Website
+									(e.g., server logs processed by GitHub as the hosting
+									provider) and for handling general inquiries from B2B
+									contacts. I have conducted a balancing test to ensure my
+									interests do not override your rights.
 								</li>
 							</ul>
 
@@ -315,7 +347,9 @@ export default function PrivacyPolicyPage() {
 									experience
 								</li>
 								<li>To respond to your inquiries or communications</li>
-								<li>To ensure the security and proper functioning of the Website</li>
+								<li>
+									To ensure the security and proper functioning of the Website
+								</li>
 								<li>To comply with legal obligations</li>
 							</ul>
 
@@ -328,7 +362,9 @@ export default function PrivacyPolicyPage() {
 							</p>
 							<ul className="list-disc space-y-2 pl-6 text-muted">
 								<li>
-									<strong className="text-foreground">Analytics Providers:</strong>{" "}
+									<strong className="text-foreground">
+										Analytics Providers:
+									</strong>{" "}
 									Google, as described above
 								</li>
 								<li>
@@ -345,8 +381,10 @@ export default function PrivacyPolicyPage() {
 									for details.
 								</li>
 								<li>
-									<strong className="text-foreground">Legal Authorities:</strong> If
-									required by law or to protect my rights
+									<strong className="text-foreground">
+										Legal Authorities:
+									</strong>{" "}
+									If required by law or to protect my rights
 								</li>
 							</ul>
 
@@ -356,11 +394,15 @@ export default function PrivacyPolicyPage() {
 							<p>
 								Your data may be transferred to and processed in countries
 								outside the European Economic Area (EEA), particularly the
-								United States (e.g., through Google Analytics). When such transfers occur, I ensure appropriate
-								safeguards are in place to protect your European users&apos; data:
+								United States (e.g., through Google Analytics). When such
+								transfers occur, I ensure appropriate safeguards are in place to
+								protect your European users&apos; data:
 							</p>
 							<ul className="list-disc space-y-2 pl-6 text-muted">
-								<li>EU-U.S. Data Privacy Framework certification (e.g., Google LLC)</li>
+								<li>
+									EU-U.S. Data Privacy Framework certification (e.g., Google
+									LLC)
+								</li>
 								<li>
 									Standard Contractual Clauses (SCCs) approved by the European
 									Commission
@@ -376,17 +418,23 @@ export default function PrivacyPolicyPage() {
 							</p>
 							<ul className="list-disc space-y-2 pl-6 text-muted">
 								<li>
-									<strong className="text-foreground">Analytics Data:</strong> Up to
-									26 months (Google Analytics default retention)
+									<strong className="text-foreground">Analytics Data:</strong>{" "}
+									Up to 26 months (Google Analytics default retention)
 								</li>
 								<li>
-									<strong className="text-foreground">Email Communications:</strong>{" "}
+									<strong className="text-foreground">
+										Email Communications:
+									</strong>{" "}
 									As long as necessary for business purposes or as required by
-									law. For B2B inquiries where a professional contract is not ultimately signed, communications are retained for 12 months after the last communication.
+									law. For B2B inquiries where a professional contract is not
+									ultimately signed, communications are retained for 12 months
+									after the last communication.
 								</li>
 								<li>
-									<strong className="text-foreground">Server Logs:</strong> Retained
-									by GitHub as the hosting provider, according to its own retention practices, for the security and technical functioning of the Website
+									<strong className="text-foreground">Server Logs:</strong>{" "}
+									Retained by GitHub as the hosting provider, according to its
+									own retention practices, for the security and technical
+									functioning of the Website
 								</li>
 							</ul>
 
@@ -398,32 +446,46 @@ export default function PrivacyPolicyPage() {
 							</p>
 							<ul className="list-disc space-y-2 pl-6 text-muted">
 								<li>
-									<strong className="text-foreground">Right of Access (Art.
-									15):</strong> Request a copy of your personal data
+									<strong className="text-foreground">
+										Right of Access (Art. 15):
+									</strong>{" "}
+									Request a copy of your personal data
 								</li>
 								<li>
-									<strong className="text-foreground">Right to Rectification (Art.
-									16):</strong> Request correction of inaccurate data
+									<strong className="text-foreground">
+										Right to Rectification (Art. 16):
+									</strong>{" "}
+									Request correction of inaccurate data
 								</li>
 								<li>
-									<strong className="text-foreground">Right to Erasure (Art.
-									17):</strong> Request deletion of your data (&quot;right to be
+									<strong className="text-foreground">
+										Right to Erasure (Art. 17):
+									</strong>{" "}
+									Request deletion of your data (&quot;right to be
 									forgotten&quot;)
 								</li>
 								<li>
-									<strong className="text-foreground">Right to Restrict Processing
-									(Art. 18):</strong> Request limitation of data processing
+									<strong className="text-foreground">
+										Right to Restrict Processing (Art. 18):
+									</strong>{" "}
+									Request limitation of data processing
 								</li>
 								<li>
-									<strong className="text-foreground">Right to Data Portability (Art.
-									20):</strong> Receive your data in a structured format
+									<strong className="text-foreground">
+										Right to Data Portability (Art. 20):
+									</strong>{" "}
+									Receive your data in a structured format
 								</li>
 								<li>
-									<strong className="text-foreground">Right to Object (Art.
-									21):</strong> Object to processing based on legitimate interests
+									<strong className="text-foreground">
+										Right to Object (Art. 21):
+									</strong>{" "}
+									Object to processing based on legitimate interests
 								</li>
 								<li>
-									<strong className="text-foreground">Right to Withdraw Consent:</strong>{" "}
+									<strong className="text-foreground">
+										Right to Withdraw Consent:
+									</strong>{" "}
 									Where processing is based on consent
 								</li>
 							</ul>
@@ -477,8 +539,8 @@ export default function PrivacyPolicyPage() {
 								12. Children&apos;s Privacy
 							</h2>
 							<p>
-								This Website is not directed at children under 16 years of age. I
-								do not knowingly collect personal data from children. If you
+								This Website is not directed at children under 16 years of age.
+								I do not knowingly collect personal data from children. If you
 								believe I have collected data from a child, please contact me
 								immediately.
 							</p>
@@ -511,10 +573,14 @@ export default function PrivacyPolicyPage() {
 								Privacy Policy or your personal data, please contact me:
 							</p>
 							<div className="my-6 rounded-xl border-l-4 border-accent bg-surface p-6">
-								<p className="font-semibold text-foreground">Andrii Lytvynenko Tech Solutions</p>
+								<p className="font-semibold text-foreground">
+									Andrii Lytvynenko Tech Solutions
+								</p>
 								<p className="text-muted">NIP: 9492279891</p>
 								<p className="text-muted">REGON: 543171480</p>
-								<p className="text-muted">Registered Address: Częstochowa, Poland</p>
+								<p className="text-muted">
+									Registered Address: Częstochowa, Poland
+								</p>
 								<p className="text-muted">
 									Email:{" "}
 									<a

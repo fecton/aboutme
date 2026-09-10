@@ -41,7 +41,7 @@ alwaysApply: false
 Match `.github/workflows/ci.yml` rather than lint-only:
 
 ```bash
-npm run lint && npm run typecheck && npm test && npm run build && npm run spell && npm run knip
+npm run lint && npm run format:check && npm run typecheck && npm test && npm run build && npm run spell && npm run knip
 npm run e2e   # requires out/ from the build step
 ```
 

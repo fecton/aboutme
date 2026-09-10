@@ -52,7 +52,9 @@ describe("public JSON-LD", () => {
 			addressCountry: "PL",
 		});
 		expect(personJsonLd.hasCredential.map((cred) => cred.name)).toEqual(
-			certificates.filter((cert) => Boolean(cert.link)).map((cert) => cert.title),
+			certificates
+				.filter((cert) => Boolean(cert.link))
+				.map((cert) => cert.title),
 		);
 
 		expect(personJsonLd).not.toHaveProperty("worksFor");

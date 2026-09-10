@@ -10,9 +10,7 @@ export function LiteModeToggle() {
 			type="button"
 			onClick={() => setReduceEffects(!reduceEffects)}
 			className={`flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg p-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
-				reduceEffects
-					? "text-accent"
-					: "text-muted hover:text-foreground"
+				reduceEffects ? "text-accent" : "text-muted hover:text-foreground"
 			}`}
 			aria-label={
 				reduceEffects

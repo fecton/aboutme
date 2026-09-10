@@ -13,7 +13,7 @@ function detectLowEndDevice(): boolean {
 	if (typeof window === "undefined") return false;
 
 	const prefersReducedMotion = window.matchMedia(
-		"(prefers-reduced-motion: reduce)"
+		"(prefers-reduced-motion: reduce)",
 	).matches;
 	if (prefersReducedMotion) return true;
 
@@ -24,8 +24,9 @@ function detectLowEndDevice(): boolean {
 	const hardwareConcurrency = navigator.hardwareConcurrency;
 	if (hardwareConcurrency && hardwareConcurrency <= 4) return true;
 
-	const connection = (navigator as Navigator & { connection?: { saveData?: boolean } })
-		.connection;
+	const connection = (
+		navigator as Navigator & { connection?: { saveData?: boolean } }
+	).connection;
 	if (connection?.saveData) return true;
 
 	return false;
@@ -61,10 +62,14 @@ interface ReduceEffectsContextValue {
 }
 
 const ReduceEffectsContext = createContext<ReduceEffectsContextValue | null>(
-	null
+	null,
 );
 
-export function ReduceEffectsProvider({ children }: { children: React.ReactNode }) {
+export function ReduceEffectsProvider({
+	children,
+}: {
+	children: React.ReactNode;
+}) {
 	const reduceEffects = useSyncExternalStore(
 		subscribeToReduceEffects,
 		getReduceEffectsSnapshot,
@@ -91,7 +96,7 @@ export function useReduceEffects(): ReduceEffectsContextValue {
 	const context = useContext(ReduceEffectsContext);
 	if (!context) {
 		throw new Error(
-			"useReduceEffects must be used within ReduceEffectsProvider"
+			"useReduceEffects must be used within ReduceEffectsProvider",
 		);
 	}
 	return context;

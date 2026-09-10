@@ -119,18 +119,18 @@ export default function RootLayout({
 			</head>
 			<body suppressHydrationWarning>
 				<ConsentProvider>
-				<script
-					type="application/ld+json"
-					dangerouslySetInnerHTML={{
-						__html: JSON.stringify(personJsonLd),
-					}}
-				/>
-				<a href="#main-content" className="skip-link">
-					Skip to main content
-				</a>
-				<ThemeProvider>
-					<ReduceEffectsProvider>{children}</ReduceEffectsProvider>
-				</ThemeProvider>
+					<script
+						type="application/ld+json"
+						dangerouslySetInnerHTML={{
+							__html: JSON.stringify(personJsonLd),
+						}}
+					/>
+					<a href="#main-content" className="skip-link">
+						Skip to main content
+					</a>
+					<ThemeProvider>
+						<ReduceEffectsProvider>{children}</ReduceEffectsProvider>
+					</ThemeProvider>
 				</ConsentProvider>
 			</body>
 		</html>

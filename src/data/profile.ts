@@ -37,8 +37,7 @@ export const profile = {
 	contactDisclaimerBefore:
 		"B2B inquiries only. I’ll use your message to reply and talk through a possible engagement (pre-contract). Details in the ",
 	contactDisclaimerLink: "Privacy Policy",
-	contactDisclaimerAfter:
-		". No obligation until we agree scope in writing.",
+	contactDisclaimerAfter: ". No obligation until we agree scope in writing.",
 	profileImage: "/images/tm-easy-profile.webp",
 	email: "a.v.lytvynenko2004@gmail.com",
 	location: "Częstochowa, Poland (EU)",
@@ -90,7 +89,14 @@ export const profile = {
 		{
 			title: "Monitoring & Observability",
 			icon: "chart",
-			skills: ["Grafana", "Prometheus", "CloudWatch", "InfluxDB", "Datadog", "Dynatrace"],
+			skills: [
+				"Grafana",
+				"Prometheus",
+				"CloudWatch",
+				"InfluxDB",
+				"Datadog",
+				"Dynatrace",
+			],
 			primary: ["Grafana", "Prometheus"],
 		},
 		{
@@ -127,10 +133,22 @@ export const profile = {
 		},
 	] as SocialLink[],
 	footerSocialLinks: [
-		{ name: "Facebook", url: "https://www.facebook.com/andrii.lytvynenko.official", icon: "facebook" },
-		{ name: "Instagram", url: "https://www.instagram.com/andrii.lytvynenko/", icon: "instagram" },
+		{
+			name: "Facebook",
+			url: "https://www.facebook.com/andrii.lytvynenko.official",
+			icon: "facebook",
+		},
+		{
+			name: "Instagram",
+			url: "https://www.instagram.com/andrii.lytvynenko/",
+			icon: "instagram",
+		},
 		{ name: "GitHub", url: "https://github.com/fecton", icon: "github" },
-		{ name: "LinkedIn", url: "https://www.linkedin.com/in/andrii-fecton/", icon: "linkedin" },
+		{
+			name: "LinkedIn",
+			url: "https://www.linkedin.com/in/andrii-fecton/",
+			icon: "linkedin",
+		},
 	],
 	trustBadges: [
 		{ title: "B2B", icon: "briefcase" },

@@ -16,7 +16,9 @@ export const metadata: Metadata = {
 		description:
 			"Cookie Policy for alytvynenko.net. Learn about the cookies I use, including Google Analytics, and how to manage your preferences.",
 		url: `${SITE_URL}/cookie-policy/`,
-		images: [{ url: PROFILE_IMAGE, width: 250, height: 250, alt: "Andrii Lytvynenko" }],
+		images: [
+			{ url: PROFILE_IMAGE, width: 250, height: 250, alt: "Andrii Lytvynenko" },
+		],
 		type: "website",
 	},
 	twitter: {
@@ -62,10 +64,13 @@ export default function CookiePolicyPage() {
 
 						<div className="prose prose-lg dark:prose-invert max-w-none">
 							<p>
-								This Cookie Policy explains how <strong>alytvynenko.net</strong>{" "}(the
-								&quot;Website&quot;) uses cookies and similar technologies. It
-								complements my{" "}
-								<Link href="/privacy-policy" className="text-accent hover:underline">
+								This Cookie Policy explains how <strong>alytvynenko.net</strong>{" "}
+								(the &quot;Website&quot;) uses cookies and similar technologies.
+								It complements my{" "}
+								<Link
+									href="/privacy-policy"
+									className="text-accent hover:underline"
+								>
 									Privacy Policy
 								</Link>
 								, which provides broader information about how I collect and use
@@ -75,12 +80,18 @@ export default function CookiePolicyPage() {
 							<h2 className="mt-10 border-b border-border pb-2 text-2xl font-bold text-foreground">
 								1. Data Controller
 							</h2>
-							<p>The data controller responsible for cookies on this Website is:</p>
+							<p>
+								The data controller responsible for cookies on this Website is:
+							</p>
 							<div className="my-6 rounded-xl border-l-4 border-accent bg-surface p-6">
-								<p className="font-semibold text-foreground">Andrii Lytvynenko Tech Solutions</p>
+								<p className="font-semibold text-foreground">
+									Andrii Lytvynenko Tech Solutions
+								</p>
 								<p className="text-muted">NIP: 9492279891</p>
 								<p className="text-muted">REGON: 543171480</p>
-								<p className="text-muted">Registered Address: Częstochowa, Poland</p>
+								<p className="text-muted">
+									Registered Address: Częstochowa, Poland
+								</p>
 								<p className="text-muted">
 									<a
 										href="mailto:a.v.lytvynenko2004@gmail.com"
@@ -95,11 +106,11 @@ export default function CookiePolicyPage() {
 								2. What Are Cookies?
 							</h2>
 							<p>
-								Cookies are small text files stored on your device when you visit
-								a website. They help websites remember your preferences, improve
-								performance, and provide analytics. This Website uses analytics
-								cookies only after you have given your consent via the cookie
-								banner.
+								Cookies are small text files stored on your device when you
+								visit a website. They help websites remember your preferences,
+								improve performance, and provide analytics. This Website uses
+								analytics cookies only after you have given your consent via the
+								cookie banner.
 							</p>
 
 							<h2 className="mt-10 border-b border-border pb-2 text-2xl font-bold text-foreground">
@@ -157,7 +168,9 @@ export default function CookiePolicyPage() {
 												<code className="text-foreground">reduce-effects</code>
 											</td>
 											<td className="border border-border px-4 py-3 text-muted">
-												Stores Lite Mode (fewer visual effects). If unset, the site may enable it automatically on low-memory, low-core, Save-Data, or reduced-motion devices
+												Stores Lite Mode (fewer visual effects). If unset, the
+												site may enable it automatically on low-memory,
+												low-core, Save-Data, or reduced-motion devices
 											</td>
 											<td className="border border-border px-4 py-3 text-muted">
 												Persistent (until cleared)
@@ -171,8 +184,8 @@ export default function CookiePolicyPage() {
 								3.2 Analytics Cookies (Google Analytics 4)
 							</h3>
 							<p>
-								When you accept analytics cookies, I use Google Analytics 4 (GA4)
-								to understand how visitors use the Website. GA4 sets the
+								When you accept analytics cookies, I use Google Analytics 4
+								(GA4) to understand how visitors use the Website. GA4 sets the
 								following first-party cookies:
 							</p>
 							<div className="my-6 overflow-x-auto">
@@ -196,7 +209,9 @@ export default function CookiePolicyPage() {
 												<code className="text-foreground">_ga</code>
 											</td>
 											<td className="border border-border px-4 py-3 text-muted">
-												Analytics: Used to distinguish unique users and calculate visitor, session, and campaign data for the site&apos;s analytics reports.
+												Analytics: Used to distinguish unique users and
+												calculate visitor, session, and campaign data for the
+												site&apos;s analytics reports.
 											</td>
 											<td className="border border-border px-4 py-3 text-muted">
 												2 years
@@ -207,8 +222,12 @@ export default function CookiePolicyPage() {
 												<code className="text-foreground">_ga_*</code>
 											</td>
 											<td className="border border-border bg-surface px-4 py-3 text-muted">
-												Analytics: Used to persist session state and maintain session status (e.g.{" "}
-												<code className="text-foreground">_ga_G-LKHDQT8Z81</code>)
+												Analytics: Used to persist session state and maintain
+												session status (e.g.{" "}
+												<code className="text-foreground">
+													_ga_G-LKHDQT8Z81
+												</code>
+												)
 											</td>
 											<td className="border border-border bg-surface px-4 py-3 text-muted">
 												2 years
@@ -237,13 +256,15 @@ export default function CookiePolicyPage() {
 								4. Managing Cookies
 							</h2>
 							<p>
-								You can change your choice anytime via Cookie settings in the footer.
+								You can change your choice anytime via Cookie settings in the
+								footer.
 							</p>
 							<p>You can control cookies in several ways:</p>
 							<ul className="list-disc space-y-2 pl-6 text-muted">
 								<li>
-									<strong className="text-foreground">Cookie banner:</strong> When
-									you first visit, you can accept or reject analytics cookies.
+									<strong className="text-foreground">Cookie banner:</strong>{" "}
+									When you first visit, you can accept or reject analytics
+									cookies.
 								</li>
 								<li>
 									<strong className="text-foreground">Browser settings:</strong>{" "}
@@ -251,8 +272,10 @@ export default function CookiePolicyPage() {
 									your browser&apos;s help section for instructions.
 								</li>
 								<li>
-									<strong className="text-foreground">Google Analytics
-									opt-out:</strong> Install the{" "}
+									<strong className="text-foreground">
+										Google Analytics opt-out:
+									</strong>{" "}
+									Install the{" "}
 									<a
 										href="https://tools.google.com/dlpage/gaoptout"
 										target="_blank"

@@ -165,8 +165,7 @@ export const hire = {
 		{
 			id: "full-time",
 			question: "Do I need a full-time DevOps hire?",
-			answer:
-				"Often no — a scoped engagement unblocks the bottleneck first.",
+			answer: "Often no — a scoped engagement unblocks the bottleneck first.",
 		},
 		{
 			id: "start",
@@ -189,8 +188,7 @@ export const hire = {
 	contactDisclaimerBefore:
 		"B2B inquiries only. I’ll use your message to reply and talk through a possible engagement (pre-contract). Details in the ",
 	contactDisclaimerLink: "Privacy Policy",
-	contactDisclaimerAfter:
-		". No obligation until we agree scope in writing.",
+	contactDisclaimerAfter: ". No obligation until we agree scope in writing.",
 	privacyPolicyHref: "/privacy-policy",
 };
 

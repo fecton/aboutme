@@ -14,7 +14,9 @@ export function HireProof() {
 			<div className="grid grid-cols-1 gap-4 md:grid-cols-3">
 				{hire.proofTeasers.map((teaser) => (
 					<GlassCard key={teaser.id} className="flex h-full flex-col">
-						<p className="mb-4 leading-relaxed text-foreground">{teaser.line}</p>
+						<p className="mb-4 leading-relaxed text-foreground">
+							{teaser.line}
+						</p>
 						<Link
 							href={teaser.href}
 							className="mt-auto text-sm font-medium text-accent underline underline-offset-2 hover:text-accent-dark focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"

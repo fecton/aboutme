@@ -15,9 +15,10 @@
 	--color-border: rgba(0, 0, 0, 0.08);
 	--color-accent: #3366cc;
 	--color-accent-dark: #204090;
-	--color-accent-light: #66CCFF;
+	--color-accent-light: #66ccff;
 	/* Premium mesh gradient - soft blue orbs on light base (matches dark theme structure) */
-	--mesh-gradient: radial-gradient(
+	--mesh-gradient:
+		radial-gradient(
 			ellipse 90% 60% at 15% 15%,
 			rgba(102, 204, 255, 0.45) 0%,
 			rgba(51, 102, 204, 0.18) 40%,
@@ -54,9 +55,10 @@
 	--color-border: rgba(255, 255, 255, 0.1);
 	--color-accent: #3366cc;
 	--color-accent-dark: #204090;
-	--color-accent-light: #66CCFF;
+	--color-accent-light: #66ccff;
 	/* Premium mesh gradient - deep blue orbs on dark base */
-	--mesh-gradient: radial-gradient(
+	--mesh-gradient:
+		radial-gradient(
 			ellipse 90% 60% at 15% 15%,
 			rgba(51, 102, 204, 0.35) 0%,
 			rgba(32, 64, 144, 0.15) 40%,

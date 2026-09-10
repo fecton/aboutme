@@ -60,7 +60,8 @@ export const experiences: Experience[] = [
 		work_mode: "Remote",
 		company: "Luxoft Poland",
 		company_link: "https://www.luxoft.com/",
-		client: "3 projects - Mercedes-Benz User Experience (MBUX) NTG6 / NTG7 / Gen20x",
+		client:
+			"3 projects - Mercedes-Benz User Experience (MBUX) NTG6 / NTG7 / Gen20x",
 		client_link: "https://www.mercedes-benz.com/",
 		dates: "2023 February - 2025 July",
 		present: false,

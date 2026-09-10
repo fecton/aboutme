@@ -10,14 +10,18 @@ async function assertVisible(page: Page, selector: string, label: string) {
 	const opacity = await el.evaluate((node) => {
 		return parseFloat(window.getComputedStyle(node).opacity);
 	});
-	expect(opacity, `${label} computed opacity is ${opacity}`).toBeGreaterThan(0.5);
+	expect(opacity, `${label} computed opacity is ${opacity}`).toBeGreaterThan(
+		0.5,
+	);
 }
 
 test.describe("home page renders", () => {
 	test("hero, navbar, and every bento card are visible", async ({ page }) => {
 		await page.goto("/");
 		// Dismiss the cookie banner so it doesn't overlay anything we measure.
-		await page.evaluate(() => localStorage.setItem("cookie-consent", "rejected"));
+		await page.evaluate(() =>
+			localStorage.setItem("cookie-consent", "rejected"),
+		);
 		await page.reload();
 
 		await assertVisible(page, "nav", "Navbar");
@@ -52,7 +56,9 @@ test.describe("home page renders", () => {
 		page,
 	}) => {
 		await page.goto("/");
-		await page.evaluate(() => localStorage.setItem("cookie-consent", "rejected"));
+		await page.evaluate(() =>
+			localStorage.setItem("cookie-consent", "rejected"),
+		);
 		await page.reload();
 
 		await expect(page.getByRole("heading", { level: 1 })).toHaveText(
@@ -68,7 +74,9 @@ test.describe("home page renders", () => {
 		).toBeVisible();
 		await expect(page.getByText("B2B · GDPR · Poland (EU)")).toBeVisible();
 		await expect(page.getByText("GDPR Compliant")).toHaveCount(0);
-		await expect(page.getByRole("link", { name: "View Resume" })).toHaveCount(0);
+		await expect(page.getByRole("link", { name: "View Resume" })).toHaveCount(
+			0,
+		);
 
 		await expect(
 			page.getByText(
@@ -80,7 +88,9 @@ test.describe("home page renders", () => {
 			.getByRole("heading", { level: 2, name: "Key Highlights" })
 			.locator("..");
 		await expect(highlights.getByText("Up to 50%")).toBeVisible();
-		await expect(highlights.getByText("Cost reduction (Luxoft engagements)")).toBeVisible();
+		await expect(
+			highlights.getByText("Cost reduction (Luxoft engagements)"),
+		).toBeVisible();
 		await expect(highlights.getByText("~70%")).toBeVisible();
 		await expect(
 			highlights.getByText("Fewer incidents (Mercedes-Benz / Luxoft)"),
@@ -91,15 +101,21 @@ test.describe("home page renders", () => {
 		await expect(talk).toBeVisible();
 		await expect(talk).toHaveAttribute("href", "#contact");
 		await talk.click();
-		await expect(page.getByRole("heading", { level: 2, name: "Contact" })).toBeVisible();
+		await expect(
+			page.getByRole("heading", { level: 2, name: "Contact" }),
+		).toBeVisible();
 
 		const downloadResume = page.getByRole("link", { name: "Download resume" });
 		await expect(downloadResume).toBeVisible();
 		await expect(downloadResume).toHaveAttribute("href", /resume\.pdf$/);
 
-		const contactCard = page.getByRole("heading", { level: 2, name: "Contact" }).locator("..");
+		const contactCard = page
+			.getByRole("heading", { level: 2, name: "Contact" })
+			.locator("..");
 		await expect(
-			contactCard.getByText(/B2B inquiries only\. I’ll use your message to reply/),
+			contactCard.getByText(
+				/B2B inquiries only\. I’ll use your message to reply/,
+			),
 		).toBeVisible();
 		await expect(
 			contactCard.getByRole("link", { name: "Privacy Policy" }),
@@ -114,7 +130,9 @@ test.describe("home page renders", () => {
 		page,
 	}) => {
 		await page.goto("/");
-		await page.evaluate(() => localStorage.setItem("cookie-consent", "rejected"));
+		await page.evaluate(() =>
+			localStorage.setItem("cookie-consent", "rejected"),
+		);
 		await page.reload();
 
 		const nav = page.locator("nav");
@@ -126,9 +144,15 @@ test.describe("home page renders", () => {
 		const navLabels = (await nav.getByRole("link").allTextContents())
 			.map((label) => label.trim())
 			.filter((label) =>
-				["About", "Experience", "Resume", "Hire", "Contact", "Work", "Proof"].includes(
-					label,
-				),
+				[
+					"About",
+					"Experience",
+					"Resume",
+					"Hire",
+					"Contact",
+					"Work",
+					"Proof",
+				].includes(label),
 			);
 		expect(navLabels).toEqual(["About", "Experience", "Resume", "Contact"]);
 
@@ -136,7 +160,9 @@ test.describe("home page renders", () => {
 		await expect(nav.getByRole("link", { name: "Work" })).toHaveCount(0);
 		await expect(nav.getByRole("link", { name: "Proof" })).toHaveCount(0);
 		await expect(nav.getByRole("link", { name: "Privacy" })).toHaveCount(0);
-		await expect(page.locator("footer").getByRole("link", { name: "Hire" })).toHaveCount(0);
+		await expect(
+			page.locator("footer").getByRole("link", { name: "Hire" }),
+		).toHaveCount(0);
 		await expect(
 			page.locator("footer").getByRole("link", { name: "Privacy Policy" }),
 		).toBeVisible();
@@ -146,12 +172,16 @@ test.describe("home page renders", () => {
 		page,
 	}) => {
 		await page.goto("/");
-		await page.evaluate(() => localStorage.setItem("cookie-consent", "rejected"));
+		await page.evaluate(() =>
+			localStorage.setItem("cookie-consent", "rejected"),
+		);
 		await page.reload();
 
 		const hero = page.locator("#main-content > section").first();
 		await expect(hero.getByRole("link", { name: "Let’s talk" })).toBeVisible();
-		await expect(hero.getByRole("link", { name: "Download resume" })).toBeVisible();
+		await expect(
+			hero.getByRole("link", { name: "Download resume" }),
+		).toBeVisible();
 		await expect(hero.getByRole("link", { name: "Hire" })).toHaveCount(0);
 		await expect(hero.getByRole("link", { name: "Work" })).toHaveCount(0);
 		await expect(hero.getByRole("link", { name: "Proof" })).toHaveCount(0);
@@ -160,7 +190,9 @@ test.describe("home page renders", () => {
 		if (await menuButton.isVisible()) {
 			await menuButton.click();
 		}
-		await expect(page.locator("nav").getByRole("link", { name: "Hire" })).toHaveCount(0);
+		await expect(
+			page.locator("nav").getByRole("link", { name: "Hire" }),
+		).toHaveCount(0);
 
 		await page.goto("/hire/");
 		await expect(page).toHaveURL(/\/hire\/?/);
@@ -173,7 +205,9 @@ test.describe("home page renders", () => {
 		page,
 	}) => {
 		await page.goto("/");
-		await page.evaluate(() => localStorage.setItem("cookie-consent", "rejected"));
+		await page.evaluate(() =>
+			localStorage.setItem("cookie-consent", "rejected"),
+		);
 		await page.reload();
 
 		const triggers = page.getByRole("button", {
@@ -189,7 +223,10 @@ test.describe("home page renders", () => {
 			const id = await trigger.getAttribute("id");
 			const ariaControls = await trigger.getAttribute("aria-controls");
 			expect(id, "accordion trigger is missing id").toBeTruthy();
-			expect(ariaControls, "accordion trigger is missing aria-controls").toBeTruthy();
+			expect(
+				ariaControls,
+				"accordion trigger is missing aria-controls",
+			).toBeTruthy();
 			if (!id || !ariaControls) {
 				throw new Error("accordion trigger missing id or aria-controls");
 			}
@@ -200,9 +237,10 @@ test.describe("home page renders", () => {
 				(targetId) => Boolean(document.getElementById(targetId)),
 				ariaControls,
 			);
-			expect(targetExists, `aria-controls="${ariaControls}" missing from DOM`).toBe(
-				true,
-			);
+			expect(
+				targetExists,
+				`aria-controls="${ariaControls}" missing from DOM`,
+			).toBe(true);
 		}
 
 		expect(new Set(ids).size).toBe(ids.length);
@@ -226,7 +264,9 @@ test.describe("home page renders", () => {
 			"content",
 			"Andrii Lytvynenko | Senior DevOps & Cloud Engineer",
 		);
-		await expect(page.locator('meta[property="og:description"]')).toHaveAttribute(
+		await expect(
+			page.locator('meta[property="og:description"]'),
+		).toHaveAttribute(
 			"content",
 			"Senior DevOps & Cloud Engineer — AWS, Kubernetes, Terraform. Cost and reliability proof on the resume. Poland (EU) · B2B.",
 		);
@@ -234,7 +274,9 @@ test.describe("home page renders", () => {
 			"content",
 			"Andrii Lytvynenko | Senior DevOps & Cloud Engineer",
 		);
-		await expect(page.locator('meta[name="twitter:description"]')).toHaveAttribute(
+		await expect(
+			page.locator('meta[name="twitter:description"]'),
+		).toHaveAttribute(
 			"content",
 			"Senior DevOps & Cloud Engineer — AWS, Kubernetes, Terraform. Cost and reliability proof on the resume. Poland (EU) · B2B.",
 		);
@@ -261,7 +303,10 @@ test.describe("subpages render with navigation", () => {
 	for (const { path, h1 } of [
 		{ path: "/privacy-policy/", h1: /Privacy Policy/i },
 		{ path: "/cookie-policy/", h1: /Cookie Policy/i },
-		{ path: "/hire/", h1: /Hire DevOps that cuts cloud cost and keeps systems up/i },
+		{
+			path: "/hire/",
+			h1: /Hire DevOps that cuts cloud cost and keeps systems up/i,
+		},
 	]) {
 		test(`${path} renders nav + footer + h1`, async ({ page }) => {
 			await page.goto(path);
@@ -273,7 +318,9 @@ test.describe("subpages render with navigation", () => {
 
 	// Viewer pages don't have an <h1> — they're a back button + download CTA + iframe.
 	for (const path of ["/viewer/diploma/", "/viewer/diploma-supplement/"]) {
-		test(`${path} renders nav + footer + iframe + download`, async ({ page }) => {
+		test(`${path} renders nav + footer + iframe + download`, async ({
+			page,
+		}) => {
 			await page.goto(path);
 			await expect(page.locator("nav")).toBeVisible();
 			await expect(page.locator("footer")).toBeVisible();
@@ -282,7 +329,9 @@ test.describe("subpages render with navigation", () => {
 		});
 	}
 
-	test("404 page has navbar + footer (regression: pass-3)", async ({ page }) => {
+	test("404 page has navbar + footer (regression: pass-3)", async ({
+		page,
+	}) => {
 		const response = await page.goto("/this-route-does-not-exist/", {
 			waitUntil: "domcontentloaded",
 		});
@@ -295,9 +344,13 @@ test.describe("subpages render with navigation", () => {
 });
 
 test.describe("accessibility", () => {
-	test("home page has no serious or critical axe violations", async ({ page }) => {
+	test("home page has no serious or critical axe violations", async ({
+		page,
+	}) => {
 		await page.goto("/");
-		await page.evaluate(() => localStorage.setItem("cookie-consent", "rejected"));
+		await page.evaluate(() =>
+			localStorage.setItem("cookie-consent", "rejected"),
+		);
 		await page.reload();
 
 		const results = await new AxeBuilder({ page })

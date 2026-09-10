@@ -19,16 +19,20 @@ test.describe("Lite Mode preference", () => {
 		await expect(off).toBeVisible();
 		await off.click();
 
-		await expect(page.getByRole("button", { name: /Lite mode on/i })).toBeVisible();
-		expect(await page.evaluate(() => localStorage.getItem("reduce-effects"))).toBe(
-			"true",
-		);
+		await expect(
+			page.getByRole("button", { name: /Lite mode on/i }),
+		).toBeVisible();
+		expect(
+			await page.evaluate(() => localStorage.getItem("reduce-effects")),
+		).toBe("true");
 
 		await page.reload();
-		await expect(page.getByRole("button", { name: /Lite mode on/i })).toBeVisible();
-		expect(await page.evaluate(() => localStorage.getItem("reduce-effects"))).toBe(
-			"true",
-		);
+		await expect(
+			page.getByRole("button", { name: /Lite mode on/i }),
+		).toBeVisible();
+		expect(
+			await page.evaluate(() => localStorage.getItem("reduce-effects")),
+		).toBe("true");
 	});
 
 	test("explicit off stays off after reload", async ({ page }) => {
@@ -37,15 +41,19 @@ test.describe("Lite Mode preference", () => {
 		await page.reload();
 
 		await page.getByRole("button", { name: /Lite mode on/i }).click();
-		await expect(page.getByRole("button", { name: /Lite mode off/i })).toBeVisible();
-		expect(await page.evaluate(() => localStorage.getItem("reduce-effects"))).toBe(
-			"false",
-		);
+		await expect(
+			page.getByRole("button", { name: /Lite mode off/i }),
+		).toBeVisible();
+		expect(
+			await page.evaluate(() => localStorage.getItem("reduce-effects")),
+		).toBe("false");
 
 		await page.reload();
-		await expect(page.getByRole("button", { name: /Lite mode off/i })).toBeVisible();
-		expect(await page.evaluate(() => localStorage.getItem("reduce-effects"))).toBe(
-			"false",
-		);
+		await expect(
+			page.getByRole("button", { name: /Lite mode off/i }),
+		).toBeVisible();
+		expect(
+			await page.evaluate(() => localStorage.getItem("reduce-effects")),
+		).toBe("false");
 	});
 });

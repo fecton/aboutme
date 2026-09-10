@@ -1,0 +1,42 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+package-lock.json
+
+# Build / cache
+.next
+out
+build
+dist
+coverage
+playwright-report
+test-results
+.playwright-cache
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+
+# Static / binary assets
+public
+images-before-optimization
+*.webp
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.ico
+*.pdf
+*.woff
+*.woff2
+*.ttf
+*.eot
+
+# Python bytecode
+__pycache__
+*.pyc
+
+# Env / OS
+.env
+.env*.local
+.DS_Store

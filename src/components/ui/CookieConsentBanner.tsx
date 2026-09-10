@@ -43,7 +43,10 @@ export function CookieConsentBanner({
 				>
 					Cookie settings
 				</p>
-				<p id="cookie-consent-description" className="mb-4 text-sm text-foreground">
+				<p
+					id="cookie-consent-description"
+					className="mb-4 text-sm text-foreground"
+				>
 					I use cookies to analyze site traffic via Google Analytics. You can
 					accept or reject analytics cookies. Essential site preferences stay
 					available either way. See the{" "}

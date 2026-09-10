@@ -18,7 +18,9 @@ export const metadata: Metadata = {
 		description:
 			"Resume of Andrii Lytvynenko, Senior DevOps & Cloud Engineer. AWS & Kubernetes Certified. Available for B2B contracts.",
 		url: `${SITE_URL}/resume/`,
-		images: [{ url: PROFILE_IMAGE, width: 250, height: 250, alt: "Andrii Lytvynenko" }],
+		images: [
+			{ url: PROFILE_IMAGE, width: 250, height: 250, alt: "Andrii Lytvynenko" },
+		],
 		type: "profile",
 	},
 	twitter: {
@@ -81,7 +83,10 @@ export default function ResumePage() {
 					</div>
 
 					<div className="rounded-2xl border border-border bg-surface p-4 backdrop-blur-[20px] md:p-6">
-						<PdfViewer src={profile.resumeUrl} title="Andrii Lytvynenko Resume" />
+						<PdfViewer
+							src={profile.resumeUrl}
+							title="Andrii Lytvynenko Resume"
+						/>
 					</div>
 				</div>
 			</main>

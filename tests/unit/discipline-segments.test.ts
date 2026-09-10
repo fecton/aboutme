@@ -7,9 +7,7 @@ import {
 describe("parseDisciplineListItems", () => {
 	it("expands AWS parenthetical services and keeps sibling skills", () => {
 		expect(
-			parseDisciplineListItems([
-				"AWS (EC2, ECS, S3), Terraform, Grafana",
-			]),
+			parseDisciplineListItems(["AWS (EC2, ECS, S3), Terraform, Grafana"]),
 		).toEqual(["EC2", "ECS", "S3", "Terraform", "Grafana"]);
 	});
 

@@ -7,7 +7,10 @@ import {
 	getCanonicalForDiscipline,
 	SKILL_CATEGORIES,
 } from "@/data/skillIcons";
-import { softSpringTransition as springTransition, instantTransition } from "@/lib/animations";
+import {
+	softSpringTransition as springTransition,
+	instantTransition,
+} from "@/lib/animations";
 import {
 	getDisciplineChipDisplayLabel,
 	parseDisciplineListItems,
@@ -19,7 +22,7 @@ interface CategorizedTagListProps {
 	className?: string;
 	tagClassName?: string;
 	getIcon?: (
-		item: string
+		item: string,
 	) => { path: string; title?: string; viewBox?: string } | null;
 }
 
@@ -57,7 +60,7 @@ export function CategorizedTagList({
 
 	// Ordered category ids (excluding empty; "other" last)
 	const orderedCategories = SKILL_CATEGORIES.filter(
-		(c) => groupedByCategory[c.id]?.length
+		(c) => groupedByCategory[c.id]?.length,
 	).map((c) => c.id);
 
 	// Ensure "other" is last if present
@@ -89,7 +92,9 @@ export function CategorizedTagList({
 				<motion.span
 					className="inline-block text-muted transition-colors group-hover:text-accent"
 					animate={{ rotate: isOpen ? 180 : 0 }}
-					transition={prefersReducedMotion ? instantTransition : springTransition}
+					transition={
+						prefersReducedMotion ? instantTransition : springTransition
+					}
 					aria-hidden
 				>
 					<svg
@@ -110,129 +115,131 @@ export function CategorizedTagList({
 			</button>
 			<div id={contentId}>
 				<AnimatePresence initial={false}>
-				{isOpen && (
-					<motion.div
-						initial={prefersReducedMotion ? false : { height: 0, opacity: 0 }}
-						animate={{
-							height: "auto",
-							opacity: 1,
-							transition: prefersReducedMotion
-								? instantTransition
-								: {
-										height: springTransition,
-										opacity: { duration: 0.35 },
-									},
-						}}
-						exit={
-							prefersReducedMotion
-								? { height: 0, opacity: 0, transition: instantTransition }
-								: {
-										height: 0,
-										opacity: 0,
-										transition: {
-											height: { ...springTransition, stiffness: 350 },
-											opacity: { duration: 0.25 },
-										},
-									}
-						}
-						className="overflow-hidden"
-					>
+					{isOpen && (
 						<motion.div
-							className="mt-2 flex flex-col gap-4"
-							initial="hidden"
-							animate="visible"
-							variants={{
-								visible: {
-									transition: prefersReducedMotion
-										? {}
-										: {
-												staggerChildren: 0.065,
-												delayChildren: 0.12,
-											},
-								},
-								hidden: {},
+							initial={prefersReducedMotion ? false : { height: 0, opacity: 0 }}
+							animate={{
+								height: "auto",
+								opacity: 1,
+								transition: prefersReducedMotion
+									? instantTransition
+									: {
+											height: springTransition,
+											opacity: { duration: 0.35 },
+										},
 							}}
-						>
-							{orderedCategories.map((catId) => {
-								const cat = SKILL_CATEGORIES.find((c) => c.id === catId);
-								const catItems = groupedByCategory[catId] ?? [];
-								if (!cat || catItems.length === 0) return null;
-
-								return (
-									<motion.div
-										key={catId}
-										variants={{
-											visible: {
-												opacity: 1,
-												scale: 1,
-												y: 0,
+							exit={
+								prefersReducedMotion
+									? { height: 0, opacity: 0, transition: instantTransition }
+									: {
+											height: 0,
+											opacity: 0,
+											transition: {
+												height: { ...springTransition, stiffness: 350 },
+												opacity: { duration: 0.25 },
 											},
-											hidden: prefersReducedMotion
-												? { opacity: 1, scale: 1, y: 0 }
-												: {
-														opacity: 0,
-														scale: 0.85,
-														y: 4,
-													},
-										}}
-										transition={
-											prefersReducedMotion ? instantTransition : springTransition
 										}
-									>
-										<h4 className="mb-1.5 text-sm font-medium text-muted">
-											{cat.title}
-										</h4>
-										<div className="flex flex-wrap gap-2">
-											{catItems.map((item, index) => {
-												const iconData = getIcon?.(item);
-												const label = getDisciplineChipDisplayLabel(item);
-												const ariaLabel = label || iconData?.title || item;
-												return (
-													<motion.span
-														key={`${item}-${index}`}
-														aria-label={ariaLabel}
-														variants={{
-															visible: {
-																opacity: 1,
-																scale: 1,
-																y: 0,
-															},
-															hidden: prefersReducedMotion
-																? { opacity: 1, scale: 1, y: 0 }
-																: {
-																		opacity: 0,
-																		scale: 0.85,
-																		y: 4,
-																	},
-														}}
-														transition={
-															prefersReducedMotion
-																? instantTransition
-																: springTransition
-														}
-														className={`flex items-center gap-1.5 rounded-lg border border-border bg-surface px-2 py-1 text-xs text-muted transition-colors hover:border-accent/30 hover:bg-accent/10 hover:text-foreground ${tagClassName}`}
-													>
-														{iconData && (
-															<svg
-																className="h-3.5 w-3.5 shrink-0"
-																fill="currentColor"
-																viewBox={iconData.viewBox ?? "0 0 24 24"}
-																aria-hidden
-															>
-																<path d={iconData.path} />
-															</svg>
-														)}
-														{label}
-													</motion.span>
-												);
-											})}
-										</div>
-									</motion.div>
-								);
-							})}
+							}
+							className="overflow-hidden"
+						>
+							<motion.div
+								className="mt-2 flex flex-col gap-4"
+								initial="hidden"
+								animate="visible"
+								variants={{
+									visible: {
+										transition: prefersReducedMotion
+											? {}
+											: {
+													staggerChildren: 0.065,
+													delayChildren: 0.12,
+												},
+									},
+									hidden: {},
+								}}
+							>
+								{orderedCategories.map((catId) => {
+									const cat = SKILL_CATEGORIES.find((c) => c.id === catId);
+									const catItems = groupedByCategory[catId] ?? [];
+									if (!cat || catItems.length === 0) return null;
+
+									return (
+										<motion.div
+											key={catId}
+											variants={{
+												visible: {
+													opacity: 1,
+													scale: 1,
+													y: 0,
+												},
+												hidden: prefersReducedMotion
+													? { opacity: 1, scale: 1, y: 0 }
+													: {
+															opacity: 0,
+															scale: 0.85,
+															y: 4,
+														},
+											}}
+											transition={
+												prefersReducedMotion
+													? instantTransition
+													: springTransition
+											}
+										>
+											<h4 className="mb-1.5 text-sm font-medium text-muted">
+												{cat.title}
+											</h4>
+											<div className="flex flex-wrap gap-2">
+												{catItems.map((item, index) => {
+													const iconData = getIcon?.(item);
+													const label = getDisciplineChipDisplayLabel(item);
+													const ariaLabel = label || iconData?.title || item;
+													return (
+														<motion.span
+															key={`${item}-${index}`}
+															aria-label={ariaLabel}
+															variants={{
+																visible: {
+																	opacity: 1,
+																	scale: 1,
+																	y: 0,
+																},
+																hidden: prefersReducedMotion
+																	? { opacity: 1, scale: 1, y: 0 }
+																	: {
+																			opacity: 0,
+																			scale: 0.85,
+																			y: 4,
+																		},
+															}}
+															transition={
+																prefersReducedMotion
+																	? instantTransition
+																	: springTransition
+															}
+															className={`flex items-center gap-1.5 rounded-lg border border-border bg-surface px-2 py-1 text-xs text-muted transition-colors hover:border-accent/30 hover:bg-accent/10 hover:text-foreground ${tagClassName}`}
+														>
+															{iconData && (
+																<svg
+																	className="h-3.5 w-3.5 shrink-0"
+																	fill="currentColor"
+																	viewBox={iconData.viewBox ?? "0 0 24 24"}
+																	aria-hidden
+																>
+																	<path d={iconData.path} />
+																</svg>
+															)}
+															{label}
+														</motion.span>
+													);
+												})}
+											</div>
+										</motion.div>
+									);
+								})}
+							</motion.div>
 						</motion.div>
-					</motion.div>
-				)}
+					)}
 				</AnimatePresence>
 			</div>
 		</div>

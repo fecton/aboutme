@@ -16,7 +16,7 @@ const PROJECT_ROOT = join(__dirname, "..");
 const SIZE = 80;
 const ASSETS = join(
 	homedir(),
-	".cursor/projects/Users-alytvynenko-Desktop-Repositories-aboutme/assets"
+	".cursor/projects/Users-alytvynenko-Desktop-Repositories-aboutme/assets",
 );
 
 const DEFAULT_SOURCES = [
@@ -29,12 +29,18 @@ const DEFAULT_SOURCES = [
 		out: join(PROJECT_ROOT, "public/images/education/khai.webp"),
 	},
 	{
-		src: join(ASSETS, "JP-Morgan-Logo-No-Background-1b42bf3c-7501-421c-8680-b667ac1c2177.png"),
+		src: join(
+			ASSETS,
+			"JP-Morgan-Logo-No-Background-1b42bf3c-7501-421c-8680-b667ac1c2177.png",
+		),
 		out: join(PROJECT_ROOT, "public/images/companies/chase.webp"),
 		makeBlackTransparent: true,
 	},
 	{
-		src: join(ASSETS, "Effective_Programming_for_America_logo.svg-13a41a5e-e54f-4a46-a2aa-ae449b0a264f.png"),
+		src: join(
+			ASSETS,
+			"Effective_Programming_for_America_logo.svg-13a41a5e-e54f-4a46-a2aa-ae449b0a264f.png",
+		),
 		out: join(PROJECT_ROOT, "public/images/education/epam.webp"),
 	},
 ];
@@ -67,7 +73,10 @@ async function processImage(srcPath, outPath, options = {}) {
 	const scale = Math.min(SIZE / meta.width, SIZE / meta.height);
 	const newW = Math.round(meta.width * scale);
 	const newH = Math.round(meta.height * scale);
-	const resized = await img.resize(newW, newH, { fit: "inside" }).ensureAlpha().toBuffer();
+	const resized = await img
+		.resize(newW, newH, { fit: "inside" })
+		.ensureAlpha()
+		.toBuffer();
 	const left = Math.floor((SIZE - newW) / 2);
 	const top = Math.floor((SIZE - newH) / 2);
 	mkdirSync(dirname(outPath), { recursive: true });
@@ -87,12 +96,19 @@ async function processImage(srcPath, outPath, options = {}) {
 }
 
 async function main() {
-	const sources = process.argv.length >= 4
-		? [
-				{ src: process.argv[2], out: join(PROJECT_ROOT, "public/images/companies/geniusee.webp") },
-				{ src: process.argv[3], out: join(PROJECT_ROOT, "public/images/education/khai.webp") },
-			]
-		: DEFAULT_SOURCES;
+	const sources =
+		process.argv.length >= 4
+			? [
+					{
+						src: process.argv[2],
+						out: join(PROJECT_ROOT, "public/images/companies/geniusee.webp"),
+					},
+					{
+						src: process.argv[3],
+						out: join(PROJECT_ROOT, "public/images/education/khai.webp"),
+					},
+				]
+			: DEFAULT_SOURCES;
 
 	for (const entry of sources) {
 		const { src, out, ...opts } = entry;

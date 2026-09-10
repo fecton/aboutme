@@ -14,16 +14,7 @@
 		"tests/**/*.test.ts",
 		"tools/**/*.mjs"
 	],
-	"project": [
-		"src/**/*.{ts,tsx}",
-		"tests/**/*.{ts,tsx}"
-	],
-	"ignoreDependencies": [
-		"serve",
-		"postcss-load-config",
-		"autoprefixer"
-	],
-	"ignoreBinaries": [
-		"playwright"
-	]
+	"project": ["src/**/*.{ts,tsx}", "tests/**/*.{ts,tsx}"],
+	"ignoreDependencies": ["serve", "postcss-load-config", "autoprefixer"],
+	"ignoreBinaries": ["playwright"]
 }

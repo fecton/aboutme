@@ -40,10 +40,7 @@ export function ContactCard() {
 						>
 							<path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
 						</svg>
-						<a
-							href={`mailto:${profile.email}`}
-							className="hover:text-accent"
-						>
+						<a href={`mailto:${profile.email}`} className="hover:text-accent">
 							{profile.email}
 						</a>
 					</p>
@@ -60,11 +57,7 @@ export function ContactCard() {
 							whileHover={skipAnimations ? undefined : { scale: 1.05 }}
 							transition={springTransition}
 						>
-							<svg
-								className="h-4 w-4"
-								fill="currentColor"
-								viewBox="0 0 24 24"
-							>
+							<svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
 								<path d={socialIconPaths[link.icon] || ""} />
 							</svg>
 							{link.name}
@@ -89,22 +82,24 @@ export function ContactCard() {
 				</h2>
 				<div className="min-w-0 overflow-hidden pr-2">
 					<div className="flex flex-col gap-y-3 sm:grid sm:grid-cols-[auto_1fr_minmax(8rem,12rem)] sm:gap-x-4">
-					{profile.languages.map((lang) => (
-						<div
-							key={lang.name}
-							className="flex items-center gap-x-4 rounded-lg border border-border bg-surface px-3 py-2 sm:col-span-3 sm:grid sm:grid-cols-subgrid"
-						>
-							<span className="inline-block min-w-[1.5em] text-lg leading-none">{lang.flag}</span>
-							<span className="flex-1 text-foreground">{lang.name}</span>
-							<span
-								className={`text-right text-sm ${
-									lang.native ? "text-accent" : "text-muted"
-								}`}
+						{profile.languages.map((lang) => (
+							<div
+								key={lang.name}
+								className="flex items-center gap-x-4 rounded-lg border border-border bg-surface px-3 py-2 sm:col-span-3 sm:grid sm:grid-cols-subgrid"
 							>
-								{lang.level}
-							</span>
-						</div>
-					))}
+								<span className="inline-block min-w-[1.5em] text-lg leading-none">
+									{lang.flag}
+								</span>
+								<span className="flex-1 text-foreground">{lang.name}</span>
+								<span
+									className={`text-right text-sm ${
+										lang.native ? "text-accent" : "text-muted"
+									}`}
+								>
+									{lang.level}
+								</span>
+							</div>
+						))}
 					</div>
 				</div>
 			</GlassCard>
