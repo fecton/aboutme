@@ -11,6 +11,7 @@ export function WritingAssistantsAside({
 }: WritingAssistantsAsideProps) {
 	return (
 		<aside
+			data-nosnippet=""
 			aria-label={WRITING_SECTION_LABELS.assistants}
 			className={`border-t border-border pt-4 ${className}`}
 		>

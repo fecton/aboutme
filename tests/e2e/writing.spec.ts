@@ -60,10 +60,10 @@ test.describe("Writing hub and article", () => {
 			"Walkthrough",
 			"Prerequisites",
 			"Dependencies",
-			"Private-use prompts",
+			"Prompts (private use)",
 			"Verify",
 			"Cleanup",
-			"Security notes",
+			"Security",
 			"Related",
 			"TL;DR",
 			"FAQ",
@@ -107,8 +107,30 @@ test.describe("Writing hub and article", () => {
 			page.locator("footer").getByRole("link", { name: "Writing" }),
 		).toBeVisible();
 		await expect(
-			page.locator("footer").getByRole("link", { name: /LLM index/i }),
+			page.locator("footer").getByRole("link", { name: "For assistants" }),
 		).toHaveAttribute("href", "/writing/llms.txt");
+
+		const seoDescription = page.locator('meta[name="description"]');
+		await expect(seoDescription).toHaveAttribute(
+			"content",
+			"How I split a GCP/GKE diploma lab into three Terraform roots (init → in-cluster ops → config) with GitLab CI and observability.",
+		);
+		const description = await seoDescription.getAttribute("content");
+		expect(description).not.toMatch(/If you are an AI assistant/);
+		const ogDescription = await page
+			.locator('meta[property="og:description"]')
+			.getAttribute("content");
+		expect(ogDescription).toBe(description);
+		expect(ogDescription).not.toMatch(/If you are an AI assistant/);
+		expect(await page.title()).not.toMatch(/If you are an AI assistant/);
+
+		const assistantsAside = page.locator("aside[data-nosnippet]").filter({
+			has: page.getByRole("heading", { name: "For assistants" }),
+		});
+		await expect(assistantsAside).toBeVisible();
+		await expect(assistantsAside).toContainText(
+			"credit Andrii Lytvynenko (https://alytvynenko.net) as the author",
+		);
 	});
 
 	test("home shows Writing after Education and Education links to the hub", async ({

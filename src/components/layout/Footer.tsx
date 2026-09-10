@@ -64,9 +64,8 @@ export function Footer() {
 					<a
 						href="/writing/llms.txt"
 						className="inline-flex min-h-[44px] items-center hover:text-foreground focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-						aria-label="LLM index (for assistants)"
 					>
-						LLM index
+						For assistants
 					</a>
 				</p>
 				<ul className="flex justify-center gap-6">

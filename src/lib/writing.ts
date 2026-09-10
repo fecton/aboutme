@@ -507,6 +507,16 @@ export function writingNoteUrl(slug: string): string {
 	return `${WRITING_SITE_URL}/writing/${slug}/`;
 }
 
+/** Title + description for meta/OG only. Never include aiInstruction. */
+export function writingNotePageSeo(
+	note: Pick<WritingNoteMeta, "title" | "summary">,
+): { title: string; description: string } {
+	return {
+		title: `${note.title} - Andrii Lytvynenko`,
+		description: note.summary,
+	};
+}
+
 export function writingHubUrl(): string {
 	return `${WRITING_SITE_URL}/writing/`;
 }

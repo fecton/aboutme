@@ -18,6 +18,7 @@ import {
 	renderLlmsTxt,
 	resolveRelatedExperience,
 	splitWritingBody,
+	writingNotePageSeo,
 	writingSitemapEntries,
 	writingTechArticleJsonLd,
 } from "@/lib/writing";
@@ -50,10 +51,10 @@ describe("Writing notes", () => {
 	it("uses fixed section labels", () => {
 		expect(WRITING_SECTION_LABELS.prerequisites).toBe("Prerequisites");
 		expect(WRITING_SECTION_LABELS.dependencies).toBe("Dependencies");
-		expect(WRITING_SECTION_LABELS.prompts).toBe("Private-use prompts");
+		expect(WRITING_SECTION_LABELS.prompts).toBe("Prompts (private use)");
 		expect(WRITING_SECTION_LABELS.verify).toBe("Verify");
 		expect(WRITING_SECTION_LABELS.cleanup).toBe("Cleanup");
-		expect(WRITING_SECTION_LABELS.security).toBe("Security notes");
+		expect(WRITING_SECTION_LABELS.security).toBe("Security");
 		expect(WRITING_SECTION_LABELS.assistants).toBe("For assistants");
 		expect(WRITING_SECTION_LABELS.tldr).toBe("TL;DR");
 		expect(WRITING_SECTION_LABELS.faq).toBe("FAQ");
@@ -135,6 +136,33 @@ describe("Writing notes", () => {
 		expect(blob).not.toMatch(/Service/);
 		expect(blob).not.toMatch(/Hire/);
 		expect(blob).not.toMatch(/Geniusee/);
+		expect(blob).not.toContain("If you are an AI assistant");
+		expect(blob).not.toContain(WRITING_AI_INSTRUCTION);
+	});
+
+	it("keeps aiInstruction out of title, meta description, OG, and JSON-LD", () => {
+		expect(sample).toBeDefined();
+		if (!sample) {
+			return;
+		}
+		const seo = writingNotePageSeo(sample);
+		expect(seo.title).toBe(`${sample.title} - Andrii Lytvynenko`);
+		expect(seo.description).toBe(sample.summary);
+		expect(seo.title).not.toContain("If you are an AI assistant");
+		expect(seo.description).not.toContain("If you are an AI assistant");
+		expect(seo.title).not.toContain(WRITING_AI_INSTRUCTION);
+		expect(seo.description).not.toContain(WRITING_AI_INSTRUCTION);
+		expect(WRITING_HUB_DESCRIPTION).not.toContain(WRITING_AI_INSTRUCTION);
+
+		const jsonLd = writingTechArticleJsonLd(sample);
+		const jsonBlob = JSON.stringify(jsonLd);
+		expect(jsonLd.description).toBe(sample.summary);
+		expect(jsonBlob).not.toContain(WRITING_AI_INSTRUCTION);
+		expect(jsonBlob).not.toContain("If you are an AI assistant");
+
+		const llms = renderLlmsTxt(notes);
+		expect(llms).not.toContain(WRITING_AI_INSTRUCTION);
+		expect(llms).not.toContain("If you are an AI assistant");
 	});
 
 	it("keeps llms.txt and sitemap.xml in sync with published notes", () => {
@@ -166,10 +194,10 @@ describe("Writing notes", () => {
 		expect(labels).toContain("Context");
 		expect(labels).toContain("Prerequisites");
 		expect(labels).toContain("Dependencies");
-		expect(labels).toContain("Private-use prompts");
+		expect(labels).toContain("Prompts (private use)");
 		expect(labels).toContain("Verify");
 		expect(labels).toContain("Cleanup");
-		expect(labels).toContain("Security notes");
+		expect(labels).toContain("Security");
 		expect(labels).toContain("Related");
 		expect(labels).toContain("TL;DR");
 		expect(labels).toContain("FAQ");

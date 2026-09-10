@@ -9,6 +9,7 @@ import {
 	buildWritingToc,
 	getNoteBySlug,
 	getPublishedNotes,
+	writingNotePageSeo,
 	writingNoteUrl,
 	writingTechArticleJsonLd,
 } from "@/lib/writing";
@@ -34,15 +35,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	}
 
 	const url = writingNoteUrl(note.slug);
+	const seo = writingNotePageSeo(note);
 
 	return {
-		title: `${note.title} - Andrii Lytvynenko`,
-		description: note.summary,
+		title: seo.title,
+		description: seo.description,
 		robots: { index: true, follow: true },
 		alternates: { canonical: url },
 		openGraph: {
 			title: note.title,
-			description: note.summary,
+			description: seo.description,
 			url,
 			type: "article",
 			publishedTime: note.date,
@@ -60,7 +62,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 		twitter: {
 			card: "summary_large_image",
 			title: note.title,
-			description: note.summary,
+			description: seo.description,
 			images: [PROFILE_IMAGE],
 		},
 	};
