@@ -1,0 +1,39 @@
+name: OSV-Scanner
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: osv-scanner-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  osv-scanner:
+    name: Lockfile HIGH/CRITICAL
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      # Official scanner action, pinned to v2.5.1. It exits 1 on any finding;
+      # the next step is the HIGH/CRITICAL gate (CVSS >= 7.0). Medium/low stay
+      # in the log and do not fail the job.
+      - name: Scan package-lock.json
+        id: scan
+        continue-on-error: true
+        uses: google/osv-scanner-action/osv-scanner-action@6e4298ebc4db23e847df9b2e2de2939d6f066c67 # v2.5.1
+        with:
+          scan-args: |-
+            --lockfile=./package-lock.json
+            --format=json
+            --output=osv-results.json
+
+      - name: Fail on HIGH and CRITICAL findings
+        env:
+          SCAN_OUTCOME: ${{ steps.scan.outcome }}
+        run: python3 .github/scripts/osv-fail-on-high-critical.py osv-results.json

@@ -52,7 +52,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Local CI (match pull-request checks)
 
-CI (`.github/workflows/ci.yml`) runs on pull requests to `main` and on pushes that are **not** `main` or `gh-pages`. Gitleaks (`.github/workflows/gitleaks.yml`) scans pull requests and pushes to `main` and **fails the check if secrets are detected**. Deploy (`.github/workflows/deploy.yml`) runs only on push to `main`.
+CI (`.github/workflows/ci.yml`) runs on pull requests to `main` and on pushes that are **not** `main` or `gh-pages`. Gitleaks (`.github/workflows/gitleaks.yml`) scans pull requests and pushes to `main` and **fails the check if secrets are detected**. OSV-Scanner (`.github/workflows/osv-scanner.yml`) scans `package-lock.json` on pull requests and pushes to `main` and **fails the check on HIGH and CRITICAL findings** (CVSS ≥ 7.0). Deploy (`.github/workflows/deploy.yml`) runs only on push to `main`.
 
 ```bash
 npm ci
@@ -70,6 +70,8 @@ npm run e2e
 Link check in CI uses [lychee](https://github.com/lycheeverse/lychee) with `lychee.toml`. It treats 403/429/999 as success (bot-blocked sites) and excludes LinkedIn, Telegram, WhatsApp, localhost, and `uodo.gov.pl`.
 
 Secret scanning uses [gitleaks](https://github.com/gitleaks/gitleaks) via the [official GitHub Action](https://github.com/gitleaks/gitleaks-action). `.gitleaks.toml` extends the default rules. The only allowlist is a documented false positive: a Git blob SHA in a Wikimedia bash-logo URL that used to live in committed `_next/` chunks (gone from `HEAD`).
+
+Lockfile scanning uses [OSV-Scanner](https://github.com/google/osv-scanner) via the [official GitHub Action](https://github.com/google/osv-scanner-action) pinned to **v2.5.1**. The workflow scans committed `package-lock.json` (including `devDependencies`). The job fails only on HIGH and CRITICAL (NVD bands: HIGH CVSS ≥ 7.0, CRITICAL ≥ 9.0); medium and low are printed in the log. There are **no** `IgnoredVulns` suppressions. The first scan's HIGH/CRITICAL hits all came from unmaintained [`to-ico`](https://www.npmjs.com/package/to-ico) (`jimp@0.2` → `request`, `form-data`, `image-size`, `url-regex`, `uuid`, nested `minimist`); favicon ICO packing is now a local PNG-in-ICO writer in `tools/generate-favicon.mjs`.
 
 Dependabot opens weekly grouped PRs for npm and GitHub Actions. **Major** version bumps are ignored on purpose (Tailwind 4 and cspell 10+ need a manual migration).
 
@@ -173,7 +175,7 @@ src/
 public/            # images, pdf, CNAME, manifest, sitemap
 tests/e2e/         # Playwright smoke + axe
 tools/             # favicon, logos, PNG→WebP
-.github/workflows/ # ci.yml (PR), gitleaks.yml (PR + main), deploy.yml (main)
+.github/workflows/ # ci.yml (PR), gitleaks.yml (PR + main), osv-scanner.yml (PR + main), deploy.yml (main)
 ```
 
 ## Troubleshooting
@@ -187,6 +189,7 @@ tools/             # favicon, logos, PNG→WebP
 | `cspell` fails on a new name or Polish word          | Word not in `cspell.json`                                   | Add it to `words`, or ignore generated SVG paths (already ignored)                                   |
 | Lychee fails on a new external URL                   | Bot-blocked host or bad cert                                | Confirm the URL in a browser; add a narrow `exclude` in `lychee.toml` only if the site is known-good |
 | Gitleaks fails on a public SHA or sample string      | Default rule false positive                                 | Prefer rotating/removing the string; a narrow `.gitleaks.toml` allowlist only with a written why     |
+| OSV-Scanner fails on HIGH/CRITICAL                   | Vulnerable package in `package-lock.json`                   | Bump or replace the parent package; `osv-scanner.toml` `IgnoredVulns` only with a written why        |
 | Knip reports unused files                            | New page/tool not in `knip.json` `entry`                    | Add `src/app/**/page.tsx`-style entries or `tools/**/*.mjs`                                          |
 | Cookie banner never appears                          | Consent already stored                                      | Footer **Cookie settings**, or `localStorage.removeItem("cookie-consent")`                           |
 | GA fires before accept                               | Script added outside `ConsentProvider`                      | Load gtag only when `consent === "accepted"`                                                         |
