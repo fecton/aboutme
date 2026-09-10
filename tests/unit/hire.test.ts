@@ -163,6 +163,18 @@ describe("hire conversion copy", () => {
 		expect(earnedTitles).toMatch(/Solutions Architect - Associate/);
 	});
 
+	it("keeps unique ids for keyed hire sections", () => {
+		const ids = [
+			...hire.audience.map((item) => item.id),
+			...hire.packages.map((item) => item.id),
+			...hire.proofTeasers.map((item) => item.id),
+			...hire.engageSteps.map((item) => item.id),
+			...hire.faqs.map((item) => item.id),
+		];
+		expect(ids.every((id) => id.length > 0)).toBe(true);
+		expect(new Set(ids).size).toBe(ids.length);
+	});
+
 	it("keeps document/OG title off the locked H1", () => {
 		expect(hire.headline).toBe(
 			"Hire DevOps that cuts cloud cost and keeps systems up.",
