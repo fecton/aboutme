@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CookieSettingsButton } from "@/components/ui/CookieSettingsButton";
 import { profile } from "@/data/profile";
 import { socialIconPaths } from "@/lib/iconPaths";
 
@@ -44,6 +45,8 @@ export function Footer() {
 					<Link href="/cookie-policy" className="hover:text-foreground">
 						Cookie Policy
 					</Link>
+					{" · "}
+					<CookieSettingsButton />
 				</p>
 				<ul className="flex justify-center gap-6">
 					<li>

@@ -2,10 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-
-const CONSENT_KEY = "cookie-consent";
-
-type ConsentStatus = "accepted" | "rejected" | null;
+import type { ConsentStatus } from "@/lib/consent";
 
 interface CookieConsentBannerProps {
 	consent: ConsentStatus;
@@ -34,21 +31,36 @@ export function CookieConsentBanner({
 		<aside
 			ref={bannerRef}
 			role="dialog"
-			aria-label="Cookie consent"
+			aria-labelledby="cookie-settings-title"
 			aria-describedby="cookie-consent-description"
 			className="fixed bottom-0 left-0 right-0 z-[9999] border-t border-border bg-surface/95 p-4 backdrop-blur-[20px] sm:bottom-4 sm:left-4 sm:right-auto sm:max-w-md sm:rounded-2xl sm:border sm:shadow-lg"
 			tabIndex={-1}
 		>
 			<div className="mx-auto max-w-6xl sm:mx-0">
+				<p
+					id="cookie-settings-title"
+					className="mb-2 text-base font-semibold text-foreground"
+				>
+					Cookie settings
+				</p>
 				<p id="cookie-consent-description" className="mb-4 text-sm text-foreground">
 					I use cookies to analyze site traffic via Google Analytics. You can
-					accept or reject analytics cookies.{" "}
+					accept or reject analytics cookies. Essential site preferences stay
+					available either way. See the{" "}
 					<Link
-						href="/cookie-policy"
+						href="/cookie-policy/"
 						className="text-accent hover:underline focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
 					>
-						Learn more
+						Cookie Policy
+					</Link>{" "}
+					and{" "}
+					<Link
+						href="/privacy-policy/"
+						className="text-accent hover:underline focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+					>
+						Privacy Policy
 					</Link>
+					.
 				</p>
 				<div className="flex flex-wrap gap-3">
 					<button
@@ -72,5 +84,3 @@ export function CookieConsentBanner({
 		</aside>
 	);
 }
-
-export { CONSENT_KEY };
