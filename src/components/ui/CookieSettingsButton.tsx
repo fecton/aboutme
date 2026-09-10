@@ -7,7 +7,7 @@ export function CookieSettingsButton() {
 		<button
 			type="button"
 			onClick={reopenConsent}
-			className="hover:text-foreground focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+			className="inline-flex min-h-[44px] items-center text-muted hover:text-foreground focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
 		>
 			Cookie settings
 		</button>
