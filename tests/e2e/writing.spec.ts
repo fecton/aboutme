@@ -86,6 +86,24 @@ test.describe("Writing hub and article", () => {
 		await expect(details).not.toHaveAttribute("open");
 		await prompt.click();
 		await expect(details).toHaveAttribute("open");
+		const promptCopy = details.getByRole("button", { name: "Copy code" });
+		await expect(promptCopy).toBeVisible();
+		const promptCopyBox = await promptCopy.boundingBox();
+		expect(promptCopyBox?.width).toBeGreaterThanOrEqual(44);
+		expect(promptCopyBox?.height).toBeGreaterThanOrEqual(44);
+
+		const headingOrder = await page.evaluate(() => {
+			return Array.from(document.querySelectorAll("article h2")).map(
+				(heading) => heading.id,
+			);
+		});
+		expect(headingOrder.indexOf("prerequisites")).toBeGreaterThanOrEqual(0);
+		expect(headingOrder.indexOf("dependencies")).toBeGreaterThan(
+			headingOrder.indexOf("prerequisites"),
+		);
+		expect(headingOrder.indexOf("context")).toBeGreaterThan(
+			headingOrder.indexOf("dependencies"),
+		);
 
 		const copy = page.getByRole("button", { name: "Copy code" }).first();
 		await expect(copy).toBeVisible();
@@ -96,11 +114,20 @@ test.describe("Writing hub and article", () => {
 
 		const jsonLd = (
 			await page.locator('script[type="application/ld+json"]').allTextContents()
-		).map((text) => JSON.parse(text) as Record<string, unknown>);
+		).flatMap((text) => {
+			const parsed = JSON.parse(text) as Record<string, unknown>;
+			if (Array.isArray(parsed["@graph"])) {
+				return parsed["@graph"] as Record<string, unknown>[];
+			}
+			return [parsed];
+		});
 		const article = jsonLd.find((graph) => graph["@type"] === "TechArticle");
 		expect(article).toBeDefined();
+		expect(article?.dateModified).toBe("2026-09-10");
+		expect(article?.author).toEqual({ "@id": "https://alytvynenko.net/" });
 		expect(JSON.stringify(jsonLd)).not.toMatch(/Offer/);
 		expect(JSON.stringify(jsonLd)).not.toMatch(/ProfessionalService/);
+		expect(JSON.stringify(jsonLd)).not.toMatch(/HowTo/);
 		expect(JSON.stringify(jsonLd)).not.toMatch(/Geniusee/);
 
 		await expect(

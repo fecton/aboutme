@@ -1,12 +1,7 @@
 "use client";
 
-import {
-	Children,
-	isValidElement,
-	useCallback,
-	useState,
-	type ReactNode,
-} from "react";
+import { Children, isValidElement, type ReactNode } from "react";
+import { WritingCopyButton } from "./WritingCopyButton";
 
 interface WritingCodeBlockProps {
 	children?: ReactNode;
@@ -23,52 +18,12 @@ function extractLanguage(children: ReactNode): string | undefined {
 	return match?.[1];
 }
 
-async function copyText(text: string): Promise<boolean> {
-	try {
-		if (navigator.clipboard?.writeText) {
-			await navigator.clipboard.writeText(text);
-			return true;
-		}
-	} catch (error) {
-		console.error("Clipboard API copy failed", error);
-	}
-
-	try {
-		const textarea = document.createElement("textarea");
-		textarea.value = text;
-		textarea.setAttribute("readonly", "");
-		textarea.style.position = "fixed";
-		textarea.style.left = "-9999px";
-		document.body.appendChild(textarea);
-		textarea.select();
-		const ok = document.execCommand("copy");
-		document.body.removeChild(textarea);
-		return ok;
-	} catch (error) {
-		console.error("Fallback copy failed", error);
-		return false;
-	}
-}
-
 export function WritingCodeBlock({
 	children,
 	className = "",
 }: WritingCodeBlockProps) {
-	const [copied, setCopied] = useState(false);
 	const language = extractLanguage(children);
-
-	const onCopy = useCallback(async () => {
-		const text = codeTextFromChildren(children);
-		if (!text) {
-			return;
-		}
-		const ok = await copyText(text);
-		if (!ok) {
-			return;
-		}
-		setCopied(true);
-		window.setTimeout(() => setCopied(false), 2000);
-	}, [children]);
+	const text = codeTextFromChildren(children);
 
 	return (
 		<div className="not-prose my-6 overflow-hidden rounded-xl border border-border bg-surface-solid">
@@ -76,14 +31,7 @@ export function WritingCodeBlock({
 				<span className="font-mono text-xs tracking-wide text-muted">
 					{language ?? "code"}
 				</span>
-				<button
-					type="button"
-					onClick={onCopy}
-					className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-sm text-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-					aria-label={copied ? "Copied" : "Copy code"}
-				>
-					{copied ? "Copied" : "Copy"}
-				</button>
+				<WritingCopyButton text={text} />
 			</div>
 			<pre
 				tabIndex={0}

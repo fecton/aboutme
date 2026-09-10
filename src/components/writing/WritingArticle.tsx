@@ -65,11 +65,17 @@ export function WritingArticle({
 				)}
 			</header>
 
-			<WritingToc
-				items={toc}
-				id={WRITING_SECTION_IDS.onThisPage}
-				className="mt-8 hidden lg:sticky lg:top-[4.5rem] lg:mt-0 lg:block lg:col-start-2 lg:row-start-1 lg:row-span-2"
-			/>
+			<div className="mt-8 hidden min-w-0 lg:sticky lg:top-[4.5rem] lg:mt-0 lg:block lg:col-start-2 lg:row-start-1 lg:row-span-2">
+				<WritingToc items={toc} id={WRITING_SECTION_IDS.onThisPage} />
+				{note.deps.length > 0 && (
+					<div className="mt-8 border-t border-border pt-4">
+						<p className="text-xs font-medium uppercase tracking-wide text-muted">
+							{WRITING_SECTION_LABELS.dependencies}
+						</p>
+						<WritingDeps deps={note.deps} compact />
+					</div>
+				)}
+			</div>
 
 			<article className="writing-prose mt-10 min-w-0 max-w-[68ch] lg:col-start-1 lg:mt-10">
 				<aside
@@ -96,8 +102,6 @@ export function WritingArticle({
 						</p>
 					)}
 				</aside>
-
-				<div>{bodyContent}</div>
 
 				{note.prerequisites.length > 0 && (
 					<section className="mt-10">
@@ -126,6 +130,8 @@ export function WritingArticle({
 						<WritingDeps deps={note.deps} />
 					</section>
 				)}
+
+				<div className="mt-10">{bodyContent}</div>
 
 				{note.prompts.length > 0 && (
 					<section className="mt-10">

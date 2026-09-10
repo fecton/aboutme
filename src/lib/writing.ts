@@ -3,6 +3,7 @@ import path from "node:path";
 import matter from "gray-matter";
 import GithubSlugger from "github-slugger";
 import { experiences } from "@/data/experiences";
+import { person } from "@/lib/json-ld";
 import {
 	DEP_GROUP_ORDER,
 	type DepGroup,
@@ -420,7 +421,7 @@ export function formatWritingDate(iso: string): string {
 	}).format(date);
 }
 
-function collectMdxH2(markdown: string): WritingTocItem[] {
+function collectMdxHeadings(markdown: string): WritingTocItem[] {
 	const slugger = new GithubSlugger();
 	const items: WritingTocItem[] = [];
 	let inFence = false;
@@ -433,11 +434,11 @@ function collectMdxH2(markdown: string): WritingTocItem[] {
 		if (inFence) {
 			continue;
 		}
-		const match = /^##\s+(.+?)\s*$/.exec(line);
+		const match = /^(#{2,3})\s+(.+?)\s*$/.exec(line);
 		if (!match) {
 			continue;
 		}
-		const label = match[1].trim();
+		const label = match[2].trim();
 		items.push({ id: slugger.slug(label), label });
 	}
 
@@ -446,7 +447,6 @@ function collectMdxH2(markdown: string): WritingTocItem[] {
 
 export function buildWritingToc(note: WritingNote): WritingTocItem[] {
 	const items: WritingTocItem[] = [];
-	items.push(...collectMdxH2(note.body));
 
 	if (note.prerequisites.length > 0) {
 		items.push({
@@ -460,6 +460,8 @@ export function buildWritingToc(note: WritingNote): WritingTocItem[] {
 			label: WRITING_SECTION_LABELS.dependencies,
 		});
 	}
+
+	items.push(...collectMdxHeadings(note.body));
 	if (note.prompts.length > 0) {
 		items.push({
 			id: WRITING_SECTION_IDS.prompts,
@@ -501,6 +503,7 @@ export function buildWritingToc(note: WritingNote): WritingTocItem[] {
 			id: WRITING_SECTION_IDS.faq,
 			label: WRITING_SECTION_LABELS.faq,
 		});
+		items.push(...collectMdxHeadings(note.faq));
 	}
 	items.push({
 		id: WRITING_SECTION_IDS.assistants,
@@ -529,22 +532,30 @@ export function writingHubUrl(): string {
 }
 
 export function writingTechArticleJsonLd(note: WritingNoteMeta) {
+	const url = writingNoteUrl(note.slug);
+	const personId = `${WRITING_SITE_URL}/`;
+
 	return {
 		"@context": "https://schema.org",
-		"@type": "TechArticle",
-		headline: note.title,
-		description: note.summary,
-		datePublished: note.date,
-		dateModified: note.lastVerified,
-		url: writingNoteUrl(note.slug),
-		mainEntityOfPage: writingNoteUrl(note.slug),
-		author: {
-			"@type": "Person",
-			name: "Andrii Lytvynenko",
-			url: `${WRITING_SITE_URL}/`,
-		},
-		keywords: note.type,
-		articleSection: note.type,
+		"@graph": [
+			{
+				...person,
+				"@id": personId,
+			},
+			{
+				"@type": "TechArticle",
+				"@id": url,
+				headline: note.title,
+				description: note.summary,
+				datePublished: note.date,
+				dateModified: note.lastVerified,
+				url,
+				mainEntityOfPage: url,
+				author: { "@id": personId },
+				keywords: note.type,
+				articleSection: note.type,
+			},
+		],
 	};
 }
 

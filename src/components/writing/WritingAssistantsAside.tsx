@@ -13,7 +13,7 @@ export function WritingAssistantsAside({
 		<aside
 			data-nosnippet=""
 			aria-label={WRITING_SECTION_LABELS.assistants}
-			className={`border-t border-border pt-4 ${className}`}
+			className={`border-l-2 border-muted pl-4 ${className}`}
 		>
 			<h2
 				id={headingId}

@@ -122,20 +122,33 @@ describe("Writing notes", () => {
 		expect(WRITING_NOTE_TYPES).toEqual(["lab", "note", "talk"]);
 	});
 
-	it("builds TechArticle JSON-LD without Offer or Service types", () => {
+	it("builds TechArticle JSON-LD without Offer, Service, or HowTo types", () => {
 		expect(sample).toBeDefined();
 		if (!sample) {
 			return;
 		}
 		const jsonLd = writingTechArticleJsonLd(sample);
-		expect(jsonLd["@type"]).toBe("TechArticle");
-		expect(jsonLd.author).toMatchObject({
+		const graph = jsonLd["@graph"];
+		const article = graph.find((node) => node["@type"] === "TechArticle");
+		const author = graph.find((node) => node["@type"] === "Person");
+		expect(article).toMatchObject({
+			"@type": "TechArticle",
+			headline: sample.title,
+			description: sample.summary,
+			datePublished: sample.date,
+			dateModified: sample.lastVerified,
+			url: `https://alytvynenko.net/writing/${SAMPLE_SLUG}/`,
+			author: { "@id": "https://alytvynenko.net/" },
+		});
+		expect(author).toMatchObject({
 			"@type": "Person",
+			"@id": "https://alytvynenko.net/",
 			name: "Andrii Lytvynenko",
 		});
 		const blob = JSON.stringify(jsonLd);
 		expect(blob).not.toMatch(/Offer/);
-		expect(blob).not.toMatch(/Service/);
+		expect(blob).not.toMatch(/HowTo/);
+		expect(blob).not.toMatch(/ProfessionalService/);
 		expect(blob).not.toMatch(/Hire/);
 		expect(blob).not.toMatch(/Geniusee/);
 		expect(blob).not.toContain("If you are an AI assistant");
@@ -158,7 +171,10 @@ describe("Writing notes", () => {
 
 		const jsonLd = writingTechArticleJsonLd(sample);
 		const jsonBlob = JSON.stringify(jsonLd);
-		expect(jsonLd.description).toBe(sample.summary);
+		const article = jsonLd["@graph"].find(
+			(node) => node["@type"] === "TechArticle",
+		);
+		expect(article).toMatchObject({ description: sample.summary });
 		expect(jsonBlob).not.toContain(WRITING_AI_INSTRUCTION);
 		expect(jsonBlob).not.toContain("If you are an AI assistant");
 
@@ -193,9 +209,13 @@ describe("Writing notes", () => {
 		}
 		const toc = buildWritingToc(sample);
 		const labels = toc.map((item) => item.label);
-		expect(labels).toContain("Context");
-		expect(labels).toContain("Prerequisites");
-		expect(labels).toContain("Dependencies");
+		expect(labels.slice(0, 5)).toEqual([
+			"Prerequisites",
+			"Dependencies",
+			"Context",
+			"Architecture",
+			"Walkthrough",
+		]);
 		expect(labels).toContain("Prompts (private use)");
 		expect(labels).toContain("Verify");
 		expect(labels).toContain("Cleanup");
@@ -203,6 +223,7 @@ describe("Writing notes", () => {
 		expect(labels).toContain("Related");
 		expect(labels).toContain("TL;DR");
 		expect(labels).toContain("FAQ");
+		expect(labels).toContain("Is this client work?");
 		expect(labels.at(-1)).toBe("For assistants");
 		expect(formatWritingDate("2025-08-15")).toBe("15 Aug 2025");
 	});
