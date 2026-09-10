@@ -15,6 +15,8 @@ playwright-report
 test-results
 .playwright-cache
 osv-results.json
+__pycache__/
+*.pyc
 
 # Misc
 .DS_Store

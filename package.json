@@ -12,7 +12,7 @@
 		"typecheck": "tsc --noEmit",
 		"spell": "cspell --no-progress 'src/**/*.{ts,tsx}' '*.md'",
 		"e2e": "playwright test",
-		"test": "vitest run",
+		"test": "vitest run && python3 -m unittest discover -s tests/unit -p 'test_*.py'",
 		"knip": "knip --reporter compact",
 		"favicon": "node tools/generate-favicon.mjs",
 		"logos": "node tools/fetch-official-logos.mjs"
