@@ -11,7 +11,10 @@ export function BentoGrid() {
 		<div className="mx-auto max-w-6xl px-4 pb-24 sm:px-6">
 			<div className="flex flex-col gap-6">
 				{/* About + Highlights - flex row, each 50%, same total width as Skills */}
-				<section aria-label="About and highlights" className="flex w-full min-w-0 flex-col gap-6 md:flex-row md:items-stretch">
+				<section
+					aria-label="About and highlights"
+					className="flex w-full min-w-0 flex-col gap-6 md:flex-row md:items-stretch"
+				>
 					<div className="flex min-w-0 flex-1" id="about">
 						<AboutCard />
 					</div>
@@ -26,7 +29,10 @@ export function BentoGrid() {
 				</section>
 
 				{/* Certifications + Contact & Languages - equal height via grid */}
-				<section aria-label="Certifications and contact" className="grid w-full min-w-0 grid-cols-1 gap-6 md:grid-cols-[2fr_1fr]">
+				<section
+					aria-label="Certifications and contact"
+					className="grid w-full min-w-0 grid-cols-1 gap-6 md:grid-cols-[2fr_1fr]"
+				>
 					<div className="flex min-h-0 min-w-0" id="certifications">
 						<CertificationsCard />
 					</div>

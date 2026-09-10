@@ -32,12 +32,13 @@ export function ThemeToggle() {
 
 		await transition.ready;
 
-		const { top, left, width, height } = buttonRef.current.getBoundingClientRect();
+		const { top, left, width, height } =
+			buttonRef.current.getBoundingClientRect();
 		const x = left + width / 2;
 		const y = top + height / 2;
 		const maxRadius = Math.hypot(
 			Math.max(left, window.innerWidth - left),
-			Math.max(top, window.innerHeight - top)
+			Math.max(top, window.innerHeight - top),
 		);
 
 		document.documentElement.animate(
@@ -51,7 +52,7 @@ export function ThemeToggle() {
 				duration: THEME_TRANSITION_DURATION,
 				easing: "ease-in-out",
 				pseudoElement: "::view-transition-new(root)",
-			}
+			},
 		);
 	};
 

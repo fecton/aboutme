@@ -76,7 +76,8 @@ export function EducationCard() {
 										</a>
 									))}
 								{edu.diploma_supplement_pdf &&
-									(edu.diploma_supplement_pdf === DIPLOMA_SUPPLEMENT_VIEWER_PATH ? (
+									(edu.diploma_supplement_pdf ===
+									DIPLOMA_SUPPLEMENT_VIEWER_PATH ? (
 										<Link
 											href="/viewer/diploma-supplement"
 											className="text-sm text-accent hover:underline"
@@ -95,7 +96,7 @@ export function EducationCard() {
 									))}
 							</div>
 						)}
-					<ExpandableDescription html={edu.description} />
+						<ExpandableDescription html={edu.description} />
 						{edu.disciplines && (
 							<CategorizedTagList
 								title="Courses & Disciplines"

@@ -8,7 +8,10 @@ test.describe("experience discipline chips", () => {
 		await page.goto("/");
 
 		const currentRole = page.locator("article").filter({
-			has: page.getByRole("heading", { name: "Senior DevOps Engineer", exact: true }),
+			has: page.getByRole("heading", {
+				name: "Senior DevOps Engineer",
+				exact: true,
+			}),
 		});
 
 		await currentRole
@@ -17,7 +20,9 @@ test.describe("experience discipline chips", () => {
 
 		await expect(currentRole.getByLabel("EC2", { exact: true })).toBeVisible();
 		await expect(currentRole.getByLabel("S3", { exact: true })).toBeVisible();
-		await expect(currentRole.getByLabel("Terraform", { exact: true })).toBeVisible();
+		await expect(
+			currentRole.getByLabel("Terraform", { exact: true }),
+		).toBeVisible();
 		await expect(currentRole.getByLabel(/AWS \(EC2, ECS/)).toHaveCount(0);
 	});
 });

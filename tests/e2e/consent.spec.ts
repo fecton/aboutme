@@ -15,17 +15,18 @@ async function blockAnalytics(page: Page) {
 }
 
 test.describe("consent-first analytics", () => {
-	test("first visit shows the banner and does not inject GA", async ({ page }) => {
+	test("first visit shows the banner and does not inject GA", async ({
+		page,
+	}) => {
 		await blockAnalytics(page);
 		await page.goto("/");
 
 		const dialog = page.getByRole("dialog", CONSENT_DIALOG);
 		await expect(dialog).toBeVisible();
 		await expect(dialog).toContainText(LAWYER_BODY);
-		await expect(dialog.getByRole("link", { name: "Cookie Policy" })).toHaveAttribute(
-			"href",
-			"/cookie-policy/",
-		);
+		await expect(
+			dialog.getByRole("link", { name: "Cookie Policy" }),
+		).toHaveAttribute("href", "/cookie-policy/");
 		await expect(page.locator(GTM_SCRIPT)).toHaveCount(0);
 		await expect(
 			page.locator('link[rel="preconnect"][href*="googletagmanager"]'),
@@ -33,18 +34,24 @@ test.describe("consent-first analytics", () => {
 		await expect(
 			page.locator('link[rel="dns-prefetch"][href*="google-analytics"]'),
 		).toHaveCount(0);
-		expect(await page.evaluate(() => localStorage.getItem("cookie-consent"))).toBeNull();
+		expect(
+			await page.evaluate(() => localStorage.getItem("cookie-consent")),
+		).toBeNull();
 	});
 
-	test("reject persists, hides the banner, and never injects GA", async ({ page }) => {
+	test("reject persists, hides the banner, and never injects GA", async ({
+		page,
+	}) => {
 		await blockAnalytics(page);
 		await page.goto("/");
 
-		await page.getByRole("button", { name: "Reject analytics cookies" }).click();
+		await page
+			.getByRole("button", { name: "Reject analytics cookies" })
+			.click();
 		await expect(page.getByRole("dialog", CONSENT_DIALOG)).toHaveCount(0);
-		expect(await page.evaluate(() => localStorage.getItem("cookie-consent"))).toBe(
-			"rejected",
-		);
+		expect(
+			await page.evaluate(() => localStorage.getItem("cookie-consent")),
+		).toBe("rejected");
 		await expect(page.locator(GTM_SCRIPT)).toHaveCount(0);
 
 		await page.reload();
@@ -56,11 +63,13 @@ test.describe("consent-first analytics", () => {
 		await blockAnalytics(page);
 		await page.goto("/");
 
-		await page.getByRole("button", { name: "Accept analytics cookies" }).click();
+		await page
+			.getByRole("button", { name: "Accept analytics cookies" })
+			.click();
 		await expect(page.getByRole("dialog", CONSENT_DIALOG)).toHaveCount(0);
-		expect(await page.evaluate(() => localStorage.getItem("cookie-consent"))).toBe(
-			"accepted",
-		);
+		expect(
+			await page.evaluate(() => localStorage.getItem("cookie-consent")),
+		).toBe("accepted");
 		await expect(page.locator(GTM_SCRIPT)).toHaveCount(1);
 		await expect(page.locator("script#google-analytics")).toHaveCount(1);
 
@@ -75,7 +84,9 @@ test.describe("consent-first analytics", () => {
 		await blockAnalytics(page);
 		await page.goto("/");
 
-		await page.getByRole("button", { name: "Reject analytics cookies" }).click();
+		await page
+			.getByRole("button", { name: "Reject analytics cookies" })
+			.click();
 		await expect(page.getByRole("dialog", CONSENT_DIALOG)).toHaveCount(0);
 		await expect(page.locator(GTM_SCRIPT)).toHaveCount(0);
 
@@ -83,15 +94,21 @@ test.describe("consent-first analytics", () => {
 		const dialog = page.getByRole("dialog", CONSENT_DIALOG);
 		await expect(dialog).toBeVisible();
 		await expect(dialog).toContainText(LAWYER_BODY);
-		expect(await page.evaluate(() => localStorage.getItem("cookie-consent"))).toBeNull();
+		expect(
+			await page.evaluate(() => localStorage.getItem("cookie-consent")),
+		).toBeNull();
 		await expect(page.locator(GTM_SCRIPT)).toHaveCount(0);
 	});
 
-	test("reopen from footer: Accept loads GA and Reject unloads it", async ({ page }) => {
+	test("reopen from footer: Accept loads GA and Reject unloads it", async ({
+		page,
+	}) => {
 		await blockAnalytics(page);
 		await page.goto("/");
 
-		await page.getByRole("button", { name: "Accept analytics cookies" }).click();
+		await page
+			.getByRole("button", { name: "Accept analytics cookies" })
+			.click();
 		await expect(page.locator(GTM_SCRIPT)).toHaveCount(1);
 		await expect(page.locator("script#google-analytics")).toHaveCount(1);
 
@@ -99,35 +116,49 @@ test.describe("consent-first analytics", () => {
 		await expect(page.getByRole("dialog", CONSENT_DIALOG)).toBeVisible();
 		await expect(page.locator(GTM_SCRIPT)).toHaveCount(0);
 		await expect(page.locator("script#google-analytics")).toHaveCount(0);
-		expect(await page.evaluate(() => localStorage.getItem("cookie-consent"))).toBeNull();
+		expect(
+			await page.evaluate(() => localStorage.getItem("cookie-consent")),
+		).toBeNull();
 
-		await page.getByRole("button", { name: "Accept analytics cookies" }).click();
+		await page
+			.getByRole("button", { name: "Accept analytics cookies" })
+			.click();
 		await expect(page.getByRole("dialog", CONSENT_DIALOG)).toHaveCount(0);
 		await expect(page.locator(GTM_SCRIPT)).toHaveCount(1);
 		await expect(page.locator("script#google-analytics")).toHaveCount(1);
-		expect(await page.evaluate(() => localStorage.getItem("cookie-consent"))).toBe(
-			"accepted",
-		);
+		expect(
+			await page.evaluate(() => localStorage.getItem("cookie-consent")),
+		).toBe("accepted");
 
 		await page.getByRole("button", { name: "Cookie settings" }).click();
-		await page.getByRole("button", { name: "Reject analytics cookies" }).click();
+		await page
+			.getByRole("button", { name: "Reject analytics cookies" })
+			.click();
 		await expect(page.getByRole("dialog", CONSENT_DIALOG)).toHaveCount(0);
 		await expect(page.locator(GTM_SCRIPT)).toHaveCount(0);
 		await expect(page.locator("script#google-analytics")).toHaveCount(0);
-		expect(await page.evaluate(() => localStorage.getItem("cookie-consent"))).toBe(
-			"rejected",
-		);
+		expect(
+			await page.evaluate(() => localStorage.getItem("cookie-consent")),
+		).toBe("rejected");
 	});
 
-	test("Cookie settings is on the shared footer including /hire", async ({ page }) => {
+	test("Cookie settings is on the shared footer including /hire", async ({
+		page,
+	}) => {
 		await blockAnalytics(page);
 		await page.goto("/hire/");
-		await page.evaluate(() => localStorage.setItem("cookie-consent", "rejected"));
+		await page.evaluate(() =>
+			localStorage.setItem("cookie-consent", "rejected"),
+		);
 		await page.reload();
 
-		await expect(page.getByRole("button", { name: "Cookie settings" })).toBeVisible();
+		await expect(
+			page.getByRole("button", { name: "Cookie settings" }),
+		).toBeVisible();
 		await page.getByRole("button", { name: "Cookie settings" }).click();
 		await expect(page.getByRole("dialog", CONSENT_DIALOG)).toBeVisible();
-		expect(await page.evaluate(() => localStorage.getItem("cookie-consent"))).toBeNull();
+		expect(
+			await page.evaluate(() => localStorage.getItem("cookie-consent")),
+		).toBeNull();
 	});
 });

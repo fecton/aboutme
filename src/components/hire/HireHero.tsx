@@ -22,7 +22,9 @@ export function HireHero() {
 				<div className="flex flex-col items-center text-center">
 					<div
 						className={`mb-3 flex items-center gap-2 rounded-full border border-border px-4 py-2 ${
-							reduceEffects ? "bg-background" : "bg-surface backdrop-blur-[20px]"
+							reduceEffects
+								? "bg-background"
+								: "bg-surface backdrop-blur-[20px]"
 						}`}
 					>
 						<span

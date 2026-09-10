@@ -20,9 +20,12 @@ const SIZE = 80;
 // Geniusee and KhAI: no suitable official source on Wikimedia; use existing assets
 const LOGO_SOURCES = {
 	companies: {
-		chase: "https://upload.wikimedia.org/wikipedia/commons/e/ed/Chase_logo_2007.svg",
-		luxoft: "https://upload.wikimedia.org/wikipedia/commons/8/82/Luxoft_Logo.svg",
-		mercedes: "https://upload.wikimedia.org/wikipedia/commons/9/90/Mercedes-Logo.svg",
+		chase:
+			"https://upload.wikimedia.org/wikipedia/commons/e/ed/Chase_logo_2007.svg",
+		luxoft:
+			"https://upload.wikimedia.org/wikipedia/commons/8/82/Luxoft_Logo.svg",
+		mercedes:
+			"https://upload.wikimedia.org/wikipedia/commons/9/90/Mercedes-Logo.svg",
 	},
 	education: {
 		epam: "https://upload.wikimedia.org/wikipedia/commons/d/d6/EPAM_logo.png",
@@ -48,7 +51,10 @@ async function fetchAndAdapt(url, outputPath) {
 	const scale = Math.min(SIZE / width, SIZE / height);
 	const newW = Math.round(width * scale);
 	const newH = Math.round(height * scale);
-	const resized = await img.resize(newW, newH, { fit: "inside" }).ensureAlpha().toBuffer();
+	const resized = await img
+		.resize(newW, newH, { fit: "inside" })
+		.ensureAlpha()
+		.toBuffer();
 	const left = Math.floor((SIZE - newW) / 2);
 	const top = Math.floor((SIZE - newH) / 2);
 	// Light gray background for contrast with dark logo content

@@ -38,7 +38,9 @@ export function HirePackages() {
 								<span className="font-semibold">{pkg.bestForLabel}: </span>
 								{pkg.bestFor}
 							</p>
-							<p className="mb-4 leading-relaxed text-muted">{pkg.deliverables}</p>
+							<p className="mb-4 leading-relaxed text-muted">
+								{pkg.deliverables}
+							</p>
 							<div className="mb-6 mt-auto">
 								{pkg.credentials ? (
 									<p className="text-sm font-medium text-foreground">

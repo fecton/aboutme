@@ -34,19 +34,21 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Scripts
 
-| Script | What it does |
-|--------|----------------|
-| `npm run dev` | Next.js dev server |
-| `npm run build` | Static export to `out/` |
-| `npm run start` | `next start` (not used for GitHub Pages) |
-| `npm run lint` | ESLint |
-| `npm run typecheck` | `tsc --noEmit` |
-| `npm run spell` | cspell on `src/**/*.{ts,tsx}` and root `*.md` |
-| `npm test` | Vitest unit tests (parsers, skill lookups) |
-| `npm run knip` | Unused export / dead-code check |
-| `npm run e2e` | Playwright smoke + axe (expects `out/` unless you override the URL) |
-| `npm run favicon` | Rebuild favicon/PWA icons from `tools/favicon-source.svg` |
-| `npm run logos` | Fetch official logos from Wikimedia and write WebP assets |
+| Script                 | What it does                                                        |
+| ---------------------- | ------------------------------------------------------------------- |
+| `npm run dev`          | Next.js dev server                                                  |
+| `npm run build`        | Static export to `out/`                                             |
+| `npm run start`        | `next start` (not used for GitHub Pages)                            |
+| `npm run lint`         | ESLint                                                              |
+| `npm run format`       | Prettier write                                                      |
+| `npm run format:check` | Prettier check (CI)                                                 |
+| `npm run typecheck`    | `tsc --noEmit`                                                      |
+| `npm run spell`        | cspell on `src/**/*.{ts,tsx}` and root `*.md`                       |
+| `npm test`             | Vitest unit tests (parsers, skill lookups)                          |
+| `npm run knip`         | Unused export / dead-code check                                     |
+| `npm run e2e`          | Playwright smoke + axe (expects `out/` unless you override the URL) |
+| `npm run favicon`      | Rebuild favicon/PWA icons from `tools/favicon-source.svg`           |
+| `npm run logos`        | Fetch official logos from Wikimedia and write WebP assets           |
 
 ## Local CI (match pull-request checks)
 
@@ -55,6 +57,7 @@ CI (`.github/workflows/ci.yml`) runs on pull requests to `main` and on pushes th
 ```bash
 npm ci
 npm run lint
+npm run format:check
 npm run typecheck
 npm test
 npm run build
@@ -91,11 +94,11 @@ Common failure: cards or hero stuck at `opacity: 0` after a Framer Motion change
 
 No analytics load until the visitor accepts cookies. Implementation: `ConsentProvider` → `CookieConsentBanner` → GA scripts only when consent is `"accepted"`. Footer **Cookie settings** reopens the same banner (clears `cookie-consent`, unloads GA) so the visitor can choose again.
 
-| `localStorage` key | Values | Owner |
-|--------------------|--------|--------|
-| `cookie-consent` | `accepted` \| `rejected` | `src/lib/consent.ts` (`ConsentProvider` / `CookieConsentBanner`) |
-| `theme` | `light` \| `dark` \| `system` | `ThemeProvider` (`next-themes`) |
-| `reduce-effects` | `true` \| `false` | `ReduceEffectsProvider` (Lite Mode) |
+| `localStorage` key | Values                        | Owner                                                            |
+| ------------------ | ----------------------------- | ---------------------------------------------------------------- |
+| `cookie-consent`   | `accepted` \| `rejected`      | `src/lib/consent.ts` (`ConsentProvider` / `CookieConsentBanner`) |
+| `theme`            | `light` \| `dark` \| `system` | `ThemeProvider` (`next-themes`)                                  |
+| `reduce-effects`   | `true` \| `false`             | `ReduceEffectsProvider` (Lite Mode)                              |
 
 **Consent-first analytics**
 
@@ -136,14 +139,14 @@ Or run `npm run logos` for Wikimedia-sourced company/university marks. See `publ
 
 ## Routes
 
-| Path | Source |
-|------|--------|
-| `/` | `src/app/page.tsx` — hero + bento grid (detailed resume) |
-| `/hire/` | Conversion page with AWS-first packages; deep-links to `/#experience` |
-| `/resume/` | Resume iframe + download |
-| `/viewer/{resume\|diploma\|diploma-supplement}/` | Shared PDF viewer (`generateStaticParams`) |
-| `/privacy-policy/`, `/cookie-policy/` | Legal pages (`robots: noindex`) |
-| unknown | `src/app/not-found.tsx` (navbar + footer; required for static 404) |
+| Path                                             | Source                                                                |
+| ------------------------------------------------ | --------------------------------------------------------------------- |
+| `/`                                              | `src/app/page.tsx` — hero + bento grid (detailed resume)              |
+| `/hire/`                                         | Conversion page with AWS-first packages; deep-links to `/#experience` |
+| `/resume/`                                       | Resume iframe + download                                              |
+| `/viewer/{resume\|diploma\|diploma-supplement}/` | Shared PDF viewer (`generateStaticParams`)                            |
+| `/privacy-policy/`, `/cookie-policy/`            | Legal pages (`robots: noindex`)                                       |
+| unknown                                          | `src/app/not-found.tsx` (navbar + footer; required for static 404)    |
 
 ## Deployment
 
@@ -173,20 +176,20 @@ tools/             # favicon, logos, PNG→WebP
 
 ## Troubleshooting
 
-| Symptom | Likely cause | Fix |
-|---------|--------------|-----|
-| `npm run e2e` fails immediately / connection refused | No `out/` directory | Run `npm run build` first |
-| Hero or cards invisible but lint/types pass | Framer Motion left `opacity: 0` | Check `initial`/`animate`/`whileInView` and Lite Mode / reduced-motion branches |
-| Hydration mismatch on SVG/img | Dark Reader (or similar) injects attributes | Layout already strips those attributes for ~500ms; avoid extra `style` on those nodes |
-| Tailwind / PostCSS build error after a Dependabot PR | Accidental Tailwind 4 bump | Stay on `tailwindcss@^3.4`; majors are ignored, but do not force a major |
-| `cspell` fails on a new name or Polish word | Word not in `cspell.json` | Add it to `words`, or ignore generated SVG paths (already ignored) |
-| Lychee fails on a new external URL | Bot-blocked host or bad cert | Confirm the URL in a browser; add a narrow `exclude` in `lychee.toml` only if the site is known-good |
-| Knip reports unused files | New page/tool not in `knip.json` `entry` | Add `src/app/**/page.tsx`-style entries or `tools/**/*.mjs` |
-| Cookie banner never appears | Consent already stored | Footer **Cookie settings**, or `localStorage.removeItem("cookie-consent")` |
-| GA fires before accept | Script added outside `ConsentProvider` | Load gtag only when `consent === "accepted"` |
-| Lite Mode on by default on your laptop | Auto-detect (≤4 GB / ≤4 cores / Save-Data / reduced motion) | Toggle the navbar bolt, or set `localStorage.reduce-effects = "false"` |
-| Horizontal scroll at 320px | Flex child overflow | Add `min-w-0` on flex/grid children |
-| 404 page missing nav/footer | `not-found.tsx` omitted chrome | Keep Navbar + Footer; e2e asserts this |
+| Symptom                                              | Likely cause                                                | Fix                                                                                                  |
+| ---------------------------------------------------- | ----------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `npm run e2e` fails immediately / connection refused | No `out/` directory                                         | Run `npm run build` first                                                                            |
+| Hero or cards invisible but lint/types pass          | Framer Motion left `opacity: 0`                             | Check `initial`/`animate`/`whileInView` and Lite Mode / reduced-motion branches                      |
+| Hydration mismatch on SVG/img                        | Dark Reader (or similar) injects attributes                 | Layout already strips those attributes for ~500ms; avoid extra `style` on those nodes                |
+| Tailwind / PostCSS build error after a Dependabot PR | Accidental Tailwind 4 bump                                  | Stay on `tailwindcss@^3.4`; majors are ignored, but do not force a major                             |
+| `cspell` fails on a new name or Polish word          | Word not in `cspell.json`                                   | Add it to `words`, or ignore generated SVG paths (already ignored)                                   |
+| Lychee fails on a new external URL                   | Bot-blocked host or bad cert                                | Confirm the URL in a browser; add a narrow `exclude` in `lychee.toml` only if the site is known-good |
+| Knip reports unused files                            | New page/tool not in `knip.json` `entry`                    | Add `src/app/**/page.tsx`-style entries or `tools/**/*.mjs`                                          |
+| Cookie banner never appears                          | Consent already stored                                      | Footer **Cookie settings**, or `localStorage.removeItem("cookie-consent")`                           |
+| GA fires before accept                               | Script added outside `ConsentProvider`                      | Load gtag only when `consent === "accepted"`                                                         |
+| Lite Mode on by default on your laptop               | Auto-detect (≤4 GB / ≤4 cores / Save-Data / reduced motion) | Toggle the navbar bolt, or set `localStorage.reduce-effects = "false"`                               |
+| Horizontal scroll at 320px                           | Flex child overflow                                         | Add `min-w-0` on flex/grid children                                                                  |
+| 404 page missing nav/footer                          | `not-found.tsx` omitted chrome                              | Keep Navbar + Footer; e2e asserts this                                                               |
 
 Agent-oriented patterns (bento layout, data schemas, rebuild steps) live in `.cursor/rules/`.
 

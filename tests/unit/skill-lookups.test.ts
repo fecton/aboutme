@@ -28,9 +28,11 @@ describe("getCategoryForDiscipline", () => {
 	it("classifies AWS-prefixed and known AWS service names as cloud", () => {
 		expect(getCategoryForDiscipline("AWS Lambda")).toBe("cloud");
 		expect(getCategoryForDiscipline("EC2")).toBe("cloud");
-		expect(getCategoryForDiscipline("Amazon Elastic Kubernetes Service (Amazon EKS)")).toBe(
-			"cloud",
-		);
+		expect(
+			getCategoryForDiscipline(
+				"Amazon Elastic Kubernetes Service (Amazon EKS)",
+			),
+		).toBe("cloud");
 	});
 
 	it("returns other for empty or unknown skills", () => {
@@ -63,7 +65,9 @@ describe("getIconForDiscipline", () => {
 	});
 
 	it("uses aliases and known AWS service names", () => {
-		expect(getIconForDiscipline("HashiCorp Terraform")).toEqual(skillIconMap.Terraform);
+		expect(getIconForDiscipline("HashiCorp Terraform")).toEqual(
+			skillIconMap.Terraform,
+		);
 		expect(getIconForDiscipline("EC2")).toEqual(skillIconMap.AWS);
 		expect(getIconForDiscipline("Amazon S3")).toEqual(skillIconMap.AWS);
 	});

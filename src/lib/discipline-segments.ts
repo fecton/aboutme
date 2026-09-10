@@ -28,7 +28,10 @@ function expandAwsParentheticalSegment(segment: string): string[] {
 	return parts.length > 0 ? parts : [segment];
 }
 
-function tryExtractBalancedParenBody(full: string, prefix: RegExp): string | null {
+function tryExtractBalancedParenBody(
+	full: string,
+	prefix: RegExp,
+): string | null {
 	const trimmed = full.trim().replace(/\.$/, "");
 	const match = trimmed.match(prefix);
 	if (!match || match.index !== 0) return null;

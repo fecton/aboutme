@@ -9,14 +9,18 @@ async function openHire(page: Page) {
 }
 
 test.describe("hire conversion page", () => {
-	test("renders the v1.1 section order on desktop and mobile", async ({ page }) => {
+	test("renders the v1.1 section order on desktop and mobile", async ({
+		page,
+	}) => {
 		await openHire(page);
 
 		await expect(page.locator("nav")).toBeVisible();
 		await expect(page.locator("footer")).toBeVisible();
 
 		await expect(page.getByText(hire.availability)).toBeVisible();
-		await expect(page.getByRole("heading", { level: 1 })).toHaveText(hire.headline);
+		await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+			hire.headline,
+		);
 		await expect(page.getByText(hire.offer)).toBeVisible();
 		await expect(page.getByText(hire.trustLine)).toBeVisible();
 
@@ -44,7 +48,9 @@ test.describe("hire conversion page", () => {
 		}
 
 		for (const pkg of hire.packages) {
-			const card = page.getByRole("heading", { level: 3, name: pkg.title }).locator("..");
+			const card = page
+				.getByRole("heading", { level: 3, name: pkg.title })
+				.locator("..");
 			await expect(card.getByText(pkg.pain)).toBeVisible();
 			await expect(card.getByText(pkg.deliverables)).toBeVisible();
 			await expect(card.getByText(pkg.bestFor)).toBeVisible();
@@ -83,12 +89,16 @@ test.describe("hire conversion page", () => {
 		await expect(viewLinks).toHaveCount(hire.proofTeasers.length);
 		await expect(viewLinks.first()).toHaveAttribute("href", /\/#experience/);
 		await expect(
-			page.getByRole("heading", { level: 2, name: hire.proofHeading }).locator("xpath=following-sibling::*[1]"),
+			page
+				.getByRole("heading", { level: 2, name: hire.proofHeading })
+				.locator("xpath=following-sibling::*[1]"),
 		).toHaveClass(/md:grid-cols-3/);
 
 		const certBadges = page.getByRole("list", { name: "Certifications" });
 		for (const badge of hire.badges) {
-			await expect(certBadges.getByRole("link", { name: badge.label })).toBeVisible();
+			await expect(
+				certBadges.getByRole("link", { name: badge.label }),
+			).toBeVisible();
 		}
 
 		for (const [index, step] of hire.engageSteps.entries()) {
@@ -123,10 +133,9 @@ test.describe("hire conversion page", () => {
 		await expect(
 			contact.getByRole("link", { name: hire.contactDisclaimerLink }),
 		).toHaveAttribute("href", /\/privacy-policy\/?/);
-		await expect(contact.getByRole("link", { name: hire.contactCtaLabel })).toHaveAttribute(
-			"href",
-			/^mailto:/,
-		);
+		await expect(
+			contact.getByRole("link", { name: hire.contactCtaLabel }),
+		).toHaveAttribute("href", /^mailto:/);
 
 		await heroTalk.click();
 		await expect(
@@ -153,11 +162,15 @@ test.describe("hire conversion page", () => {
 		await expect(nav.getByRole("link", { name: "Work" })).toHaveCount(0);
 		await expect(nav.getByRole("link", { name: "Proof" })).toHaveCount(0);
 		await expect(nav.getByRole("link", { name: "Privacy" })).toHaveCount(0);
-		await expect(page.locator("footer").getByRole("link", { name: "Hire" })).toHaveCount(0);
+		await expect(
+			page.locator("footer").getByRole("link", { name: "Hire" }),
+		).toHaveCount(0);
 		await expect(page).toHaveURL(/\/hire\/?/);
 	});
 
-	test("keeps three proof teasers on one row from md up", async ({ page }, testInfo) => {
+	test("keeps three proof teasers on one row from md up", async ({
+		page,
+	}, testInfo) => {
 		test.skip(
 			!testInfo.project.name.includes("desktop"),
 			"One-row proof grid is asserted on desktop",
@@ -213,7 +226,9 @@ test.describe("hire conversion page", () => {
 
 		const boxes = [];
 		for (const step of hire.engageSteps) {
-			const box = await page.getByRole("heading", { level: 3, name: step.title }).boundingBox();
+			const box = await page
+				.getByRole("heading", { level: 3, name: step.title })
+				.boundingBox();
 			expect(box).toBeTruthy();
 			boxes.push(box!);
 		}
@@ -294,7 +309,9 @@ test.describe("hire conversion page", () => {
 			"content",
 			"Hire DevOps (AWS & Kubernetes) | Q4 2026 | Andrii Lytvynenko",
 		);
-		await expect(page.locator('meta[property="og:description"]')).toHaveAttribute(
+		await expect(
+			page.locator('meta[property="og:description"]'),
+		).toHaveAttribute(
 			"content",
 			"B2B DevOps from the EU — cloud cost & reliability, IaC/Kubernetes, CI/CD & observability. Case-study outcomes, not guarantees. Proof on the resume.",
 		);
@@ -302,7 +319,9 @@ test.describe("hire conversion page", () => {
 			"content",
 			"Hire DevOps (AWS & Kubernetes) | Q4 2026 | Andrii Lytvynenko",
 		);
-		await expect(page.locator('meta[name="twitter:description"]')).toHaveAttribute(
+		await expect(
+			page.locator('meta[name="twitter:description"]'),
+		).toHaveAttribute(
 			"content",
 			"B2B DevOps from the EU — cloud cost & reliability, IaC/Kubernetes, CI/CD & observability. Case-study outcomes, not guarantees. Proof on the resume.",
 		);

@@ -3,7 +3,10 @@
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useId, useState } from "react";
 import { useReduceEffects } from "@/components/providers/ReduceEffectsProvider";
-import { softSpringTransition as springTransition, instantTransition } from "@/lib/animations";
+import {
+	softSpringTransition as springTransition,
+	instantTransition,
+} from "@/lib/animations";
 
 interface ExpandableDescriptionProps {
 	html: string;
@@ -12,7 +15,10 @@ interface ExpandableDescriptionProps {
 	className?: string;
 }
 
-function truncateListHtml(html: string, maxBullets: number): {
+function truncateListHtml(
+	html: string,
+	maxBullets: number,
+): {
 	truncated: string;
 	full: string;
 	needsExpand: boolean;
@@ -25,7 +31,10 @@ function truncateListHtml(html: string, maxBullets: number): {
 	return { truncated, full: html, needsExpand: true };
 }
 
-function truncatePlainText(html: string, maxChars: number): {
+function truncatePlainText(
+	html: string,
+	maxChars: number,
+): {
 	truncated: string;
 	full: string;
 	needsExpand: boolean;
@@ -36,7 +45,8 @@ function truncatePlainText(html: string, maxChars: number): {
 	}
 	const rough = stripped.slice(0, maxChars);
 	const lastSpace = rough.lastIndexOf(" ");
-	const truncated = (lastSpace > 0 ? rough.slice(0, lastSpace) : rough).trim() + "…";
+	const truncated =
+		(lastSpace > 0 ? rough.slice(0, lastSpace) : rough).trim() + "…";
 	return {
 		truncated: `<p>${truncated}</p>`,
 		full: html,
@@ -47,9 +57,9 @@ function truncatePlainText(html: string, maxChars: number): {
 function getAdditionalListItems(html: string, maxBullets: number): string[] {
 	const liMatches = html.match(/<li>[\s\S]*?<\/li>/g);
 	if (!liMatches || liMatches.length <= maxBullets) return [];
-	return liMatches.slice(maxBullets).map((m) =>
-		m.replace(/^<li>|<\/li>$/gi, "").trim()
-	);
+	return liMatches
+		.slice(maxBullets)
+		.map((m) => m.replace(/^<li>|<\/li>$/gi, "").trim());
 }
 
 function getAdditionalPlainHtml(html: string, maxChars: number): string | null {
@@ -102,95 +112,93 @@ export function ExpandableDescription({
 					dangerouslySetInnerHTML={{ __html: truncated }}
 				/>
 				<AnimatePresence initial={false}>
-				{needsExpand && hasAdditional && isOpen && (
-					<motion.div
-						id={`${contentId}-additional`}
-						initial={
-							skipAnimations ? false : { height: 0, opacity: 0 }
-						}
-						animate={{
-							height: "auto",
-							opacity: 1,
-							transition: skipAnimations
-								? instantTransition
-								: {
-										height: springTransition,
-										opacity: { duration: 0.35 },
-									},
-						}}
-						exit={
-							skipAnimations
-								? { height: 0, opacity: 0, transition: instantTransition }
-								: {
-										height: 0,
-										opacity: 0,
-										transition: {
-											height: { ...springTransition, stiffness: 350 },
-											opacity: { duration: 0.25 },
+					{needsExpand && hasAdditional && isOpen && (
+						<motion.div
+							id={`${contentId}-additional`}
+							initial={skipAnimations ? false : { height: 0, opacity: 0 }}
+							animate={{
+								height: "auto",
+								opacity: 1,
+								transition: skipAnimations
+									? instantTransition
+									: {
+											height: springTransition,
+											opacity: { duration: 0.35 },
 										},
-									}
-						}
-						className="overflow-hidden"
-					>
-						{isList ? (
-							<div className={proseClass}>
-								<motion.ul
-									className="mt-0 list-disc pl-6 [&_li]:mb-1"
-									initial="hidden"
-									animate="visible"
-									variants={{
-										visible: {
-											transition: skipAnimations
-												? {}
-												: {
-														staggerChildren: 0.065,
-														delayChildren: 0.12,
-													},
-										},
-										hidden: {},
-									}}
-								>
-									{additionalListItems.map((itemHtml, index) => (
-									<motion.li
-										key={`${itemHtml}-${index}`}
-										className="mb-1"
+							}}
+							exit={
+								skipAnimations
+									? { height: 0, opacity: 0, transition: instantTransition }
+									: {
+											height: 0,
+											opacity: 0,
+											transition: {
+												height: { ...springTransition, stiffness: 350 },
+												opacity: { duration: 0.25 },
+											},
+										}
+							}
+							className="overflow-hidden"
+						>
+							{isList ? (
+								<div className={proseClass}>
+									<motion.ul
+										className="mt-0 list-disc pl-6 [&_li]:mb-1"
+										initial="hidden"
+										animate="visible"
 										variants={{
 											visible: {
-												opacity: 1,
-												scale: 1,
-												y: 0,
+												transition: skipAnimations
+													? {}
+													: {
+															staggerChildren: 0.065,
+															delayChildren: 0.12,
+														},
 											},
-											hidden: skipAnimations
-												? { opacity: 1, scale: 1, y: 0 }
-												: {
-														opacity: 0,
-														scale: 0.85,
-														y: 4,
-													},
+											hidden: {},
 										}}
-										transition={
-											skipAnimations ? instantTransition : springTransition
-										}
-										dangerouslySetInnerHTML={{ __html: itemHtml }}
-									/>
-								))}
-								</motion.ul>
-							</div>
-						) : (
-							<motion.div
-								className={proseClass}
-								initial={skipAnimations ? false : { opacity: 0 }}
-								animate={{ opacity: 1 }}
-								transition={
-									skipAnimations ? instantTransition : { duration: 0.35 }
-								}
-								dangerouslySetInnerHTML={{
-									__html: additionalPlainHtml ?? "",
-								}}
-							/>
-						)}
-					</motion.div>
-				)}
+									>
+										{additionalListItems.map((itemHtml, index) => (
+											<motion.li
+												key={`${itemHtml}-${index}`}
+												className="mb-1"
+												variants={{
+													visible: {
+														opacity: 1,
+														scale: 1,
+														y: 0,
+													},
+													hidden: skipAnimations
+														? { opacity: 1, scale: 1, y: 0 }
+														: {
+																opacity: 0,
+																scale: 0.85,
+																y: 4,
+															},
+												}}
+												transition={
+													skipAnimations ? instantTransition : springTransition
+												}
+												dangerouslySetInnerHTML={{ __html: itemHtml }}
+											/>
+										))}
+									</motion.ul>
+								</div>
+							) : (
+								<motion.div
+									className={proseClass}
+									initial={skipAnimations ? false : { opacity: 0 }}
+									animate={{ opacity: 1 }}
+									transition={
+										skipAnimations ? instantTransition : { duration: 0.35 }
+									}
+									dangerouslySetInnerHTML={{
+										__html: additionalPlainHtml ?? "",
+									}}
+								/>
+							)}
+						</motion.div>
+					)}
 				</AnimatePresence>
 			</div>
 			<AnimatePresence initial={false}>

@@ -26,11 +26,20 @@ async function main() {
 	fs.writeFileSync(path.join(OUT_DIR, "favicon.ico"), ico);
 
 	// PWA icons
-	await sharp(svg).resize(192, 192).png().toFile(path.join(OUT_DIR, "icon-192.png"));
-	await sharp(svg).resize(512, 512).png().toFile(path.join(OUT_DIR, "icon-512.png"));
+	await sharp(svg)
+		.resize(192, 192)
+		.png()
+		.toFile(path.join(OUT_DIR, "icon-192.png"));
+	await sharp(svg)
+		.resize(512, 512)
+		.png()
+		.toFile(path.join(OUT_DIR, "icon-512.png"));
 
 	// Apple touch icon (180x180)
-	await sharp(svg).resize(180, 180).png().toFile(path.join(OUT_DIR, "apple-touch-icon.png"));
+	await sharp(svg)
+		.resize(180, 180)
+		.png()
+		.toFile(path.join(OUT_DIR, "apple-touch-icon.png"));
 
 	console.log("Favicon set generated in public/images/");
 }

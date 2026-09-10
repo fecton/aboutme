@@ -3,11 +3,9 @@ import { splitCommaListRespectingParens } from "@/lib/split-comma-list";
 
 describe("splitCommaListRespectingParens", () => {
 	it("splits a flat comma list and trims segments", () => {
-		expect(splitCommaListRespectingParens("Terraform, Kubernetes, Docker")).toEqual([
-			"Terraform",
-			"Kubernetes",
-			"Docker",
-		]);
+		expect(
+			splitCommaListRespectingParens("Terraform, Kubernetes, Docker"),
+		).toEqual(["Terraform", "Kubernetes", "Docker"]);
 	});
 
 	it("does not split on commas inside parentheses", () => {

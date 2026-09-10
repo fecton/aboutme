@@ -1,9 +1,5 @@
 import { describe, expect, it } from "vitest";
-import {
-	HIRE_CONTACT_DISCLAIMER,
-	hire,
-	hirePageMeta,
-} from "@/data/hire";
+import { HIRE_CONTACT_DISCLAIMER, hire, hirePageMeta } from "@/data/hire";
 import { experiences } from "@/data/experiences";
 import { profile } from "@/data/profile";
 import { certificates } from "@/data/certificates";
@@ -14,7 +10,9 @@ const LOCKED_DISCLAIMER =
 const FORBIDDEN_SKU = /genai|aiops|bedrock|llm|copilot/i;
 
 const sourceOfTruth = [
-	...experiences.map((exp) => `${exp.company} ${exp.client} ${exp.description}`),
+	...experiences.map(
+		(exp) => `${exp.company} ${exp.client} ${exp.description}`,
+	),
 	profile.subtitle,
 	...profile.highlights.map((h) => `${h.number} ${h.label}`),
 ].join("\n");

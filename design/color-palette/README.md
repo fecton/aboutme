@@ -1,6 +1,6 @@
 # Primary Colors
 
-| Name         | Hex |
+| Name         | Hex       |
 | ------------ | --------- |
 | Primary Blue | `#3366CC` |
 | Accent Blue  | `#60A9F0` |
@@ -19,7 +19,7 @@
 
 # Accents / Highlight
 
-| Name      | RGB / Hex          |
-| --------- | ------------------ |
-| Dark      | `#203F7E`          |
-| Dark Gray | `#202020`          |
+| Name      | RGB / Hex |
+| --------- | --------- |
+| Dark      | `#203F7E` |
+| Dark Gray | `#202020` |
