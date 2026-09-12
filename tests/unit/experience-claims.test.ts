@@ -1,3 +1,4 @@
+import { Window } from "happy-dom";
 import { describe, expect, it } from "vitest";
 import { experiences } from "@/data/experiences";
 import { profile } from "@/data/profile";
@@ -5,9 +6,18 @@ import { profile } from "@/data/profile";
 const FORBIDDEN_OPENERS = /^(Led|Drove|Spearheaded|Championed)\b/;
 
 function bullets(html: string): string[] {
-	return [...html.matchAll(/<li>([\s\S]*?)<\/li>/g)].map((match) =>
-		match[1].replace(/[<>]/g, "").trim(),
-	);
+	const parserWindow = new Window();
+	try {
+		const parsed = new parserWindow.DOMParser().parseFromString(
+			html,
+			"text/html",
+		);
+		return [...parsed.querySelectorAll("li")].map((li) =>
+			(li.textContent ?? "").trim(),
+		);
+	} finally {
+		parserWindow.close();
+	}
 }
 
 function isLuxoftOrMercedes(experience: (typeof experiences)[number]) {
