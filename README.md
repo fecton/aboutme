@@ -44,7 +44,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | `npm run format:check` | Prettier check (CI)                                                 |
 | `npm run typecheck`    | `tsc --noEmit`                                                      |
 | `npm run spell`        | cspell on `src/**/*.{ts,tsx}` and root `*.md`                       |
-| `npm test`             | Vitest (TS) then Python unittests (`test_*.py`, OSV gate)           |
+| `npm test`             | Vitest (TS) then Python unit tests (`test_*.py`, OSV gate)          |
 | `npm run knip`         | Unused export / dead-code check                                     |
 | `npm run e2e`          | Playwright smoke + axe (expects `out/` unless you override the URL) |
 | `npm run favicon`      | Rebuild favicon/PWA icons from `tools/favicon-source.svg`           |
