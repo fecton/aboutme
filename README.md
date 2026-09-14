@@ -162,14 +162,14 @@ Or run `npm run logos` for Wikimedia-sourced company/university marks. See `publ
 
 ## Routes
 
-| Path                                             | Source                                                                |
-| ------------------------------------------------ | --------------------------------------------------------------------- |
-| `/`                                              | `src/app/page.tsx` — hero + bento grid (detailed resume)              |
-| `/hire/`                                         | Conversion page (unlinked chrome; see above). Indexed; in sitemap     |
-| `/resume/`                                       | Resume iframe + download (`robots: noindex`)                          |
-| `/viewer/{resume\|diploma\|diploma-supplement}/` | Shared PDF viewer (`generateStaticParams`, `noindex`)                 |
-| `/privacy-policy/`, `/cookie-policy/`            | Legal pages (`robots: noindex`)                                       |
-| unknown                                          | `src/app/not-found.tsx` (navbar + footer; required for static 404)    |
+| Path                                             | Source                                                             |
+| ------------------------------------------------ | ------------------------------------------------------------------ |
+| `/`                                              | `src/app/page.tsx` — hero + bento grid (detailed resume)           |
+| `/hire/`                                         | Conversion page (unlinked chrome; see above). Indexed; in sitemap  |
+| `/resume/`                                       | Resume iframe + download (`robots: noindex`)                       |
+| `/viewer/{resume\|diploma\|diploma-supplement}/` | Shared PDF viewer (`generateStaticParams`, `noindex`)              |
+| `/privacy-policy/`, `/cookie-policy/`            | Legal pages (`robots: noindex`)                                    |
+| unknown                                          | `src/app/not-found.tsx` (navbar + footer; required for static 404) |
 
 ## Deployment
 
